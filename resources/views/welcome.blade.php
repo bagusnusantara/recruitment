@@ -597,7 +597,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <p class="text-center dont-do">Don't have an account?
                             <a href="#" data-toggle="modal" data-target="#exampleModal1" class="text-dark">
-                                <strong> Now</strong></a>
+                                <strong>Register Now</strong></a>
                         </p>
                     </form>
                 </div>

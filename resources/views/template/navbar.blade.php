@@ -23,38 +23,60 @@
                     SMI
                 </div>
             </li>
-
+            @can('isJobseeker')
             <li class="@if(url('/jobseeker/dashboard') == request()->url()
                ) active @else '' @endif  treeview">
                 <a href="{{ url('jobseeker/dashboard')}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Dashboard</span></a>
             </li>
 
-            <li class="@if(url('/tentangsaya') == request()->url() or url('/riwayatpekerjaan') == request()->url()) active @else '' @endif treeview">
-                <a href="{{ url('tentangsaya')}}"><i class="fa fa-address-book"></i> <span class="nav-label">Profil Saya</span><span class="fa arrow"></span></a>
+            <li class="@if(url('/jobseeker/profil/tentangsaya') == request()->url() or url('jobseeker/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif treeview">
+                <a href="{{ url('jobseeker/profil/tentangsaya')}}"><i class="fa fa-address-book"></i> <span class="nav-label">Profil Saya</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                  <li class="@if(url('/riwayatpekerjaan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('riwayatpekerjaan')}}">Riwayat Pekerjaan</a></li>
-                  <li class="@if(url('/riwayatpendidikan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('riwayatpendidikan')}}">Riwayat Pendidikan</a></li>
-                  <li class="@if(url('/sertifikatkeahlian') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('sertifikatkeahlian')}}">Sertifikat Keahlian</a></li>
-                  <li class="@if(url('/kemampuanbahasa') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('kemampuanbahasa')}}">Kemampuan Bahasa</a></li>
-                  <li class="@if(url('/curiculumvitae') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('curiculumvitae')}}">Curiculum Vitae</a></li>
-                  <li class="@if(url('/tentangsaya') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('tentangsaya')}}">Tentang Saya</a></li>
+                  <li class="@if(url('jobseeker/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/riwayatpekerjaan')}}">Riwayat Pekerjaan</a></li>
+                  <li class="@if(url('jobseeker/profil/riwayatpendidikan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/riwayatpendidikan')}}">Riwayat Pendidikan</a></li>
+                  <li class="@if(url('jobseeker/profil/sertifikatkeahlian') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/sertifikatkeahlian')}}">Sertifikat Keahlian</a></li>
+                  <li class="@if(url('jobseeker/profil/kemampuanbahasa') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/kemampuanbahasa')}}">Kemampuan Bahasa</a></li>
+                  <li class="@if(url('jobseeker/profil/curiculumvitae') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/curiculumvitae')}}">Curiculum Vitae</a></li>
+                  <li class="@if(url('jobseeker/profil/tentangsaya') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/tentangsaya')}}">Tentang Saya</a></li>
                 </ul>
             </li>
 
-            <li class="@if(url('/notifikasi') == request()->url()
+            <li class="@if(url('jobseeker/notifikasi') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('notifikasi')}}"><i class="fa fa-envelope"></i> <span class="nav-label">Notifikasi</span></a>
+                <a href="{{ url('jobseeker/notifikasi')}}"><i class="fa fa-envelope"></i> <span class="nav-label">Notifikasi</span></a>
             </li>
 
-            <li class="@if(url('/lowonganpekerjaan') == request()->url()
+            <li class="@if(url('jobseeker/lowonganpekerjaan') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('/lowonganpekerjaan')}}"><i class="fa fa-paper-plane-o"></i> <span class="nav-label">Lowongan Pekerjaan</span></a>
+                <a href="{{ url('jobseeker/lowonganpekerjaan')}}"><i class="fa fa-paper-plane-o"></i> <span class="nav-label">Lowongan Pekerjaan</span></a>
             </li>
 
-            <li class="@if(url('/riwayattes') == request()->url()
+            <li class="@if(url('jobseeker//riwayattes') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('riwayattes')}}"><i class="fa fa-history"></i> <span class="nav-label">Riwayat Tes</span></a>
+                <a href="{{ url('jobseeker/riwayattes')}}"><i class="fa fa-history"></i> <span class="nav-label">Riwayat Tes</span></a>
             </li>
+            @endcan
+            @can('isAdmin')
+            <li class="@if(url('/admin/dashboard') == request()->url()
+               ) active @else '' @endif  treeview">
+                <a href="{{ url('admin/dashboard')}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Dashboard</span></a>
+            </li>
+
+            <li class="@if(url('admin/notifikasi') == request()->url()
+               ) active @else '' @endif  treeview">
+                <a href="{{ url('admin/notifikasi')}}"><i class="fa fa-envelope"></i> <span class="nav-label">Notifikasi</span></a>
+            </li>
+
+            <li class="@if(url('jobseeker/lowonganpekerjaan') == request()->url()
+               ) active @else '' @endif  treeview">
+                <a href="{{ url('jobseeker/lowonganpekerjaan')}}"><i class="fa fa-paper-plane-o"></i> <span class="nav-label">Lowongan Pekerjaan</span></a>
+            </li>
+
+            <li class="@if(url('jobseeker//riwayattes') == request()->url()
+               ) active @else '' @endif  treeview">
+                <a href="{{ url('jobseeker/riwayattes')}}"><i class="fa fa-history"></i> <span class="nav-label">Riwayat Tes</span></a>
+            </li>
+            @endcan
 
         </ul>
 

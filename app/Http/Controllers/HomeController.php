@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Gate;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+      if('isJobseeker'){
+          return redirect('jobseeker/dashboard');
+      }
+      else if('isClient'){
+          return redirect('client/dashboard');
+      }
+      else if('isAdmin'){
+          return redirect('admin/dashboard');
+      }
+
     }
 }
