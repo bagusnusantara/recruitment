@@ -23,11 +23,14 @@ Route::get('/jobsingle', function () {
 Auth::routes();
 
 Route::get('jobseeker/dashboard', 'JobSeekerController@getDashboard');
-Route::get('jobseeker/profil/riwayatpekerjaan', 'JobSeekerController@getDashboard');
-Route::get('jobseeker/profil/riwayatpendidikan', 'JobSeekerController@getDashboard');
-Route::get('jobseeker/profil/sertifikatkeahlian', 'JobSeekerController@getDashboard');
-Route::get('jobseeker/profil/kemampuanbahasa', 'JobSeekerController@getDashboard');
-Route::get('jobseeker/profil/curiculumvitae', 'JobSeekerController@getDashboard');
-Route::get('jobseeker/profil/tentangsaya', 'JobSeekerController@getDashboard');
+Route::get('jobseeker/profil/riwayatpekerjaan', 'JobSeekerController@getRiwayatpekerjaan');
+Route::get('jobseeker/profil/riwayatpendidikan', 'JobSeekerController@getRiwayatPendidikan');
+Route::get('jobseeker/profil/sertifikatkeahlian', 'JobSeekerController@getSertifikatkeahlian');
+Route::get('jobseeker/profil/kemampuanbahasa', 'JobSeekerController@getKemampuanbahasa');
+Route::get('jobseeker/profil/curiculumvitae', 'JobSeekerController@getCuriculumvitae');
+Route::get('jobseeker/profil/tentangsaya', 'JobSeekerController@getTentangsaya');
+Route::get('jobseeker/notifikasi', 'JobSeekerController@getNotifikasi');
+Route::get('jobseeker/riwayattes', 'JobSeekerController@getRiwayattes');
+Route::get('jobseeker/lowonganpekerjaan', 'JobSeekerController@getLowonganpekerjaan');
 
 Route::get('/home', 'HomeController@index')->name('home');

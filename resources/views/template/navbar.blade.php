@@ -24,36 +24,36 @@
                 </div>
             </li>
 
-            <li class="@if(url('/dashboard') == request()->url()
+            <li class="@if(url('/jobseeker/dashboard') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('dashboard')}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Dashboard</span></a>
+                <a href="{{ url('jobseeker/dashboard')}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Dashboard</span></a>
             </li>
 
-            <li class="@if(url('/itemplanning') == request()->url() or url('/StokBarang') == request()->url()) active @else '' @endif treeview">
-                <a href="{{ url('itemplanning')}}"><i class="fa fa-sitemap"></i> <span class="nav-label">Profil Saya</span><span class="fa arrow"></span></a>
+            <li class="@if(url('/tentangsaya') == request()->url() or url('/riwayatpekerjaan') == request()->url()) active @else '' @endif treeview">
+                <a href="{{ url('tentangsaya')}}"><i class="fa fa-address-book"></i> <span class="nav-label">Profil Saya</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                  <li class="@if(url('/itemplanning') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('itemplanning')}}">Riwayat Pekerjaan</a></li>
-                  <li class="@if(url('/StokBarang') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('StokBarang')}}">Riwayat Pendidikan</a></li>
-                  <li class="@if(url('/StokBarang') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('StokBarang')}}">Sertifikat Keahlian</a></li>
-                  <li class="@if(url('/StokBarang') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('StokBarang')}}">Kemampuan Bahasa</a></li>
-                  <li class="@if(url('/StokBarang') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('StokBarang')}}">Curiculum Vitae</a></li>
-                  <li class="@if(url('/StokBarang') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('StokBarang')}}">Tentang Saya</a></li>
+                  <li class="@if(url('/riwayatpekerjaan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('riwayatpekerjaan')}}">Riwayat Pekerjaan</a></li>
+                  <li class="@if(url('/riwayatpendidikan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('riwayatpendidikan')}}">Riwayat Pendidikan</a></li>
+                  <li class="@if(url('/sertifikatkeahlian') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('sertifikatkeahlian')}}">Sertifikat Keahlian</a></li>
+                  <li class="@if(url('/kemampuanbahasa') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('kemampuanbahasa')}}">Kemampuan Bahasa</a></li>
+                  <li class="@if(url('/curiculumvitae') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('curiculumvitae')}}">Curiculum Vitae</a></li>
+                  <li class="@if(url('/tentangsaya') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('tentangsaya')}}">Tentang Saya</a></li>
                 </ul>
             </li>
 
-            <li class="@if(url('/penerimaanPO') == request()->url()
+            <li class="@if(url('/notifikasi') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('penerimaanPO')}}"><i class="fa fa-envelope"></i> <span class="nav-label">Notifikasi</span></a>
+                <a href="{{ url('notifikasi')}}"><i class="fa fa-envelope"></i> <span class="nav-label">Notifikasi</span></a>
             </li>
 
-            <li class="@if(url('/pengajuanpembelian') == request()->url()
+            <li class="@if(url('/lowonganpekerjaan') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('/pengajuanpembelian')}}"><i class="fa fa-paper-plane-o"></i> <span class="nav-label">Lowongan Pekerjaan</span></a>
+                <a href="{{ url('/lowonganpekerjaan')}}"><i class="fa fa-paper-plane-o"></i> <span class="nav-label">Lowongan Pekerjaan</span></a>
             </li>
 
-            <li class="@if(url('/penerimaanPO') == request()->url()
+            <li class="@if(url('/riwayattes') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('penerimaanPO')}}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Riwayat Hasil Tes</span></a>
+                <a href="{{ url('riwayattes')}}"><i class="fa fa-history"></i> <span class="nav-label">Riwayat Tes</span></a>
             </li>
 
         </ul>
