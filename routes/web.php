@@ -22,7 +22,6 @@ Route::get('/jobsingle', function () {
 });
 Auth::routes();
 
-a
 Route::get('jobseeker/dashboard', 'JobSeekerController@getDashboard');
 Route::get('jobseeker/profil/riwayatpekerjaan', 'JobSeekerController@getDashboard');
 Route::get('jobseeker/profil/riwayatpendidikan', 'JobSeekerController@getDashboard');
