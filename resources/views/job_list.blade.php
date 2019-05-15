@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-    <title>Recruit HR Management Category Flat Bootstrap Responsive website Template | Job List :: w3layouts</title>
+    <title>SMI Recruitment</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8" />
     <meta name="keywords" content="Recruit Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -47,27 +47,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="ml-lg-5 navbar-nav mr-lg-auto">
-                        <li class="nav-item mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                            <a href="about.html">about</a>
-                        </li>
-                        <li class="nav-item dropdown mr-lg-4 my-lg-0 my-sm-4 my-3  active ">
-                            <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                Pages
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a href="job_list.html">Job List</a>
-                                <a href="/jobsingle">Job Single</a>
-                            </div>
-                        </li>
-                        <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
-                            <a href="contact.html">contact</a>
-                        </li>
-                    </ul>
+                  <ul class="ml-lg-5 navbar-nav mr-lg-auto">
+                      <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
+                          <a href="{{url('/')}}">Home</a>
+                      </li>
+                      <li class="nav-item active mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
+                          <a href="{{url('joblist')}}">Job List</a>
+                      </li>
+                  </ul>
                     <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
                         aria-pressed="false" data-target="#exampleModal1">
                         Register
@@ -87,7 +74,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb d-flex justify-content-center bg-theme">
             <li class="breadcrumb-item">
-                <a href="index.html" class="text-white">Home</a>
+                <a href="{{url('/')}}" class="text-white">Home</a>
             </li>
             <li class="breadcrumb-item active text-white font-weight-bold" aria-current="page">Job List</li>
         </ol>
@@ -221,7 +208,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="col-sm-6 e-left">
                             <a href="#"><img src="{{ asset('web/images/b2.jpg') }}" alt="" class="img-fluid"></a>
                             <div class="e-desc">
-                                <h6><a href="/jobsingle">Lead Android Developer </a></h6>
+                                <h6><a href="{{url('/jobsingle')}}">Lead Android Developer </a></h6>
 
                                 <ul class="e-tags">
                                     <li>
@@ -258,7 +245,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="col-sm-6 e-left">
                             <a href="#"><img src="{{ asset('web/images/b1.jpg') }}" alt="" class="img-fluid"></a>
                             <div class="e-desc">
-                                <h6><a href="/jobsingle">Senior Front - End Engineer </a></h6>
+                                <h6><a href="{{url('jobsingle')}}">Senior Front - End Engineer </a></h6>
 
                                 <ul class="e-tags">
                                     <li>
@@ -297,7 +284,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="col-sm-6 e-left">
                             <a href="#"><img src="{{ asset('web/images/b3.jpg') }}" alt="" class="img-fluid"></a>
                             <div class="e-desc">
-                                <h6><a href="/jobsingle">Senior Java Developer
+                                <h6><a href="{{url('jobsingle')}}">Senior Java Developer
                                     </a></h6>
 
                                 <ul class="e-tags">
@@ -335,7 +322,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="col-sm-6 e-left">
                             <a href="#"><img src="{{ asset('web/images/b1.jpg') }}" alt="" class="img-fluid"></a>
                             <div class="e-desc">
-                                <h6><a href="/jobsingle">Senior Front - End Engineer </a></h6>
+                                <h6><a href="{{url('jobsingle')}}">Senior Front - End Engineer </a></h6>
 
                                 <ul class="e-tags">
                                     <li>
@@ -374,7 +361,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="col-sm-6 e-left">
                             <a href="#"><img src="{{ asset('web/images/b2.jpg') }}" alt="" class="img-fluid"></a>
                             <div class="e-desc">
-                                <h6><a href="/jobsingle">Lead Android Developer </a></h6>
+                                <h6><a href="{{url('jobsingle')}}">Lead Android Developer </a></h6>
 
                                 <ul class="e-tags">
                                     <li>
@@ -411,7 +398,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="col-sm-6 e-left">
                             <a href="#"><img src="{{ asset('web/images/b3.jpg') }}" alt="" class="img-fluid"></a>
                             <div class="e-desc">
-                                <h6><a href="/jobsingle">Web Designer </a></h6>
+                                <h6><a href="{{url('jobsingle')}}">Web Designer </a></h6>
 
                                 <ul class="e-tags">
                                     <li>
@@ -466,102 +453,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <footer id="footer" class="py-sm-5 py-4 bg-theme">
         <div class="container">
             <div class="footer-top-w3ls">
-                <h2><a href="index.html" class="navbar-brand">recruit</a></h2>
-                <p class="text-white">Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt
-                    ut labore et dolore magna aliquyam
-                    erat, At vero eos et accusam et justo duo dolores et ea rebum. Lorem ipsum dolor sit amet, no sea
-                    takimata sanctus est Lorem ipsum dolor sit amet. Stet clita kasd gubergren, no sea takimata sanctus
-                    est
-                    Lorem ipsum dolor sit amet. no sea takimata sanctus est Lorem ipsum dolor sit amet. no sea takimata
-                    sanctus est Lorem ipsum dolor sit amet. sed diam voluptua. </p>
+                <h2><a href="index.html" class="navbar-brand">PT. SMI</a></h2>
+                <p class="text-white">PT Selaras Mitra Integra  atau biasa disebut SMI merupakan perusahaan human resources management system atau human resources solution. SMI adalah konsultan yang fokus pada pengembangan human capital dan organisasi. SMI menggunakan pendekatan yang humanis dan metode-metode yang reliabel untuk membantu setiap human capital dan organisasi untuk berkembang. SMI mengkombinasikan teori dan praktik human resource sebagai pendekatan yang diterapkan.
+                  Spesialiasi SMI di area rekrutmen, assessment center, training & development, coaching & counseling, labour supply dan layanan terkait lainnya. SMI percaya bahwa manusia merupakan aset yang paling penting bagi organisasi. Paradigma ini memberi SMI perspektif yang unik dalam mencari solusi yang holistik akan masalah human capital dan organisasi.
             </div>
             <div class="row  pt-5">
                 <div class="col-lg-3 col-sm-6 footer_grid1">
-                    <h5>Address</h5>
+                    <h5>Alamat</h5>
                     <div class="d-flex align-items-center">
                         <span class="fa fa-building mr-4"></span>
-                        <p>90 Street, landmark
-                            <br>City State 34189.</p>
+                        <p>Jalan Ketintang Madya no 80
+                            <br>Surabaya</p>
                     </div>
-                    <div class="d-flex mt-3 align-items-center">
-                        <span class="fa fa-building mr-4"></span>
-                        <p>16 Street, landmark
-                            <br>City State 74789.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 mt-sm-0 mt-5">
-                    <h5>Quick links</h5>
-                    <ul class="list-unstyled quick-links">
-                        <li>
-                            <a href="index.html">
-                                <span class="fa fa-play"></span>Home</a>
-                        </li>
-                        <li>
-                            <a href="about.html">
-                                <span class="fa fa-play"></span>About</a>
-                        </li>
-                        <li>
-                            <a href="job_list.html">
-                                <span class="fa fa-play"></span>Job List</a>
-                        </li>
-                        <li>
-                            <a href="/jobsingle">
-                                <span class="fa fa-play"></span>Job Single</a>
-                        </li>
-                        <li>
-                            <a href="contact.html">
-                                <span class="fa fa-play"></span>Contact</a>
-                        </li>
-                    </ul>
+
                 </div>
 
-                <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
-                    <h5>Quick links</h5>
-                    <ul class="list-unstyled quick-links">
-                        <li>
-                            <a href="index.html">
-                                <span class="fa fa-play"></span>Home</a>
-                        </li>
-                        <li>
-                            <a href="about.html">
-                                <span class="fa fa-play"></span>About</a>
-                        </li>
-                        <li>
-                            <a href="job_list.html">
-                                <span class="fa fa-play"></span>Job List</a>
-                        </li>
-                        <li>
-                            <a href="/jobsingle">
-                                <span class="fa fa-play"></span>Job Single</a>
-                        </li>
-                        <li>
-                            <a href="contact.html">
-                                <span class="fa fa-play"></span>Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
-                    <h5>subscribe to newsletter</h5>
-                    <form action="#" method="post">
-                        <div class="form-group">
-                            <input type="email" class="form-control  border-0 border-rounded" id="emailid" placeholder="Enter email"
-                                name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="Submit" class="form-control bg-light-theme  border-0 border-rounded" id="sub"
-                                value="Submit" name="sub">
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
+      </div>
     </footer>
     <!-- /Footer -->
-    <div class="cpy-right text-center py-4">
+    <!-- <div class="cpy-right text-center py-4">
         <p class="text-dark">© 2018 Recruit. All rights reserved | Design by
             <a href="http://w3layouts.com" class="text-theme"> W3layouts.</a>
         </p>
-    </div>
+    </div> -->
     <!-- login modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -574,16 +489,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post" class="p-3">
+                    <form action="{{ route('login') }}" method="post" class="p-3">
+                        @csrf
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Username</label>
-                            <input type="text" class="form-control" placeholder=" " name="Name" id="recipient-name"
-                                required="">
+                            <label for="recipient-name" class="col-form-label">Email address</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus id="email">
+                              @error('email')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
                         </div>
+
                         <div class="form-group">
                             <label for="password" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" id="password"
-                                required="">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" required autocomplete="current-password">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="right-w3l">
                             <input type="submit" class="form-control bg-theme" value="Login">
@@ -600,7 +525,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <p class="text-center dont-do">Don't have an account?
                             <a href="#" data-toggle="modal" data-target="#exampleModal1" class="text-dark">
-                                <strong>Register Now</strong></a>
+                                <strong> Now</strong></a>
                         </p>
                     </form>
                 </div>
@@ -620,26 +545,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post" class="p-3">
+                    <form method="POST" action="{{ route('register') }}" class="p-3">
+                        @csrf
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Username</label>
-                            <input type="text" class="form-control" placeholder=" " name="Name" id="recipient-rname"
-                                required="">
+                            <label for="recipient-name" class="col-form-label">Nama</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" name="name" id="name" required autocomplete="name" autofocus>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <div class="form-group">
                             <label for="recipient-email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" placeholder=" " name="Email" id="recipient-email"
-                                required="">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror"  name="email" id="email" value="{{ old('email') }}" required autocomplete="email">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <div class="form-group">
                             <label for="password1" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" id="password1"
-                                required="">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" required autocomplete="new-password" >
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <div class="form-group">
                             <label for="password2" class="col-form-label">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Confirm Password" id="password2"
-                                required="">
+                            <input type="password" class="form-control" name="password_confirmation" id="password-confirm"  required autocomplete="new-password">
                         </div>
                         <div class="sub-w3l">
                             <div class="sub-w3ltd">
@@ -658,7 +595,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     <!-- //register modal -->
     <!-- js -->
-    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="{{asset('web/js/jquery-2.2.3.min.js') }}"></script>
     <!-- script for password match -->
     <script>
         window.onload = function () {
@@ -677,8 +614,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
     </script>
     <!-- script for password match -->
-    <script src="js/move-top.js"></script>
-    <script src="js/easing.js"></script>
+    <script src="{{asset('web/js/move-top.js') }}"></script>
+    <script src="{{asset('web/js/easing.js') }}"></script>
     <script>
         jQuery(document).ready(function ($) {
             $(".scroll").click(function (event) {

@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-    <title>Recruit HR Management Category Flat Bootstrap Responsive website Template | Home :: w3layouts</title>
+    <title>SMI Recruitment</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8" />
     <meta name="keywords" content="Recruit Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -51,10 +51,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="ml-lg-5 navbar-nav mr-lg-auto">
                             <li class="nav-item active  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                                <a href="/">Home</a>
+                                <a href="{{url('/')}}">Home</a>
                             </li>
                             <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                                <a href="/joblist">Job List</a>
+                                <a href="{{url('joblist')}}">Job List</a>
                             </li>
 
                         </ul>
@@ -80,7 +80,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <h3>SMI Public recruitment</h3>
                                 <div class="d-flex justify-content-between bnr-sub-txt align-items-center">
                                     <span></span>
-                                    <p class="text-uppercase text-white">allowing you to expand quickly</p>
+                                    <p class="text-uppercase text-white">Reach dream with us!</p>
                                     <span></span>
                                 </div>
                             </div>
@@ -238,87 +238,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
     </div>
     <!-- //partners -->
-    <!-- about -->
-    <section class="about-wthree py-3">
-        <div class="container  py-sm-5">
-            <div class="title-sec-w3layouts_pvt text-center">
-                <span class="title-wthree">a world full of possibilities</span>
-                <h4 class="w3layouts_pvt-head">allowing you to expand quickly.</h4>
-            </div>
-            <div class="row head-row-home">
-                <div class="col-md-4 my-4 home-grid">
-                    <span class="head-line"></span>
-                    <span class="fa fa-info-circle" aria-hidden="true"></span>
-                    <h4 class="home-title my-3">why choose us</h4>
-                    <p> Pellentesque in ipsum id orci porta dapibus roined magna orem ipsum dolor sit amet,consetetur.</p>
-                    <a href="about.html" class="btn wthree-bnr-btn">Read more</a>
-                </div>
-                <div class="col-md-4 my-4 home-grid">
-                    <span class="head-line"></span>
-                    <span class="fa fa-connectdevelop" aria-hidden="true"></span>
-                    <h4 class="home-title my-3">what we do</h4>
-                    <p> Pellentesque in ipsum id orci porta dapibus roined magna orem ipsum dolor sit amet,consetetur.</p>
-                    <a href="about.html" class="btn wthree-bnr-btn">Read more</a>
-                </div>
-                <div class="col-md-4 my-4 home-grid">
-                    <span class="fa fa-users" aria-hidden="true"></span>
-                    <h4 class="home-title my-3">explore yourself</h4>
-                    <p> Pellentesque in ipsum id orci porta dapibus roined magna orem ipsum dolor sit amet,consetetur.</p>
-                    <a href="about.html" class="btn wthree-bnr-btn">Read more</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //about -->
-    <!-- services -->
-    <section class="bg-theme position-relative" id="services">
-        <div class="container">
-            <div class="title-sec-w3layouts_pvt text-center">
-                <span class="title-wthree text-white">a world full of possibilities</span>
-                <h4 class="w3layouts_pvt-head">allowing you to expand quickly.</h4>
-            </div>
-            <div class="row head-row-home">
-                <div class="col-lg-8">
-                    <div class="row">
-                        <div class="col-md-6 service-title my-sm-5 my-4">
-                            <h4 class="home-title text-white">Job by Category</h4>
-                            <p class="sec-4">Itaque earum rerum hic tenetur a sapiente delectusum hic
-                                tenetur a
-                                sapiente delectus reiciendis maiores alias consequatur.
-                            </p>
-                        </div>
-                        <div class="col-md-6 service-title my-md-5">
-                            <h4 class="home-title text-white">Job by Company</h4>
-                            <p class="sec-4">Itaque earum rerum hic tenetur a sapiente delectusum hic
-                                tenetur a
-                                sapiente delectus reiciendis maiores alias consequatur.
-                            </p>
-                        </div>
-                        <div class="col-md-6 service-title mt-md-0 mt-sm-5 mt-4">
-                            <h4 class="home-title text-white">Job by Skill</h4>
-                            <p class="sec-4">Itaque earum rerum hic tenetur a sapiente delectusum hic
-                                tenetur a
-                                sapiente delectus reiciendis maiores alias consequatur.
-                            </p>
-                        </div>
-                        <div class="col-md-6 service-title mt-md-0 mt-sm-5 mt-4">
-                            <h4 class="home-title text-white">Job by Opening</h4>
-                            <p class="sec-4">Itaque earum rerum hic tenetur a sapiente delectusum hic
-                                tenetur a
-                                sapiente delectus reiciendis maiores alias consequatur.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <a href="job_list.html" class="btn wthree-bnr-btn">Read more</a>
-                    </div>
-                </div>
-                <div class="offset-lg-4"></div>
-            </div>
-        </div>
-        <img src="{{asset('web/images/services.jpg') }}" alt="" class="img-fluid">
-    </section>
-    <!-- //services -->
+
     <!-- job roles -->
     <div class="wthreepvt-pos py-md-5 py-5" id="positions">
         <div class="container py-lg-5">
@@ -533,83 +453,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <footer id="footer" class="py-sm-5 py-4 bg-theme">
         <div class="container">
             <div class="footer-top-w3ls">
-                <h2><a href="index.html" class="navbar-brand">recruit</a></h2>
-                <p class="text-white">Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt
-                    ut labore et dolore magna aliquyam
-                    erat, At vero eos et accusam et justo duo dolores et ea rebum. Lorem ipsum dolor sit amet, no sea
-                    takimata sanctus est Lorem ipsum dolor sit amet. Stet clita kasd gubergren, no sea takimata sanctus
-                    est
-                    Lorem ipsum dolor sit amet. no sea takimata sanctus est Lorem ipsum dolor sit amet. no sea takimata
-                    sanctus est Lorem ipsum dolor sit amet. sed diam voluptua. </p>
+                <h2><a href="index.html" class="navbar-brand">PT. SMI</a></h2>
+                <p class="text-white">PT Selaras Mitra Integra  atau biasa disebut SMI merupakan perusahaan human resources management system atau human resources solution. SMI adalah konsultan yang fokus pada pengembangan human capital dan organisasi. SMI menggunakan pendekatan yang humanis dan metode-metode yang reliabel untuk membantu setiap human capital dan organisasi untuk berkembang. SMI mengkombinasikan teori dan praktik human resource sebagai pendekatan yang diterapkan.
+                  Spesialiasi SMI di area rekrutmen, assessment center, training & development, coaching & counseling, labour supply dan layanan terkait lainnya. SMI percaya bahwa manusia merupakan aset yang paling penting bagi organisasi. Paradigma ini memberi SMI perspektif yang unik dalam mencari solusi yang holistik akan masalah human capital dan organisasi.
             </div>
             <div class="row  pt-5">
                 <div class="col-lg-3 col-sm-6 footer_grid1">
-                    <h5>Address</h5>
+                    <h5>Alamat</h5>
                     <div class="d-flex align-items-center">
                         <span class="fa fa-building mr-4"></span>
-                        <p>90 Street, landmark
-                            <br>City State 34189.</p>
+                        <p>Jalan Ketintang Madya no 80
+                            <br>Surabaya</p>
                     </div>
-                    <div class="d-flex mt-3 align-items-center">
-                        <span class="fa fa-building mr-4"></span>
-                        <p>16 Street, landmark
-                            <br>City State 74789.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 mt-sm-0 mt-5">
-                    <h5>Quick links</h5>
-                    <ul class="list-unstyled quick-links">
-                        <li>
-                            <a href="/">
-                                <span class="fa fa-play"></span>Home</a>
-                        </li>
-                        <li>
-                            <a href="/joblist">
-                                <span class="fa fa-play"></span>Job List</a>
-                        </li>
-                    </ul>
+
                 </div>
 
-                <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
-                    <h5>Quick links</h5>
-                    <ul class="list-unstyled quick-links">
-                        <li>
-                            <a href="index.html">
-                                <span class="fa fa-play"></span>Home</a>
-                        </li>
-                        <li>
-                            <a href="about.html">
-                                <span class="fa fa-play"></span>Abouts</a>
-                        </li>
-                        <li>
-                            <a href="job_list.html">
-                                <span class="fa fa-play"></span>Job List</a>
-                        </li>
-                        <li>
-                            <a href="job_single.html">
-                                <span class="fa fa-play"></span>Job Single</a>
-                        </li>
-                        <li>
-                            <a href="contact.html">
-                                <span class="fa fa-play"></span>Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
-                    <h5>subscribe to newsletter</h5>
-                    <form action="#" method="post">
-                        <div class="form-group">
-                            <input type="email" class="form-control  border-0 border-rounded" id="emailid" placeholder="Enter email"
-                                name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="Submit" class="form-control bg-light-theme  border-0 border-rounded" id="sub"
-                                value="Submit" name="sub">
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
+      </div>
     </footer>
     <!-- /Footer -->
     <!-- <div class="cpy-right text-center py-4">
@@ -737,7 +597,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <p class="text-center dont-do">Don't have an account?
                             <a href="#" data-toggle="modal" data-target="#exampleModal1" class="text-dark">
-                                <strong>Register Now</strong></a>
+                                <strong> Now</strong></a>
                         </p>
                     </form>
                 </div>
@@ -757,26 +617,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post" class="p-3">
+                    <form method="POST" action="{{ route('register') }}" class="p-3">
+                        @csrf
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Username</label>
-                            <input type="text" class="form-control" placeholder=" " name="Name" id="recipient-rname"
-                                required="">
+                            <label for="recipient-name" class="col-form-label">Nama</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" name="name" id="name" required autocomplete="name" autofocus>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <div class="form-group">
                             <label for="recipient-email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" placeholder=" " name="Email" id="recipient-email"
-                                required="">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror"  name="email" id="email" value="{{ old('email') }}" required autocomplete="email">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <div class="form-group">
                             <label for="password1" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" id="password1"
-                                required="">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" required autocomplete="new-password" >
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <div class="form-group">
                             <label for="password2" class="col-form-label">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Confirm Password" id="password2"
-                                required="">
+                            <input type="password" class="form-control" name="password_confirmation" id="password-confirm"  required autocomplete="new-password">
                         </div>
                         <div class="sub-w3l">
                             <div class="sub-w3ltd">

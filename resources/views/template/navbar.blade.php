@@ -43,7 +43,7 @@
 
             <li class="@if(url('/penerimaanPO') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('penerimaanPO')}}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Notifikasi</span></a>
+                <a href="{{ url('penerimaanPO')}}"><i class="fa fa-envelope"></i> <span class="nav-label">Notifikasi</span></a>
             </li>
 
             <li class="@if(url('/pengajuanpembelian') == request()->url()

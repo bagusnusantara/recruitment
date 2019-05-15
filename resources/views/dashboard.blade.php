@@ -8,7 +8,7 @@
             <h2>Dashboard</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{url('home')}}">Home</a>
                 </li>
                 <li class="active">
                     <strong>Dashboard</strong>

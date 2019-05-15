@@ -22,4 +22,7 @@ Route::get('/jobsingle', function () {
 });
 Auth::routes();
 
+
+Route::get('jobseeker/dashboard', 'JobSeekerController@getDashboard');
+
 Route::get('/home', 'HomeController@index')->name('home');
