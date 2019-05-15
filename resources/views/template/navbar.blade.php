@@ -37,7 +37,7 @@
                   <li class="@if(url('/StokBarang') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('StokBarang')}}">Sertifikat Keahlian</a></li>
                   <li class="@if(url('/StokBarang') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('StokBarang')}}">Kemampuan Bahasa</a></li>
                   <li class="@if(url('/StokBarang') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('StokBarang')}}">Curiculum Vitae</a></li>
-                  <li class="@if(url('/StokBarang') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('StokBarang')}}">About me</a></li>
+                  <li class="@if(url('/StokBarang') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('StokBarang')}}">Tentang Saya</a></li>
                 </ul>
             </li>
 

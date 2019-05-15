@@ -24,5 +24,11 @@ Auth::routes();
 
 
 Route::get('jobseeker/dashboard', 'JobSeekerController@getDashboard');
+Route::get('jobseeker/profil/riwayatpekerjaan', 'JobSeekerController@getDashboard');
+Route::get('jobseeker/profil/riwayatpendidikan', 'JobSeekerController@getDashboard');
+Route::get('jobseeker/profil/sertifikatkeahlian', 'JobSeekerController@getDashboard');
+Route::get('jobseeker/profil/kemampuanbahasa', 'JobSeekerController@getDashboard');
+Route::get('jobseeker/profil/curiculumvitae', 'JobSeekerController@getDashboard');
+Route::get('jobseeker/profil/tentangsaya', 'JobSeekerController@getDashboard');
 
 Route::get('/home', 'HomeController@index')->name('home');
