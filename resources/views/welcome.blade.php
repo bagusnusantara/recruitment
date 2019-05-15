@@ -56,7 +56,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
                                 <a href="/joblist">Job List</a>
                             </li>
-                            
+
                         </ul>
                         <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
                             aria-pressed="false" data-target="#exampleModal1">
@@ -701,16 +701,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post" class="p-3">
+                    <form action="{{ route('login') }}" method="post" class="p-3">
+                        @csrf
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Username</label>
-                            <input type="text" class="form-control" placeholder=" " name="Name" id="recipient-name"
-                                required="">
+                            <label for="recipient-name" class="col-form-label">Email address</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus id="email">
+                              @error('email')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
                         </div>
+
                         <div class="form-group">
                             <label for="password" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" id="password"
-                                required="">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" required autocomplete="current-password">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="right-w3l">
                             <input type="submit" class="form-control bg-theme" value="Login">
