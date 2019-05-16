@@ -1,516 +1,723 @@
-
-<!DOCTYPE html>
-<html>
-
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INSPINIA | Mailbox</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="css/plugins/summernote/summernote.css" rel="stylesheet">
-    <link href="css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-    <div id="wrapper">
-
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav metismenu" id="side-menu">
-                <li class="nav-header">
-                    <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
-                             </span>
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Profile</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="mailbox.html">Mailbox</a></li>
-                            <li class="divider"></li>
-                            <li><a href="login.html">Logout</a></li>
-                        </ul>
-                    </div>
-                    <div class="logo-element">
-                        IN+
-                    </div>
-                </li>
-                <li>
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="index.html">Dashboard v.1</a></li>
-                        <li><a href="dashboard_2.html">Dashboard v.2</a></li>
-                        <li><a href="dashboard_3.html">Dashboard v.3</a></li>
-                        <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="graph_flot.html">Flot Charts</a></li>
-                        <li><a href="graph_morris.html">Morris.js Charts</a></li>
-                        <li><a href="graph_rickshaw.html">Rickshaw Charts</a></li>
-                        <li><a href="graph_chartjs.html">Chart.js</a></li>
-                        <li><a href="graph_chartist.html">Chartist</a></li>
-                        <li><a href="c3.html">c3 charts</a></li>
-                        <li><a href="graph_peity.html">Peity Charts</a></li>
-                        <li><a href="graph_sparkline.html">Sparkline Charts</a></li>
-                    </ul>
-                </li>
-                <li class="active">
-                    <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="mailbox.html">Inbox</a></li>
-                        <li><a href="mail_detail.html">Email view</a></li>
-                        <li class="active"><a href="mail_compose.html">Compose email</a></li>
-                        <li><a href="email_template.html">Email templates</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="metrics.html"><i class="fa fa-pie-chart"></i> <span class="nav-label">Metrics</span>  </a>
-                </li>
-                <li>
-                    <a href="widgets.html"><i class="fa fa-flask"></i> <span class="nav-label">Widgets</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Forms</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="form_basic.html">Basic form</a></li>
-                        <li><a href="form_advanced.html">Advanced Plugins</a></li>
-                        <li><a href="form_wizard.html">Wizard</a></li>
-                        <li><a href="form_file_upload.html">File Upload</a></li>
-                        <li><a href="form_editors.html">Text Editor</a></li>
-                        <li><a href="form_autocomplete.html">Autocomplete</a></li>
-                        <li><a href="form_markdown.html">Markdown</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="contacts.html">Contacts</a></li>
-                        <li><a href="profile.html">Profile</a></li>
-                        <li><a href="profile_2.html">Profile v.2</a></li>
-                        <li><a href="contacts_2.html">Contacts v.2</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="project_detail.html">Project detail</a></li>
-                        <li><a href="activity_stream.html">Activity stream</a></li>
-                        <li><a href="teams_board.html">Teams board</a></li>
-                        <li><a href="social_feed.html">Social feed</a></li>
-                        <li><a href="clients.html">Clients</a></li>
-                        <li><a href="full_height.html">Outlook view</a></li>
-                        <li><a href="vote_list.html">Vote list</a></li>
-                        <li><a href="file_manager.html">File manager</a></li>
-                        <li><a href="calendar.html">Calendar</a></li>
-                        <li><a href="issue_tracker.html">Issue tracker</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="article.html">Article</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="timeline.html">Timeline</a></li>
-                        <li><a href="pin_board.html">Pin board</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="search_results.html">Search results</a></li>
-                        <li><a href="lockscreen.html">Lockscreen</a></li>
-                        <li><a href="invoice.html">Invoice</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="login_two_columns.html">Login v.2</a></li>
-                        <li><a href="forgot_password.html">Forget password</a></li>
-                        <li><a href="register.html">Register</a></li>
-                        <li><a href="404.html">404 Page</a></li>
-                        <li><a href="500.html">500 Page</a></li>
-                        <li><a href="empty_page.html">Empty page</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Miscellaneous</span><span class="label label-info pull-right">NEW</span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="toastr_notifications.html">Notification</a></li>
-                        <li><a href="nestable_list.html">Nestable list</a></li>
-                        <li><a href="agile_board.html">Agile board</a></li>
-                        <li><a href="timeline_2.html">Timeline v.2</a></li>
-                        <li><a href="diff.html">Diff</a></li>
-                        <li><a href="pdf_viewer.html">PDF viewer</a></li>
-                        <li><a href="i18support.html">i18 support</a></li>
-                        <li><a href="sweetalert.html">Sweet alert</a></li>
-                        <li><a href="idle_timer.html">Idle timer</a></li>
-                        <li><a href="truncate.html">Truncate</a></li>
-                        <li><a href="password_meter.html">Password meter</a></li>
-                        <li><a href="spinners.html">Spinners</a></li>
-                        <li><a href="spinners_usage.html">Spinners usage</a></li>
-                        <li><a href="tinycon.html">Live favicon</a></li>
-                        <li><a href="google_maps.html">Google maps</a></li>
-                        <li><a href="datamaps.html">Datamaps</a></li>
-                        <li><a href="social_buttons.html">Social buttons</a></li>
-                        <li><a href="code_editor.html">Code editor</a></li>
-                        <li><a href="modal_window.html">Modal window</a></li>
-                        <li><a href="clipboard.html">Clipboard</a></li>
-                        <li><a href="text_spinners.html">Text spinners</a></li>
-                        <li><a href="forum_main.html">Forum view</a></li>
-                        <li><a href="validation.html">Validation</a></li>
-                        <li><a href="tree_view.html">Tree view</a></li>
-                        <li><a href="loading_buttons.html">Loading buttons</a></li>
-                        <li><a href="chat_view.html">Chat view</a></li>
-                        <li><a href="masonry.html">Masonry</a></li>
-                        <li><a href="tour.html">Tour</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="typography.html">Typography</a></li>
-                        <li><a href="icons.html">Icons</a></li>
-                        <li><a href="draggable_panels.html">Draggable Panels</a></li> <li><a href="resizeable_panels.html">Resizeable Panels</a></li>
-                        <li><a href="buttons.html">Buttons</a></li>
-                        <li><a href="video.html">Video</a></li>
-                        <li><a href="tabs_panels.html">Panels</a></li>
-                        <li><a href="tabs.html">Tabs</a></li>
-                        <li><a href="notifications.html">Notifications & Tooltips</a></li>
-                        <li><a href="helper_classes.html">Helper css classes</a></li>
-                        <li><a href="badges_labels.html">Badges, Labels, Progress</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="grid_options.html"><i class="fa fa-laptop"></i> <span class="nav-label">Grid options</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Tables</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="table_basic.html">Static Tables</a></li>
-                        <li><a href="table_data_tables.html">Data Tables</a></li>
-                        <li><a href="table_foo_table.html">Foo Tables</a></li>
-                        <li><a href="jq_grid.html">jqGrid</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">E-commerce</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="ecommerce_products_grid.html">Products grid</a></li>
-                        <li><a href="ecommerce_product_list.html">Products list</a></li>
-                        <li><a href="ecommerce_product.html">Product edit</a></li>
-                        <li><a href="ecommerce_product_detail.html">Product detail</a></li>
-                        <li><a href="ecommerce-cart.html">Cart</a></li>
-                        <li><a href="ecommerce-orders.html">Orders</a></li>
-                        <li><a href="ecommerce_payments.html">Credit Card form</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="basic_gallery.html">Lightbox Gallery</a></li>
-                        <li><a href="slick_carousel.html">Slick Carousel</a></li>
-                        <li><a href="carousel.html">Bootstrap Carousel</a></li>
-
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li>
-                            <a href="#">Third Level <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li><a href="#">Second Level Item</a></li>
-                        <li>
-                            <a href="#">Second Level Item</a></li>
-                        <li>
-                            <a href="#">Second Level Item</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="css_animation.html"><i class="fa fa-magic"></i> <span class="nav-label">CSS Animations </span><span class="label label-info pull-right">62</span></a>
-                </li>
-                <li class="landing_link">
-                    <a target="_blank" href="landing.html"><i class="fa fa-star"></i> <span class="nav-label">Landing Page</span> <span class="label label-warning pull-right">NEW</span></a>
-                </li>
-                <li class="special_link">
-                    <a href="package.html"><i class="fa fa-database"></i> <span class="nav-label">Package</span></a>
-                </li>
-            </ul>
-
-        </div>
-    </nav>
-
-        <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
-        <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" action="search_results.html">
-                <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+<div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="font-normal" for="nisn">Nomor NISN</label>
+                <input type="number" onKeyPress="if(this.value.length==10) return false;" class="form-control" name="nisn" required>
+            </div>
+            <div class="form-group">
+                <label class="font-normal" for="nama_lengkap">Nama Lengkap</label>
+                <input id="nama_lengkap" type="text" class="form-control" name="nama_lengkap" required>
+            </div>
+            <div class="form-group">
+                <label class="font-normal" for="kode_jenis_kelamin">Jenis Kelamin</label>
+                <div class="input-group" style="width: 100%;">
+                    <select name="kode_jenis_kelamin" id="kode_jenis_kelamin" class="form-control select2-jns-kelamin" required>
+                        <option></option>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
                 </div>
-            </form>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">NIK</label>
+                <input type="number" onKeyPress="if(this.value.length==16) return false;" a class="form-control"  name="no_nik"required>
+            </div>
+            <div class="form-group">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span>
+                                            <span class="fileinput-exists">Change</span><input type="file" name="file_kk"/></span>
+                    <span class="fileinput-filename"></span>
+                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">Tempat Lahir</label>
+                <input type="text" class="form-control"  name="tempat_lahir"required>
+            </div>
+            <div class="form-group" id="tgl-lahir">
+                <label class="font-normal">Tanggal Lahir</label>
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_lahir"required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">Agama</label>
+                <div class="input-group" style="width: 100%;">
+                    <select data-placeholder="--Pilih Agama--" name="kode_agama" id="agama" class="form-control chosen-select select-chosen"required>
+                        <option value="">--Pilih Agama--</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Kristen">Kristen</option>
+                        <option value="Katholik">Katholik</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Budha">Budha</option>
+                        <option value="Konghucu">Konghucu</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">Kewarganegaraan</label>
+                <div class="input-group" style="width: 100%;">
+                    <select data-placeholder="--Pilih Kewarganegaraan--" name="kode_warganegara" id="kode_warganegara" class="form-control chosen-select select-chosen"required>
+                        <option value="">Pilih Salah satu</option>
+                                                    <option value="Warga Negara Indonesia">Warga Negara Indonesia</option>
+                                                    <option value="Warga Negara Asing">Warga Negara Asing</option>
+                                            </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">Alamat</label>
+                <div class="input-group" style="width: 100%;">
+                    <input type="text" class="form-control" placeholder="Klik buka peta" id="_alamat" name="alamat"required>
+                </div>
+                <br>
+                <div class="input-group" style="width: 100%;">
+                    <label class="font-normal">Lintang</label>
+                    <input type="text" class="form-control" placeholder="Klik buka peta"id="_lintang" name="lintang"required>
+                </div>
+                <br>
+                <div class="input-group" style="width: 100%;">
+                    <label class="font-normal">Bujur</label>
+                    <input type="text" class="form-control" placeholder="Klik buka peta" id="_bujur" name="bujur"required>
+                </div>
+                <br>
+                <div class="input-group">
+                    <a class="btn btn-info block full-width m-b" data-toggle="modal" data-target="#alamat-map">Buka Peta</a>
+                </div>
+            </div>
         </div>
-            <ul class="nav navbar-top-links navbar-right">
-                <li>
-                    <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a7.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <small class="pull-right">46h ago</small>
-                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a4.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right text-navy">5h ago</small>
-                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/profile.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right">23h ago</small>
-                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                                    <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="text-center link-block">
-                                <a href="mailbox.html">
-                                    <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="mailbox.html">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="profile.html">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="grid_options.html">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="text-center link-block">
-                                <a href="notifications.html">
-                                    <strong>See All Alerts</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li>
-                    <a href="login.html">
-                        <i class="fa fa-sign-out"></i> Log out
-                    </a>
-                </li>
-            </ul>
-
-        </nav>
-        </div>
-
-        <div class="wrapper wrapper-content">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content mailbox-content">
-                        <div class="file-manager">
-                            <a class="btn btn-block btn-primary compose-mail" href="mail_compose.html">Compose Mail</a>
-                            <div class="space-25"></div>
-                            <h5>Folders</h5>
-                            <ul class="folder-list m-b-md" style="padding: 0">
-                                <li><a href="mailbox.html"> <i class="fa fa-inbox "></i> Inbox <span class="label label-warning pull-right">16</span> </a></li>
-                                <li><a href="mailbox.html"> <i class="fa fa-envelope-o"></i> Send Mail</a></li>
-                                <li><a href="mailbox.html"> <i class="fa fa-certificate"></i> Important</a></li>
-                                <li><a href="mailbox.html"> <i class="fa fa-file-text-o"></i> Drafts <span class="label label-danger pull-right">2</span></a></li>
-                                <li><a href="mailbox.html"> <i class="fa fa-trash-o"></i> Trash</a></li>
-                            </ul>
-                            <h5>Categories</h5>
-                            <ul class="category-list" style="padding: 0">
-                                <li><a href="#"> <i class="fa fa-circle text-navy"></i> Work </a></li>
-                                <li><a href="#"> <i class="fa fa-circle text-danger"></i> Documents</a></li>
-                                <li><a href="#"> <i class="fa fa-circle text-primary"></i> Social</a></li>
-                                <li><a href="#"> <i class="fa fa-circle text-info"></i> Advertising</a></li>
-                                <li><a href="#"> <i class="fa fa-circle text-warning"></i> Clients</a></li>
-                            </ul>
-
-                            <h5 class="tag-title">Labels</h5>
-                            <ul class="tag-list" style="padding: 0">
-                                <li><a href=""><i class="fa fa-tag"></i> Family</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i> Work</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i> Home</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i> Children</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i> Holidays</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i> Music</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i> Photography</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i> Film</a></li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="font-normal">Status Tempat Tinggal</label>
+                <div class="input-group" style="width: 100%;">
+                    <select data-placeholder="--Pilih Agama--" name="kode_tempat_tinggal" id="kode_tempat_tinggal" class="form-control chosen-select select-chosen"required>
+                        <option value="">Pilih salah satu</option>
+                                                    <option value="Bersama orang tua">Bersama orang tua</option>
+                                                    <option value="Wali">Wali</option>
+                                                    <option value="Kos">Kos</option>
+                                                    <option value="Asrama">Asrama</option>
+                                                    <option value="Panti Asuhan">Panti Asuhan</option>
+                                                    <option value="Lainnya">Lainnya</option>
+                                            </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">Status Mode Transportasi</label>
+                <div class="input-group" style="width: 100%;">
+                    <select data-placeholder="--Pilih Transportasi--" name="kode_mode_transportasi" id="kode_mode_transportasi" class="form-control chosen-select select-chosen"required>
+                        <option value="">Pilih Salah satu</option>
+                                                    <option value="Jalan Kaki">Jalan Kaki</option>
+                                                    <option value="Kendaraan Pribadi">Kendaraan Pribadi</option>
+                                                    <option value="Kendaraan Umum/Angkot/Pete-Pete">Kendaraan Umum/Angkot/Pete-Pete</option>
+                                                    <option value="Jemputan Sekolah">Jemputan Sekolah</option>
+                                                    <option value="Kereta Api">Kereta Api</option>
+                                                    <option value="Ojek">Ojek</option>
+                                                    <option value="Andong/Bendi/Sado/Dokar/Delman/Becak">Andong/Bendi/Sado/Dokar/Delman/Becak</option>
+                                                    <option value="Perahu penyebrangan/Rakit/Getek">Perahu penyebrangan/Rakit/Getek</option>
+                                                    <option value="lainnya">lainnya</option>
+                                            </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">Nomor KKS</label>
+                <input type="text" class="form-control" onKeyPress="if(this.value.length==14) return false;"  name="no_kks"required>
+            </div>
+            <div class="form-group">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="">
+                                                <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span>
+                                                <span class="fileinput-exists">Change</span><input type="file" name="file_kks"/></span>
+                        <span class="fileinput-filename"></span>
+                        <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 animated fadeInRight">
-            <div class="mail-box-header">
-                <div class="pull-right tooltip-demo">
-                    <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to draft folder"><i class="fa fa-pencil"></i> Draft</a>
-                    <a href="mailbox.html" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Discard</a>
-                </div>
-                <h2>
-                    Compse mail
-                </h2>
+            <div class="form-group">
+                <label class="font-normal">Anak Ke</label>
+                <input type="number" class="form-control" onKeyPress="if(this.value.length==2)" name="anak_ke"required>
             </div>
-                <div class="mail-box">
+            <div class="form-group">
+                <label class="font-normal">NO. KPS</label>
+                <input type="text" class="form-control" maxlength="8" name="no_kps_pkh"required>
+            </div>
+            <div class="form-group">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="">
+                                                <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span>
+                                                <span class="fileinput-exists">Change</span><input type="file" name="file_kps"/></span>
+                        <span class="fileinput-filename"></span>
+                        <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">No. KIP</label>
+                <input type="text" class="form-control" maxlength="8"  name="no_kip"required>
+            </div>
+            <div class="form-group">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="">
+                                                <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span>
+                                                <span class="fileinput-exists">Change</span><input type="file" name="file_kip"/></span>
+                        <span class="fileinput-filename"></span>
+                        <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">Tinggi Badan</label>
+                <input type="number" class="form-control" onKeyPress="if(this.value.length==3) return false;"  name="tinggi_badan"required>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">Berat Badan</label>
+                <input type="number" class="form-control" onKeyPress="if(this.value.length==3) return false;" name="berat_badan"required>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">Jumlah Saudara</label>
+                <input type="number" class="form-control"onKeyPress="if(this.value.length==2) return false;"  name="jumlah_saudara"required>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">Jarak Sekolah - Rumah</label>
+                <input type="number" class="form-control" onKeyPress="if(this.value.length==5) return false;" name="jarak"required>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">Nomor registrasi Akta Kelahiran</label>
+                <input type="text" class="form-control" maxlength="18"   name="no_akta"required>
+            </div>
+            <div class="form-group">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="">
+                                                <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span>
+                                                <span class="fileinput-exists">Change</span><input type="file" name="file_akta"/></span>
+                        <span class="fileinput-filename"></span>
+                        <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
 
+                            <h1>Data Orang Tua / Wali</h1>
 
-                <div class="mail-body">
+                            <fieldset>
+    <div class="col-lg-6">
+        <h1><b>Data Ayah</b></h1>
+        <div class="form-group">
+            <label class="font-normal">Nama Ayah</label>
+            <input type="text" class="form-control"  name="nama_ayah"required>
+        </div>
+        <div class="form-group" id="tgl-lahir">
+            <label class="font-normal">Tanggal Lahir Ayah</label>
+            <div class="input-group date">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_lahir"required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Pendidikan Ayah</label>
+            <input type="text" class="form-control" name="pendidikan_ayah"required>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Pekerjaan Ayah</label>
+            <input type="text" class="form-control"  name="pekerjaan_ayah"required>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Penghasilan Ayah</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Agama--" name="penghasilan_ayah" id="penghasilan_ayah" class="form-control chosen-select select-chosen"required>
+                    <option value="">Pilih Salah satu</option>
+                                            <option value="Kurang dari Rp. 1.000.000">Kurang dari Rp. 1.000.000</option>
+                                            <option value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
+                                            <option value="Lebih dari RP. 2.000.000">Lebih dari RP. 2.000.000</option>
+                                            <option value="Kurang dari Rp. 500.000">Kurang dari Rp. 500.000</option>
+                                            <option value="Rp. 500.000 - Rp. 999.999">Rp. 500.000 - Rp. 999.999</option>
+                                            <option value="Rp. 1.000.000 - Rp. 1.999.999">Rp. 1.000.000 - Rp. 1.999.999</option>
+                                            <option value="Rp. 2.000.000 - Rp. 4.999.999">Rp. 2.000.000 - Rp. 4.999.999</option>
+                                            <option value="Rp. 5.000.000 - Rp. 20.000.000">Rp. 5.000.000 - Rp. 20.000.000</option>
+                                            <option value="Lebih dari Rp. 20.000.000">Lebih dari Rp. 20.000.000</option>
+                                            <option value="Tidak Berpengalaman">Tidak Berpengalaman</option>
+                                            <option value="Lainnya">Lainnya</option>
+                                    </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="propinsi_ayah">Propinsi Ayah</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Propinsi--" name="propinsi_ayah" id="propinsi_ayah" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Propinsi--</option>
+                                            <option value="11">ACEH</option>
+                                            <option value="12">SUMATERA UTARA</option>
+                                            <option value="13">SUMATERA BARAT</option>
+                                            <option value="14">RIAU</option>
+                                            <option value="15">JAMBI</option>
+                                            <option value="16">SUMATERA SELATAN</option>
+                                            <option value="17">BENGKULU</option>
+                                            <option value="18">LAMPUNG</option>
+                                            <option value="19">KEPULAUAN BANGKA BELITUNG</option>
+                                            <option value="21">KEPULAUAN RIAU</option>
+                                            <option value="31">DKI JAKARTA</option>
+                                            <option value="32">JAWA BARAT</option>
+                                            <option value="33">JAWA TENGAH</option>
+                                            <option value="34">DI YOGYAKARTA</option>
+                                            <option value="35">JAWA TIMUR</option>
+                                            <option value="36">BANTEN</option>
+                                            <option value="51">BALI</option>
+                                            <option value="52">NUSA TENGGARA BARAT</option>
+                                            <option value="53">NUSA TENGGARA TIMUR</option>
+                                            <option value="61">KALIMANTAN BARAT</option>
+                                            <option value="62">KALIMANTAN TENGAH</option>
+                                            <option value="63">KALIMANTAN SELATAN</option>
+                                            <option value="64">KALIMANTAN TIMUR</option>
+                                            <option value="65">KALIMANTAN UTARA</option>
+                                            <option value="71">SULAWESI UTARA</option>
+                                            <option value="72">SULAWESI TENGAH</option>
+                                            <option value="73">SULAWESI SELATAN</option>
+                                            <option value="74">SULAWESI TENGGARA</option>
+                                            <option value="75">GORONTALO</option>
+                                            <option value="76">SULAWESI BARAT</option>
+                                            <option value="81">MALUKU</option>
+                                            <option value="82">MALUKU UTARA</option>
+                                            <option value="91">PAPUA BARAT</option>
+                                            <option value="94">PAPUA</option>
+                                    </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="kabkota_ayah">Kabupaten/Kota Ayah</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Kab/Kota--" name="kabkota_ayah" id="kabkota_ayah" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Kab/Kota--</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="kecamatan_ayah">Kecamatan Ayah</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Kecamatan--" name="kecamatan_ayah" id="kecamatan_ayah" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Kecamatan--</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="kelurahan_ayah">Kelurahaan/Desa Ayah</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Kelurahan/Desa--" name="kelurahan_ayah" id="kelurahan_ayah" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Kelurahan/Desa--</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Alamat Ayah</label>
+            <div class="input-group" style="width: 100%;">
+                <input type="text" class="form-control" placeholder="Klik buka peta" id="_alamat_ayah" name="alamat_ayah"required>
+            </div>
+            <br>
+            <div class="input-group" style="width: 100%;">
+                <label class="font-normal">Lintang</label>
+                <input type="text" class="form-control" placeholder="Klik buka peta" id="_lintang_ayah" name="lintang_ayah"required>
+            </div>
+            <br>
+            <div class="input-group" style="width: 100%;">
+                <label class="font-normal">Bujur</label>
+                <input type="text" class="form-control" placeholder="Klik buka peta" id="_bujur_ayah" name="bujur_ayah"required>
+            </div>
+            <br>
+            <div class="input-group">
+                <a class="btn btn-info block full-width m-b" data-toggle="modal" data-target="#alamat-map-ayah">Buka Peta</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Kode Pos Ayah</label>
+            <input type="text" class="form-control" name="kode_pos_ayah">
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Nomor Handphone Ayah</label>
+            <input type="text" class="form-control"  name="no_hp_ayah"required>
+        </div>
+        <br>
+        <h1><b>Data Wali</b></h1>
+        <div class="form-group">
+            <label class="font-normal">Nama Wali</label>
+            <input type="text" class="form-control"  name="nama_wali">
+        </div>
+        <div class="form-group" id="tgl-lahir">
+            <label class="font-normal">Tanggal Lahir Wali</label>
+            <div class="input-group date">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_lahir">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Pendidikan wali</label>
+            <input type="text" class="form-control" name="pendidikan_wali">
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Pekerjaan wali</label>
+            <input type="text" class="form-control"  name="pekerjaan_wali">
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Penghasilan Wali</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Agama--" name="penghasilan_wali" id="penghasilan_wali" class="form-control chosen-select select-chosen"required>
+                    <option value="">Pilih Salah satu</option>
+                                            <option value="Kurang dari Rp. 1.000.000">Kurang dari Rp. 1.000.000</option>
+                                            <option value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
+                                            <option value="Lebih dari RP. 2.000.000">Lebih dari RP. 2.000.000</option>
+                                            <option value="Kurang dari Rp. 500.000">Kurang dari Rp. 500.000</option>
+                                            <option value="Rp. 500.000 - Rp. 999.999">Rp. 500.000 - Rp. 999.999</option>
+                                            <option value="Rp. 1.000.000 - Rp. 1.999.999">Rp. 1.000.000 - Rp. 1.999.999</option>
+                                            <option value="Rp. 2.000.000 - Rp. 4.999.999">Rp. 2.000.000 - Rp. 4.999.999</option>
+                                            <option value="Rp. 5.000.000 - Rp. 20.000.000">Rp. 5.000.000 - Rp. 20.000.000</option>
+                                            <option value="Lebih dari Rp. 20.000.000">Lebih dari Rp. 20.000.000</option>
+                                            <option value="Tidak Berpengalaman">Tidak Berpengalaman</option>
+                                            <option value="Lainnya">Lainnya</option>
+                                    </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="propinsi_wali">Propinsi Wali</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Propinsi--" name="propinsi_wali" id="propinsi_wali" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Propinsi--</option>
+                                            <option value="11">ACEH</option>
+                                            <option value="12">SUMATERA UTARA</option>
+                                            <option value="13">SUMATERA BARAT</option>
+                                            <option value="14">RIAU</option>
+                                            <option value="15">JAMBI</option>
+                                            <option value="16">SUMATERA SELATAN</option>
+                                            <option value="17">BENGKULU</option>
+                                            <option value="18">LAMPUNG</option>
+                                            <option value="19">KEPULAUAN BANGKA BELITUNG</option>
+                                            <option value="21">KEPULAUAN RIAU</option>
+                                            <option value="31">DKI JAKARTA</option>
+                                            <option value="32">JAWA BARAT</option>
+                                            <option value="33">JAWA TENGAH</option>
+                                            <option value="34">DI YOGYAKARTA</option>
+                                            <option value="35">JAWA TIMUR</option>
+                                            <option value="36">BANTEN</option>
+                                            <option value="51">BALI</option>
+                                            <option value="52">NUSA TENGGARA BARAT</option>
+                                            <option value="53">NUSA TENGGARA TIMUR</option>
+                                            <option value="61">KALIMANTAN BARAT</option>
+                                            <option value="62">KALIMANTAN TENGAH</option>
+                                            <option value="63">KALIMANTAN SELATAN</option>
+                                            <option value="64">KALIMANTAN TIMUR</option>
+                                            <option value="65">KALIMANTAN UTARA</option>
+                                            <option value="71">SULAWESI UTARA</option>
+                                            <option value="72">SULAWESI TENGAH</option>
+                                            <option value="73">SULAWESI SELATAN</option>
+                                            <option value="74">SULAWESI TENGGARA</option>
+                                            <option value="75">GORONTALO</option>
+                                            <option value="76">SULAWESI BARAT</option>
+                                            <option value="81">MALUKU</option>
+                                            <option value="82">MALUKU UTARA</option>
+                                            <option value="91">PAPUA BARAT</option>
+                                            <option value="94">PAPUA</option>
+                                    </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="kabkota_wali">Kabupaten/Kota Wali</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Kab/Kota--" name="kabkota_wali" id="kabkota_wali" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Kab/Kota--</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="kecamatan_wali">Kecamatan Wali</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Kecamatan--" name="kecamatan_wali" id="kecamatan_wali" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Kecamatan--</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="kelurahan_wali">Kelurahaan/Desa Wali</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Kelurahan/Desa--" name="kelurahan_wali" id="kelurahan_wali" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Kelurahan/Desa--</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Alamat Wali</label>
+            <div class="input-group" style="width: 100%;">
+                <input type="text" class="form-control" placeholder="Klik buka peta" id="_alamat_wali" name="alamat_wali"required>
+            </div>
+            <br>
+            <div class="input-group" style="width: 100%;">
+                <label class="font-normal">Lintang</label>
+                <input type="text" class="form-control" placeholder="Klik buka peta" id="_lintang_wali" name="lintang_wali"required>
+            </div>
+            <br>
+            <div class="input-group" style="width: 100%;">
+                <label class="font-normal">Bujur</label>
+                <input type="text" class="form-control" placeholder="Klik buka peta" id="_bujur_wali" name="bujur_wali"required>
+            </div>
+            <br>
+            <div class="input-group">
+                <a class="btn btn-info block full-width m-b" data-toggle="modal" data-target="#alamat-map-wali">Buka Peta</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Kode Pos Wali</label>
+            <input type="text" class="form-control" name="kode_pos_wali">
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Nomor HP Wali</label>
+            <input type="text" class="form-control" name="nomor_hp_wali">
+        </div>
+    </div>
 
-                    <form class="form-horizontal" method="get">
-                        <div class="form-group"><label class="col-sm-2 control-label">To:</label>
+    <div class="col-lg-6">
+        <h1><b>Data Ibu</b></h1>
+        <label class="font-normal">Nama Ibu</label>
+        <div class="form-group">
+            <input type="text" class="form-control"  name="nama_ibu"required>
+        </div>
+        <div class="form-group" id="tgl-lahir">
+            <label class="font-normal">Tanggal Lahir Ibu</label>
+            <div class="input-group date">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_lahir"required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Pendidikan ibu</label>
+            <input type="text" class="form-control" name="pendidikan_ibu"required>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Pekerjaan ibu</label>
+            <input type="text" class="form-control"  name="pekerjaan_ibu"required>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Penghasilan Ibu</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Agama--" name="penghasilan_ibu" id="penghasilan_ibu" class="form-control chosen-select select-chosen"required>
+                    <option value="">Pilih Salah satu</option>
+                                            <option value="Kurang dari Rp. 1.000.000">Kurang dari Rp. 1.000.000</option>
+                                            <option value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
+                                            <option value="Lebih dari RP. 2.000.000">Lebih dari RP. 2.000.000</option>
+                                            <option value="Kurang dari Rp. 500.000">Kurang dari Rp. 500.000</option>
+                                            <option value="Rp. 500.000 - Rp. 999.999">Rp. 500.000 - Rp. 999.999</option>
+                                            <option value="Rp. 1.000.000 - Rp. 1.999.999">Rp. 1.000.000 - Rp. 1.999.999</option>
+                                            <option value="Rp. 2.000.000 - Rp. 4.999.999">Rp. 2.000.000 - Rp. 4.999.999</option>
+                                            <option value="Rp. 5.000.000 - Rp. 20.000.000">Rp. 5.000.000 - Rp. 20.000.000</option>
+                                            <option value="Lebih dari Rp. 20.000.000">Lebih dari Rp. 20.000.000</option>
+                                            <option value="Tidak Berpengalaman">Tidak Berpengalaman</option>
+                                            <option value="Lainnya">Lainnya</option>
+                                    </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="propinsi_ibu">Propinsi Ibu</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Propinsi--" name="propinsi_ibu" id="propinsi_ibu" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Propinsi--</option>
+                                            <option value="11">ACEH</option>
+                                            <option value="12">SUMATERA UTARA</option>
+                                            <option value="13">SUMATERA BARAT</option>
+                                            <option value="14">RIAU</option>
+                                            <option value="15">JAMBI</option>
+                                            <option value="16">SUMATERA SELATAN</option>
+                                            <option value="17">BENGKULU</option>
+                                            <option value="18">LAMPUNG</option>
+                                            <option value="19">KEPULAUAN BANGKA BELITUNG</option>
+                                            <option value="21">KEPULAUAN RIAU</option>
+                                            <option value="31">DKI JAKARTA</option>
+                                            <option value="32">JAWA BARAT</option>
+                                            <option value="33">JAWA TENGAH</option>
+                                            <option value="34">DI YOGYAKARTA</option>
+                                            <option value="35">JAWA TIMUR</option>
+                                            <option value="36">BANTEN</option>
+                                            <option value="51">BALI</option>
+                                            <option value="52">NUSA TENGGARA BARAT</option>
+                                            <option value="53">NUSA TENGGARA TIMUR</option>
+                                            <option value="61">KALIMANTAN BARAT</option>
+                                            <option value="62">KALIMANTAN TENGAH</option>
+                                            <option value="63">KALIMANTAN SELATAN</option>
+                                            <option value="64">KALIMANTAN TIMUR</option>
+                                            <option value="65">KALIMANTAN UTARA</option>
+                                            <option value="71">SULAWESI UTARA</option>
+                                            <option value="72">SULAWESI TENGAH</option>
+                                            <option value="73">SULAWESI SELATAN</option>
+                                            <option value="74">SULAWESI TENGGARA</option>
+                                            <option value="75">GORONTALO</option>
+                                            <option value="76">SULAWESI BARAT</option>
+                                            <option value="81">MALUKU</option>
+                                            <option value="82">MALUKU UTARA</option>
+                                            <option value="91">PAPUA BARAT</option>
+                                            <option value="94">PAPUA</option>
+                                    </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="kabkota_ibu">Kabupaten/Kota Ibu</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Kab/Kota--" name="kabkota_ibu" id="kabkota_ibu" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Kab/Kota--</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="kecamatan_ibu">Kecamatan Ibu</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Kecamatan--" name="kecamatan_ibu" id="kecamatan_ibu" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Kecamatan--</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal" for="kelurahan_ibu">Kelurahaan/Desa Ibu</label>
+            <div class="input-group" style="width: 100%;">
+                <select data-placeholder="--Pilih Kelurahan/Desa--" name="kelurahan_ibu" id="kelurahan_ibu" class="form-control select2-custom" style="width: 100%">
+                    <option value="">--Pilih Kelurahan/Desa--</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Alamat Ayah</label>
+            <div class="input-group" style="width: 100%;">
+                <input type="text" class="form-control" placeholder="Klik buka peta" id="_alamat_ibu" name="alamat_ibu"required>
+            </div>
+            <br>
+            <div class="input-group" style="width: 100%;">
+                <label class="font-normal">Lintang</label>
+                <input type="text" class="form-control" placeholder="Klik buka peta" id="_lintang_ibu" name="lintang_ibu"required>
+            </div>
+            <br>
+            <div class="input-group" style="width: 100%;">
+                <label class="font-normal">Bujur</label>
+                <input type="text" class="form-control" placeholder="Klik buka peta" id="_bujur_ibu" name="bujur_ibu"required>
+            </div>
+            <br>
+            <div class="input-group">
+                <a class="btn btn-info block full-width m-b" data-toggle="modal" data-target="#alamat-map-ibu">Buka Peta</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Kode Pos Ibu</label>
+            <input type="text" class="form-control" name="kode_pos_ibu">
+        </div>
+        <div class="form-group">
+            <label class="font-normal">Nomor HP Ibu</label>
+            <input type="text" class="form-control" name="no_hp_ibu"required>
+        </div>
+    </div>
+</fieldset>
 
-                            <div class="col-sm-10"><input type="text" class="form-control" value="alex.smith@corporat.com"></div>
-                        </div>
-                        <div class="form-group"><label class="col-sm-2 control-label">Subject:</label>
-
-                            <div class="col-sm-10"><input type="text" class="form-control" value=""></div>
-                        </div>
+                            <h1>Data Asal Sekolah</h1>
+                            <fieldset>
+                                <h1><b>Data Asal Sekolah</b></h1>
+                                <div class="form-group">
+                                    <label class="font-normal">Nama Sekolah Asal</label>
+                                    <input type="text" class="form-control"  name="sekolah_asal"required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">Alamat Sekolah Asal</label>
+                                    <input type="text" class="form-control"  name="alamat_sekolah_asal"required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">Kode Sekolah Asal</label>
+                                    <input type="number" onKeyPress="if(this.value.length==5) return false;" class="form-control"  name="kode_sekolah_asal"required>
+                                </div>
+                            </fieldset>
                         </form>
-
-                </div>
-
-                    <div class="mail-text h-200">
-
-                        <div class="summernote">
-                            <h3>Hello Jonathan! </h3>
-                            dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's</strong> standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                            typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
-                            <br/>
-                            <br/>
-
-                        </div>
-<div class="clearfix"></div>
-                        </div>
-                    <div class="mail-body text-right tooltip-demo">
-                        <a href="mailbox.html" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send"><i class="fa fa-reply"></i> Send</a>
-                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Discard</a>
-                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to draft folder"><i class="fa fa-pencil"></i> Draft</a>
                     </div>
-                    <div class="clearfix"></div>
-
-
-
                 </div>
             </div>
         </div>
-        </div>
-        <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
+    </div>
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+
+        #infowindow-content .title {
+            font-weight: bold;
+        }
+
+        #infowindow-content {
+            display: none;
+        }
+
+        #map #infowindow-content {
+            display: inline;
+        }
+
+        .input-index {
+            z-index: 10000 !important;
+            padding-bottom: 12px;
+            margin-right: 12px;
+        }
+
+        .pac-container {
+            z-index: 10000 !important;
+            padding-bottom: 12px;
+            margin-right: 12px;
+        }
+
+        .pac-controls label {
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        #pac-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        #pac-input:focus {
+            border-color: #4d90fe;
+        }
+    </style>
+
+    <div class="modal inmodal fade" id="alamat-map" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Pilih Alamat</h4>
+                </div>
+                <form id="map-form" method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" name="_method" value="PATCH">                        <input type="hidden" name="_token" value="2Fkp145qZYAGzG7bqkt2yQPGfp59ayxzxGBTScVv">                        <div class="form-group"><label class="col-sm-2 control-label" style="text-align: left">Cari Lokasi</label>
+                            <div class="col-sm-10"><input type="text" class="form-control input-index" name="pac-input" id="pac-input"></div>
+                        </div>
+
+                        <div id="map"></div>
+                        <div id="infowindow-content">
+                            <img src="" width="16" height="16" id="place-icon">
+                            <span id="place-name"  class="title"></span><br>
+                            <span id="place-address"></span>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 15px"><label class="col-sm-2 control-label" style="text-align: left">Lintang</label>
+                            <div class="col-sm-10"><input type="text" class="form-control" name="latitude" id="latitude" readonly></div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label" style="text-align: left">Bujur</label>
+                            <div class="col-sm-10"><input type="text" class="form-control" name="longitude" id="longitude" readonly></div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label" style="text-align: left">Alamat</label>
+                            <div class="col-sm-10"><input type="text" class="form-control" name="alamat" id="alamat" readonly></div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                    </div>
+                </form>
             </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2017
-            </div>
         </div>
-
-        </div>
-        </div>
-
-    <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
-
-    <!-- iCheck -->
-    <script src="js/plugins/iCheck/icheck.min.js"></script>
-
-    <!-- SUMMERNOTE -->
-    <script src="js/plugins/summernote/summernote.min.js"></script>
-    <script>
-        $(document).ready(function(){
-
-            $('.summernote').summernote();
-
-        });
-
-    </script>
-</body>
-
-</html>
+    </div>

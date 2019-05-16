@@ -27,10 +27,18 @@ class AdminController extends Controller
       return view ('admin.notifikasi.create');
     }
 
-    public function getTentangsaya(){
-      if(!Gate::allows('isJobseeker')){
+    public function getLowongan(){
+      if(!Gate::allows('isAdmin')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
-      return view ('jobseeker.profil.tentangsaya.index');
+      return view ('admin.lowongan.index');
     }
+
+    public function createLowongan(){
+      if(!Gate::allows('isAdmin')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      return view ('admin.lowongan.create');
+    }
+
 }

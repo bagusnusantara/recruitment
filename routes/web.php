@@ -35,9 +35,11 @@ Route::get('jobseeker/lowonganpekerjaan', 'JobSeekerController@getLowonganpekerj
 
 Route::get('admin/dashboard', 'AdminController@getDashboard');
 Route::get('admin/notifikasi', 'AdminController@getNotifikasi');
-Route::get('admin/carisdm', 'AdminController@getCarisdm');
-Route::get('admin/inputlowongan', 'AdminController@getInputlowongan');
-Route::get('admin/inputtes', 'AdminController@getInputtes');
+Route::get('admin/sdm', 'AdminController@getSdm');
+Route::get('admin/klien', 'AdminController@getKlien');
+Route::get('admin/lowongan', 'AdminController@getLowongan');
+Route::get('admin/manajementes', 'AdminController@getManajementes');
+Route::get('admin/manajemenuser', 'AdminController@getManajemenuser');
 
 Route::get('client/dashboard', 'ClientController@getDashboard');
 Route::get('client/notifikasi', 'ClientController@getNotifikasi');
@@ -56,9 +58,11 @@ Route::get('jobseeker/lowonganpekerjaan/create', 'JobSeekerController@createtLow
 
 Route::get('admin/dashboard/create', 'AdminController@createDashboard');
 Route::get('admin/notifikasi/create', 'AdminController@createNotifikasi');
-Route::get('admin/carisdm/create', 'AdminController@createCarisdm');
-Route::get('admin/inputlowongan/create', 'AdminController@createInputlowongan');
-Route::get('admin/inputtes/create', 'AdminController@createInputtes');
+Route::get('admin/sdm/create', 'AdminController@createSdm');
+Route::get('admin/klien/create', 'AdminController@createKlien');
+Route::get('admin/lowongan/create', 'AdminController@createLowongan');
+Route::get('admin/manajementes/create', 'AdminController@createManajementes');
+Route::get('admin/manajemenuser/create', 'AdminController@createManajemenuser');
 
 Route::get('client/dashboard/create', 'ClientController@createDashboard');
 Route::get('client/notifikasi/create', 'ClientController@createNotifikasi');
