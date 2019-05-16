@@ -94,6 +94,29 @@
             </li>
             @endcan
 
+            @can('isClient')
+            <li class="@if(url('/client/dashboard') == request()->url()
+               ) active @else '' @endif  treeview">
+                <a href="{{ url('client/dashboard')}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Dashboard</span></a>
+            </li>
+
+            <li class="@if(url('client/notifikasi') == request()->url()
+               ) active @else '' @endif  treeview">
+                <a href="{{ url('client/notifikasi')}}"><i class="fa fa-envelope"></i> <span class="nav-label">Notifikasi</span></a>
+            </li>
+
+            <li class="@if(url('client/orderlayanan') == request()->url()
+               ) active @else '' @endif  treeview">
+                <a href="{{ url('client/orderlayanan')}}"><i class="fa fa-exchange"></i> <span class="nav-label">Order Layanan</span></a>
+            </li>
+
+            <li class="@if(url('client/datakaryawan') == request()->url()
+               ) active @else '' @endif  treeview">
+                <a href="{{ url('client/datakaryawan')}}"><i class="fa fa-address-card"></i> <span class="nav-label">Data Karyawan</span></a>
+            </li>
+
+            @endcan
+
         </ul>
 
     </div>
