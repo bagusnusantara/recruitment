@@ -24,7 +24,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>List Lowongan Pekerjaan</h5>
+                        <h5>List User</h5>
 
                         <div class="ibox-tools">
                             <a class="collapse-link">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="ibox-content">
                         <div class="text-right">
-                            <a class="btn btn-primary" href="{{url('admin/lowongan/create')}}">Tambah Lowongan Pekerjaan</a>
+                            <a class="btn btn-primary" href="{{url('admin/lowongan/create')}}">Tambah User</a>
                         </div>
                         <input type="text" class="form-control input-sm m-b-xs" id="filter"
                                placeholder="Pencarian">
@@ -55,54 +55,59 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Klien</th>
-                                <th data-hide="phone,tablet">Job Title</th>
-                                <th data-hide="phone,tablet">Lokasi</th>
-                                <th data-hide="phone,tablet">Kategori</th>
-                                <th data-hide="phone,tablet">Gaji</th>
-                                <th data-hide="phone,tablet">Masa Berlaku</th>
+                                <th>NIK</th>
+                                <th data-hide="phone,tablet">Nama</th>
+                                <th data-hide="phone,tablet">Alamat</th>
+                                <th data-hide="phone,tablet">Jenis Kelamin</th>
+                                <th data-hide="phone,tablet">Keahlian</th>
+                                <th data-hide="phone,tablet">Pendidikan Terakhir</th>
+                                <th data-hide="phone,tablet">Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr class="gradeX">
                                 <td>1</td>
-                                <td>PT.Kita Sejahtera</td>
-                                <td>Finance and Accounting Manager</td>
-                                <td class="center">Surabaya</td>
-                                <td class="center">Full-time</td>
-                                <td class="center">Rp 4.000.000,00</td>
-                                <td class="center">12 Mei 2019 - 30 Juni 2019</td>
+                                <td>9812131414</td>
+                                <td>Andi Kurnia</td>
+                                <td class="center">Jalan Ketintang 192 Surabaya</td>
+                                <td class="center">Laki-laki</td>
+                                <td class="center">Marketing</td>
+                                <td class="center">S1 Manajemen Bisnis</td>
+                                <td class="center">Bekerja di PT. Semangat Baru</td>
                                 <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
                             </tr>
                             <tr class="gradeX">
                                 <td>2</td>
-                                <td>PT.Semoga Bahagia</td>
-                                <td>Office Boy</td>
-                                <td class="center">Surabaya</td>
-                                <td class="center">Full-time</td>
-                                <td class="center">Rp 3.000.000,00</td>
-                                <td class="center">11 Mei 2019 - 31 Juni 2019</td>
+                                <td>991213112</td>
+                                <td>Puji Sumaryani</td>
+                                <td class="center">Jalan Pemuda 12 Surabaya</td>
+                                <td class="center">Perempuan</td>
+                                <td class="center">Accounting</td>
+                                <td class="center">D3 Akuntansi</td>
+                                <td class="center"><button type="button" class="btn btn-primary btn-xs">Free</button></td>
                                 <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
                             </tr>
                             <tr class="gradeX">
                                 <td>3</td>
-                                <td>CV. Gemilang Raya</td>
-                                <td>IOS Developer</td>
-                                <td class="center">Sidoarjo</td>
-                                <td class="center">Part-time</td>
-                                <td class="center">Rp 2.000.000,00</td>
-                                <td class="center">22 April 2019 - 30 Juli 2019</td>
+                                <td>9812135413</td>
+                                <td>Isyana Mega</td>
+                                <td class="center">Jalan Sitinggil 12 Sidoarjo</td>
+                                <td class="center">Perempuan</td>
+                                <td class="center">Menjahit</td>
+                                <td class="center">SMK</td>
+                                <td class="center"><button type="button" class="btn btn-primary btn-xs">Free</button></td>
                                 <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
                             </tr>
                             <tr class="gradeX">
                                 <td>4</td>
-                                <td>PT.Sahabat Selamanya</td>
-                                <td>Product Marketing</td>
-                                <td class="center">Gresik</td>
-                                <td class="center">Part-time</td>
-                                <td class="center">Rp 4.000.000,00</td>
-                                <td class="center">12 Mei 2019 - 30 Juni 2019</td>
+                                <td>98121398712</td>
+                                <td>Dwi Sasongko</td>
+                                <td class="center">Jalan Pelayaran 23 Gresik</td>
+                                <td class="center">Laki-laki</td>
+                                <td class="center">Programming</td>
+                                <td class="center">S1 Teknik Informatika</td>
+                                <td class="center">Bekerja di PT. Kita Jaya</td>
                                 <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
                             </tr>
 

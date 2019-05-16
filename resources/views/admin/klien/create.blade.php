@@ -93,6 +93,10 @@
                                     <div class="col-sm-10"><input type="text" class="form-control">
                                     </div>
                                 </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Masa Berlaku</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control">
+                                    </div>
+                                </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Foto</label>
                                 </div>
                                 <div class="form-group">

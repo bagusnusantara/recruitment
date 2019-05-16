@@ -85,12 +85,12 @@
 
             <li class="@if(url('admin/manajementes') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('manajemen/manajementes')}}"><i class="fa fa-newspaper-o"></i> <span class="nav-label">Manajemen Tes</span></a>
+                <a href="{{ url('admin/manajementes')}}"><i class="fa fa-newspaper-o"></i> <span class="nav-label">Manajemen Tes</span></a>
             </li>
 
             <li class="@if(url('admin/manajemenuser') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('manajemen/manajemenuser')}}"><i class="fa fa-users"></i> <span class="nav-label">Manajemen User</span></a>
+                <a href="{{ url('admin/manajemenuser')}}"><i class="fa fa-users"></i> <span class="nav-label">Manajemen User</span></a>
             </li>
             @endcan
 

@@ -24,7 +24,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>List Lowongan Pekerjaan</h5>
+                        <h5>List Klien</h5>
 
                         <div class="ibox-tools">
                             <a class="collapse-link">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="ibox-content">
                         <div class="text-right">
-                            <a class="btn btn-primary" href="{{url('admin/lowongan/create')}}">Tambah Lowongan Pekerjaan</a>
+                            <a class="btn btn-primary" href="{{url('admin/lowongan/create')}}">Tambah Client</a>
                         </div>
                         <input type="text" class="form-control input-sm m-b-xs" id="filter"
                                placeholder="Pencarian">
@@ -56,11 +56,10 @@
                             <tr>
                                 <th>No</th>
                                 <th>Klien</th>
-                                <th data-hide="phone,tablet">Job Title</th>
-                                <th data-hide="phone,tablet">Lokasi</th>
-                                <th data-hide="phone,tablet">Kategori</th>
-                                <th data-hide="phone,tablet">Gaji</th>
-                                <th data-hide="phone,tablet">Masa Berlaku</th>
+                                <th data-hide="phone,tablet">Alamat</th>
+                                <th data-hide="phone,tablet">Nomor Telepon</th>
+                                <th data-hide="phone,tablet">Kelompok Usaha</th>
+                                <th data-hide="phone,tablet">Jenis Usaha</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -68,41 +67,37 @@
                             <tr class="gradeX">
                                 <td>1</td>
                                 <td>PT.Kita Sejahtera</td>
-                                <td>Finance and Accounting Manager</td>
-                                <td class="center">Surabaya</td>
-                                <td class="center">Full-time</td>
-                                <td class="center">Rp 4.000.000,00</td>
-                                <td class="center">12 Mei 2019 - 30 Juni 2019</td>
+                                <td>Jalan HR Muhammad 121 Surabaya</td>
+                                <td class="center">(031) 6451212</td>
+                                <td class="center">Usaha Menengah</td>
+                                <td class="center">Retail Alat Berat</td>
                                 <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
                             </tr>
                             <tr class="gradeX">
                                 <td>2</td>
                                 <td>PT.Semoga Bahagia</td>
-                                <td>Office Boy</td>
-                                <td class="center">Surabaya</td>
-                                <td class="center">Full-time</td>
-                                <td class="center">Rp 3.000.000,00</td>
-                                <td class="center">11 Mei 2019 - 31 Juni 2019</td>
+                                <td>Jalan Slamet Riyadi 192 Sidoarjo</td>
+                                <td class="center">0812313131</td>
+                                <td class="center">Usaha Mikro</td>
+                                <td class="center">Pertanian</td>
                                 <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
                             </tr>
                             <tr class="gradeX">
                                 <td>3</td>
                                 <td>CV. Gemilang Raya</td>
-                                <td>IOS Developer</td>
-                                <td class="center">Sidoarjo</td>
-                                <td class="center">Part-time</td>
-                                <td class="center">Rp 2.000.000,00</td>
-                                <td class="center">22 April 2019 - 30 Juli 2019</td>
+                                <td>Jalan Sugeng Haryadi 192 Sidoarjor</td>
+                                <td class="center">(031) 8912121</td>
+                                <td class="center">Usaha Makro</td>
+                                <td class="center">Software Consultant</td>
                                 <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
                             </tr>
                             <tr class="gradeX">
                                 <td>4</td>
                                 <td>PT.Sahabat Selamanya</td>
-                                <td>Product Marketing</td>
-                                <td class="center">Gresik</td>
-                                <td class="center">Part-time</td>
-                                <td class="center">Rp 4.000.000,00</td>
-                                <td class="center">12 Mei 2019 - 30 Juni 2019</td>
+                                <td>Jalan Nginden-Semolo 122 Surabaya</td>
+                                <td class="center">08121231</td>
+                                <td class="center">Usaha Menengah</td>
+                                <td class="center">Industri Makanan</td>
                                 <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
                             </tr>
 
