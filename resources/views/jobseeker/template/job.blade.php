@@ -1,7 +1,3 @@
-@extends('jobseeker.template.index')
-
-@section('job')
-
 <section class="employ-sec">
     <div class="container">
         <div class="title-sec-w3layouts_pvt text-center pb-4">
@@ -369,5 +365,3 @@
         </div>
     </div>
 </section>
-
-@endsection

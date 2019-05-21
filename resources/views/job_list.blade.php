@@ -38,7 +38,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <header>
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light p-0">
-                <h1><a class="navbar-brand" href="index.html">Recruit
+                <h1><a class="navbar-brand" href="index.html">SMI
 
                     </a></h1>
                 <button class="navbar-toggler ml-lg-auto ml-sm-5 bg-light" type="button" data-toggle="collapse"

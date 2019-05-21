@@ -625,7 +625,7 @@ li.breadcrumb-nav a {
 }
 
 li.breadcrumb-nav.active {
-	color: #0d2865;
+	color: #3b6ddd;
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
