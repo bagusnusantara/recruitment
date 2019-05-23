@@ -48,70 +48,49 @@
                         <div class="text-right">
                             <a class="btn btn-primary" href="{{url('admin/lowongan/create')}}">Tambah Lowongan Pekerjaan</a>
                         </div>
-                        <input type="text" class="form-control input-sm m-b-xs" id="filter"
-                               placeholder="Pencarian">
+                        @csrf
 
-                        <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
+                        <table class="table table-striped table-bordered table-hover dataTables-client" style="width: 100%">
                             <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Klien</th>
-                                <th data-hide="phone,tablet">Job Title</th>
-                                <th data-hide="phone,tablet">Lokasi</th>
-                                <th data-hide="phone,tablet">Kategori</th>
-                                <th data-hide="phone,tablet">Gaji</th>
-                                <th data-hide="phone,tablet">Masa Berlaku</th>
-                                <th>Action</th>
+                              <th>No</th>
+                              <th>Klien</th>
+                              <th data-hide="phone,tablet">Job Tittle</th>
+                              <th data-hide="phone,tablet">Lokasi</th>
+                              <th data-hide="phone,tablet">Kategori</th>
+                              <th data-hide="phone,tablet">Gaji</th>
+                              <th data-hide="phone,tablet">Masa Berlaku</th>
+                              <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="gradeX">
-                                <td>1</td>
-                                <td>PT.Kita Sejahtera</td>
-                                <td>Finance and Accounting Manager</td>
-                                <td class="center">Surabaya</td>
-                                <td class="center">Full-time</td>
-                                <td class="center">Rp 4.000.000,00</td>
-                                <td class="center">12 Mei 2019 - 30 Juni 2019</td>
-                                <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
-                            </tr>
-                            <tr class="gradeX">
-                                <td>2</td>
-                                <td>PT.Semoga Bahagia</td>
-                                <td>Office Boy</td>
-                                <td class="center">Surabaya</td>
-                                <td class="center">Full-time</td>
-                                <td class="center">Rp 3.000.000,00</td>
-                                <td class="center">11 Mei 2019 - 31 Juni 2019</td>
-                                <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
-                            </tr>
-                            <tr class="gradeX">
-                                <td>3</td>
-                                <td>CV. Gemilang Raya</td>
-                                <td>IOS Developer</td>
-                                <td class="center">Sidoarjo</td>
-                                <td class="center">Part-time</td>
-                                <td class="center">Rp 2.000.000,00</td>
-                                <td class="center">22 April 2019 - 30 Juli 2019</td>
-                                <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
-                            </tr>
-                            <tr class="gradeX">
-                                <td>4</td>
-                                <td>PT.Sahabat Selamanya</td>
-                                <td>Product Marketing</td>
-                                <td class="center">Gresik</td>
-                                <td class="center">Part-time</td>
-                                <td class="center">Rp 4.000.000,00</td>
-                                <td class="center">12 Mei 2019 - 30 Juni 2019</td>
-                                <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
-                            </tr>
+                              @php
+                								$i=1;
+                							@endphp
+                              @foreach($lowongan_pekerjaan as $lowongan)
 
-                                <td colspan="5">
-                                    <ul class="pagination pull-right"></ul>
-                                </td>
-                            </tr>
-                            </tfoot>
+                              <tr>
+                                  <td>{{$i}}</td>
+                                  <td>{{$lowongan->md_client->nama_client}}</td>
+                                  <td>{{$lowongan->job_tittle}}</td>
+                                  <td class="center"></td>
+                                  <td class="center">Usaha Menengah</td>
+                                  <td class="center">Retail Alat Berat</td>
+                                  <td></td>
+                                  <td>
+                                    <button class="btn btn-default btn-circle" type="button"><i class="fa fa-eye"></i>
+                                    <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
+                                    <button class="btn btn-default btn-circle" type="button"><i class="fa fa-trash"></i>
+                                  </td>
+
+                              @php
+                								$i++;
+                							@endphp
+                              @endforeach
+                                </tr>
+                          </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>
@@ -128,16 +107,35 @@
 
 
 @include('template.footer')
-<!-- FooTable -->
-<script src="{{asset('inspinia/js/plugins/footable/footable.all.min.js')}}"></script>
 <!-- Page-Level Scripts -->
 <script>
-    $(document).ready(function() {
+    $(document).ready(function(){
+        $('.dataTables-client').DataTable({
+            pageLength: 25,
+            responsive: true,
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+                { extend: 'copy'},
+                {extend: 'csv'},
+                {extend: 'excel', title: 'ExampleFile'},
+                {extend: 'pdf', title: 'ExampleFile'},
 
-        $('.footable').footable();
-        $('.footable2').footable();
+                {extend: 'print',
+                 customize: function (win){
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                }
+                }
+            ]
+
+        });
 
     });
 
 </script>
+
 @endsection

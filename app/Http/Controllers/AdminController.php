@@ -4,13 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Gate;
+use App\md_lowongan_pekerjaan;
 use App\md_client;
+use App\st_alamat_provinsi;
+use App\st_alamat_kabkota;
+use App\st_kategori_pekerjaan;
+use App\st_spesialisasi_pekerjaan;
+use App\st_lowongan_gaji;
+use Alert;
 class AdminController extends Controller
 {
     public function getDashboard(){
       if(!Gate::allows('isAdmin')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
+      Alert::success('Selamat Datang di Sistem Recruitment SMI', 'Halo Admin SMI!!!');
       return view ('admin.dashboard.index');
     }
 
@@ -32,14 +40,21 @@ class AdminController extends Controller
       if(!Gate::allows('isAdmin')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
-      return view ('admin.lowongan.index');
+      $lowongan_pekerjaan=md_lowongan_pekerjaan::all();
+      return view ('admin.lowongan.index',compact('lowongan_pekerjaan'));
     }
 
     public function createLowongan(){
       if(!Gate::allows('isAdmin')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
-      return view ('admin.lowongan.create');
+      $md_client=md_client::all();
+      $st_lowongan_gaji=st_lowongan_gaji::all();
+      $st_kategori_pekerjaan=st_kategori_pekerjaan::all();
+      $st_spesialisasi_pekerjaan=st_spesialisasi_pekerjaan::all();
+      $st_alamat_provinsi=st_alamat_provinsi::all();
+      $st_alamat_kabkota=st_alamat_kabkota::all();
+      return view ('admin.lowongan.create',compact('md_client','st_alamat_kabkota','st_alamat_provinsi','st_lowongan_gaji','st_kategori_pekerjaan','st_spesialisasi_pekerjaan'));
     }
 
     public function getKlien(){
@@ -83,6 +98,20 @@ class AdminController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       return view ('admin.manajemenuser.create');
+    }
+
+    public function storeLowogan(Request $request){
+      $this->validate($request,[
+            // 'nama_alat' => 'required',
+            // 'jenis_alat' => 'required',
+            // 'jumlah' => 'required',
+            // 'status_kepemilikan' => 'required',
+            // 'status_kelaikan' => 'required'
+        ]);
+        $lowongan = md_lowongan_pekerjaan::create($request->all());
+        $lowongan->save();
+        Alert::success('Data berhasil tersimpan !');
+        return redirect('admin/lowongan')->with('successMsg','Slider Successfully Saved');
     }
 
 }

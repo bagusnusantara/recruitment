@@ -42,41 +42,46 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form method="get" class="form-horizontal">
+                        <form method="POST" action="{{url('/admin/lowonganpekerjaan/store')}}" class="form-horizontal" enctype="multipart/form-data">
+                            @csrf
                             <div class="col-lg-6 control-label">
                                 <div class="form-group"><label class="col-sm-2 control-label">Job Tittle</label>
-
-                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" class="form-control" name="job_tittle"></div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Client</label>
 
                                     <div class="col-sm-10">
-                                      <select class="form-control m-b" name="account">
-                                        <option>PT. Kita Sejati</option>
-                                        <option>PT. Aneka Warna</option>
-                                        <option>CV. Mitra Niaga</option>
-                                        <option>PT. Semangat Baru</option>
+                                      <select class="form-control m-b" name="md_client_id">
+                                        @foreach($md_client as $client)
+                                        <option value="{{$client->id}}">{{$client->nama_client}}</option>
+                                        @endforeach
                                       </select>
                                     </div>
                                 </div>
-                                <div class="form-group"><label class="col-sm-2 control-label">Kategori</label>
-
+                                <div class="form-group"><label class="col-sm-2 control-label">Kategori Pekerjaan</label>
                                     <div class="col-sm-10">
-                                      <select class="form-control m-b" name="account">
-                                        <option>Part-time</option>
-                                        <option>Full-time</option>
-                                        <option>Internship</option>
-                                        <option>Permanen</option>
-                                        <option>Kontrak</option>
-                                      </select>
+                                        <select class="form-control m-b" name="st_kategori_pekerjaan">
+                                          @foreach($st_kategori_pekerjaan as $kategori)
+                                          <option value="{{$kategori->id}}">{{$kategori->deskripsi}}</option>
+                                          @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Spesialisasi Pekerjaan</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control m-b" name="st_spesialisasi_pekerjaan">
+                                          @foreach($st_spesialisasi_pekerjaan as $spesialisasi)
+                                          <option value="{{$spesialisasi->id}}">{{$spesialisasi->deskripsi}}</option>
+                                          @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Persyaratan</label>
-                                    <div class="col-sm-10"><textarea type="textarea" rows="15" cols="50" class="form-control"></textarea>
+                                    <div class="col-sm-10"><textarea type="textarea" rows="15" cols="50" class="form-control" name="persyaratan"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Deskripsi Pekerjaan</label>
-                                    <div class="col-sm-10"><textarea type="textarea" rows="15" cols="50" class="form-control"></textarea>
+                                    <div class="col-sm-10"><textarea type="textarea" rows="15" cols="50" class="form-control" name="deskripsi_pekerjaan"></textarea>
                                     </div>
                                 </div>
                             </div>

@@ -72,4 +72,5 @@ Route::get('client/notifikasi/create', 'ClientController@createNotifikasi');
 Route::get('client/orderlayanan/create', 'ClientController@createOrderlayanan');
 Route::get('client/datakaryawan/create', 'ClientController@createDatakaryawan');
 
+Route::post('/admin/lowonganpekerjaan/store', 'AdminController@storeLowogan');
 Route::get('/home', 'HomeController@index')->name('home');
