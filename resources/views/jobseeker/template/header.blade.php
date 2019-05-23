@@ -12,21 +12,23 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="ml-lg-5 navbar-nav mr-lg-auto">
                   <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                      <a href="{{url('/')}}">Home</a>
+                      <a href="{{url('/')}}">Beranda</a>
+                  </li>
+                  <li class="nav-item active mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
+                      <a href="{{url('jobseeker/dashboard')}}">Cari Lowongan</a>
                   </li>
                   <li class="nav-item dropdown mr-lg-4 my-lg-0 my-sm-4 my-3">
                       <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                           aria-expanded="false">
-                          Pages
+                          Profil Saya
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a href="job_list.html">Job List</a>
-                          <a href="job_single.html">Job Single</a>
+                          <a href="job_list.html">Lihat Profil</a>
+                          <a href="job_single.html">Ubah Profil</a>
+                          <a href="job_single.html">Lamaran Saya</a>
                       </div>
                   </li>
-                  <li class="nav-item active mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                      <a href="{{url('joblist')}}">Job List</a>
-                  </li>
+
 
               </ul>
 
@@ -50,14 +52,3 @@
         </nav>
     </div>
 </header>
-
-<li class="nav-item dropdown mr-lg-4 my-lg-0 my-sm-4 my-3">
-    <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
-        Pages
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a href="job_list.html">Job List</a>
-        <a href="job_single.html">Job Single</a>
-    </div>
-</li>

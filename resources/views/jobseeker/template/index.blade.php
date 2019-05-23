@@ -29,7 +29,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //breadcrumbs -->
     <!-- jobs -->
     @yield('job')
-    @include('jobseeker/template/job')
+    
     <!-- //jobs -->
     <!-- Footer -->
     @include('jobseeker/template/footer')

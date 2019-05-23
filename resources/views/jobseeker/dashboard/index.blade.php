@@ -16,7 +16,19 @@
                     <form action="#" class="widget-content" method="post">
                         <input type="text" class="form-control my-3" placeholder="Location" required>
                         <select class="form-control jb_1">
-                            <option value="0">sort by</option>
+                            <option value="0">Semua Provinsi</option>
+                            @foreach($provinsi as $prov)
+                            <option value="{{$prov->id_provinsi}}">{{$prov->deskripsi}}</option>
+                            @endforeach
+                        </select>
+                        <select class="form-control jb_1">
+                            <option value="0">Semua Kota</option>
+                            @foreach($kota_all as $kota)
+                            <option value="{{$kota->id_kabkota}}">{{$kota->deskripsi}}</option>
+                            @endforeach
+                        </select>
+                        <select class="form-control jb_1">
+                            <option value="0">Urutkan berdasarkan</option>
                             <option value="">Relevant</option>
                             <option value="">Date posted (newsest to oldest)</option>
                             <option value="">Date posted (oldest to newsest)</option>
@@ -124,12 +136,14 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col-lg-8">
                 <div class="row">
+                  @foreach($lowongan_pekerjaan as $lowongan)
                     <div class="col-sm-6 e-left">
                         <a href="#"><img src="{{ asset('web/images/b2.jpg') }}" alt="" class="img-fluid"></a>
                         <div class="e-desc">
-                            <h6><a href="{{url('/jobsingle')}}">Lead Android Developer </a></h6>
+                            <h6><a href="{{url('/jobsingle')}}">{{$lowongan->job_tittle}} - {{$lowongan->md_client->nama_client}}</a></h6>
 
                             <ul class="e-tags">
                                 <li>
@@ -142,8 +156,8 @@
                             <hr>
                             <ul class="desc-list">
                                 <li>
-                                    <span>Location:</span>
-                                    loremipsum, dolor
+                                    <span>Lokasi:</span>
+                                    {{$lowongan->lokasi}}
                                 </li>
                                 <li>
                                     <span>Salary:</span>
@@ -159,203 +173,13 @@
                                 </li>
                             </ul>
                             <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                for job</a>
+                                aria-pressed="false" data-target="#exampleModal" role="button">Lamar Pekerjaan</a>
                         </div>
                     </div>
-                    <div class="col-sm-6 e-left">
-                        <a href="#"><img src="{{ asset('web/images/b1.jpg') }}" alt="" class="img-fluid"></a>
-                        <div class="e-desc">
-                            <h6><a href="{{url('jobsingle')}}">Senior Front - End Engineer </a></h6>
-
-                            <ul class="e-tags">
-                                <li>
-                                    javascript</li>
-
-                                <li>computer vision</li>
-                                <li>angular js</li>
-                                <li>c++</li>
-                            </ul>
-                            <hr>
-                            <ul class="desc-list">
-                                <li>
-                                    <span>Location:</span>
-                                    loremipsum, dolor
-                                </li>
-                                <li>
-                                    <span>Salary:</span>
-                                    Negotiable
-                                </li>
-                                <li>
-                                    <span>Experience</span>
-                                    Expert
-                                </li>
-                                <li>
-                                    <span>Posted: </span>
-                                    5 hours ago
-                                </li>
-                            </ul>
-                            <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                for job</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-                <div class="row my-4">
-                    <div class="col-sm-6 e-left">
-                        <a href="#"><img src="{{ asset('web/images/b3.jpg') }}" alt="" class="img-fluid"></a>
-                        <div class="e-desc">
-                            <h6><a href="{{url('jobsingle')}}">Senior Java Developer
-                                </a></h6>
 
-                            <ul class="e-tags">
-                                <li>
-                                    javascript</li>
-
-                                <li>computer vision</li>
-                                <li>angular js</li>
-                                <li>c++</li>
-                            </ul>
-                            <hr>
-                            <ul class="desc-list">
-                                <li>
-                                    <span>Location:</span>
-                                    loremipsum, dolor
-                                </li>
-                                <li>
-                                    <span>Salary:</span>
-                                    Negotiable
-                                </li>
-                                <li>
-                                    <span>Experience</span>
-                                    Expert
-                                </li>
-                                <li>
-                                    <span>Posted: </span>
-                                    1 day ago
-                                </li>
-                            </ul>
-                            <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                for job</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 e-left">
-                        <a href="#"><img src="{{ asset('web/images/b1.jpg') }}" alt="" class="img-fluid"></a>
-                        <div class="e-desc">
-                            <h6><a href="{{url('jobsingle')}}">Senior Front - End Engineer </a></h6>
-
-                            <ul class="e-tags">
-                                <li>
-                                    javascript</li>
-
-                                <li>computer vision</li>
-                                <li>angular js</li>
-                                <li>c++</li>
-                            </ul>
-                            <hr>
-                            <ul class="desc-list">
-                                <li>
-                                    <span>Location:</span>
-                                    loremipsum, dolor
-                                </li>
-                                <li>
-                                    <span>Salary:</span>
-                                    Negotiable
-                                </li>
-                                <li>
-                                    <span>Experience</span>
-                                    Expert
-                                </li>
-                                <li>
-                                    <span>Posted: </span>
-                                    2 days ago
-                                </li>
-                            </ul>
-                            <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                for job</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 e-left">
-                        <a href="#"><img src="{{ asset('web/images/b2.jpg') }}" alt="" class="img-fluid"></a>
-                        <div class="e-desc">
-                            <h6><a href="{{url('jobsingle')}}">Lead Android Developer </a></h6>
-
-                            <ul class="e-tags">
-                                <li>
-                                    javascript</li>
-
-                                <li>computer vision</li>
-                                <li>angular js</li>
-                                <li>c++</li>
-                            </ul>
-                            <hr>
-                            <ul class="desc-list">
-                                <li>
-                                    <span>Location:</span>
-                                    loremipsum, dolor
-                                </li>
-                                <li>
-                                    <span>Salary:</span>
-                                    Negotiable
-                                </li>
-                                <li>
-                                    <span>Experience</span>
-                                    Expert
-                                </li>
-                                <li>
-                                    <span>Posted: </span>
-                                    5 days ago
-                                </li>
-                            </ul>
-                            <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                for job</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 e-left">
-                        <a href="#"><img src="{{ asset('web/images/b3.jpg') }}" alt="" class="img-fluid"></a>
-                        <div class="e-desc">
-                            <h6><a href="{{url('jobsingle')}}">Web Designer </a></h6>
-
-                            <ul class="e-tags">
-                                <li>
-                                    javascript</li>
-
-                                <li>computer vision</li>
-                                <li>angular js</li>
-                                <li>c++</li>
-                            </ul>
-                            <hr>
-                            <ul class="desc-list">
-                                <li>
-                                    <span>Location:</span>
-                                    loremipsum, dolor
-                                </li>
-                                <li>
-                                    <span>Salary:</span>
-                                    Negotiable
-                                </li>
-                                <li>
-                                    <span>Experience</span>
-                                    Expert
-                                </li>
-                                <li>
-                                    <span>Posted: </span>
-                                    1 week ago
-                                </li>
-                            </ul>
-                            <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                for job</a>
-                        </div>
-                    </div>
-                </div>
             </div>
-
         </div>
         <div class="d-flex justify-content-center">
             <ul class="pagination pt-4">

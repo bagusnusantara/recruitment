@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Gate;
+use App\md_client;
 class AdminController extends Controller
 {
     public function getDashboard(){
@@ -45,7 +46,8 @@ class AdminController extends Controller
       if(!Gate::allows('isAdmin')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
-      return view ('admin.klien.index');
+      $md_client=md_client::all();
+      return view ('admin.klien.index',compact('md_client'));
     }
 
     public function createKlien(){
