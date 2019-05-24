@@ -56,8 +56,6 @@
                               <th>No</th>
                               <th>Klien</th>
                               <th data-hide="phone,tablet">Alamat</th>
-                              <th data-hide="phone,tablet">Nomor Telepon</th>
-                              <th data-hide="phone,tablet">Kelompok Usaha</th>
                               <th data-hide="phone,tablet">Jenis Usaha</th>
                               <th>Action</th>
                             </tr>
@@ -72,8 +70,6 @@
                                   <td>{{$i}}</td>
                                   <td>{{$client->nama_client}}</td>
                                   <td>{{$client->alamat}}</td>
-                                  <td class="center">{{$client->no_hp}}</td>
-                                  <td class="center">Usaha Menengah</td>
                                   <td class="center">Retail Alat Berat</td>
                                   <td>
                                     <button class="btn btn-default btn-circle" type="button"><i class="fa fa-eye"></i>
