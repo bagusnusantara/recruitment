@@ -28,5 +28,9 @@ class md_lowongan_pekerjaan extends Model
       {
         return $this->belongsTo('App\st_alamat_provinsi', 'id_provinsi');
       }
+      public function st_lowongan_gaji()
+        {
+          return $this->belongsTo('App\st_lowongan_gaji', 'id');
+        }
 
 }

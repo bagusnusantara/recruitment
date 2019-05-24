@@ -35,7 +35,13 @@
     <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/color.css">
     <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css"> -->
-    <link href="{{asset('inspinia/css/plugins/footable/footable.core.css" rel="stylesheet') }}">
+    <link href="{{asset('inspinia/css/plugins/footable/footable.core.css') }}" rel="stylesheet">
+    <link href="{{asset('inspinia/css/plugins/summernote/summernote.css') }}" rel="stylesheet">
+    <link href="{{asset('inspinia/css/plugins/summernote/summernote-bs3.css') }}" rel="stylesheet">
+    <!-- Data picker -->
+   <script src="{{asset('inspinia/js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
+
+
     <style>
         td.details-control {
             background: url('https://datatables.net/examples/resources/details_open.png') no-repeat center center;

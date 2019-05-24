@@ -34,10 +34,11 @@ class JobseekerController extends Controller
       return view ('jobseeker.notifikasi.index');
     }
 
-    public function getTentangsaya(){
+    public function showLowongan($id){
       if(!Gate::allows('isJobseeker')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
-      return view ('jobseeker.profil.tentangsaya.index');
+      $lowongan = md_lowongan_pekerjaan::find($id);
+      return view ('jobseeker.dashboard.show',compact('lowongan'));
     }
 }

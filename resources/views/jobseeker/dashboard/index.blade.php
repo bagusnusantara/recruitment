@@ -143,7 +143,7 @@
                     <div class="col-sm-6 e-left">
                         <a href="#"><img src="{{ asset('web/images/b2.jpg') }}" alt="" class="img-fluid"></a>
                         <div class="e-desc">
-                            <h6><a href="{{url('/jobsingle')}}">{{$lowongan->job_tittle}} - {{$lowongan->md_client->nama_client}}</a></h6>
+                            <h6><a href="/jobseeker/dashboard/show/{{$lowongan->id}}">{{$lowongan->job_tittle}} - {{$lowongan->md_client->nama_client}}</a></h6>
 
                             <ul class="e-tags">
                                 <li>

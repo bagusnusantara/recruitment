@@ -73,9 +73,9 @@
                                   <td>{{$i}}</td>
                                   <td>{{$lowongan->md_client->nama_client}}</td>
                                   <td>{{$lowongan->job_tittle}}</td>
-                                  <td class="center"></td>
+                                  <td class="center">{{$lowongan->st_alamat_kabkota}} {{$lowongan->st_alamat_provinsi}}</td>
                                   <td class="center">Usaha Menengah</td>
-                                  <td class="center">Retail Alat Berat</td>
+                                  <td class="center">{{$lowongan->st_lowongan_gaji}}</td>
                                   <td></td>
                                   <td>
                                     <button class="btn btn-default btn-circle" type="button"><i class="fa fa-eye"></i>
