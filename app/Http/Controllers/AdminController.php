@@ -11,6 +11,7 @@ use App\st_alamat_kabkota;
 use App\st_kategori_pekerjaan;
 use App\st_spesialisasi_pekerjaan;
 use App\st_lowongan_gaji;
+use App\trans_lowongan_pekerjaan;
 use Alert;
 class AdminController extends Controller
 {
@@ -42,6 +43,15 @@ class AdminController extends Controller
       }
       $lowongan_pekerjaan=md_lowongan_pekerjaan::all();
       return view ('admin.lowongan.index',compact('lowongan_pekerjaan'));
+    }
+
+    public function showLowongan($id){
+      if(!Gate::allows('isAdmin')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $lowongan_pekerjaan=md_lowongan_pekerjaan::find($id);
+      $pendaftar=trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan_pekerjaan->id);
+      return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar'));
     }
 
     public function createLowongan(){

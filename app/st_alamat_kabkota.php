@@ -12,7 +12,7 @@ class st_alamat_kabkota extends Model
   public $incrementing = false;
 
   protected $fillable = [
-
+      'id_kabkota','id_provinsi','deskripsi'
     ];
   public function md_lowongan_pekerjaan1()
       {

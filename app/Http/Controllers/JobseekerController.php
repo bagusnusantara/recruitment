@@ -8,6 +8,8 @@ use App\md_lowongan_pekerjaan;
 use App\st_alamat_provinsi;
 use App\st_alamat_kabkota;;
 use App\md_jobseeker;
+use App\trans_lowongan_pekerjaan;
+use Alert;
 class JobseekerController extends Controller
 {
     public function getDashboard(){
@@ -39,6 +41,22 @@ class JobseekerController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       $lowongan = md_lowongan_pekerjaan::find($id);
+      //$trans_lowongan = trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan->id);
       return view ('jobseeker.dashboard.show',compact('lowongan'));
     }
+    public function storeLamaran(Request $request){
+      $this->validate($request,[
+            // 'nama_alat' => 'required',
+            // 'jenis_alat' => 'required',
+            // 'jumlah' => 'required',
+            // 'status_kepemilikan' => 'required',
+            // 'status_kelaikan' => 'required'
+        ]);
+        $lowongan = trans_lowongan_pekerjaan::create($request->all());
+        $lowongan->save();
+        Alert::success('Lowongan Pekerjaan berhasil terkirim');
+        return redirect()->back()->with('successMsg','Slider Successfully Saved');
+    }
+
+
 }

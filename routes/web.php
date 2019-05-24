@@ -74,4 +74,6 @@ Route::get('client/datakaryawan/create', 'ClientController@createDatakaryawan');
 
 Route::post('/admin/lowonganpekerjaan/store', 'AdminController@storeLowogan');
 Route::get('/jobseeker/dashboard/show/{id}', 'JobSeekerController@showLowongan');
+Route::post('/jobseeker/lamaran/store', 'JobSeekerController@storeLamaran');
+Route::get('/admin/lowongan/show/{id}', 'AdminController@showLowongan');
 Route::get('/home', 'HomeController@index')->name('home');

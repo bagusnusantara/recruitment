@@ -19,44 +19,33 @@
                                 <div class="job-desc-w3ls">
                                     <ul>
                                         <li>Role: <strong>{{$lowongan->job_tittle}}</strong></li>
-                                        <li>Industry: <strong>{{$lowongan->st_spesialisasi_pekerjaan_id}}</strong></li>
-                                        <li>Company size: <strong> 5k-10k People</strong></li>
-                                        <li>Job type: <strong>Permanent</strong></li>
-                                        <li>Experience level: <strong>Mid-Level, Senior, Lead</strong></li>
-                                        <li>Salary: <strong>Negotiable</strong></li>
-                                        <li>Location: <strong>Place 1 / Place 2</strong></li>
-
+                                        <li>Spesialisasi Pekerjaan: <strong>{{$lowongan->st_spesialisasi_pekerjaan_id}}</strong></li>
+                                        <li>Tipe Pekerjaan: <strong>Permanent</strong></li>
+                                        <li>Pengalaman Minimum: <strong>Mid-Level, Senior, Lead</strong></li>
+                                        <li>Gaji: <strong>Negotiable</strong></li>
+                                        <li>Lokasi Penempatan: <strong>Place 1 / Place 2</strong></li>
                                     </ul>
                                 </div>
-                                <hr>
-                                <div class="tech-job">
-                                    <h5 class="w3layouts_pvt-head">technologies included.</h5>
-                                    <ul class="e-tags">
-                                        <li>javascript</li>
-                                        <li>php</li>
-                                        <li>computer vision</li>
-                                        <li>angular js</li>
-                                        <li>c++</li>
-                                    </ul>
-                                </div>
-                                <hr>
                             </div>
                         </div>
 
                         <div class="job-role">
                             <h5 class="w3layouts_pvt-head">Persyaratan</h5>
-                            {{$lowongan->persyaratan}}
+                            <p>{!!$lowongan->persyaratan!!}</p>
                         </div>
+                        <hr>
                         <div class="job-role">
                             <h5 class="w3layouts_pvt-head">Deskripsi Pekerjaan</h5>
-                            {{$lowongan->deskripsi_pekerjaan}}
+                            {!!$lowongan->deskripsi_pekerjaan!!}
                         </div>
 
+                        <form method="POST" id="postForm" action="{{url('/jobseeker/lamaran/store')}}" class="form-horizontal" enctype="multipart/form-data" onsubmit="return postForm()">
+                            @csrf
+                            <div class="col-sm-10"><input type="hidden" class="form-control" name="md_lowongan_pekerjaan_id" value="{{$lowongan->id}}"></div>
+                            <div class="col-sm-10"><input type="hidden" class="form-control" name="users_id" value="{{ Auth::user()->id }}"></div>
+                            <button class="btn wthree-bnr-btn text-capitalize" type="submit">Lamar Pekerjaan</button>
+                        </form>
 
-
-
-                        <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal" aria-pressed="false"
-                            data-target="#exampleModal" role="button">Lamar Pekerjaan</a>
                     </div>
 
                 </div>

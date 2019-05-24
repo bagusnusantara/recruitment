@@ -23,9 +23,9 @@
                           Profil Saya
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a href="job_list.html">Lihat Profil</a>
-                          <a href="job_single.html">Ubah Profil</a>
-                          <a href="job_single.html">Lamaran Saya</a>
+                          <a href="{{url('jobseeker/profil')}}">Lihat Profil</a>
+                          <a href="">Ubah Profil</a>
+                          <a href="">Lamaran Saya</a>
                       </div>
                   </li>
 

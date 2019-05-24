@@ -58,7 +58,6 @@
                               <th data-hide="phone,tablet">Job Tittle</th>
                               <th data-hide="phone,tablet">Lokasi</th>
                               <th data-hide="phone,tablet">Kategori</th>
-                              <th data-hide="phone,tablet">Gaji</th>
                               <th data-hide="phone,tablet">Masa Berlaku</th>
                               <th>Action</th>
                             </tr>
@@ -74,13 +73,12 @@
                                   <td>{{$lowongan->md_client->nama_client}}</td>
                                   <td>{{$lowongan->job_tittle}}</td>
                                   <td class="center">{{$lowongan->st_alamat_kabkota}} {{$lowongan->st_alamat_provinsi}}</td>
-                                  <td class="center">Usaha Menengah</td>
-                                  <td class="center">{{$lowongan->st_lowongan_gaji}}</td>
-                                  <td></td>
+                                  <td class="center"></td>
+                                  <td>{{date('d-m-Y', strtotime($lowongan->start_date))}} sampai {{$lowongan->end_date}}</td>
                                   <td>
-                                    <button class="btn btn-default btn-circle" type="button"><i class="fa fa-eye"></i>
+                                    <a type="button" class="btn btn-default btn-circle" href="lowongan/show/{{$lowongan->id}}" type="button"><i class="fa fa-eye"></i></a>
                                     <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
-                                    <button class="btn btn-default btn-circle" type="button"><i class="fa fa-trash"></i>
+                                    <!-- <button class="btn btn-default btn-circle" type="button"><i class="fa fa-trash"></i> -->
                                   </td>
 
                               @php

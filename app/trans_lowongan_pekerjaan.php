@@ -12,7 +12,7 @@ class trans_lowongan_pekerjaan extends Model
   public $incrementing = false;
 
   protected $fillable = [
-
+      'md_lowongan_pekerjaan_id','users_id','status'
     ];
 
 }

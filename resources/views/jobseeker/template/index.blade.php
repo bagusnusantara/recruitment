@@ -29,7 +29,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //breadcrumbs -->
     <!-- jobs -->
     @yield('job')
-    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @include('sweet::alert')
+
     <!-- //jobs -->
     <!-- Footer -->
     @include('jobseeker/template/footer')

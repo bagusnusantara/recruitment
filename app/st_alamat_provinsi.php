@@ -12,7 +12,7 @@ class st_alamat_provinsi extends Model
   public $incrementing = false;
 
   protected $fillable = [
-
+      'id_provinsi','id_negara','deskripsi'
     ];
   public function md_lowongan_pekerjaan()
       {
