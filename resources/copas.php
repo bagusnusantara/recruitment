@@ -7,24 +7,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | E-commerce product detail</title>
+    <title>INSPINIA | Invoice</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
-    <link href="css/plugins/slick/slick.css" rel="stylesheet">
-    <link href="css/plugins/slick/slick-theme.css" rel="stylesheet">
-
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
-
 
 </head>
 
 <body>
 
-<div id="wrapper">
+    <div id="wrapper">
 
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
@@ -126,12 +121,12 @@
                         <li><a href="pin_board.html">Pin board</a></li>
                     </ul>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
+                    <ul class="nav nav-second-level">
                         <li><a href="search_results.html">Search results</a></li>
                         <li><a href="lockscreen.html">Lockscreen</a></li>
-                        <li><a href="invoice.html">Invoice</a></li>
+                        <li class="active"><a href="invoice.html">Invoice</a></li>
                         <li><a href="login.html">Login</a></li>
                         <li><a href="login_two_columns.html">Login v.2</a></li>
                         <li><a href="forgot_password.html">Forget password</a></li>
@@ -202,13 +197,13 @@
                         <li><a href="jq_grid.html">jqGrid</a></li>
                     </ul>
                 </li>
-                <li class="active">
+                <li>
                     <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">E-commerce</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li><a href="ecommerce_products_grid.html">Products grid</a></li>
                         <li><a href="ecommerce_product_list.html">Products list</a></li>
                         <li><a href="ecommerce_product.html">Product edit</a></li>
-                        <li class="active"><a href="ecommerce_product_detail.html">Product detail</a></li>
+                        <li><a href="ecommerce_product_detail.html">Product detail</a></li>
                         <li><a href="ecommerce-cart.html">Cart</a></li>
                         <li><a href="ecommerce-orders.html">Orders</a></li>
                         <li><a href="ecommerce_payments.html">Credit Card form</a></li>
@@ -262,333 +257,251 @@
         </div>
     </nav>
 
-    <div id="page-wrapper" class="gray-bg">
+        <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
-            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                    <form role="search" class="navbar-form-custom" action="search_results.html">
-                        <div class="form-group">
-                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
-                        </div>
-                    </form>
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
                 </div>
-                <ul class="nav navbar-top-links navbar-right">
-                    <li>
-                        <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-messages">
-                            <li>
-                                <div class="dropdown-messages-box">
-                                    <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="img/a7.jpg">
-                                    </a>
-                                    <div class="media-body">
-                                        <small class="pull-right">46h ago</small>
-                                        <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                                        <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
-                                    </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/a7.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <small class="pull-right">46h ago</small>
+                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                    <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
                                 </div>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div class="dropdown-messages-box">
-                                    <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="img/a4.jpg">
-                                    </a>
-                                    <div class="media-body ">
-                                        <small class="pull-right text-navy">5h ago</small>
-                                        <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                                        <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
-                                    </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/a4.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right text-navy">5h ago</small>
+                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                    <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
                                 </div>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div class="dropdown-messages-box">
-                                    <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="img/profile.jpg">
-                                    </a>
-                                    <div class="media-body ">
-                                        <small class="pull-right">23h ago</small>
-                                        <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                                        <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
-                                    </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/profile.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right">23h ago</small>
+                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
+                                    <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
                                 </div>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div class="text-center link-block">
-                                    <a href="mailbox.html">
-                                        <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-alerts">
-                            <li>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
                                 <a href="mailbox.html">
-                                    <div>
-                                        <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                        <span class="pull-right text-muted small">4 minutes ago</span>
-                                    </div>
+                                    <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
                                 </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="profile.html">
-                                    <div>
-                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                        <span class="pull-right text-muted small">12 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="grid_options.html">
-                                    <div>
-                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                        <span class="pull-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div class="text-center link-block">
-                                    <a href="notifications.html">
-                                        <strong>See All Alerts</strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="mailbox.html">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
                                 </div>
-                            </li>
-                        </ul>
-                    </li>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="profile.html">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="grid_options.html">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="notifications.html">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
 
 
-                    <li>
-                        <a href="login.html">
-                            <i class="fa fa-sign-out"></i> Log out
-                        </a>
-                    </li>
-                </ul>
+                <li>
+                    <a href="login.html">
+                        <i class="fa fa-sign-out"></i> Log out
+                    </a>
+                </li>
+            </ul>
 
-            </nav>
+        </nav>
         </div>
-        <div class="row wrapper border-bottom white-bg page-heading">
-            <div class="col-lg-10">
-                <h2>E-commerce product detail</h2>
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a>E-commerce</a>
-                    </li>
-                    <li class="active">
-                        <strong>Product detail</strong>
-                    </li>
-                </ol>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-8">
+                    <h2>Invoice</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            Other Pages
+                        </li>
+                        <li class="active">
+                            <strong>Invoice</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-4">
+                    <div class="title-action">
+                        <a href="#" class="btn btn-white"><i class="fa fa-pencil"></i> Edit </a>
+                        <a href="#" class="btn btn-white"><i class="fa fa-check "></i> Save </a>
+                        <a href="invoice_print.html" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Print Invoice </a>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-2">
-
-            </div>
-        </div>
-
-        <div class="wrapper wrapper-content animated fadeInRight">
-
-            <div class="row">
-                <div class="col-lg-12">
-
-                    <div class="ibox product-detail">
-                        <div class="ibox-content">
-
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="wrapper wrapper-content animated fadeInRight">
+                    <div class="ibox-content p-xl">
                             <div class="row">
-                                <div class="col-md-5">
-
-
-                                    <div class="product-images">
-
-                                        <div>
-                                            <div class="image-imitation">
-                                                [IMAGE 1]
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="image-imitation">
-                                                [IMAGE 2]
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="image-imitation">
-                                                [IMAGE 3]
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                                <div class="col-sm-6">
+                                    <h5>From:</h5>
+                                    <address>
+                                        <strong>Inspinia, Inc.</strong><br>
+                                        106 Jorg Avenu, 600/10<br>
+                                        Chicago, VT 32456<br>
+                                        <abbr title="Phone">P:</abbr> (123) 601-4590
+                                    </address>
                                 </div>
-                                <div class="col-md-7">
 
-                                    <h2 class="font-bold m-b-xs">
-                                        Desktop publishing software
-                                    </h2>
-                                    <small>Many desktop publishing packages and web page editors now.</small>
-                                    <div class="m-t-md">
-                                        <h2 class="product-main-price">$406,602 <small class="text-muted">Exclude Tax</small> </h2>
-                                    </div>
-                                    <hr>
-
-                                    <h4>Product description</h4>
-
-                                    <div class="small text-muted">
-                                        It is a long established fact that a reader will be distracted by the readable
-                                        content of a page when looking at its layout. The point of using Lorem Ipsum is
-
-                                        <br/>
-                                        <br/>
-                                        There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have suffered alteration in some form, by injected humour, or randomised words
-                                        which don't look even slightly believable.
-                                    </div>
-                                    <dl class="small m-t-md">
-                                        <dt>Description lists</dt>
-                                        <dd>A description list is perfect for defining terms.</dd>
-                                        <dt>Euismod</dt>
-                                        <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                                        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                                        <dt>Malesuada porta</dt>
-                                        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                                    </dl>
-                                    <hr>
-
-                                    <div>
-                                        <div class="btn-group">
-                                            <button class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"></i> Add to cart</button>
-                                            <button class="btn btn-white btn-sm"><i class="fa fa-star"></i> Add to wishlist </button>
-                                            <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with author </button>
-                                        </div>
-                                    </div>
-
-
-
+                                <div class="col-sm-6 text-right">
+                                    <h4>Invoice No.</h4>
+                                    <h4 class="text-navy">INV-000567F7-00</h4>
+                                    <span>To:</span>
+                                    <address>
+                                        <strong>Corporate, Inc.</strong><br>
+                                        112 Street Avenu, 1080<br>
+                                        Miami, CT 445611<br>
+                                        <abbr title="Phone">P:</abbr> (120) 9000-4321
+                                    </address>
+                                    <p>
+                                        <span><strong>Invoice Date:</strong> Marh 18, 2014</span><br/>
+                                        <span><strong>Due Date:</strong> March 24, 2014</span>
+                                    </p>
                                 </div>
                             </div>
 
-                        </div>
-                        <div class="ibox-footer">
-                            <span class="pull-right">
-                                Full stock - <i class="fa fa-clock-o"></i> 14.04.2016 10:04 pm
-                            </span>
-                            The generated Lorem Ipsum is therefore always free
-                        </div>
-                    </div>
+                            <div class="table-responsive m-t">
+                                <table class="table invoice-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Item List</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price</th>
+                                        <th>Tax</th>
+                                        <th>Total Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><div><strong>Admin Theme with psd project layouts</strong></div>
+                                            <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small></td>
+                                        <td>1</td>
+                                        <td>$26.00</td>
+                                        <td>$5.98</td>
+                                        <td>$31,98</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div><strong>Wodpress Them customization</strong></div>
+                                            <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                Eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </small></td>
+                                        <td>2</td>
+                                        <td>$80.00</td>
+                                        <td>$36.80</td>
+                                        <td>$196.80</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div><strong>Angular JS & Node JS Application</strong></div>
+                                            <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small></td>
+                                        <td>3</td>
+                                        <td>$420.00</td>
+                                        <td>$193.20</td>
+                                        <td>$1033.20</td>
+                                    </tr>
 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
+                                    </tbody>
+                                </table>
+                            </div><!-- /table-responsive -->
 
-                    <div class="ibox product-detail">
-                        <div class="ibox-content">
-
-                            <div class="row">
-                                <div class="col-md-5">
-
-
-                                    <div class="product-images">
-
-                                        <div>
-                                            <div class="image-imitation">
-                                                [IMAGE 1]
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="image-imitation">
-                                                [IMAGE 2]
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="image-imitation">
-                                                [IMAGE 3]
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-                                <div class="col-md-7">
-
-                                    <h2 class="font-bold m-b-xs">
-                                        Desktop publishing software
-                                    </h2>
-                                    <small>Many desktop publishing packages and web page editors now.</small>
-                                    <hr>
-                                    <div>
-                                        <button class="btn btn-primary pull-right">Add to cart</button>
-                                        <h1 class="product-main-price">$406,602 <small class="text-muted">Exclude Tax</small> </h1>
-                                    </div>
-                                    <hr>
-                                    <h4>Product description</h4>
-
-                                    <div class="small text-muted">
-                                        It is a long established fact that a reader will be distracted by the readable
-                                        content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                        that it has a more-or-less normal distribution of letters, as opposed to using
-                                        'Content here, content here', making it look like readable English.
-                                        <br/>
-                                        <br/>
-                                        There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have suffered alteration in some form, by injected humour, or randomised words
-                                        which don't look even slightly believable.
-                                    </div>
-                                    <dl class="dl-horizontal m-t-md small">
-                                        <dt>Description lists</dt>
-                                        <dd>A description list is perfect for defining terms.</dd>
-                                        <dt>Euismod</dt>
-                                        <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                                        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                                        <dt>Malesuada porta</dt>
-                                        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                                        <dt>Felis euismod semper eget</dt>
-                                        <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
-                                    </dl>
-                                    <div class="text-right">
-                                        <div class="btn-group">
-                                            <button class="btn btn-white btn-sm"><i class="fa fa-star"></i> Add to wishlist </button>
-                                            <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with author </button>
-                                        </div>
-                                    </div>
-
-
-                                </div>
+                            <table class="table invoice-total">
+                                <tbody>
+                                <tr>
+                                    <td><strong>Sub Total :</strong></td>
+                                    <td>$1026.00</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TAX :</strong></td>
+                                    <td>$235.98</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TOTAL :</strong></td>
+                                    <td>$1261.98</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="text-right">
+                                <button class="btn btn-primary"><i class="fa fa-dollar"></i> Make A Payment</button>
                             </div>
 
+                            <div class="well m-t"><strong>Comments</strong>
+                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                            </div>
                         </div>
-                        <div class="ibox-footer">
-                            <span class="pull-right">
-                                Full stock - <i class="fa fa-clock-o"></i> 14.04.2016 10:04 pm
-                            </span>
-                            The generated Lorem Ipsum is therefore always free
-                        </div>
-                    </div>
-
                 </div>
             </div>
-
-
-
-
         </div>
         <div class="footer">
             <div class="pull-right">
@@ -599,35 +512,19 @@
             </div>
         </div>
 
-    </div>
-</div>
+        </div>
+        </div>
 
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
 
-<!-- Mainly scripts -->
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
-
-<!-- slick carousel-->
-<script src="js/plugins/slick/slick.min.js"></script>
-
-<script>
-    $(document).ready(function(){
-
-
-        $('.product-images').slick({
-            dots: true
-        });
-
-    });
-
-</script>
 
 </body>
 

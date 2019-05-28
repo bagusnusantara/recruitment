@@ -40,6 +40,9 @@ class LoginController extends Controller
     elseif($user->roles=='jobseeker'){
           return redirect('jobseeker/dashboard') ;
        }
+    elseif($user->roles=='hrd'){
+          return redirect('hrd/dashboard') ;
+       }
       }
 
     /**

@@ -76,4 +76,8 @@ Route::post('/admin/lowonganpekerjaan/store', 'AdminController@storeLowogan');
 Route::get('/jobseeker/dashboard/show/{id}', 'JobSeekerController@showLowongan');
 Route::post('/jobseeker/lamaran/store', 'JobSeekerController@storeLamaran');
 Route::get('/admin/lowongan/show/{id}', 'AdminController@showLowongan');
+
+Route::get('hrd/dashboard', 'HRDController@getDashboard');
+Route::get('hrd/payroll', 'HRDController@getPayroll');
+Route::get('hrd/payroll/slipgaji', 'HRDController@getSlipgaji');
 Route::get('/home', 'HomeController@index')->name('home');
