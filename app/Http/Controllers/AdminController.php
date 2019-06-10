@@ -13,6 +13,8 @@ use App\st_spesialisasi_pekerjaan;
 use App\st_lowongan_gaji;
 use App\trans_lowongan_pekerjaan;
 use Alert;
+use Excel;
+use PDF;
 class AdminController extends Controller
 {
     public function getDashboard(){

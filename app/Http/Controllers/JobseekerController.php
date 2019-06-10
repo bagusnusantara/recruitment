@@ -16,7 +16,7 @@ class JobseekerController extends Controller
       if(!Gate::allows('isJobseeker')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
-      $lowongan_pekerjaan=md_lowongan_pekerjaan::all();
+      $lowongan_pekerjaan=md_lowongan_pekerjaan::paginate(10);;
       $provinsi=st_alamat_provinsi::all();
       $kota_all=st_alamat_kabkota::all();
       return view ('jobseeker.dashboard.index',compact('lowongan_pekerjaan','provinsi','kota_all'));

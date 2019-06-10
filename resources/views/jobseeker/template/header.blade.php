@@ -1,54 +1,170 @@
-<header>
+<!-- Header Section Start -->
+<header id="home" class="hero-area">
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light p-0">
-            <h1><a class="navbar-brand" href="index.html">SMI
-
-                </a></h1>
-            <button class="navbar-toggler ml-lg-auto ml-sm-5 bg-light" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="ml-lg-5 navbar-nav mr-lg-auto">
-                  <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                      <a href="{{url('/')}}">Beranda</a>
-                  </li>
-                  <li class="nav-item active mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                      <a href="{{url('jobseeker/dashboard')}}">Cari Lowongan</a>
-                  </li>
-                  <li class="nav-item dropdown mr-lg-4 my-lg-0 my-sm-4 my-3">
-                      <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                          aria-expanded="false">
-                          Profil Saya
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a href="{{url('jobseeker/profil')}}">Lihat Profil</a>
-                          <a href="">Ubah Profil</a>
-                          <a href="">Lamaran Saya</a>
-                      </div>
-                  </li>
-
-
+      <div class="theme-header clearfix">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            <span class="lni-menu"></span>
+            <span class="lni-menu"></span>
+            <span class="lni-menu"></span>
+          </button>
+          <a href="index.html" class="navbar-brand"><img src="{{asset('jobx/assets/img/logo.png') }}" alt=""></a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="navbar-nav mr-auto w-100 justify-content-end">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{url('/')}}">
+                Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url('lowonganpublic')}}">
+                Lowongan Pekerjaan
+              </a>
+            </li>
+            <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Pages
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="about.html">About</a></li>
+                <li><a class="dropdown-item" href="job-page.html">Job Page</a></li>
+                <li><a class="dropdown-item" href="job-details.html">Job Details</a></li>
+                <li><a class="dropdown-item" href="resume.html">Resume Page</a></li>
+                <li><a class="dropdown-item" href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
+                <li><a class="dropdown-item" href="pricing.html">Pricing Tables</a></li>
+                <li><a class="dropdown-item" href="contact.html">Contact</a></li>
               </ul>
-
-                <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block">
-                    Welcome {{ Auth::user()->name }} !!
-                </button>
-
-                <div>
-                  <a class="btn w3ls-btn btn-2 ml-lg-1 text-uppercase font-weight-bold d-block" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                      {{ __('Logout') }}
-                  </a>
-                <!-- <a href="{{ route('logout') }}" type="button" class="btn w3ls-btn btn-2 ml-lg-1 text-uppercase font-weight-bold d-block">
-                    Logout
-                </a> -->
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-              </div>
-
-            </div>
-        </nav>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Candidates
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="browse-jobs.html">Browse Jobs</a></li>
+                <li><a class="dropdown-item" href="browse-categories.html">Browse Categories</a></li>
+                <li><a class="dropdown-item" href="add-resume.html">Add Resume</a></li>
+                <li><a class="dropdown-item" href="manage-resumes.html">Manage Resumes</a></li>
+                <li><a class="dropdown-item" href="job-alerts.html">Job Alerts</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Employers
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="post-job.html">Add Job</a></li>
+                <li><a class="dropdown-item" href="manage-jobs.html">Manage Jobs</a></li>
+                <li><a class="dropdown-item" href="manage-applications.html">Manage Applications</a></li>
+                <li><a class="dropdown-item" href="browse-resumes.html">Browse Resumes</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Blog
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="blog.html">Blog - Right Sidebar</a></li>
+                <li><a class="dropdown-item" href="blog-left-sidebar.html">Blog - Left Sidebar</a></li>
+                <li><a class="dropdown-item" href="blog-full-width.html"> Blog full width</a></li>
+                <li><a class="dropdown-item" href="single-post.html">Blog Single Post</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">
+                Contact
+              </a>
+            </li> -->
+            <li class="button-group">
+              <a href="{{url('login')}}" class="button btn btn-common">Sign in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+    <div class="mobile-menu" data-logo="{{asset('jobx/assets/img/logo-mobile.png') }}"></div>
+  </nav>
+  <!-- Navbar End -->
+  @if ((url()->current()) == (url('/')))
+  <div class="container">
+    <div class="row space-100 justify-content-center">
+      <div class="col-lg-10 col-md-12 col-xs-12">
+        <div class="contents">
+          <h2 class="head-title">SMI Public Recruitment</h2>
+          <!-- <h3 class="head-title">Reach Your Dream with Us!!!</h3> -->
+          <div class="job-search-form">
+            <form>
+              <div class="row">
+                <div class="col-lg-5 col-md-6 col-xs-12">
+                  <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Job Title or Company Name">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-xs-12">
+                  <div class="form-group">
+                    <div class="search-category-container">
+                      <label class="styled-select">
+                        <select>
+                          <option value="none">Locations</option>
+                          <option value="none">New York</option>
+                          <option value="none">California</option>
+                          <option value="none">Washington</option>
+                          <option value="none">Birmingham</option>
+                          <option value="none">Chicago</option>
+                          <option value="none">Phoenix</option>
+                        </select>
+                      </label>
+                    </div>
+                    <i class="lni-map-marker"></i>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-xs-12">
+                  <div class="form-group">
+                    <div class="search-category-container">
+                      <label class="styled-select">
+                        <select>
+                          <option>All Categories</option>
+                          <option>Finance</option>
+                          <option>IT & Engineering</option>
+                          <option>Education/Training</option>
+                          <option>Art/Design</option>
+                          <option>Sale/Markting</option>
+                          <option>Healthcare</option>
+                          <option>Science</option>
+                          <option>Food Services</option>
+                        </select>
+                      </label>
+                    </div>
+                    <i class="lni-layers"></i>
+                  </div>
+                </div>
+                <div class="col-lg-1 col-md-6 col-xs-12">
+                  <button type="submit" class="button"><i class="lni-search"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  @elseif ((url()->current()) == (url('/login')))
+  <div class="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="inner-header">
+            <h3>Login</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endif
 </header>
+<!-- Header Section End -->

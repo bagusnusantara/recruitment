@@ -1,21 +1,74 @@
-<footer id="footer" class="py-sm-5 py-4 bg-theme">
+<!-- Footer Section Start -->
+<footer>
+  <!-- Footer Area Start -->
+  <section class="footer-Content">
     <div class="container">
-        <div class="footer-top-w3ls">
-            <h2><a href="index.html" class="navbar-brand">PT. SMI</a></h2>
-            <p class="text-white">PT Selaras Mitra Integra  atau biasa disebut SMI merupakan perusahaan human resources management system atau human resources solution. SMI adalah konsultan yang fokus pada pengembangan human capital dan organisasi. SMI menggunakan pendekatan yang humanis dan metode-metode yang reliabel untuk membantu setiap human capital dan organisasi untuk berkembang. SMI mengkombinasikan teori dan praktik human resource sebagai pendekatan yang diterapkan.
-              Spesialiasi SMI di area rekrutmen, assessment center, training & development, coaching & counseling, labour supply dan layanan terkait lainnya. SMI percaya bahwa manusia merupakan aset yang paling penting bagi organisasi. Paradigma ini memberi SMI perspektif yang unik dalam mencari solusi yang holistik akan masalah human capital dan organisasi.
-        </div>
-        <div class="row  pt-5">
-            <div class="col-lg-3 col-sm-6 footer_grid1">
-                <h5>Alamat</h5>
-                <div class="d-flex align-items-center">
-                    <span class="fa fa-building mr-4"></span>
-                    <p>Jalan Ketintang Madya no 80
-                        <br>Surabaya</p>
-                </div>
-
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-xs-12">
+          <div class="widget">
+            <div class="footer-logo"><img src="{{asset('jobx/assets/img/logo-footer.png') }}" alt=""></div>
+            <div class="textwidget">
+              <p>PT. SELARAS MITRA INTEGRA<br>
+                Jalan Ketintang Madya no 80 Surabaya<br>
+                Email : hrd@selarasmitraintegra.com<br>
+                Website : www.selarasmitraintegra.com<br>
+                Phone031 - 8285737</p>
             </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-4 col-xs-12">
+          <!-- <div class="widget">
+            <h3 class="block-title">Quick Links</h3>
+            <ul class="menu">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Support</a></li>
+              <li><a href="#">License</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+            <ul class="menu">
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Refferal Terms</a></li>
+              <li><a href="#">Product License</a></li>
+            </ul>
+          </div> -->
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-12">
+          <div class="widget">
+            <h3 class="block-title">Subscribe Now</h3>
+            <!-- <p>Sed consequat sapien faus quam bibendum convallis.</p> -->
+            <form method="post" id="subscribe-form" name="subscribe-form" class="validate">
+              <div class="form-group is-empty">
+                <input type="email" value="" name="Email" class="form-control" id="EMAIL" placeholder="Enter Email..." required="">
+                <button type="submit" name="subscribe" id="subscribes" class="btn btn-common sub-btn"><i class="lni-envelope"></i></button>
+                <div class="clearfix"></div>
+              </div>
+            </form>
+            <ul class="mt-3 footer-social">
+              <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
+              <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
+              <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
+              <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer area End -->
 
+  <!-- Copyright Start  -->
+  <div id="copyright">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="site-info text-center">
+            <p>Copyright PT. Solusi Media Digital © 2019</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <!-- Copyright End -->
 </footer>
+<!-- Footer Section End -->

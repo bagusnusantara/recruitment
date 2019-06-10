@@ -1,111 +1,49 @@
-<!doctype html>
-<html class="no-js" lang="en">
+@extends('jobseeker.template.index')
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Login - srtdash</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="{{ asset('srtdash/assets/images/icon/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/metisMenu.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/slicknav.min.css') }}">
-    <!-- amchart css -->
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-    <!-- others css -->
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/typography.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/default-css.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/responsive.css') }}">
-    <!-- modernizr css -->
-    <script src="{{ asset('srtdash/assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
-</head>
+@section('content')
 
-<body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <!-- preloader area start -->
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
-    <!-- preloader area end -->
-    <!-- login area start -->
-    <div class="login-area">
-        <div class="container">
-            <div class="login-box ptb--100">
-                <form method="POST" action="{{ route('login') }}">
-                  @csrf
-                    <div class="login-form-head">
-                        <h4>Sign In</h4>
-                        <!-- <p>Hello there, Sign in and start managing your Admin Template</p> -->
-                    </div>
-
-                    <div class="login-form-body">
-                        <div class="form-gp">
-                            <label for="customControlAutosizing"> Email address</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                            <i class="ti-email"></i>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-gp">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                            <i class="ti-lock"></i>
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="row mb-4 rmber-area">
-                            <div class="col-6">
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="customControlAutosizing">Remember Me</label>
-                                </div>
-                            </div>
-                            <div class="col-6 text-right">
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">Forgot Password?</a>
-                                    </a>
-                                @endif
-
-                            </div>
-                        </div>
-                        <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
-                        </div>
-                        <div class="form-footer text-center mt-5">
-                            <p class="text-muted">Don't have an account? <a href="{{ route('register') }}">Sign up</a></p>
-                        </div>
-                    </div>
-                </form>
+    <!-- Content section Start -->
+    <section id="content" class="section-padding">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-6 col-xs-12">
+            <div class="page-login-form box">
+              <h3>
+                Login
+              </h3>
+              <form class="login-form" method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="form-group">
+                  <div class="input-icon">
+                    <i class="lni-user"></i>
+                    <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Alamat Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                  </div>
+                  @error('email')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <div class="input-icon">
+                    <i class="lni-lock"></i>
+                    <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                  </div>
+                </div>
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Keep Me Signed In</label>
+                </div>
+                <button class="btn btn-common log-btn">Submit</button>
+              </form>
+              <ul class="form-links">
+                <li class="text-center"><a href="{{ route('register') }}">Don't have an account?</a></li>
+              </ul>
             </div>
+          </div>
         </div>
-    </div>
-    <!-- login area end -->
+      </div>
+    </section>
+    <!-- Content section End -->
 
-    <!-- jquery latest version -->
-    <script src="{{ asset('srtdash/assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
-    <!-- bootstrap 4 js -->
-    <script src="{{ asset('srtdash/assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('srtdash/assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('srtdash/assets/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('srtdash/assets/js/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('srtdash/assets/js/jquery.slimscroll.min.js') }}"></script>
-    <script src="{{ asset('srtdash/assets/js/jquery.slicknav.min.js') }}"></script>
-
-    <!-- others plugins -->
-    <script src="{{ asset('srtdash/assets/js/plugins.js') }}"></script>
-    <script src="{{ asset('srtdash/assets/js/scripts.js') }}"></script>
-</body>
-
-</html>
+@endsection
