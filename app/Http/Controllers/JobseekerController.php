@@ -44,6 +44,10 @@ class JobseekerController extends Controller
       //$trans_lowongan = trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan->id);
       return view ('jobseeker.dashboard.show',compact('lowongan'));
     }
+
+    public function getlamaran(){
+      return view('jobseeker.lamaran.index');
+    }
     public function storeLamaran(Request $request){
       $this->validate($request,[
             // 'nama_alat' => 'required',
