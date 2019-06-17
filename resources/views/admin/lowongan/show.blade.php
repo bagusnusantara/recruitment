@@ -46,7 +46,9 @@
                                     {{$lowongan_pekerjaan->job_tittle}} -  {{$lowongan_pekerjaan->md_client->nama_client}}
                                 </h2>
                                 <div class="m-t-md">
-                                    <h2 class="product-main-price">$IDR 4.006.602 </h2>
+                                    @foreach($detail as $d)
+                                    <h2 class="product-main-price">{{$d->deskripsi}} </h2>
+                                    @endforeach
                                 </div>
                                 <hr>
 
@@ -61,15 +63,6 @@
                                 <div class="small text-muted">
                                     {!!$lowongan_pekerjaan->deskripsi_pekerjaan!!}
                                 </div>
-
-                                <!-- <div>
-                                    <div class="btn-group">
-                                        <button class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"></i> Add to cart</button>
-                                        <button class="btn btn-white btn-sm"><i class="fa fa-star"></i> Add to wishlist </button>
-                                        <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with author </button>
-                                    </div>
-                                </div> -->
-
 
 
                             </div>
@@ -108,9 +101,12 @@
                       <table class="table table-striped table-bordered table-hover dataTables-client" style="width: 100%">
                           <thead>
                           <tr>
-                            <th>No</th>
-                            <th>ID Pendaftar</th>
-                            <th>Action</th>
+                            <th><center>No</center></th>
+                            <th><center>NIK</center></th>
+                            <th><center>Nama Pendaftar</center></th>
+                            <th><center>Tanggal Melamar</center></th>
+                            <th><center>Status</center></th>
+                            <th><center>Action</center></th>
                           </tr>
                           </thead>
                           <tbody>
@@ -120,12 +116,26 @@
                             @foreach($pendaftar as $p)
 
                             <tr>
-                                <td>{{$i}}</td>
-                                <td>{{$p->users_id}}</td>
+                                <td><center>{{$i}}</center></td>
+                                <td><center>{{$p->nik}}</center></td>
+                                <td><center>{{$p->nama_lengkap}}</center></td>
+                                <td><center>{{$p->entry_date}}</center></td>
+                                <td><center>
+                                  @if ( $p->status === 'diterima')
+                                  <button type="button" class="btn btn-primary btn-xs">Diterima</button>
+                                  @elseif ( $p->status === 'tidak diterima')
+                                  <button type="button" class="btn btn-danger btn-xs">Tidak Diterima</button>
+                                  @elseif ( $p->status === 'menunggu')
+                                  <button type="button" class="btn btn-primary btn-xs">Menunggu</button>
+                                  @endif
+                                </center>
+                                </td>
                                 <td>
+                                  <center>
                                   <a type="button" class="btn btn-default btn-circle" href="#" type="button"><i class="fa fa-eye"></i></a>
                                   <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
                                   <!-- <button class="btn btn-default btn-circle" type="button"><i class="fa fa-trash"></i> -->
+                                  </center>
                                 </td>
 
                             @php

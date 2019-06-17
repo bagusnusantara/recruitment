@@ -15,6 +15,7 @@ use App\trans_lowongan_pekerjaan;
 use Alert;
 use Excel;
 use PDF;
+use DB;
 class AdminController extends Controller
 {
     public function getDashboard(){
@@ -52,8 +53,18 @@ class AdminController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       $lowongan_pekerjaan=md_lowongan_pekerjaan::find($id);
-      $pendaftar=trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan_pekerjaan->id);
-      return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar'));
+      //$pendaftar=trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan_pekerjaan->id);
+      $pendaftar=DB::table('trans_lowongan_pekerjaan')
+                     ->join('md_jobseeker', 'trans_lowongan_pekerjaan.users_id', '=', 'md_jobseeker.users_id')
+                     ->select('trans_lowongan_pekerjaan.*', 'md_jobseeker.nama_lengkap','md_jobseeker.nik')
+                     ->where('md_lowongan_pekerjaan_id',$lowongan_pekerjaan->id)
+                     ->get();
+      $detail=DB::table('md_lowongan_pekerjaan')
+                  ->join('st_lowongan_gaji','md_lowongan_pekerjaan.st_lowongan_gaji_id','st_lowongan_gaji.id')
+                  ->select('st_lowongan_gaji.deskripsi')
+                  ->where('md_lowongan_pekerjaan.id',$lowongan_pekerjaan->id)
+                  ->get();
+      return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar','detail'));
     }
 
     public function createLowongan(){
@@ -110,6 +121,13 @@ class AdminController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       return view ('admin.manajemenuser.create');
+    }
+
+    public function getManajementes(){
+      if(!Gate::allows('isAdmin')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      return view ('admin.manajementes.index');
     }
 
     public function storeLowogan(Request $request){

@@ -12,6 +12,7 @@ use App\st_kategori_pekerjaan;
 use App\st_spesialisasi_pekerjaan;
 use App\st_lowongan_gaji;
 use App\trans_lowongan_pekerjaan;
+use App\st_komponen_gaji;
 use Alert;
 class HRDController extends Controller
 {
@@ -34,6 +35,19 @@ class HRDController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       return view ('hrd.payroll.slip');
+    }
+    public function getKomponengaji(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $komponen_gaji=st_komponen_gaji::all();
+      return view ('hrd.setup.komponengaji.index',compact('komponen_gaji'));
+    }
+    public function getGajiperlokasi(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      return view ('hrd.setup.gajiperlokasi.index');
     }
 
 }
