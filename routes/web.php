@@ -80,4 +80,6 @@ Route::get('/admin/lowongan/show/{id}', 'AdminController@showLowongan');
 Route::get('hrd/dashboard', 'HRDController@getDashboard');
 Route::get('hrd/payroll', 'HRDController@getPayroll');
 Route::get('hrd/payroll/slipgaji', 'HRDController@getSlipgaji');
+Route::get('hrd/setup/komponengaji', 'HRDController@getKomponengaji');
+Route::get('hrd/setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
 Route::get('/home', 'HomeController@index')->name('home');

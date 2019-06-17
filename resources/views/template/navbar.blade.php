@@ -28,15 +28,12 @@
                ) active @else '' @endif  treeview">
                 <a href="{{ url('hrd/dashboard')}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Dashboard</span></a>
             </li>
-            <li class="@if(url('/jobseeker/profil/tentangsaya') == request()->url() or url('jobseeker/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif treeview">
-                <a href="{{ url('jobseeker/profil/tentangsaya')}}"><i class="fa fa-address-book"></i> <span class="nav-label">Master Data Karyawan</span><span class="fa arrow"></span></a>
+            <li class="@if(url('/hrd/profil/tentangsaya') == request()->url() or url('jobseeker/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif treeview">
+                <a href="{{ url('hrd/profil/tentangsaya')}}"><i class="fa fa-address-book"></i> <span class="nav-label">Master Data Karyawan</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                  <li class="@if(url('jobseeker/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/riwayatpekerjaan')}}">Data Karyawan SMI</a></li>
-                  <li class="@if(url('jobseeker/profil/riwayatpendidikan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/riwayatpendidikan')}}">Data Worker</a></li>
-                  <li class="@if(url('jobseeker/profil/sertifikatkeahlian') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/sertifikatkeahlian')}}">Sertifikat Keahlian</a></li>
-                  <li class="@if(url('jobseeker/profil/kemampuanbahasa') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/kemampuanbahasa')}}">Kemampuan Bahasa</a></li>
-                  <li class="@if(url('jobseeker/profil/curiculumvitae') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/curiculumvitae')}}">Curiculum Vitae</a></li>
-                  <li class="@if(url('jobseeker/profil/tentangsaya') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/tentangsaya')}}">Tentang Saya</a></li>
+                  <li class="@if(url('hrd/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/riwayatpekerjaan')}}">Data Karyawan SMI</a></li>
+                  <li class="@if(url('hrd/profil/riwayatpendidikan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/riwayatpendidikan')}}">Data Worker</a></li>
+                  <li class="@if(url('hrd/profil/sertifikatkeahlian') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/sertifikatkeahlian')}}">Data Karyawan Resign</a></li>
                 </ul>
             </li>
             <li class="@if(url('/hrd/dashboard') == request()->url()
@@ -50,6 +47,13 @@
             <li class="@if(url('/hrd/payroll') == request()->url()
                ) active @else '' @endif  treeview">
                 <a href="{{ url('hrd/payroll')}}"><i class="fa fa-money"></i> <span class="nav-label">Generate Payroll</span></a>
+            </li>
+            <li class="@if(url('/hrd/profil/tentangsaya') == request()->url() or url('jobseeker/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif treeview">
+                <a href="{{ url('hrd/profil/tentangsaya')}}"><i class="fa fa-cog"></i> <span class="nav-label">Setup System</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                  <li class="@if(url('hrd/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('hrd/setup/gajiperlokasi')}}">Gaji per Lokasi</a></li>
+                  <li class="@if(url('hrd/profil/riwayatpendidikan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('hrd/setup/komponengaji')}}">Komponen Gaji</a></li>
+                </ul>
             </li>
             @endcan
             @can('isJobseeker')
