@@ -44,7 +44,10 @@
 
             </li>
             <li class="button-group">
-              <a href="{{url('logout')}}" class="button btn btn-common">Sign out</a>
+              <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="button btn btn-common">Sign out</a>
+              <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none">
+                @csrf
+              </form>
             </li>
           </ul>
         </div>
