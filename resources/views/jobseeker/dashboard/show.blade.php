@@ -8,20 +8,11 @@
     <div class="row justify-content-between">
       <div class="col-lg-8 col-md-12 col-xs-12">
         <div class="content-area">
-          <h4>Job Description</h4>
-          <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi umsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit</p>
-          <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi umsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.</p>
-          <h5>What You Need for this Position</h5>
-          <ul>
-            <li>- Objective-C</li>
-            <li>- iOS SDK</li>
-            <li>- XCode</li>
-            <li>- Cocoa</li>
-            <li>- ClojureScript</li>
-          </ul>
-          <h5>How To Apply</h5>
-          <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.</p>
-          <a href="#" class="btn btn-common">Apply job</a>
+          <h4>Deskripsi Pekerjaan</h4>
+          {!!$lowongan->deskripsi_pekerjaan!!}
+          <h5>Persyaratan</h5>
+          {!!$lowongan->persyaratan!!}
+          <a href="#" class="btn btn-common">Lamar Pekerjaan</a>
         </div>
       </div>
       <div class="col-lg-4 col-md-12 col-xs-12">
