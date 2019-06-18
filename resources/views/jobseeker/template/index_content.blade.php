@@ -22,6 +22,6 @@
     <!-- End Preloader -->
     @include('jobseeker/template/footer')
     @include('jobseeker/template/script')
-
+    @yield('script')
   </body>
 </html>
