@@ -1,10 +1,27 @@
 @extends('jobseeker.template.index_content')
-
+@section('css')
+<style>
+  .thead-smi{
+    background-color: aliceblue;
+  }
+  .th-center th{
+    text-align: center;
+    vertical-align: middle;
+  }
+  .th-button
+  {
+    text-align: right;
+    vertical-align: middle;
+    margin-left:3%;
+  }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@endsection
 @section('content')
 
 <!-- Job Browse Section Start -->
 <div class="section">
-  <div class="container">        
+  <div class="ml-auto mr-auto"style="width:80vw;">
     <div class="row">
       <div class="col-lg-3 col-md-4 col-xs-12">
         <div class="right-sideabr">
@@ -24,9 +41,13 @@
           <div class="col-lg-9 col-md-8 col-xs-12 tabs-stage">
               <form>        
             <!--Identitas-->
-            <div id="identitas" class="inner-box my-resume tab-content" style="overflow:auto; height:80vh;">
+            <div id="identitas"  class="tab-content my-resume">
+              <div class="inner-box">
                 <div class="item">
-                    <h2>Identitas</h2>
+                    <h3>Identitas</h3>
+                </div>
+                <div class="inner-box" style="overflow:auto; height:80vh;">
+                    <div class="item">
                     <div class="form-group">
                         <h4><label for="NamaLengkap">Nama Lengkap</label></h4>
                         <input type="text" class="form-control" id="NamaLengkap" placeholder="Masukan Nama Lengkap">
@@ -115,8 +136,82 @@
               </div>
               </div>
             </div> 
+              </div>
+            </div>
             <!--Identitas done-->
             <!--Pendidikan-->
+            <div id="pendidikan"  class="tab-content my-resume">
+                <div class="inner-box">
+                  <div class="item">
+                      <h3>Pendidikan</h3>
+                  </div>
+                  <div class="inner-box" style="overflow:auto; height:80vh;">
+                      <div class="item">
+                        <h4>1. Pendidikan Formal</h4>
+                          <table class="card table table-bordered">
+                              <tr class="thead-smi th-center">
+                                  <th rowspan="2" width="5%"><h4>#</h4></th>
+                                  <th rowspan="2" width="10%"><h4>Tingkatan</h4></th>
+                                  <th rowspan="1" colspan="2" width="10%"><h4>Tahun Sekolah</h4></th>
+                                  <th rowspan="2" width="30%"><h4>Nama Institusi</h4></th>
+                                  <th rowspan="2"><h4>Tempat</h4></th>
+                                  <th rowspan="2"><h4>Fakultas</h4></th>
+                                  <th rowspan="2"><h4>Jurusan</h4></th>
+                                  <th rowspan="2" width="7%"><h4>IPK</h4></th>
+                                  <th rowspan="2" width="10%"><h4>Keterangan</h4></th>
+                                  <th rowspan="2" width="10%"><h4>Option</h4></th>
+                              </tr>
+                              <tr class="thead-smi">
+                                  <th><h4>Start</h4></th>
+                                  <th><h4>Ending</h4></th>
+                              </tr>
+                              <tr>
+                                <th scope="row" colspan="11" class="th-button">
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="fa fa-plus"></i>
+                                      Tambah</button>  
+                                </th>
+                              </tr>
+                          </table>
+                          <br>
+                          <h4>2. Pendidikan Informal</h4>
+                          <table class="card table table-bordered">
+                              <tr class="thead-smi th-center">
+                                  <th  width="5%"><h4>No</h4></th>
+                                  <th  ><h4>Jenis Pelatihan</h4></th>
+                                  <th  colspan="2" width="15%"><h4>Tempat</h4></th>
+                                  <th  width="15%"><h4>Periode</h4></th>
+                                  <th  width="10%"><h4>Keterangan</h4></th>
+                                  <th  width="5%"><h4>Option</h4></th>
+                              </tr>
+                              <tr>
+                                <th scope="row" colspan="11" class="th-button">
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="fa fa-plus"></i>
+                                      Tambah</button>  
+                                </th>
+                              </tr>
+                          </table>
+                          <h4>3. Kemampuan Bahasa Asing</h4>
+                          <table class="card table table-bordered">
+                              <tr class="thead-smi th-center">
+                                  <th  width="5%"><h4>No</h4></th>
+                                  <th  ><h4>Bahasa</h4></th>
+                                  <th  colspan="2" width="15%"><h4>Lisan</h4></th>
+                                  <th  width="15%"><h4>Tertulis</h4></th>
+                                  <th  width="5%"><h4>Option</h4></th>
+                              </tr>
+                              <tr>
+                                <th scope="row" colspan="11" class="th-button">
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="fa fa-plus"></i>
+                                      Tambah</button>  
+                                </th>
+                              </tr>
+                          </table>
+                      </div>
+                  </div>
+            </div>
             <!--Pendidikan done-->
             <!--Keluarga -->
             <!--Keluarga done-->

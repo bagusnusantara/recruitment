@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
       @include('jobseeker/template/head')
+      @yield('css')
   </head>
 
   <body>
