@@ -49,8 +49,10 @@
             <!--Keluarga -->
             <!--Keluarga end-->
             <!--Pekerjaan -->
+            @include('jobseeker.lamaran.pekerjaan')
             <!--Pekerjaan end-->
             <!--Minat-->
+            @include('jobseeker.lamaran.minat')
             <!--Minat end-->
             <!--Aktifitas-->
             <!--Aktifitas end-->
