@@ -40,25 +40,27 @@
       </div>
           <div class="col-lg-9 col-md-8 col-xs-12 tabs-stage">
               <form>        
-            <!--Identitas-->
+            <!--Detail Identitas-->
             @include('jobseeker.lamaran.identitas')
             <!--Identitas end-->
-            <!--Pendidikan-->
+            <!--Detail Pendidikan-->
             @include('jobseeker.lamaran.pendidikan')
             <!--Pendidikan end-->
-            <!--Keluarga -->
+            <!--Detail Keluarga -->
             <!--Keluarga end-->
-            <!--Pekerjaan -->
+            <!--Detail Pekerjaan -->
             @include('jobseeker.lamaran.pekerjaan')
             <!--Pekerjaan end-->
-            <!--Minat-->
+            <!--Detail  Minat-->
             @include('jobseeker.lamaran.minat')
             <!--Minat end-->
-            <!--Aktifitas-->
+            <!--Detail Aktifitas-->
+            @include('jobseeker.lamaran.aktifitas')
             <!--Aktifitas end-->
-            <!--Lain-lain-->
+            <!--Detail Lain-lain-->
+            @include('jobseeker.lamaran.lainnya')
             <!--Lain-lain end-->
-            <!--Lampiran-->
+            <!--Detail Lampiran-->
             <!--Lampiran end-->
           </form>
         </div>

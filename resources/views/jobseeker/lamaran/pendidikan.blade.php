@@ -9,20 +9,16 @@
       <h4>1. Pendidikan Formal</h4>
         <table class="card table table-bordered">
             <tr class="thead-smi th-center">
-                <th rowspan="2" width="5%"><h4>#</h4></th>
-                <th rowspan="2" width="10%"><h4>Tingkatan</h4></th>
-                <th rowspan="1" colspan="2" width="10%"><h4>Tahun Sekolah</h4></th>
-                <th rowspan="2" width="30%"><h4>Nama Institusi</h4></th>
-                <th rowspan="2"><h4>Tempat</h4></th>
-                <th rowspan="2"><h4>Fakultas</h4></th>
-                <th rowspan="2"><h4>Jurusan</h4></th>
-                <th rowspan="2" width="7%"><h4>IPK</h4></th>
-                <th rowspan="2" width="10%"><h4>Keterangan</h4></th>
-                <th rowspan="2" width="10%"><h4>Option</h4></th>
-            </tr>
-            <tr class="thead-smi">
-                <th><h4>Mulai</h4></th>
-                <th><h4>Akhir</h4></th>
+                <th  width="5%"><h4>#</h4></th>
+                <th  width="10%"><h4>Tingkatan</h4></th>
+                <th  width="10%"><h4>Tahun Sekolah</h4></th>
+                <th  width="30%"><h4>Nama Institusi</h4></th>
+                <th><h4>Tempat</h4></th>
+                <th><h4>Fakultas</h4></th>
+                <th><h4>Jurusan</h4></th>
+                <th width="7%"><h4>IPK</h4></th>
+                <th width="10%"><h4>Keterangan</h4></th>
+                <th width="10%"><h4>Option</h4></th>
             </tr>
             <tr>
               <th scope="row" colspan="11" class="th-button">
@@ -57,9 +53,9 @@
                         <div class="form-group">
                             <h4>Tahun</h4>
                             <label for="tahunmulai">Mulai</label>
-                            <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
+                            <input type="date" class="form-control" id="tahunmulai" placeholder="YYYY">
                             <label for="tahunakhir">Akhir</label>
-                            <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
+                            <input type="date" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
                         </div>
                         <div class="form-group">
                               <h4><label for="institusi">Institusi</label></h4>
@@ -83,7 +79,7 @@
                           </div>
                           <div class="form-group">
                                   <h4><label for="keterangan">Keterangan</label></h4>
-                                  <input type="text" class="form-control" id="keterangan" placeholder="Keterangan tambahan">
+                                  <textarea class="form-control" id="keterangan"></textarea>
                           </div>
                     </div>
                   </div>
@@ -146,7 +142,7 @@
                                </div>
                                <div class="form-group">
                                     <h4><label for="keterangan">Keterangan</label></h4>
-                                    <input type="text" class="form-control" id="ketarangan" placeholder="Ketarangan">
+                                    <input type="text" class="form-control" rows="3" id="ketarangan" placeholder="Ketarangan">
                                </div>
                           </div>
                         </div>

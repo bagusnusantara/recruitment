@@ -50,9 +50,9 @@
                                 <div class="form-group">
                                       <h4>Periode</h4>
                                       <label for="tahunmulai">Mulai</label>
-                                      <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
+                                      <input type="date" class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
                                       <label for="tahunakhir">Akhir</label>
-                                      <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
+                                      <input type="date" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
                                 </div>
                                 <div class="form-group">
                                       <h4><label for="posisi">Posisi</label></h4>
@@ -84,7 +84,7 @@
                                   </div>
                                   <div class="form-group">
                                           <h4><label for="keterangan">Keterangan</label></h4>
-                                          <input type="text" class="form-control" id="keterangan" placeholder="Keterangan tambahan">
+                                          <textarea class="form-control" rows="3"  id="keterangan"></textarea>
                                   </div>
                             </div>
                           </div>
