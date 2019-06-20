@@ -39,7 +39,7 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-head">
-                      <h4 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h4>
+                      <h3 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h3>
                   </div>
                   <div class="modal-body">
                     <div class="inner-box" style="overflow:auto; height:80vh;">
@@ -124,7 +124,7 @@
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-head">
-                            <h4 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h4>
+                            <h3 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h3>
                         </div>
                         <div class="modal-body">
                           <div class="inner-box">
@@ -186,7 +186,7 @@
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-head">
-                        <h4 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h4>
+                        <h3 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h3>
                     </div>
                     <div class="modal-body">
                       <div class="inner-box">

@@ -38,53 +38,78 @@
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-head">
-                          <h4 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h4>
+                          <h3 class="modal-title ml-4 mt-3">Data Minat</h3>
                       </div>
                       <div class="modal-body">
                         <div class="inner-box" style="overflow:auto; height:80vh;">
                             <div class="item">
                               <div class="form-group">
-                                    <h4><label class="my-1 mr-2" for="negara">Tingkat Pendidikan</label></h4>
-                                    <select class="custom-select my-1 mr-sm-2" id="negara">
-                                      <option selected>Choose...</option>
-                                      <option value="1">SLTA</option>
-                                      <option value="2">Akademi</option>
-                                      <option value="3">Strata 1</option>
-                                      <option value="4">Pascasarjana</option>
-                                    </select>
-                              </div>
-                            <div class="form-group">
-                                <h4>Tahun</h4>
-                                <label for="tahunmulai">Mulai</label>
-                                <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
-                                <label for="tahunakhir">Akhir</label>
-                                <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
-                            </div>
-                            <div class="form-group">
-                                  <h4><label for="institusi">Institusi</label></h4>
-                                  <input type="text" class="form-control" id="alamat" placeholder="Masukan nama Institusi">
-                             </div>
-                             <div class="form-group">
-                                  <h4><label for="tempat">Tempat</label></h4>
-                                  <input type="text" class="form-control" id="tempat" placeholder="Masukan tempat institusi">
-                             </div>
-                             <div class="form-group">
-                                  <h4><label for="fakultas">Fakultas</label></h4>
-                                  <input type="text" class="form-control" id="fakultas" placeholder="Masukan nama fakultas">
-                             </div>
-                             <div class="form-group">
-                                  <h4><label for="jurusan">Jurusan</label></h4>
-                                  <input type="text" class="form-control" id="jurusan" placeholder="Masukan nama jurusan">
-                             </div>
-                             <div class="form-group">
-                                  <h4><label for="IPK">IPK</label></h4>
-                                  <input type="number" min="0" max="100" step="0.01" class="form-control" id="tahunakhir" placeholder="Masukan Nilai Akhir">
+                                      <h4><label class="my-1 mr-2" for="negara">Negara</label></h4>
+                                      <select class="custom-select my-1 mr-sm-2" id="negara">
+                                        <option selected>Choose...</option>
+                                        <option value="1">Indonesia</option>
+                                        <option value="2">Malaysia</option>
+                                      </select>
+                                      <br>
+                                      <h4><label class="my-1 mr-2" for="provinsi">Provinsi</label></h4>
+                                      <select class="custom-select my-1 mr-sm-2" id="provinsi">
+                                        <option selected>Choose...</option>
+                                        <option value="1">Jawa Timur</option>
+                                        <option value="2">Madura</option>
+                                      </select>
+                                      <br>
+                                      <h4><label class="my-1 mr-2" for="kota">Kota/Kab</label></h4>
+                                      <select class="custom-select my-1 mr-sm-2" id="kota">
+                                        <option selected>Choose...</option>
+                                        <option value="1">Surabaya</option>
+                                        <option value="2">Ngawi</option>
+                                      </select>
                               </div>
                               <div class="form-group">
-                                      <h4><label for="keterangan">Keterangan</label></h4>
-                                      <input type="text" class="form-control" id="keterangan" placeholder="Keterangan tambahan">
+                                <h4><label for="gajibulan">Gaji Bulanan</label></h4>
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <div class="input-group-text">Rp.</div>
+                                  </div>
+                                  <input type="number" min="0" step="1" class="form-control" id="gajibulan" placeholder="Masukan minat gaji ">
+                                  <div class="input-group-append">
+                                    <div class="input-group-text">.00</div>
+                                  </div>
+                                </div>
                               </div>
-                        </div>
+                              <div class="form-group">
+                                  <h4><label class="my-1 mr-2" for="bidangbisnis">Bidang Bisnis</label></h4>
+                                  <select class="custom-select my-1 mr-sm-2" id="bidangbisnis">
+                                    <option selected>Choose...</option>
+                                    <option value="1">Manufaktur</option>
+                                    <option value="2">Non Faktur</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <h4><label class="my-1 mr-2" for="spesialisasi">Spesialisasi</label></h4>
+                                  <select class="custom-select my-1 mr-sm-2" id="spesialisasi">
+                                    <option selected>Choose...</option>
+                                    <option value="1">Akuntansi</option>
+                                    <option value="2">Manajemen</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <h4><label class="my-1 mr-2" for="posisikerja">Posisi Kerja</label></h4>
+                                  <select class="custom-select my-1 mr-sm-2" id="posisikerja">
+                                    <option selected>Choose...</option>
+                                    <option value="1">General Manajer</option>
+                                    <option value="2">Supervisor</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <h4><label class="my-1 mr-2" for="leveljabatan">Level Jabatan</label></h4>
+                                  <select class="custom-select my-1 mr-sm-2" id="leveljabatan">
+                                    <option selected>Choose...</option>
+                                    <option value="1">Staff</option>
+                                    <option value="2">Operator</option>
+                                  </select>
+                              </div>
+                          </div>
                       </div>
                       </div>
                       <div class="modal-footer">

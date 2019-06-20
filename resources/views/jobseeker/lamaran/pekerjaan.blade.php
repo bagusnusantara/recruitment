@@ -11,7 +11,7 @@
                   <tr class="thead-smi th-center">
                       <th width="3%"><h4>Nomor</h4></th>
                       <th><h4>Bisinis Perusahaan</h4></th>
-                      <th width="15%"><h4>Periode</h4></th>
+                      <th width="15%" colspan="2"><h4>Periode</h4></th>
                       <th width="10%"><h4>Posisi</h4></th>
                       <th ><h4>Jumlah Anggota</h4></th>
                       <th><h4>Gaji Terakhir(IDR)</h4></th>
@@ -33,26 +33,26 @@
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-head">
-                              <h4 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h4>
+                              <h3 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h3>
                           </div>
                           <div class="modal-body">
                             <div class="inner-box" style="overflow:auto; height:80vh;">
                                 <div class="item">
                                   <div class="form-group">
-                                        <h4><label class="my-1 mr-2" for="bisnisperusahaan">Bisnis Perusahaan</label></h4>
-                                        <select class="custom-select my-1 mr-sm-2" id="bisnisperusahaan">
-                                          <option selected>Choose...</option>
-                                          <option value="1">Profit</option>
-                                          <option value="2">Non Profit</option>
-                                          <option value="3">Loss</option>
-                                        </select>
+                                      <h4><label class="my-1 mr-2" for="bisnisperusahaan">Bisnis Perusahaan</label></h4>
+                                      <select class="custom-select my-1 mr-sm-2" id="bisnisperusahaan">
+                                        <option selected>Choose...</option>
+                                        <option value="1">Profit</option>
+                                        <option value="2">Non Profit</option>
+                                        <option value="3">Loss</option>
+                                      </select>
                                   </div>
                                 <div class="form-group">
-                                    <h4>Periode</h4>
-                                    <label for="tahunmulai">Mulai</label>
-                                    <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
-                                    <label for="tahunakhir">Akhir</label>
-                                    <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
+                                      <h4>Periode</h4>
+                                      <label for="tahunmulai">Mulai</label>
+                                      <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
+                                      <label for="tahunakhir">Akhir</label>
+                                      <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
                                 </div>
                                 <div class="form-group">
                                       <h4><label for="posisi">Posisi</label></h4>
@@ -63,17 +63,17 @@
                                       <input type="number" class="form-control" id="anggota" placeholder="Masukan jumlah anggota">
                                  </div>
                                  <div class="form-group">
-                                  <h4><label for="gajiterakhir">gaji Terakhir</label></h4>
-                                 <div class="input-group">
-                                   <div class="input-group-prepend">
-                                     <div class="input-group-text">Rp.</div>
-                                   </div>
-                                   <input type="number" min="0" step="1" class="form-control" id="gajiterakhir" placeholder="Masuka Gaji Terakhir">
-                                   <div class="input-group-append">
-                                    <div class="input-group-text">.00</div>
-                                  </div>
+                                      <h4><label for="gajiterakhir">gaji Terakhir</label></h4>
+                                      <div class="input-group">
+                                        <div class="input-group-prepend">
+                                          <div class="input-group-text">Rp.</div>
+                                        </div>
+                                        <input type="number" min="0" step="1" class="form-control" id="gajiterakhir" placeholder="Masukan Gaji Terakhir">
+                                        <div class="input-group-append">
+                                          <div class="input-group-text">.00</div>
+                                        </div>
+                                      </div>
                                  </div>
-                                </div>
                                  <div class="form-group">
                                       <h4><label for="jurusan">Jurusan</label></h4>
                                       <input type="text" class="form-control" id="jurusan" placeholder="Masukan nama jurusan">
