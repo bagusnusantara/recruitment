@@ -21,7 +21,11 @@
                 Lowongan Pekerjaan
               </a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('jobseeker/datadiri')}}">
+                  Data Diri
+                </a>
+              </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Profil Saya
@@ -30,13 +34,9 @@
                 <li><a class="dropdown-item" href="about.html">About</a></li>
                 <li><a class="dropdown-item" href="job-page.html">Job Page</a></li>
                 <li><a class="dropdown-item" href="job-details.html">Job Details</a></li>
-                <li><a class="dropdown-item" href="resume.html">Resume Page</a></li>
-                <li><a class="dropdown-item" href="privacy-policy.html">Privacy Policy</a></li>
-                <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
-                <li><a class="dropdown-item" href="pricing.html">Pricing Tables</a></li>
-                <li><a class="dropdown-item" href="contact.html">Contact</a></li>
               </ul>
             </li>
+            
             <li>
               <a class="nav-link" href="">
                 Welcome {{ Auth::user()->name }} !

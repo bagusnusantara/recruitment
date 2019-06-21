@@ -25,7 +25,7 @@
     <div class="row">
       <div class="col-lg-3 col-md-4 col-xs-12">
         <div class="right-sideabr">
-          <h4>Data Lamaran</h4>
+          <h4>Data Diri</h4>
           <ul id="tab" class="list-item">
               <li class="active"><a   class="list-group-item-action" href="#identitas">Identitas</a></li>
               <li><a   class="tab-active list-group-item-action" href="#pendidikan">Pendidikan</a></li>

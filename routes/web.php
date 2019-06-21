@@ -25,7 +25,7 @@ Auth::routes();
 Route::get('jobseeker/dashboard', 'JobSeekerController@getDashboard');
 Route::get('jobseeker/profil/', 'JobSeekerController@getProfil');
 Route::get('jobseeker/profil/edit/{id}', 'JobSeekerController@editProfil');
-Route::get('jobseeker/lamaran/', 'JobSeekerController@getLamaran');
+Route::get('jobseeker/datadiri/', 'JobSeekerController@getLamaran');
 Route::get('jobseeker/profil/riwayatpekerjaan', 'JobSeekerController@getRiwayatpekerjaan');
 Route::get('jobseeker/profil/riwayatpendidikan', 'JobSeekerController@getRiwayatPendidikan');
 Route::get('jobseeker/profil/sertifikatkeahlian', 'JobSeekerController@getSertifikatkeahlian');
