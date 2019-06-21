@@ -1,14 +1,14 @@
 <div id="pendidikan"  class="tab-content my-resume">
-<div class="inner-box">
-  <div class="item">
-    <h3>Pendidikan</h3>
-  </div>
-  <div class="inner-box" style="overflow:auto; height:80vh;">
+  <div class="inner-box">
     <div class="item">
-      <!--pendidikan formal-->
-      <h4>1. Pendidikan Formal</h4>
-        <table class="card table table-bordered">
-            <tr class="thead-smi th-center">
+      <h3>Pendidikan</h3>
+    </div>
+    <div class="inner-box" style="overflow:auto; height:80vh;">
+      <div class="item">
+        <!--pendidikan formal-->
+        <h4>Pendidikan Formal</h4>
+          <table class="card table table-bordered">
+              <tr class="thead-smi th-center">
                 <th  width="5%"><h4>#</h4></th>
                 <th  width="10%"><h4>Tingkatan</h4></th>
                 <th  width="10%"><h4>Tahun Sekolah</h4></th>
@@ -96,7 +96,7 @@
       <!--modal pendidikan formal end-->
       <!--pendidikan formal end-->
       <!--pendidikan informal -->
-      <h4>2. Pendidikan Informal</h4>
+      <h4>Pendidikan Informal</h4>
       <table class="card table table-bordered">
           <tr class="thead-smi th-center">
               <th  width="5%"><h4>No</h4></th>
@@ -159,7 +159,7 @@
             <!--modal pendidikan informal end-->
             <!--pendidikan informal end-->
             <!--kemampuan bahasa asing-->
-            <h4>3. Kemampuan Bahasa Asing</h4>
+            <h4>Kemampuan Bahasa Asing</h4>
             <table class="card table table-bordered">
                 <tr class="thead-smi th-center">
                     <th  width="5%"><h4>No</h4></th>
@@ -225,6 +225,12 @@
         <!--kemampuan bahasa asing end-->
             </div>
           </div>
-        </div>
+    <div class="item">
+      <div class="mr-0">
+        <button type="button" class="btn btn-secondary btn-lg">Reset</button>
+        <button type="button" class="btn btn-primary btn-lg">Simpan</button>
+      </div>
+    </div>
+  </div>
 </div>
 

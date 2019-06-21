@@ -47,6 +47,7 @@
             @include('jobseeker.lamaran.pendidikan')
             <!--Pendidikan end-->
             <!--Detail Keluarga -->
+            @include('jobseeker.lamaran.keluarga')
             <!--Keluarga end-->
             <!--Detail Pekerjaan -->
             @include('jobseeker.lamaran.pekerjaan')
@@ -61,6 +62,7 @@
             @include('jobseeker.lamaran.lainnya')
             <!--Lain-lain end-->
             <!--Detail Lampiran-->
+            @include('jobseeker.lamaran.lampiran')
             <!--Lampiran end-->
           </form>
         </div>
@@ -79,7 +81,7 @@
     $('.tab-active').removeClass('tab-active');
     $(this).parent().addClass('tab-active');
     $('.tabs-stage .tab-content').hide();
-    $($(this).attr('href')).show();
+    $($(this).attr('href')).fadeIn(300);
     });
     $('#tab li a:first').trigger('click'); // Default
 </script>     

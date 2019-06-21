@@ -3,7 +3,7 @@
       <div class="item">
         <h3>Minat</h3>
       </div>
-      <div class="inner-box" style="overflow:auto; height:80vh;">
+      <div class="inner-box" style="overflow:auto; height:50vh;">
         <div class="item">
           <!--minat-->
           <h4>Minat dan Harapan</h4>
@@ -125,7 +125,13 @@
           <!--minat end-->
                 </div>
               </div>
-            </div>
+    <div class="item">
+      <div class="mr-0">
+        <button type="button" class="btn btn-secondary btn-lg">Reset</button>
+        <button type="button" class="btn btn-primary btn-lg">Simpan</button>
+      </div>
     </div>
+  </div>
+</div>
     
     

@@ -3,7 +3,7 @@
           <div class="item">
             <h3>Lainnya</h3>
           </div>
-          <div class="inner-box" style="overflow:auto; height:80vh;">
+          <div class="inner-box" style="overflow:auto; height:60vh;">
             <div class="item">
               <!--lainnya-->
               <h4>Riwayat Penyakit 2 Tahun Terakhir </h4>
@@ -23,6 +23,17 @@
                     </tr>
                 </table>
                 <br>
+                <div class="form-group">
+                  <h4><label class="my-1 mr-2" for="survey">Mengetahui Informasi :</label></h4>
+                  <select class="custom-select my-1 mr-sm-2" id="survey">
+                    <option selected></option>
+                    <option value="1">Radio</option>
+                    <option value="1">Majalah</option>
+                    <option value="1">Google Search Engine</option>
+                    <option value="1">Blog</option>
+                    
+                  </select>
+                </div>
                 <!--modal lainnya-->
                 <form id="minatform">
                     <div class="modal fade lainnya-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -50,8 +61,8 @@
                                         <input type="text" class="form-control" id="tempat" placeholder="Masukan Tempat">
                                     </div>
                                     <div class="form-group">
-                                        <h4><label for="posisi">posisi</label></h4>
-                                        <input type="text" class="form-control" id="posisi" placeholder="Masukan tempat">
+                                        <h4><label for="posisi">Posisi</label></h4>
+                                        <input type="text" class="form-control" id="posisi" placeholder="Masukan Posisi">
                                     </div>
                                     <div class="form-group">
                                         <h4><label for="keterangan">Keterangan</label></h4>
@@ -69,11 +80,15 @@
                       </div>
                     </div>
                   </form>
-              <!--modal minat end-->
-              <!--minat end-->
+              <!--modal lainnya end-->
+              <!--lainnya end-->
                     </div>
                   </div>
-                </div>
-        </div>
-        
-        
+    <div class="item">
+      <div class="mr-0">
+        <button type="button" class="btn btn-secondary btn-lg">Reset</button>
+        <button type="button" class="btn btn-primary btn-lg">Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>

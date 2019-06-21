@@ -1,7 +1,7 @@
 <div id="aktifitas"  class="tab-content my-resume">
         <div class="inner-box">
           <div class="item">
-            <h3>Minat</h3>
+            <h3>Aktifitas Sosial</h3>
           </div>
           <div class="inner-box" style="overflow:auto; height:80vh;">
             <div class="item">
@@ -83,7 +83,11 @@
               <!--minat end-->
                     </div>
                   </div>
-                </div>
-        </div>
-        
-        
+    <div class="item">
+      <div class="mr-0">
+        <button type="button" class="btn btn-secondary btn-lg">Reset</button>
+        <button type="button" class="btn btn-primary btn-lg">Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>

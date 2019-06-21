@@ -9,6 +9,7 @@
 
 
     @include('jobseeker/template/header_content')
+    @include('jobseeker/template/script')
     @yield('content')
 
     <!-- Go To Top Link -->
@@ -22,7 +23,6 @@
     </div>
     <!-- End Preloader -->
     @include('jobseeker/template/footer')
-    @include('jobseeker/template/script')
     @yield('script')
   </body>
 </html>
