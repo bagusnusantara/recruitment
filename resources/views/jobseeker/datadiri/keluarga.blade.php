@@ -10,7 +10,7 @@
             <form id="statusperkawinan">
               <h4><label class="my-1 mr-2" for="status">Status Perkawinan</label></h4>
               <select class="custom-select my-1 mr-sm-2" id="status">
-                <option selected value="0">Choose..</option>
+                <option selected value="0">Pilih . . .</option>
                 <option value="1">Lajang</option>
                 <option value="2">Menikah</option>
                 <option value="3">Bercerai</option>    

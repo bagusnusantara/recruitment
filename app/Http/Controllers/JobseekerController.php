@@ -45,8 +45,13 @@ class JobseekerController extends Controller
       return view ('jobseeker.dashboard.show',compact('lowongan'));
     }
 
+    //Lamaran Section
     public function showDataDiri(){
       return view('jobseeker.datadiri.index');
+    }
+
+    public function createIdentitas(Request $request){
+      return response()->json(["success"=>$request->namalengkap]);
     }
     public function storeLamaran(Request $request){
       $this->validate($request,[

@@ -46,7 +46,7 @@
                               <div class="form-group">
                                       <h4><label class="my-1 mr-2" for="negara">Negara</label></h4>
                                       <select class="custom-select my-1 mr-sm-2" id="negara">
-                                        <option selected>Choose...</option>
+                                        <option selected value="0">Pilih . . .</option>
                                         <option value="1">Indonesia</option>
                                         <option value="2">Malaysia</option>
                                       </select>

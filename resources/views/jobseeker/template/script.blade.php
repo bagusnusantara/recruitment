@@ -11,4 +11,4 @@
 <script src="{{asset('jobx/assets/js/main.js') }}"></script>
 
 <!-- our script-->
-<script src="{{asset('jobx/assets/js/main.js') }}"></script>
+<script src="{{asset('js/smi_lib.js') }}"></script>

@@ -43,7 +43,7 @@
                           <div class="form-group">
                                 <h4><label class="my-1 mr-2" for="negara">Tingkat Pendidikan</label></h4>
                                 <select class="custom-select my-1 mr-sm-2" id="negara">
-                                  <option selected>Choose...</option>
+                                  <option selected value="0">Pilih . . .</option>
                                   <option value="1">SLTA</option>
                                   <option value="2">Akademi</option>
                                   <option value="3">Strata 1</option>
@@ -194,7 +194,7 @@
                             <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="kemampuanlisan">Kemampuan Lisan</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="kemampuanlisan">
-                                    <option selected>Choose...</option>
+                                    <option selected value="0">Pilih . . .</option>
                                     <option value="1">Kurang</option>
                                     <option value="2">Cukup</option>
                                     <option value="3">Baik</option>
@@ -203,7 +203,7 @@
                             <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="kemampuantertulis">Kemampuan Tertulis</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="kemampuanlisan">
-                                      <option selected>Choose...</option>
+                                      <option selected value="0">Pilih . . . </option>
                                       <option value="1">Kurang</option>
                                       <option value="2">Cukup</option>
                                       <option value="3">Baik</option>
