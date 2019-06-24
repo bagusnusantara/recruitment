@@ -8,18 +8,17 @@
           <!--keluarga-->
             <div class="form-group">
             <form id="statusperkawinan">
-              <h4><label class="my-1 mr-2" for="status">Mengetahui Informasi :</label></h4>
+              <h4><label class="my-1 mr-2" for="status">Status Perkawinan</label></h4>
               <select class="custom-select my-1 mr-sm-2" id="status">
                 <option selected value="0">Choose..</option>
                 <option value="1">Lajang</option>
-                <option value="2">Tunangan</option>
-                <option value="3">Menikah</option>
-                <option value="4">Bercerai</option>    
+                <option value="2">Menikah</option>
+                <option value="3">Bercerai</option>    
               </select>
             </div>
             <div class="form-group">
-                <h4><label class="my-1 mr-2" for="statustahun">Mengetahui Informasi :</label></h4>
-                <input type="date" class="form-control" id="statustahun" placeholder="Sejak Tahun" >
+                <h4><label class="my-1 mr-2" for="statustahun">Sejak</label></h4>
+                <input type="date" class="form-control" id="statustahun" placeholder="Sejak Tahun" readonly >
             </div>
         </form>
           <!--keluarga end-->
@@ -33,6 +32,7 @@
     </div>
   </div>
     <script>
+
         $("#statusperkawinan #status").change(function(){
             if(this.value==1 || this.value==0){
                 $("#statustahun").prop("readonly", true);

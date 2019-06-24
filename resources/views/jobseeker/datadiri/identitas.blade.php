@@ -19,7 +19,7 @@
                   <label for="TempatLahir">Tempat Lahir</label>
                   <input type="text" class="form-control" id="TempatLahir" placeholder="Masukan Tempat Lahir">
                   <label for="TanggalLahir">Tanggal Lahir</label>
-                  <input type="date" class="form-control" id="TempatLahir" placeholder="Masukan Tempat Lahir">
+                  <input type="date" class="form-control" id="TempatLahir">
               </div>
               <div class="form-group">
                   <h4><label for="jeniskelamin">Jenis Kelamin</label></h4>
@@ -28,7 +28,7 @@
               </div>
               <div class="form-group">
                   <h4><label for="alamat">Alamat</label></h4>
-                  <input type="text" class="form-control" id="alamat" placeholder="Masukan Alamat">
+                  <textarea class="form-control" rows="3"  id="alamat"></textarea>
               </div>
               <div class="form-group">
                   <h4><label class="my-1 mr-2" for="negara">Negara</label></h4>

@@ -3,7 +3,7 @@
           <div class="item">
             <h3>Aktifitas Sosial</h3>
           </div>
-          <div class="inner-box" style="overflow:auto; height:80vh;">
+          <div class="inner-box" style="overflow:auto; height:60vh;">
             <div class="item">
               <!--aktifitas-->
               <div class="form-group">
@@ -15,7 +15,7 @@
                     <input type="text" class="form-control" id="NamaPanggilan" placeholder="Masukan hobi">
                 </div>
               <h4>Olahraga</h4>
-                <table class="card table table-bordered">
+                <table class="table table-bordered table-responsive" style="border-radius:10px;">
                     <tr class="thead-smi th-center">
                         <th width="5%"><h4>Nomor</h4></th>
                         <th><h4>Organisasi</h4></th>

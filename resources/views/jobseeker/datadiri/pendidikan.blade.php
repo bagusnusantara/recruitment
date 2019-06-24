@@ -7,7 +7,7 @@
       <div class="item">
         <!--pendidikan formal-->
         <h4>Pendidikan Formal</h4>
-          <table class="card table table-bordered">
+          <table class="table table-bordered table-responsive" style="border-radius:10px;">
               <tr class="thead-smi th-center">
                 <th  width="5%"><h4>#</h4></th>
                 <th  width="10%"><h4>Tingkatan</h4></th>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group">
                               <h4><label for="institusi">Institusi</label></h4>
-                              <input type="text" class="form-control" id="alamat" placeholder="Masukan nama Institusi">
+                              <input type="text" class="form-control" id="institusi" placeholder="Masukan nama Institusi">
                          </div>
                          <div class="form-group">
                               <h4><label for="tempat">Tempat</label></h4>
@@ -96,13 +96,13 @@
       <!--modal pendidikan formal end-->
       <!--pendidikan formal end-->
       <!--pendidikan informal -->
-      <h4>Pendidikan Informal</h4>
-      <table class="card table table-bordered">
+      <h4>Pendidikan Informal / Pelatihan Kursus</h4>
+      <table class="table table-bordered table-responsive" style="border-radius:10px;">
           <tr class="thead-smi th-center">
               <th  width="5%"><h4>No</h4></th>
-              <th  ><h4>Jenis Pelatihan</h4></th>
-              <th  colspan="2" width="15%"><h4>Tempat</h4></th>
-              <th  width="15%"><h4>Periode</h4></th>
+              <th ><h4>Jenis Pelatihan</h4></th>
+              <th ><h4>Tempat</h4></th>
+              <th  colspan="2"  ><h4>Periode</h4></th>
               <th  width="10%"><h4>Keterangan</h4></th>
               <th  width="5%"><h4>Option</h4></th>
           </tr>
@@ -120,14 +120,14 @@
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-head">
-                            <h3 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h3>
+                            <h3 class="modal-title ml-4 mt-3">Data Pendidikan Informal</h3>
                         </div>
                         <div class="modal-body">
                           <div class="inner-box">
                               <div class="item">
                               <div class="form-group">
-                                      <h4><label for="tempat">Jenis Pelatihan</label></h4>
-                                      <input type="text" class="form-control" id="jenispelatihan" placeholder="Masukan jenis pelatihan">
+                                  <h4><label for="tempat">Jenis Pelatihan</label></h4>
+                                  <input type="text" class="form-control" id="jenispelatihan" placeholder="Masukan jenis pelatihan">
                               </div>
                               <div class="form-group">
                                   <h4>Periode</h4>
@@ -160,7 +160,7 @@
             <!--pendidikan informal end-->
             <!--kemampuan bahasa asing-->
             <h4>Kemampuan Bahasa Asing</h4>
-            <table class="card table table-bordered">
+            <table class="table table-bordered table-responsive" style="border-radius:10px;">
                 <tr class="thead-smi th-center">
                     <th  width="5%"><h4>No</h4></th>
                     <th  ><h4>Bahasa</h4></th>
@@ -182,7 +182,7 @@
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-head">
-                        <h3 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h3>
+                        <h3 class="modal-title ml-4 mt-3">Data Kemampuan Bahasa Asing</h3>
                     </div>
                     <div class="modal-body">
                       <div class="inner-box">

@@ -7,7 +7,7 @@
             <div class="item">
               <!--lainnya-->
               <h4>Riwayat Penyakit 2 Tahun Terakhir </h4>
-                <table class="card table table-bordered">
+                <table class="table table-bordered table-responsive" style="border-radius:10px;">
                     <tr class="thead-smi th-center">
                         <th width="5%"><h4>Nomor</h4></th>
                         <th><h4>Jenis Penyakit</h4></th>
@@ -24,7 +24,7 @@
                 </table>
                 <br>
                 <div class="form-group">
-                  <h4><label class="my-1 mr-2" for="survey">Mengetahui Informasi :</label></h4>
+                  <h4><label class="my-1 mr-2" for="survey">Mengetahui informasi PT Selaras Mitra Integra dari :</label></h4>
                   <select class="custom-select my-1 mr-sm-2" id="survey">
                     <option selected></option>
                     <option value="1">Radio</option>
@@ -52,21 +52,13 @@
                                     <div class="form-group">
                                         <h4>Lama</h4>
                                         <label for="tahunmulai">Mulai</label>
-                                        <input type="date" class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
+                                        <input type="date" class="form-control" id="tahunmulai" placeholder="Masukan tahun mulai">
                                         <label for="tahunakhir">Akhir</label>
-                                        <input type="date" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
+                                        <input type="date" class="form-control" id="tahunakhir" placeholder="Masukan tahun akhirs">
                                     </div>
                                     <div class="form-group">
-                                        <h4><label for="tempat">Tempat</label></h4>
-                                        <input type="text" class="form-control" id="tempat" placeholder="Masukan Tempat">
-                                    </div>
-                                    <div class="form-group">
-                                        <h4><label for="posisi">Posisi</label></h4>
-                                        <input type="text" class="form-control" id="posisi" placeholder="Masukan Posisi">
-                                    </div>
-                                    <div class="form-group">
-                                        <h4><label for="keterangan">Keterangan</label></h4>
-                                        <textarea class="form-control" rows="3"  id="keterangan"></textarea>
+                                        <h4><label for="pengaruh">Pengaruh</label></h4>
+                                        <input type="text" class="form-control" id="pengaruh" placeholder="Masukan Penyakit">
                                     </div>
                               </div>
                           </div>

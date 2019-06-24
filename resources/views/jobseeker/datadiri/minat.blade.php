@@ -7,7 +7,7 @@
         <div class="item">
           <!--minat-->
           <h4>Minat dan Harapan</h4>
-            <table class="card table table-bordered">
+            <table class="table table-bordered table-responsive" style="border-radius:10px;">
                 <tr class="thead-smi th-center">
                     <th rowspan="2" width="5%"><h4>Nomor</h4></th>
                     <th rowspan="1" colspan="3" width="10%"><h4>Preferensi Lokasi</h4></th>
@@ -83,6 +83,16 @@
                                     <option selected>Choose...</option>
                                     <option value="1">Manufaktur</option>
                                     <option value="2">Non Faktur</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <h4><label class="my-1 mr-2" for="lingkungankerja">Lingkungan Kerja</label></h4>
+                                  <select class="custom-select my-1 mr-sm-2" id="lingkungankerja">
+                                    <option selected>Choose...</option>
+                                    <option value="1">Kantor</option>
+                                    <option value="2">Lapangan</option>
+                                    <option value="3">Pabrik</option>
+                                    <option value="3">Lainnya</option>
                                   </select>
                               </div>
                               <div class="form-group">

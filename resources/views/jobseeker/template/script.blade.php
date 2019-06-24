@@ -9,3 +9,6 @@
 <script src="{{asset('jobx/assets/js/form-validator.min.js') }}"></script>
 <script src="{{asset('jobx/assets/js/contact-form-script.js') }}"></script>
 <script src="{{asset('jobx/assets/js/main.js') }}"></script>
+
+<!-- our script-->
+<script src="{{asset('jobx/assets/js/main.js') }}"></script>

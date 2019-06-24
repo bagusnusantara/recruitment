@@ -3,11 +3,11 @@
           <div class="item">
             <h3>Riwayat Pekerjaan</h3>
           </div>
-          <div class="inner-box" style="overflow:auto; height:80vh;">
+          <div class="inner-box" style="overflow:auto; height:50vh;">
             <div class="item">
               <!--pekerjaan-->
               <h4>Pengalaman Kerja</h4>
-              <table class="card table table-bordered">
+              <table class="table table-bordered table-responsive" style="border-radius:10px;">
                   <tr class="thead-smi th-center">
                       <th width="3%"><h4>Nomor</h4></th>
                       <th><h4>Bisinis Perusahaan</h4></th>
@@ -22,8 +22,7 @@
                   <tr>
                     <th scope="row" colspan="11" class="th-button">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".pengalamankerja-modal">
-                            <i class="fa fa-plus"></i>
-                          Tambah</button>  
+                            <i class="fa fa-plus"></i>Tambah</button>  
                     </th>
                   </tr>
               </table>
@@ -33,7 +32,7 @@
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-head">
-                              <h3 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h3>
+                              <h3 class="modal-title ml-4 mt-3">Data Pengalaman Kerja</h3>
                           </div>
                           <div class="modal-body">
                             <div class="inner-box" style="overflow:auto; height:80vh;">
@@ -48,6 +47,10 @@
                                       </select>
                                   </div>
                                 <div class="form-group">
+                                      <h4><label for="tempatkerja">Lokasi Kerja</label></h4>
+                                      <input type="number" class="form-control" id="tempatkerja" placeholder="Masukan jumlah anggota">
+                                </div>
+                                <div class="form-group">
                                       <h4>Periode</h4>
                                       <label for="tahunmulai">Mulai</label>
                                       <input type="date" class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
@@ -59,11 +62,11 @@
                                       <input type="text" class="form-control" id="posisi" placeholder="Masukan Posisi">
                                  </div>
                                  <div class="form-group">
-                                      <h4><label for="anggota">Jumlah Anggota</label></h4>
-                                      <input type="number" class="form-control" id="anggota" placeholder="Masukan jumlah anggota">
+                                      <h4><label for="bawahan">Jumlah Anggota yang Dibawahi</label></h4>
+                                      <input type="number" class="form-control" id="bawahan" placeholder="Masukan jumlah anggota yang dibawahi">
                                  </div>
                                  <div class="form-group">
-                                      <h4><label for="gajiterakhir">gaji Terakhir</label></h4>
+                                      <h4><label for="gajiterakhir">Gaji Terakhir</label></h4>
                                       <div class="input-group">
                                         <div class="input-group-prepend">
                                           <div class="input-group-text">Rp.</div>
