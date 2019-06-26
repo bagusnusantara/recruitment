@@ -66,6 +66,9 @@ class AdminController extends Controller
                   ->get();
       return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar','detail'));
     }
+    public function showPenilaian(){
+      return view ('admin.lowongan.show_penilaian');
+    }
 
     public function createLowongan(){
       if(!Gate::allows('isAdmin')){

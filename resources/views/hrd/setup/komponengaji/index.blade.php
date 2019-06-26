@@ -57,6 +57,7 @@
                               <th>Kode</th>
                               <th data-hide="phone,tablet">Deskripsi</th>
                               <th data-hide="phone,tablet">Label Slip Gaji</th>
+                              <th data-hide="phone,tablet">Kelompok Pendapatan</th>
                               <th>Action</th>
                             </tr>
                             </thead>
@@ -70,7 +71,15 @@
                                   <td>{{$i}}</td>
                                   <td>{{$komponen->kode_komponen_gaji}}</td>
                                   <td>{{$komponen->desc_komponen_gaji}}</td>
-                                  <td class="center">{{$komponen->label_slip_gaji}}</td>
+                                  <td><center>{{$komponen->label_slip_gaji}}</center></td>
+                                  <td><center>
+                                    @if ( $komponen->id_pendapatan === 1)
+                                    <button type="button" class="btn btn-primary btn-xs">Pendapatan</button>
+                                    @else
+                                    <button type="button" class="btn btn-danger btn-xs">Potongan</button>
+                                    @endif
+
+                                  </center></td>
                                   <td>
                                     <button class="btn btn-default btn-circle" type="button"><i class="fa fa-eye"></i>
                                     <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>

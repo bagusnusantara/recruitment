@@ -68,6 +68,7 @@ Route::get('admin/klien/create', 'AdminController@createKlien');
 Route::get('admin/lowongan/create', 'AdminController@createLowongan');
 Route::get('admin/manajementes/create', 'AdminController@createManajementes');
 Route::get('admin/manajemenuser/create', 'AdminController@createManajemenuser');
+Route::get('/showpenilaian', 'AdminController@showPenilaian');
 
 Route::get('client/dashboard/create', 'ClientController@createDashboard');
 Route::get('client/notifikasi/create', 'ClientController@createNotifikasi');

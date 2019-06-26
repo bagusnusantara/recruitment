@@ -124,7 +124,8 @@
                                 <td>{{$p->users_id}}</td>
                                 <td>
                                   <a type="button" class="btn btn-default btn-circle" href="#" type="button"><i class="fa fa-eye"></i></a>
-                                  <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
+                                  <a type="button" class="btn btn-default btn-circle" href="lowongan/show/{{$lowongan->id}}/showpenilaian" type="button"><i class="fa fa-eye"></i></a>
+                                  <!-- <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i> -->
                                   <!-- <button class="btn btn-default btn-circle" type="button"><i class="fa fa-trash"></i> -->
                                 </td>
 

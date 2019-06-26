@@ -27,6 +27,11 @@
 <!-- Custom and plugin javascript -->
 <script src="{{ asset('inspinia/js/inspinia.js') }}"></script>
 <script src="{{ asset('inspinia/js/plugins/pace/pace.min.js') }}"></script>
+<!-- Steps -->
+<script src="{{ asset('inspinia/js/plugins/steps/jquery.steps.min.js') }}"></script>
+
+<!-- Jquery Validate -->
+<script src="{{ asset('inspinia/js/plugins/validate/jquery.validate.min.js') }}"></script>
 
 <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.edatagrid.js"></script>
