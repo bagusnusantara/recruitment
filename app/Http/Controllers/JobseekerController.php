@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Gate;
 use App\md_lowongan_pekerjaan;
-use App\st_alamat_provinsi;
-use App\st_alamat_kabkota;;
 use App\md_jobseeker;
 use App\trans_lowongan_pekerjaan;
 use Alert;
+//---- st
+use App\st_Kabkota;
+use App\st_Kecamatan;
+use App\st_Kelamin;
+use App\st_Negara;
+use App\st_Provinsi;
+
 class JobseekerController extends Controller
 {
     public function getDashboard(){
@@ -47,12 +52,19 @@ class JobseekerController extends Controller
 
     //Lamaran Section
     public function showDataDiri(){
+      $stData = [];
+      $stData['kelamin'] = st_Kelamin::all();
+      dd($stData);
       return view('jobseeker.datadiri.index');
     }
 
-    public function createIdentitas(Request $request){
+    public function getSt(Request $request){
+    }
+
+    public function storeDataDiri(Request $request){
       return response()->json(["success"=>$request->namalengkap]);
     }
+
     public function storeLamaran(Request $request){
       $this->validate($request,[
             // 'nama_alat' => 'required',

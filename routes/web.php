@@ -36,7 +36,7 @@ Route::get('jobseeker/riwayattes', 'JobSeekerController@getRiwayattes');
 Route::get('jobseeker/lowonganpekerjaan', 'JobSeekerController@getLowonganpekerjaan');
 //data diri
 Route::get('jobseeker/datadiri/', 'JobSeekerController@showDataDiri');
-Route::post('jobseeker/datadiri/submitidentitas/', 'JobSeekerController@createIdentitas');
+Route::post('jobseeker/datadiri/submitdatadiri/', 'JobSeekerController@storeDataDiri');
 
 Route::get('admin/dashboard', 'AdminController@getDashboard');
 Route::get('admin/notifikasi', 'AdminController@getNotifikasi');

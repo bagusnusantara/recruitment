@@ -4,7 +4,7 @@
           <div class="item">
               <h3>Identitas</h3>
           </div>
-          <div class="inner-box" style="overflow:auto; height:80vh;">
+          <div class="inner-box" style="overflow:auto; height:80vh; overflow-y:scroll;">
               <div class="item">  
               <div class="form-group">
                   <h4><label for="NamaLengkap">Nama Lengkap</label></h4>
@@ -25,8 +25,8 @@
                   <input type="date" class="form-control" id="TanggalLahir">
               </div>
               <div class="form-group">
-                  <h4><label class="my-1 mr-2" for="Kelamin">Jenis Kelamin</label></h4>
-                  <select class="custom-select my-1 mr-sm-2" id="Kelamin">
+                  <h4><label class="my-1 mr-2" for="JenisKelamin">Jenis Kelamin</label></h4>
+                  <select class="custom-select my-1 mr-sm-2" id="JenisKelamin">
                     <option selected value="0">Pilih . . .</option>
                     <option value="1">Laki-laki</option>
                     <option value="2">Perempuan</option>
@@ -51,16 +51,25 @@
                     <option selected value="0">Pilih . . .</option>
                     <option value="1">Jawa</option>
                     <option value="2">Madura</option>
-                    <option value="3">Suma</option>
+                    <option value="3">Sumatra</option>
                   </select>
              </div>
              <div class="form-group">
-                <h4><label class="my-1 mr-2" for="Kota">kota</label></h4>
+                <h4><label class="my-1 mr-2" for="Kota">Kota</label></h4>
                 <select class="custom-select my-1 mr-sm-2" id="Kota">
                   <option selected value="0">Pilih . . .</option>
                   <option value="1">Surabya</option>
                   <option value="2">Sidoarjo</option>
                   <option value="3">Mojo</option>
+                </select>
+           </div>
+            <div class="form-group">
+                <h4><label class="my-1 mr-2" for="Kota">Kecamatan</label></h4>
+                <select class="custom-select my-1 mr-sm-2" id="Kota">
+                  <option selected value="0">Pilih . . .</option>
+                  <option value="1">Sukolilo</option>
+                  <option value="2">Kenjeran</option>
+                  <option value="3">Rungkut</option>
                 </select>
            </div>
            <div class="form-group">

@@ -21,11 +21,11 @@ $(document).ready(function(){
 
         $.ajaxSetup({
             headers:{
-            //'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+            'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
             }
         });
         $.ajax({
-            url:"/jobseeker/datadiri/submitidentitas",
+            url:"/jobseeker/datadiri/submitdatadiri",
             method:"post",
             data :{
                 namalengkap   : $("#NamaLengkap").val(),
@@ -43,7 +43,6 @@ $(document).ready(function(){
                 agama         : $("#Agama").val(),
                 idcard        : $("#IDCard").val(),
                 nomeridcard   : $("#NoIDCard").val(),
-
             },
             success:function(result){
                 console.log(result.success);
@@ -55,6 +54,8 @@ $(document).ready(function(){
     });
 });
 
-function validate(){
 
-}
+//Callback function
+$("#JenisKelamin").change(function(){
+    console.log($("#JenisKelamin > option:selected").text());
+});

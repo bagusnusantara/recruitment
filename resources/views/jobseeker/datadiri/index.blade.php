@@ -85,6 +85,6 @@
     });
     
     $('#tab li a:first').trigger('click'); // Default
-</script>     
+</script>  
+<script src="{{asset('js/smi_lib.js') }}"></script>   
 @endsection
-    
