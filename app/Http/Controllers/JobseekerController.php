@@ -9,12 +9,10 @@ use App\md_jobseeker;
 use App\trans_lowongan_pekerjaan;
 use Alert;
 //---- st
-use App\st_Agama;
 use App\st_Negara;
 use App\st_Provinsi;
 use App\st_Kabkota;
 use App\st_Kecamatan;
-use App\st_Kelamin;
 use App\st_Tingkatpendidikan;
 use App\st_Statuskeluarga;
 use App\st_Spesialisasipekerjaan;
@@ -63,9 +61,8 @@ class JobseekerController extends Controller
 
     //Lamaran Section
     public function showDataDiri(){
-      $st_data = [];
-      $st_data['Agama'] = st_Agama::all();
-      $st_data['JenisKelamin'] = st_Kelamin::all();
+      
+      $st_data = [];    
       $st_data['Negara'] = st_Negara::all();
       $st_data['Idcard'] = st_Idcard::all();
       $st_data['TingkatPendidikan'] = st_Tingkatpendidikan::all();
@@ -77,17 +74,25 @@ class JobseekerController extends Controller
       $st_data['LingkunganKerja']= st_Lingkungankerja::all();
       $st_data['LevelJabatan']= st_Leveljabatan::all();
       $st_data['PosisiKerja']= st_Posisikerja::all();
-      
-      return view('jobseeker.datadiri.index',compact('st_data'));
+      $dataUser = md_jobseeker::find(\Auth::user())->first();
+      return view('jobseeker.datadiri.index',compact('st_data','dataUser'));
     }
 
     public function getSt(Request $request){
-      
-      if($request->st_category=="JenisKelamin"){
-        $response = st_Kelamin::all();
+
+      if($request->st_category==  "Negara"){
+        $response = st_Provinsi::where('id_country',$request->st_id)->get();
         return response()->json(['data'=>$response]);
       }
-      return response()->json(['data'=>$request->st_category]);
+      else if($request->st_category==  "Provinsi"){
+        $response = st_Kabkota::where('province_id',$request->st_id)->get();
+        return response()->json(['data'=>$response]);
+      }
+      else if($request->st_category==  "Kota"){
+        $response = st_Kecamatan::where('regency_id',$request->st_id)->get();
+        return response()->json(['data'=>$response]);
+      }
+      
     }
 
     public function storeDataDiri(Request $request){

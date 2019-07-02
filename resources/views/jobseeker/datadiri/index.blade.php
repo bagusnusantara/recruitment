@@ -14,6 +14,14 @@
     vertical-align: middle;
     margin-left:3%;
   }
+
+  .menu-badge
+  {
+    z-index: 0;
+    position: relative;
+    top:0;
+    right:0;
+  }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
@@ -23,13 +31,18 @@
 <div class="section">
   <div class="ml-auto mr-auto"style="width:80vw;">
     <div class="row">
-      <div class="col-lg-2 col-md-4 col-xs-12">
+      <div class="col-lg-3 col-md-4 col-xs-12">
         <div class="right-sideabr">
           <h4>Data Diri</h4>
           <ul id="tab" class="list-item">
-              <li class="active"><a   class="list-group-item-action" href="#identitas">Identitas</a></li>
-              <li><a  class="tab-active list-group-item-action" href="#pendidikan">Pendidikan</a></li>
-              <li><a  class="list-group-item-action" href="#keluarga">Keluarga</a></li>
+              <li class="active"><a   class="list-group-item-action" href="#identitas">Identitas</a>
+                  
+              </li>
+              <li>
+                <a  class="tab-active list-group-item-action" href="#pendidikan">Pendidikan</a>
+                <span class="menu-badge badge badge-pill badge-danger">Belum Lengkap</span>
+              </li>
+              <li><a  class="list-group-item-action" href="#keluarga">Keluarga</a> </li>
               <li><a  class="list-group-item-action" href="#pekerjaan">Pekerjaan</a></li>
               <li><a  class="list-group-item-action" href="#minat">Minat</a></li>
               <li><a  class="list-group-item-action" href="#aktifitas">Aktifitas</a></li>
@@ -39,7 +52,7 @@
             </ul>
         </div>
       </div>
-          <div class="col-lg-10 col-md-8 col-xs-12 tabs-stage">
+          <div class="col-lg-9 col-md-8 col-xs-12 tabs-stage">
             <!--Detail Identitas-->
             @include('jobseeker.datadiri.identitas')
             <!--Identitas end-->
@@ -75,6 +88,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
     $('#tab li').on('click', function (event) {
+      $('#tab li').css('background-color','');
+      $(this).css('background-color','#f2f7fb');
       event.preventDefault();    
       $('.tab-active').removeClass('tab-active');
       $(this).parent().addClass('tab-active');
