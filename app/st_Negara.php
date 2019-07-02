@@ -11,7 +11,7 @@ class st_Negara extends Model
   public $timestamps = false;
   public $incrementing = false;
 
-  protected $guarded = ['id','name'];
+  protected $guarded = ['id','negara'];
   public function provinsi(){
         return $this->hasMany('App\st\Provinsi');
   }

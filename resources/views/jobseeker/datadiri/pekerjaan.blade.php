@@ -41,9 +41,9 @@
                                       <h4><label class="my-1 mr-2" for="bisnisperusahaan">Bisnis Perusahaan</label></h4>
                                       <select class="custom-select my-1 mr-sm-2" id="bisnisperusahaan">
                                         <option selected value="0">Pilih . . .</option>
-                                        <option value="1">Profit</option>
-                                        <option value="2">Non Profit</option>
-                                        <option value="3">Loss</option>
+                                        @foreach ($st_data["BisnisPerusahaan"] as $item)
+                                          <option value="{{$item->id}}">{{$item->name}}</option>    
+                                        @endforeach
                                       </select>
                                   </div>
                                 <div class="form-group">

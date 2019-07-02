@@ -47,22 +47,19 @@
                                       <h4><label class="my-1 mr-2" for="negara">Negara</label></h4>
                                       <select class="custom-select my-1 mr-sm-2" id="negara">
                                         <option selected value="0">Pilih . . .</option>
-                                        <option value="1">Indonesia</option>
-                                        <option value="2">Malaysia</option>
+                                        @foreach ($st_data["Negara"] as $item)
+                                          <option value="{{$item->id}}">{{$item->negara}}</option>    
+                                        @endforeach
                                       </select>
                                       <br>
                                       <h4><label class="my-1 mr-2" for="provinsi">Provinsi</label></h4>
-                                      <select class="custom-select my-1 mr-sm-2" id="provinsi">
-                                        <option selected>Choose...</option>
-                                        <option value="1">Jawa Timur</option>
-                                        <option value="2">Madura</option>
+                                      <select class="custom-select my-1 mr-sm-2" id="provinsi" disabled>
+                                        <option selected>Pilih...</option>
                                       </select>
                                       <br>
                                       <h4><label class="my-1 mr-2" for="kota">Kota/Kab</label></h4>
-                                      <select class="custom-select my-1 mr-sm-2" id="kota">
-                                        <option selected>Choose...</option>
-                                        <option value="1">Surabaya</option>
-                                        <option value="2">Ngawi</option>
+                                      <select class="custom-select my-1 mr-sm-2" id="kota" disabled>
+                                        <option selected>Pilih...</option>
                                       </select>
                               </div>
                               <div class="form-group">
@@ -80,43 +77,46 @@
                               <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="bidangbisnis">Bidang Bisnis</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="bidangbisnis">
-                                    <option selected>Choose...</option>
-                                    <option value="1">Manufaktur</option>
-                                    <option value="2">Non Faktur</option>
+                                    <option value="0" selected>Pilih...</option>
+                                    @foreach ($st_data["BisnisPerusahaan"] as $item)
+                                      <option value="{{$item->id}}">{{$item->name}}</option>    
+                                    @endforeach
                                   </select>
                               </div>
                               <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="lingkungankerja">Lingkungan Kerja</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="lingkungankerja">
-                                    <option selected>Choose...</option>
-                                    <option value="1">Kantor</option>
-                                    <option value="2">Lapangan</option>
-                                    <option value="3">Pabrik</option>
-                                    <option value="3">Lainnya</option>
+                                    <option value ="0" selected>Pilih...</option>
+                                    @foreach ($st_data["LingkunganKerja"] as $item)
+                                      <option value="{{$item->id}}">{{$item->lingkungan}}</option>    
+                                    @endforeach
                                   </select>
                               </div>
                               <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="spesialisasi">Spesialisasi</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="spesialisasi">
-                                    <option selected>Choose...</option>
-                                    <option value="1">Akuntansi</option>
-                                    <option value="2">Manajemen</option>
+                                    <option value ="0" selected>Pilih...</option>
+                                    @foreach ($st_data["SpesialisasiPekerjaan"] as $item)
+                                      <option value="{{$item->id}}">{{$item->spesial}}</option>    
+                                    @endforeach
                                   </select>
                               </div>
                               <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="posisikerja">Posisi Kerja</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="posisikerja">
-                                    <option selected>Choose...</option>
-                                    <option value="1">General Manajer</option>
-                                    <option value="2">Supervisor</option>
+                                    <option value="0" selected>Pilih...</option>
+                                    @foreach ($st_data["PosisiKerja"] as $item)
+                                      <option value="{{$item->id}}">{{$item->posisi}}</option>    
+                                    @endforeach
                                   </select>
                               </div>
                               <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="leveljabatan">Level Jabatan</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="leveljabatan">
-                                    <option selected>Choose...</option>
-                                    <option value="1">Staff</option>
-                                    <option value="2">Operator</option>
+                                    <option value="0" selected>Pilih...</option>
+                                    @foreach ($st_data["LevelJabatan"] as $item)
+                                      <option value="{{$item->id}}">{{$item->jabatan}}</option>    
+                                    @endforeach
                                   </select>
                               </div>
                           </div>

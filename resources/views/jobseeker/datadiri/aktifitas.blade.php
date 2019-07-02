@@ -39,7 +39,7 @@
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-head">
-                              <h3 class="modal-title ml-4 mt-3">Data Minat</h3>
+                              <h3 class="modal-title ml-4 mt-3">Data Organisasi</h3>
                           </div>
                           <div class="modal-body">
                             <div class="inner-box">
@@ -53,7 +53,7 @@
                                         <label for="tahunmulai">Mulai</label>
                                         <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
                                         <label for="tahunakhir">Akhir</label>
-                                        <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
+                                        <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhir">
                                     </div>
                                     <div class="form-group">
                                         <h4><label for="tempat">Tempat</label></h4>

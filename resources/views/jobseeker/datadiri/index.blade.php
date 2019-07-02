@@ -40,7 +40,6 @@
         </div>
       </div>
           <div class="col-lg-10 col-md-8 col-xs-12 tabs-stage">
-              <form>        
             <!--Detail Identitas-->
             @include('jobseeker.datadiri.identitas')
             <!--Identitas end-->
@@ -65,7 +64,6 @@
             <!--Detail Lampiran-->
             @include('jobseeker.datadiri.lampiran')
             <!--Lampiran end-->
-          </form>
         </div>
     </div>
   </div>      

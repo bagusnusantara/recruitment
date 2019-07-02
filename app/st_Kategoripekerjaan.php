@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class st_Kategoripekerjaan extends Model
 {
-  protected $table = 'st_kategori_pekerjaan';
+  protected $table = 'st_kategoripekerjaan';
   protected $primaryKey = 'id';
   public $timestamps = false;
   public $incrementing = false;

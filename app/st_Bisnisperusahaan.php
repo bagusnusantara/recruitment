@@ -4,18 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class st_Provinsi extends Model
+class st_Bisnisperusahaan extends Model
 {
-  protected $table = 'st_provinsi';
+  protected $table = 'st_bisnisperusahaan';
   protected $primaryKey = 'id';
   public $timestamps = false;
   public $incrementing = false;
 
-  protected $guarded = ['id','name','id_country'];
-  public function kabkota(){
-        return $this->hasMany('App\st\Kabkota');
-  }
-  public function negara(){
-        return $this->belongsTo('App\st\Negara');
-  }
+  protected $guarded = ['id','name'];
+  
 }

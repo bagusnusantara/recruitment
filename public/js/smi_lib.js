@@ -45,6 +45,7 @@ $(document).ready(function(){
                 nomeridcard   : $("#NoIDCard").val(),
             },
             success:function(result){
+                console.log("success");
                 console.log(result.success);
                 $(".alert").show();
                 $('.alert').html(result.success);
@@ -54,8 +55,25 @@ $(document).ready(function(){
     });
 });
 
+function getst(id,param){
+    $.ajax({
+        url:"/jobseeker/datadiri/getst",
+        method:"post",
+        data :{
+            st_category : id,
+            st_id       :param
+        },
+        success:function(result){
+            console.log(result);
+        }
+    }).fail(function(){
+        console.log('gagal');
+    });
+};
+
 
 //Callback function
 $("#JenisKelamin").change(function(){
-    console.log($("#JenisKelamin > option:selected").text());
+    getst("JenisKelamin",$("#JenisKelamin > option:selected").val());
+    console.log('done');    
 });

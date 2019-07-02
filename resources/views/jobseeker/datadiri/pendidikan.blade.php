@@ -44,10 +44,9 @@
                                 <h4><label class="my-1 mr-2" for="negara">Tingkat Pendidikan</label></h4>
                                 <select class="custom-select my-1 mr-sm-2" id="negara">
                                   <option selected value="0">Pilih . . .</option>
-                                  <option value="1">SLTA</option>
-                                  <option value="2">Akademi</option>
-                                  <option value="3">Strata 1</option>
-                                  <option value="4">Pascasarjana</option>
+                                  @foreach ($st_data["TingkatPendidikan"] as $item)
+                                    <option value="{{$item->id}}">{{$item->strata}}</option>    
+                                  @endforeach
                                 </select>
                           </div>
                         <div class="form-group">
@@ -78,8 +77,8 @@
                               <input type="number" min="0" max="100" step="0.01" class="form-control" id="tahunakhir" placeholder="Masukan Nilai Akhir">
                           </div>
                           <div class="form-group">
-                                  <h4><label for="keterangan">Keterangan</label></h4>
-                                  <textarea class="form-control" id="keterangan"></textarea>
+                               <h4><label for="keterangan">Keterangan</label></h4>
+                               <textarea class="form-control" id="keterangan"></textarea>
                           </div>
                     </div>
                   </div>
@@ -120,7 +119,7 @@
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-head">
-                            <h3 class="modal-title ml-4 mt-3">Data Pendidikan Informal</h3>
+                            <h3 class="modal-title ml-4 mt-3">Data Pendidikan Informal / Pelatihan Kursus</h3>
                         </div>
                         <div class="modal-body">
                           <div class="inner-box">
@@ -195,19 +194,19 @@
                                   <h4><label class="my-1 mr-2" for="kemampuanlisan">Kemampuan Lisan</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="kemampuanlisan">
                                     <option selected value="0">Pilih . . .</option>
-                                    <option value="1">Kurang</option>
-                                    <option value="2">Cukup</option>
-                                    <option value="3">Baik</option>
+                                    @foreach ($st_data["Kemampuan"] as $item)
+                                      <option value="{{$item->id}}">{{$item->tingkat}}</option>    
+                                    @endforeach
                                   </select>
                             </div>
                             <div class="form-group">
-                                  <h4><label class="my-1 mr-2" for="kemampuantertulis">Kemampuan Tertulis</label></h4>
-                                  <select class="custom-select my-1 mr-sm-2" id="kemampuanlisan">
-                                      <option selected value="0">Pilih . . . </option>
-                                      <option value="1">Kurang</option>
-                                      <option value="2">Cukup</option>
-                                      <option value="3">Baik</option>
-                                    </select>
+                                <h4><label class="my-1 mr-2" for="kemampuantertulis">Kemampuan Tertulis</label></h4>
+                                <select class="custom-select my-1 mr-sm-2" id="kemampuanlisan">
+                                    <option selected value="0">Pilih . . . </option>
+                                    @foreach ($st_data["Kemampuan"] as $item)
+                                      <option value="{{$item->id}}">{{$item->tingkat}}</option>    
+                                    @endforeach
+                                </select>
                             </div>
                       </div>
                     </div>

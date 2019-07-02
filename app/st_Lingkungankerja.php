@@ -4,13 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class st_Tingkatpendidikan extends Model
-{
-  protected $table = 'st_tingkatpendidikan';
+class st_Lingkungankerja extends Model{
+  protected $table = 'st_lingkungankerja';
   protected $primaryKey = 'id';
   public $timestamps = false;
   public $incrementing = false;
 
-  protected $guarded = ['id','strata'];
-  
+  protected $guarded = ['id','lingkungan'];  
 }

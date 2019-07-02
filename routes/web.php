@@ -37,6 +37,8 @@ Route::get('jobseeker/lowonganpekerjaan', 'JobSeekerController@getLowonganpekerj
 //data diri
 Route::get('jobseeker/datadiri/', 'JobSeekerController@showDataDiri');
 Route::post('jobseeker/datadiri/submitdatadiri/', 'JobSeekerController@storeDataDiri');
+//st
+Route::post('jobseeker/datadiri/getst/', 'JobSeekerController@getSt');
 
 Route::get('admin/dashboard', 'AdminController@getDashboard');
 Route::get('admin/notifikasi', 'AdminController@getNotifikasi');
