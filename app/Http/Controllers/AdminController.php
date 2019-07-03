@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Gate;
 use App\md_lowongan_pekerjaan;
 use App\md_client;
-use App\st_alamat_provinsi;
-use App\st_alamat_kabkota;
+use App\st_Provinsi;
+use App\st_Kabkota;
 use App\st_kategori_pekerjaan;
 use App\st_spesialisasi_pekerjaan;
 use App\st_lowongan_gaji;
@@ -100,8 +100,8 @@ class AdminController extends Controller
       $st_lowongan_gaji=st_lowongan_gaji::all();
       $st_kategori_pekerjaan=st_kategori_pekerjaan::all();
       $st_spesialisasi_pekerjaan=st_spesialisasi_pekerjaan::all();
-      $st_alamat_provinsi=st_alamat_provinsi::all();
-      $st_alamat_kabkota=st_alamat_kabkota::all();
+      $st_alamat_provinsi=st_Provinsi::all();
+      $st_alamat_kabkota=st_Kabkota::all();
       return view ('admin.lowongan.create',compact('md_client','st_alamat_kabkota','st_alamat_provinsi','st_lowongan_gaji','st_kategori_pekerjaan','st_spesialisasi_pekerjaan'));
     }
 
