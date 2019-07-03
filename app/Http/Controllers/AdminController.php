@@ -66,6 +66,28 @@ class AdminController extends Controller
                   ->get();
       return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar','detail'));
     }
+
+    public function showPelamar($id){
+      if(!Gate::allows('isAdmin')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      //$pendaftar=trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan_pekerjaan->id);
+
+      $pendaftar=DB::table('trans_lowongan_pekerjaan')
+                     ->join('md_jobseeker', 'trans_lowongan_pekerjaan.users_id', '=', 'md_jobseeker.users_id')
+                     ->select('trans_lowongan_pekerjaan.*', 'md_jobseeker.nama_lengkap','md_jobseeker.nik')
+                     ->where('md_lowongan_pekerjaan_id',$lowongan_pekerjaan->id)
+                     ->get();
+      $pelamar=md_lowongan_pekerjaan::find($id);
+
+      $detail=DB::table('md_lowongan_pekerjaan')
+                  ->join('st_lowongan_gaji','md_lowongan_pekerjaan.st_lowongan_gaji_id','st_lowongan_gaji.id')
+                  ->select('st_lowongan_gaji.deskripsi')
+                  ->where('md_lowongan_pekerjaan.id',$lowongan_pekerjaan->id)
+                  ->get();
+      return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar','detail'));
+    }
+
     public function showPenilaian(){
       return view ('admin.lowongan.show_penilaian');
     }
@@ -102,7 +124,14 @@ class AdminController extends Controller
       if(!Gate::allows('isAdmin')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
-      return view ('admin.sdm.index');
+      // $sdm=DB::select('select * from md_jobseeker');
+      $sdm = DB::table('md_jobseeker')
+            // ->join('riwayat_pendidikan', 'users.id', '=', 'contacts.user_id')
+            // ->join('orders', 'users.id', '=', 'orders.user_id')
+            ->select('md_jobseeker.*')
+            ->get();
+      //dd($sdm);
+      return view ('admin.sdm.index',compact('sdm'));
     }
 
     public function createSdm(){
