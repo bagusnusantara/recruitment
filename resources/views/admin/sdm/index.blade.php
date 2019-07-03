@@ -48,75 +48,57 @@
                         <div class="text-right">
                             <a class="btn btn-primary" href="{{url('admin/lowongan/create')}}">Tambah SDM</a>
                         </div>
-                        <input type="text" class="form-control input-sm m-b-xs" id="filter"
-                               placeholder="Pencarian">
-
-                        <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
-                            <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>NIK</th>
-                                <th data-hide="phone,tablet">Nama</th>
-                                <th data-hide="phone,tablet">Alamat</th>
-                                <th data-hide="phone,tablet">Jenis Kelamin</th>
-                                <th data-hide="phone,tablet">Keahlian</th>
-                                <th data-hide="phone,tablet">Pendidikan Terakhir</th>
-                                <th data-hide="phone,tablet">Status</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="gradeX">
-                                <td>1</td>
-                                <td>9812131414</td>
-                                <td>Andi Kurnia</td>
-                                <td class="center">Jalan Ketintang 192 Surabaya</td>
-                                <td class="center">Laki-laki</td>
-                                <td class="center">Marketing</td>
-                                <td class="center">S1 Manajemen Bisnis</td>
-                                <td class="center">Bekerja di PT. Semangat Baru</td>
-                                <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
-                            </tr>
-                            <tr class="gradeX">
-                                <td>2</td>
-                                <td>991213112</td>
-                                <td>Puji Sumaryani</td>
-                                <td class="center">Jalan Pemuda 12 Surabaya</td>
-                                <td class="center">Perempuan</td>
-                                <td class="center">Accounting</td>
-                                <td class="center">D3 Akuntansi</td>
-                                <td class="center"><button type="button" class="btn btn-primary btn-xs">Free</button></td>
-                                <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
-                            </tr>
-                            <tr class="gradeX">
-                                <td>3</td>
-                                <td>9812135413</td>
-                                <td>Isyana Mega</td>
-                                <td class="center">Jalan Sitinggil 12 Sidoarjo</td>
-                                <td class="center">Perempuan</td>
-                                <td class="center">Menjahit</td>
-                                <td class="center">SMK</td>
-                                <td class="center"><button type="button" class="btn btn-primary btn-xs">Free</button></td>
-                                <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
-                            </tr>
-                            <tr class="gradeX">
-                                <td>4</td>
-                                <td>98121398712</td>
-                                <td>Dwi Sasongko</td>
-                                <td class="center">Jalan Pelayaran 23 Gresik</td>
-                                <td class="center">Laki-laki</td>
-                                <td class="center">Programming</td>
-                                <td class="center">S1 Teknik Informatika</td>
-                                <td class="center">Bekerja di PT. Kita Jaya</td>
-                                <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
-                            </tr>
-
-                                <td colspan="5">
-                                    <ul class="pagination pull-right"></ul>
-                                </td>
-                            </tr>
-                            </tfoot>
-                        </table>
+                               <div>
+                        					Pilihan Kolom :
+                                  <a class="toggle-vis" data-column="0">No</a> -
+                                  <a class="toggle-vis" data-column="1">Nama</a> -
+                                  <a class="toggle-vis" data-column="2">Usia</a> -
+                                  <a class="toggle-vis" data-column="3">Jenis Kelamin</a> -
+                                  <a class="toggle-vis" data-column="4">Alamat</a> -
+                                  <a class="toggle-vis" data-column="5">Pendidikan Terakhir</a>
+                        				</div>
+                               <table id="example" class="display" style="width:100%">
+                               <thead>
+                                   <tr>
+                                       <th><center>No</center></th>
+                                       <th><center>Nama</center></th>
+                                       <th><center>Usia</center></th>
+                                       <th><center>Janis Kelamin</center></th>
+                                       <th><center>Alamat</center></th>
+                                       <th><center>Pendidikan Terakhir</center></th>
+                                       <th><center>Action</center></th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                    @php
+                                    $i=1;
+                                    @endphp
+                                    @foreach($sdm as $s)
+                                @php
+                                function umur($tgl_lahir,$delimiter='-') {
+                                    list($hari,$bulan,$tahun) = explode($delimiter, $tgl_lahir);
+                                    $selisih_hari = date('d') - $hari;
+                                    $selisih_bulan = date('m') - $bulan;
+                                    $selisih_tahun = date('Y') - $tahun;
+                                    if ($selisih_hari < 0 || $selisih_bulan < 0) {
+                                        $selisih_tahun--;
+                                    }
+                                    return $selisih_tahun;
+                                }
+                                $x=umur(date('d-m-Y', strtotime($s->tanggal_lahir))).' tahun';
+                                @endphp
+                                   <tr>
+                                       <td><center>{{$i++}}</center></td>
+                                       <td><center>{{$s->nama_lengkap}}</center></td>
+                                       <td><center>{{$x}}</center></td>
+                                       <td><center>{{$s->jenis_kelamin}}</center></td>
+                                       <td><center>{{$s->alamat}}</center></td>
+                                       <td><center>SMA</center></td>
+                                       <td><center>SMA</center></td>
+                                   </tr>
+                                   @endforeach
+                               </tbody>
+                           </table>
                     </div>
                 </div>
             </div>
@@ -134,15 +116,25 @@
 
 @include('template.footer')
 <!-- FooTable -->
-<script src="{{asset('inspinia/js/plugins/footable/footable.all.min.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <!-- Page-Level Scripts -->
 <script>
     $(document).ready(function() {
+    var table = $('#example').DataTable( {
+        "scrollY": "200px",
+        "paging": false
+    } );
 
-        $('.footable').footable();
-        $('.footable2').footable();
+    $('a.toggle-vis').on( 'click', function (e) {
+        e.preventDefault();
 
-    });
+        // Get the column API object
+        var column = table.column( $(this).attr('data-column') );
 
+        // Toggle the visibility
+        column.visible( ! column.visible() );
+    } );
+    } );
 </script>
 @endsection

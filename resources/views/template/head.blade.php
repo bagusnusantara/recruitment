@@ -13,7 +13,7 @@
     <link href="{{ asset('inspinia/css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
     <link href="{{ asset('inspinia/css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
 {{--    <link href="{{ asset('inspinia/css/plugins/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet">--}}
-  	<link href="{{ asset('inspinia/css/bootstrap.min.css') }}" rel="stylesheet">
+  	<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
   	<!-- <link href="{{ asset('inspinia/font-awesome/css/font-awesome.css') }}" rel="stylesheet"> -->
 
   	<!-- Gritter -->
@@ -43,6 +43,7 @@
     <link href="{{asset('inspinia/css/plugins/summernote/summernote-bs3.css') }}" rel="stylesheet">
     <!-- Data picker -->
    <script src="{{asset('inspinia/js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
+
 
 
     <style>
