@@ -186,9 +186,14 @@
                     <div class="modal-body">
                       <div class="inner-box">
                           <div class="item">
-                            <div class="form-group">
-                                  <h4><label for="bahasa">Bahasa</label></h4>
-                                  <input type="text" class="form-control" id="jenispelatihan" placeholder="Masukan Bahasa">
+                              <div class="form-group">
+                                  <h4><label class="my-1 mr-2" for="bahasa">Bahasa</label></h4>
+                                  <select class="custom-select my-1 mr-sm-2" id="bahasa">
+                                    <option selected value="0">Pilih . . .</option>
+                                    @foreach ($st_data["Bahasa"] as $item)
+                                      <option value="{{$item->id}}">{{$item->deskripsi}}</option>    
+                                    @endforeach
+                                  </select>
                             </div>
                             <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="kemampuanlisan">Kemampuan Lisan</label></h4>

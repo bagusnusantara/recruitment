@@ -82,13 +82,13 @@
                                       <input type="text" class="form-control" id="jurusan" placeholder="Masukan nama jurusan">
                                  </div>
                                  <div class="form-group">
-                                      <h4><label for="IPK">IPK</label></h4>
-                                      <input type="number" min="0" max="100" step="0.01" class="form-control" id="tahunakhir" placeholder="Masukan Nilai Akhir">
-                                  </div>
-                                  <div class="form-group">
-                                          <h4><label for="keterangan">Keterangan</label></h4>
-                                          <textarea class="form-control" rows="3"  id="keterangan"></textarea>
-                                  </div>
+                                    <h4><label for="AlasanPindah">Alasan Pindah</label></h4>
+                                    <textarea class="form-control" rows="2"  id="AlasanPindah"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <h4><label for="Keterangan">Keterangan</label></h4>
+                                    <textarea class="form-control" rows="3"  id="Keterangan"></textarea>
+                                </div>
                             </div>
                           </div>
                           </div>

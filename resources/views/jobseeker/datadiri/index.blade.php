@@ -48,7 +48,6 @@
               <li><a  class="list-group-item-action" href="#aktifitas">Aktifitas</a></li>
               <li><a  class="list-group-item-action" href="#lainnya">Lainnya</a></li>
               <li><a  class="list-group-item-action" href="#lampiran">Lampiran</a></li>
-
             </ul>
         </div>
       </div>

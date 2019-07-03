@@ -11,7 +11,7 @@ class st_Provinsi extends Model
   public $timestamps = false;
   public $incrementing = false;
 
-  protected $guarded = ['id','name','id_country'];
+  protected $guarded = ['id','name','country_id'];
   public function kabkota(){
         return $this->hasMany('App\st\Kabkota');
   }

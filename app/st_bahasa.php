@@ -4,12 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class st_IdCard extends Model
+class st_Bahasa extends Model
 {
-  protected $table = 'st_idcard';
+  protected $table = 'st_bahasa';
   protected $primaryKey = 'id';
   public $timestamps = false;
   public $incrementing = false;
 
-  protected $guarded = ['id','kartu'];  
+  protected $guarded = ['id','deskripsi'];
+  
 }

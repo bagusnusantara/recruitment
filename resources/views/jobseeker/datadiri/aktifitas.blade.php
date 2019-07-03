@@ -8,13 +8,13 @@
               <!--aktifitas-->
               <div class="form-group">
                     <h4><label for="olahraga">Olahraga</label></h4>
-                    <input type="text" class="form-control" id="olahraga" placeholder="Masukan aktifitas olahraga">
+              <input type="text" class="form-control" id="olahraga" placeholder="Masukan aktifitas olahraga" value="{{$dataUser->olahraga}}">
                 </div>
                 <div class="form-group">
                     <h4><label for="Hobi">Hobi</label></h4>
-                    <input type="text" class="form-control" id="NamaPanggilan" placeholder="Masukan hobi">
+                    <input type="text" class="form-control" id="NamaPanggilan" placeholder="Masukan hobi" value="{{$dataUser->hobi}}"> 
                 </div>
-              <h4>Olahraga</h4>
+              <h4>Organisasi</h4>
                 <table class="table table-bordered table-responsive" style="border-radius:10px;">
                     <tr class="thead-smi th-center">
                         <th width="5%"><h4>Nomor</h4></th>
