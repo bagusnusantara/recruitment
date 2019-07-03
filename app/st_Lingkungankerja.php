@@ -4,15 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class st_spesialisasi_pekerjaan extends Model
-{
-  protected $table = 'st_spesialisasi_pekerjaan';
+class st_Lingkungankerja extends Model{
+  protected $table = 'st_lingkungankerja';
   protected $primaryKey = 'id';
   public $timestamps = false;
   public $incrementing = false;
 
-  protected $fillable = [
-
-    ];
-
+  protected $guarded = ['id','lingkungan'];  
 }

@@ -11,9 +11,9 @@
               <h4><label class="my-1 mr-2" for="status">Status Perkawinan</label></h4>
               <select class="custom-select my-1 mr-sm-2" id="status">
                 <option selected value="0">Pilih . . .</option>
-                <option value="1">Lajang</option>
-                <option value="2">Menikah</option>
-                <option value="3">Bercerai</option>    
+                @foreach ($st_data["StatusKeluarga"] as $item)
+                    <option value="{{$item->id}}">{{$item->status}}</option>    
+                @endforeach
               </select>
             </div>
             <div class="form-group">

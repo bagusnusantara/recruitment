@@ -9,11 +9,20 @@ use App\md_jobseeker;
 use App\trans_lowongan_pekerjaan;
 use Alert;
 //---- st
-use App\st_Kabkota;
-use App\st_Kecamatan;
-use App\st_Kelamin;
 use App\st_Negara;
 use App\st_Provinsi;
+use App\st_Kabkota;
+use App\st_Kecamatan;
+use App\st_Tingkatpendidikan;
+use App\st_Statuskeluarga;
+use App\st_Spesialisasipekerjaan;
+use App\st_Kategoripekerjaan;
+use App\st_Bisnisperusahaan;
+use App\st_Idcard;
+use App\st_Kemampuan;
+use App\st_Lingkungankerja;
+use App\st_Leveljabatan;
+use App\st_Posisikerja;
 
 class JobseekerController extends Controller
 {
@@ -22,8 +31,8 @@ class JobseekerController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       $lowongan_pekerjaan=md_lowongan_pekerjaan::paginate(10);
-      $provinsi=st_alamat_provinsi::all();
-      $kota_all=st_alamat_kabkota::all();
+      $provinsi=st_Provinsi::all();
+      $kota_all=st_Kabkota::all();
       return view ('jobseeker.dashboard.index',compact('lowongan_pekerjaan','provinsi','kota_all'));
     }
     public function getProfil(){
@@ -52,13 +61,38 @@ class JobseekerController extends Controller
 
     //Lamaran Section
     public function showDataDiri(){
-      $stData = [];
-      $stData['kelamin'] = st_Kelamin::all();
-      dd($stData);
-      return view('jobseeker.datadiri.index');
+      
+      $st_data = [];    
+      $st_data['Negara'] = st_Negara::all();
+      $st_data['Idcard'] = st_Idcard::all();
+      $st_data['TingkatPendidikan'] = st_Tingkatpendidikan::all();
+      $st_data['Kemampuan'] = st_Kemampuan::all();
+      $st_data['BisnisPerusahaan'] = st_Bisnisperusahaan::all();
+      $st_data['kategoriPekerjaan'] = st_Kategoripekerjaan::all();
+      $st_data['SpesialisasiPekerjaan']=st_Spesialisasipekerjaan::all();
+      $st_data['StatusKeluarga']= st_Statuskeluarga::all();
+      $st_data['LingkunganKerja']= st_Lingkungankerja::all();
+      $st_data['LevelJabatan']= st_Leveljabatan::all();
+      $st_data['PosisiKerja']= st_Posisikerja::all();
+      $dataUser = md_jobseeker::find(\Auth::user())->first();
+      return view('jobseeker.datadiri.index',compact('st_data','dataUser'));
     }
 
     public function getSt(Request $request){
+
+      if($request->st_category==  "Negara"){
+        $response = st_Provinsi::where('id_country',$request->st_id)->get();
+        return response()->json(['data'=>$response]);
+      }
+      else if($request->st_category==  "Provinsi"){
+        $response = st_Kabkota::where('province_id',$request->st_id)->get();
+        return response()->json(['data'=>$response]);
+      }
+      else if($request->st_category==  "Kota"){
+        $response = st_Kecamatan::where('regency_id',$request->st_id)->get();
+        return response()->json(['data'=>$response]);
+      }
+      
     }
 
     public function storeDataDiri(Request $request){
