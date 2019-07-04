@@ -23,6 +23,7 @@ use App\st_Kemampuan;
 use App\st_Lingkungankerja;
 use App\st_Leveljabatan;
 use App\st_Posisikerja;
+use App\st_Bahasa;
 
 class JobseekerController extends Controller
 {
@@ -63,9 +64,9 @@ class JobseekerController extends Controller
     public function showDataDiri(){
       
       $st_data = [];    
-      $st_data['Negara'] = st_Negara::all();
       $st_data['Idcard'] = st_Idcard::all();
       $st_data['TingkatPendidikan'] = st_Tingkatpendidikan::all();
+      $st_data['Bahasa'] = st_Bahasa::all();
       $st_data['Kemampuan'] = st_Kemampuan::all();
       $st_data['BisnisPerusahaan'] = st_Bisnisperusahaan::all();
       $st_data['kategoriPekerjaan'] = st_Kategoripekerjaan::all();
@@ -75,13 +76,17 @@ class JobseekerController extends Controller
       $st_data['LevelJabatan']= st_Leveljabatan::all();
       $st_data['PosisiKerja']= st_Posisikerja::all();
       $dataUser = md_jobseeker::find(\Auth::user())->first();
+      $st_data['Negara'] = st_Negara::all();
+      $st_data['Provinsi'] = st_Provinsi::where('country_id',$dataUser->negara)->get();
+      $st_data['Kabkota'] = st_Kabkota::where('province_id',$dataUser->provinsi)->get();
+      $st_data['Kecamatan'] = st_Kecamatan::where('regency_id',$dataUser->kabkota)->get();
       return view('jobseeker.datadiri.index',compact('st_data','dataUser'));
     }
 
     public function getSt(Request $request){
 
       if($request->st_category==  "Negara"){
-        $response = st_Provinsi::where('id_country',$request->st_id)->get();
+        $response = st_Provinsi::where('country_id',$request->st_id)->get();
         return response()->json(['data'=>$response]);
       }
       else if($request->st_category==  "Provinsi"){
@@ -96,7 +101,27 @@ class JobseekerController extends Controller
     }
 
     public function storeDataDiri(Request $request){
-      return response()->json(["success"=>$request->namalengkap]);
+      $dataUser = md_jobseeker::find(\Auth::user())->first();
+      $dataUser->NIK             = $request->NIK;
+      $dataUser->nama_lengkap    = $request->nama_lengkap;
+      $dataUser->nama_panggilan  = $request->nama_panggilan;
+      $dataUser->tempat_lahir    = $request->tempat_lahir;
+      $dataUser->tanggal_lahir   = $request->tanggal_lahir;
+      $dataUser->jenis_kelamin   = $request->jenis_kelamin;
+      $dataUser->alamat          = $request->alamat;
+      $dataUser->agama           = $request->agama;
+      $dataUser->negara          = $request->negara;
+      $dataUser->provinsi        = $request->provinsi;
+      $dataUser->kabkota         = $request->kabkota;
+      $dataUser->kecamatan       = $request->kecamatan;
+      $dataUser->kode_pos        = $request->kode_pos;
+      $dataUser->email           = $request->email;
+      $dataUser->notelp          = $request->notelp;
+      $dataUser->nohp            = $request->nohp;
+      $dataUser->kategori_idcard = $request->kategori_idcard;
+      $dataUser->nomor_idcard    = $request->nomor_idcard;
+      $dataUser->save();
+      return response()->json(["success"=>$dataUser]);
     }
 
     public function storeLamaran(Request $request){

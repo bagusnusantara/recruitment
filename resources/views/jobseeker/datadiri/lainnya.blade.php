@@ -26,11 +26,13 @@
                 <div class="form-group">
                   <h4><label class="my-1 mr-2" for="survey">Mengetahui informasi PT Selaras Mitra Integra dari :</label></h4>
                   <select class="custom-select my-1 mr-sm-2" id="survey">
-                    <option selected></option>
-                    <option value="1">Radio</option>
-                    <option value="1">Majalah</option>
-                    <option value="1">Google Search Engine</option>
-                    <option value="1">Blog</option>
+                    <option {{(!isset($dataUser->referensi_dari) || $dataUser->referensi_dari=='0')? "selected" : ""}} value="0">Pilih . . .</option>
+                    <option {{( $dataUser->referensi_dari=='Radio' )? "selected" : ""}} value="1">Radio</option>
+                    <option {{( $dataUser->referensi_dari=='Majalah,Koran' )? "selected" : ""}} value="2">Majalah,Koran</option>
+                    <option {{( $dataUser->referensi_dari=='Google Search Engine' )? "selected" : ""}} value="3">Google Search Engine</option>
+                    <option {{( $dataUser->referensi_dari=='Blog' )? "selected" : ""}} value="4">Blog</option>
+                    <option {{( $dataUser->referensi_dari=='Media Sosial' )? "selected" : ""}} value="5">Media Sosial</option>
+                    <option {{( $dataUser->referensi_dari=='Kerabat,Teman' )? "selected" : ""}} value="6">Kerabat,Teman</option>
                     
                   </select>
                 </div>
