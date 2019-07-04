@@ -125,6 +125,18 @@
                                         </p>
                                      </fieldset>
                             </div>
+                            <div class="form-group"><label class="col-sm-2 control-label">Komposisi Tes</label>
+                                    <div class="col-sm-10">
+                                        <div><label> <input type="checkbox" value="">Psikotes</label></div>
+                                    </div>
+                            </div>
+                            <div class="form-group"><label class="col-sm-2 control-label">Komposisi Tes</label>
+
+                                    <div class="col-sm-10">
+                                        <div class="i-checks"><label> <input type="checkbox" value="" name="st_psikotes"> <i></i> Psikotes</label></div>
+                                    </div>
+                                </div>
+
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
@@ -188,5 +200,16 @@
             });
 
    </script>
+   <!-- iCheck -->
+    <script src="{{ asset('inspinia/js/plugins/iCheck/icheck.min.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+            });
+        </script>
+
 
 @endsection

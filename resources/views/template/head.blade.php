@@ -23,6 +23,8 @@
   	<link href="{{ asset('inspinia/css/style.css') }}" rel="stylesheet">
 
   	<link href="{{ asset('inspinia/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('inspinia/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
+
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link href="{{ asset('inspinia/css/plugins/morris/morris-0.4.3.min.css') }}" rel="stylesheet">
