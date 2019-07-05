@@ -7,12 +7,12 @@
             <div class="item">
               <!--aktifitas-->
               <div class="form-group">
-                    <h4><label for="olahraga">Olahraga</label></h4>
-              <input type="text" class="form-control" id="olahraga" placeholder="Masukan aktifitas olahraga" value="{{$dataUser->olahraga}}">
+                    <h4><label for="Olahraga">Olahraga</label></h4>
+              <input type="text" class="form-control" id="Olahraga" placeholder="Masukan aktifitas olahraga" value="{{$dataUser->olahraga}}">
                 </div>
                 <div class="form-group">
                     <h4><label for="Hobi">Hobi</label></h4>
-                    <input type="text" class="form-control" id="NamaPanggilan" placeholder="Masukan hobi" value="{{$dataUser->hobi}}"> 
+                    <input type="text" class="form-control" id="Hobi" placeholder="Masukan hobi" value="{{$dataUser->hobi}}"> 
                 </div>
               <h4>Organisasi</h4>
                 <table class="table table-bordered table-responsive" style="border-radius:10px;">
@@ -25,6 +25,18 @@
                         <th><h4>Ketarangan</h4></th>
                         <th width="10%"><h4>Option</h4></th>
                     </tr>
+                    @foreach ($dataUserSt['PengalamanOrganisasi'] as $key=>$item)
+                    <tr>
+                        <th width="5%"><h4>{{$key+1}}</h4></th>
+                        <th><h4>Organisasi</h4>{{$item->organisasi}}</th>
+                        <th><h4>{{$item->tanggal_mulai}}</h4></th>
+                        <th><h4>{{$item->tanggal_akhir}}</h4></th>
+                        <th><h4>{{$item->tempat}}</h4></th>
+                        <th><h4>{{$item->posisi}}</h4></th>
+                        <th><h4>{{$item->keterangan}}</h4></th>
+                        <th width="10%"><h4>Option</h4></th>
+                    </tr>
+                    @endforeach
                     <tr>
                       <th scope="row" colspan="8" class="th-button">
                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".aktifitas-modal">
@@ -45,34 +57,37 @@
                             <div class="inner-box">
                                 <div class="item">
                                     <div class="form-group">
-                                        <h4><label for="organisasi">Organisasi</label></h4>
-                                        <input type="text" class="form-control" id="organisasi" placeholder="Masukan Nama Organisasi">
+                                        <h4><label for="Organisasi">Organisasi</label></h4>
+                                        <input type="text" class="form-control" id="Organisasi" placeholder="Masukan Nama Organisasi">
                                     </div>
                                     <div class="form-group">
                                         <h4>Periode</h4>
                                         <label for="tahunmulai">Mulai</label>
-                                        <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
+                                        <input type="date" class="form-control" id="TahunMulai" placeholder="Masukan Tahun Mulai">
                                         <label for="tahunakhir">Akhir</label>
-                                        <input type="number" min="1900" max="2019" step="1" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhir">
+                                        <input type="date" class="form-control" id="TahunAkhir" placeholder="Masukan Tahun Akhir">
                                     </div>
                                     <div class="form-group">
-                                        <h4><label for="tempat">Tempat</label></h4>
-                                        <input type="text" class="form-control" id="tempat" placeholder="Masukan Tempat">
+                                        <h4><label for="Tempat">Tempat</label></h4>
+                                        <input type="text" class="form-control" id="Tempat" placeholder="Masukan Tempat">
                                     </div>
                                     <div class="form-group">
-                                        <h4><label for="posisi">posisi</label></h4>
-                                        <input type="text" class="form-control" id="posisi" placeholder="Masukan tempat">
+                                        <h4><label for="Posisi">posisi</label></h4>
+                                        <input type="text" class="form-control" id="Posisi" placeholder="Masukan tempat">
                                     </div>
                                     <div class="form-group">
-                                        <h4><label for="keterangan">Keterangan</label></h4>
-                                        <textarea class="form-control" rows="3"  id="keterangan"></textarea>
+                                        <h4><label for="Keterangan">Keterangan</label></h4>
+                                        <textarea class="form-control" rows="3"  id="Keterangan"></textarea>
                                     </div>
                               </div>
                           </div>
                           </div>
                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                              <button type="button" class="btn btn-primary btn-lg" id="submitPengalamanOrganisasi">
+                                  <a>Simpan</a>
+                                  <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
+                                </button>
                             </div>
         
                         </div>
@@ -85,8 +100,11 @@
                   </div>
     <div class="item">
       <div class="mr-0">
-        <button type="button" class="btn btn-secondary btn-lg">Reset</button>
-        <button type="button" class="btn btn-primary btn-lg">Simpan</button>
+        <!--button type="button" class="btn btn-secondary btn-lg" width='20px' height='20px'>Reset</button -->
+        <button type="button" class="btn btn-primary btn-lg" id="submitIdentitas">
+          <a>Simpan</a>
+          <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
+        </button>
       </div>
     </div>
   </div>

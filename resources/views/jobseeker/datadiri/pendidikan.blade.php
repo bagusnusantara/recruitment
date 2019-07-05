@@ -3,7 +3,7 @@
     <div class="item">
       <h3>Pendidikan</h3>
     </div>
-    <div class="inner-box" style="overflow:auto; height:80vh;">
+    <div class="inner-box" >
       <div class="item">
         <!--pendidikan formal-->
         <h4>Pendidikan Formal</h4>
@@ -38,7 +38,7 @@
                       <h3 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h3>
                   </div>
                   <div class="modal-body">
-                    <div class="inner-box" style="overflow:auto; height:80vh;">
+                    <div class="inner-box" >
                         <div class="item">
                           <div class="form-group">
                                 <h4><label class="my-1 mr-2" for="negara">Tingkat Pendidikan</label></h4>
@@ -217,8 +217,6 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
                       </div>
 
                   </div>

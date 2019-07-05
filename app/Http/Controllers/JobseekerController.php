@@ -25,6 +25,14 @@ use App\st_Leveljabatan;
 use App\st_Posisikerja;
 use App\st_Bahasa;
 
+//--st support md
+use App\st_jobseeker_riwayatpenyakit;
+use App\st_jobseeker_pengalamanorganisasi;
+use App\st_jobseeker_pengalamankerja;
+use App\st_jobseeker_pendidikanformal;
+use App\st_jobseeker_pendidikaninformal;
+use App\st_jobseeker_pendidikanbahasa;
+
 class JobseekerController extends Controller
 {
     public function getDashboard(){
@@ -62,8 +70,14 @@ class JobseekerController extends Controller
 
     //Lamaran Section
     public function showDataDiri(){
-      
-      $st_data = [];    
+
+      $user_id = \Auth::user()->id;      
+      $dataUser = md_jobseeker::find($user_id)->first();
+      //st_jobseeker
+      $dataUserSt['RiwayatPenyakit'] = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
+      $dataUserSt['PengalamanOrganisasi'] = st_jobseeker_pengalamanorganisasi::where('user_id',$user_id)->get();
+      //st_support data
+      $st_data = [];
       $st_data['Idcard'] = st_Idcard::all();
       $st_data['TingkatPendidikan'] = st_Tingkatpendidikan::all();
       $st_data['Bahasa'] = st_Bahasa::all();
@@ -71,16 +85,14 @@ class JobseekerController extends Controller
       $st_data['BisnisPerusahaan'] = st_Bisnisperusahaan::all();
       $st_data['kategoriPekerjaan'] = st_Kategoripekerjaan::all();
       $st_data['SpesialisasiPekerjaan']=st_Spesialisasipekerjaan::all();
-      $st_data['StatusKeluarga']= st_Statuskeluarga::all();
       $st_data['LingkunganKerja']= st_Lingkungankerja::all();
       $st_data['LevelJabatan']= st_Leveljabatan::all();
       $st_data['PosisiKerja']= st_Posisikerja::all();
-      $dataUser = md_jobseeker::find(\Auth::user())->first();
       $st_data['Negara'] = st_Negara::all();
       $st_data['Provinsi'] = st_Provinsi::where('country_id',$dataUser->negara)->get();
       $st_data['Kabkota'] = st_Kabkota::where('province_id',$dataUser->provinsi)->get();
       $st_data['Kecamatan'] = st_Kecamatan::where('regency_id',$dataUser->kabkota)->get();
-      return view('jobseeker.datadiri.index',compact('st_data','dataUser'));
+      return view('jobseeker.datadiri.index',compact('st_data','dataUser','dataUserSt'));
     }
 
     public function getSt(Request $request){
@@ -102,27 +114,51 @@ class JobseekerController extends Controller
 
     public function storeDataDiri(Request $request){
       $dataUser = md_jobseeker::find(\Auth::user())->first();
-      $dataUser->NIK             = $request->NIK;
-      $dataUser->nama_lengkap    = $request->nama_lengkap;
-      $dataUser->nama_panggilan  = $request->nama_panggilan;
-      $dataUser->tempat_lahir    = $request->tempat_lahir;
-      $dataUser->tanggal_lahir   = $request->tanggal_lahir;
-      $dataUser->jenis_kelamin   = $request->jenis_kelamin;
-      $dataUser->alamat          = $request->alamat;
-      $dataUser->agama           = $request->agama;
-      $dataUser->negara          = $request->negara;
-      $dataUser->provinsi        = $request->provinsi;
-      $dataUser->kabkota         = $request->kabkota;
-      $dataUser->kecamatan       = $request->kecamatan;
-      $dataUser->kode_pos        = $request->kode_pos;
-      $dataUser->email           = $request->email;
-      $dataUser->notelp          = $request->notelp;
-      $dataUser->nohp            = $request->nohp;
-      $dataUser->kategori_idcard = $request->kategori_idcard;
-      $dataUser->nomor_idcard    = $request->nomor_idcard;
-      $dataUser->save();
-      return response()->json(["success"=>$dataUser]);
+      $dataUser->update($request->all());
+
+      return response()->json(["success"=>"data retraived"]);
     }
+
+    public function storeDataPendidikanFormal(Request $request){
+      return response()->json(["success"=>"data pendidikan formal recaived"]);
+    }
+
+    public function storeDataPendidikanBahasa(Request $request){
+      return response()->json(["success"=>"data pendidikan informal recaived"]);
+    }
+
+
+    public function storeDataPengalamanKerja(Request $request){
+      return response()->json(["success"=>"data pengalaman kerja recaived"]);
+    }
+
+    public function storeDataPengalamanOrganisasi(Request $request){
+      $pengalamanOrganisasi = st_jobseeker_pengalamanorganisasi::find($request->id);
+      if($pengalamanOrganisasi==null)
+      {
+        $request->request->remove('id');
+        $request->request->add(['user_id'=>\Auth::user()->id]);
+        st_jobseeker_pengalamanorganisasi::create($request->all());        
+        return response()->json(["success"=>$request->all()]);
+      }
+
+    }
+
+    public function storeDataRiwayatPenyakit(Request $request){
+      
+      $riwayatPenyakit = st_jobseeker_riwayatpenyakit::find($request->id);
+      if($riwayatPenyakit==null)
+      {
+        $request->request->remove('id');
+        $request->request->add(['user_id'=>\Auth::user()->id]);
+        st_jobseeker_riwayatpenyakit::create($request->all());        
+        return response()->json(["success"=>$request->all()]);
+      }
+
+      return response()->json(["success"=>$request->all()]);
+    }
+
+
 
     public function storeLamaran(Request $request){
       $this->validate($request,[

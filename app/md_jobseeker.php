@@ -11,7 +11,7 @@ class md_jobseeker extends Model
   public $timestamps = false;
   public $incrementing = false;
   protected $fillable = [
-      'NIK','nama_lengkap','nama_panggilan','tempat_lahir','tanggal_lahir','jenis_kelamin','alamat','agama','negara','provinsi','kabkota','kecamatan','kode_pos','email','notelp','nohp','kategori_idcard','nomor_idcard'
+      'NIK','nama_lengkap','nama_panggilan','tempat_lahir','tanggal_lahir','jenis_kelamin','alamat','agama','negara','provinsi','kabkota','kecamatan','kode_pos','email','notelp','nohp','kategori_idcard','nomor_idcard','status_keluarga','tanggal_keluarga','olahraga','hobi','referensi_dari'
     ];
 
   public function md_lowongan_pekerjaan(){

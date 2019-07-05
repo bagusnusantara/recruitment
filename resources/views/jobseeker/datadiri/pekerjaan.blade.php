@@ -35,7 +35,7 @@
                               <h3 class="modal-title ml-4 mt-3">Data Pengalaman Kerja</h3>
                           </div>
                           <div class="modal-body">
-                            <div class="inner-box" style="overflow:auto; height:80vh;">
+                            <div class="inner-box" >
                                 <div class="item">
                                   <div class="form-group">
                                       <h4><label class="my-1 mr-2" for="bisnisperusahaan">Bisnis Perusahaan</label></h4>

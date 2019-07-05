@@ -41,11 +41,11 @@
                           <h3 class="modal-title ml-4 mt-3">Data Minat</h3>
                       </div>
                       <div class="modal-body">
-                        <div class="inner-box" style="overflow:auto; overflow-y:scroll; height:80vh;">
+                        <div class="inner-box">
                             <div class="item">
                               <div class="form-group">
                                       <h4><label class="my-1 mr-2" for="negara">Negara</label></h4>
-                                      <select class="custom-select my-1 mr-sm-2" id="negara">
+                                      <select class="custom-select my-1 mr-sm-2" id="Negara">
                                         <option selected value="0">Pilih . . .</option>
                                         @foreach ($st_data["Negara"] as $item)
                                           <option value="{{$item->id}}">{{$item->negara}}</option>    
@@ -53,12 +53,12 @@
                                       </select>
                                       <br>
                                       <h4><label class="my-1 mr-2" for="provinsi">Provinsi</label></h4>
-                                      <select class="custom-select my-1 mr-sm-2" id="provinsi" disabled>
+                                      <select class="custom-select my-1 mr-sm-2" id="Provinsi" disabled>
                                         <option selected>Pilih...</option>
                                       </select>
                                       <br>
                                       <h4><label class="my-1 mr-2" for="kota">Kota/Kab</label></h4>
-                                      <select class="custom-select my-1 mr-sm-2" id="kota" disabled>
+                                      <select class="custom-select my-1 mr-sm-2" id="Kota" disabled>
                                         <option selected>Pilih...</option>
                                       </select>
                               </div>
@@ -124,7 +124,10 @@
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save</button>
+                          <button type="button" class="btn btn-primary btn-lg" id="submitRiwayatPenyakit">
+                              <a>Simpan</a>
+                              <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
+                          </button>
                         </div>
     
                     </div>
