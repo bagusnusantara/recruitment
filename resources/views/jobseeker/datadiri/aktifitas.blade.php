@@ -28,7 +28,7 @@
                     @foreach ($dataUserSt['PengalamanOrganisasi'] as $key=>$item)
                     <tr>
                         <th width="5%"><h4>{{$key+1}}</h4></th>
-                        <th><h4>Organisasi</h4>{{$item->organisasi}}</th>
+                        <th><h4>{{$item->organisasi}}</h4></th>
                         <th><h4>{{$item->tanggal_mulai}}</h4></th>
                         <th><h4>{{$item->tanggal_akhir}}</h4></th>
                         <th><h4>{{$item->tempat}}</h4></th>
@@ -58,22 +58,22 @@
                                 <div class="item">
                                     <div class="form-group">
                                         <h4><label for="Organisasi">Organisasi</label></h4>
-                                        <input type="text" class="form-control" id="Organisasi" placeholder="Masukan Nama Organisasi">
+                                        <input type="text" class="form-control" id="Organisasi" placeholder="Masukan nama organisasi">
                                     </div>
                                     <div class="form-group">
                                         <h4>Periode</h4>
                                         <label for="tahunmulai">Mulai</label>
-                                        <input type="date" class="form-control" id="TahunMulai" placeholder="Masukan Tahun Mulai">
+                                        <input type="date" class="form-control" id="TahunMulai" placeholder="Masukan tahun mulai">
                                         <label for="tahunakhir">Akhir</label>
-                                        <input type="date" class="form-control" id="TahunAkhir" placeholder="Masukan Tahun Akhir">
+                                        <input type="date" class="form-control" id="TahunAkhir" placeholder="Masukan tahun akhir">
                                     </div>
                                     <div class="form-group">
                                         <h4><label for="Tempat">Tempat</label></h4>
-                                        <input type="text" class="form-control" id="Tempat" placeholder="Masukan Tempat">
+                                        <input type="text" class="form-control" id="Tempat" placeholder="Masukan tempat">
                                     </div>
                                     <div class="form-group">
                                         <h4><label for="Posisi">posisi</label></h4>
-                                        <input type="text" class="form-control" id="Posisi" placeholder="Masukan tempat">
+                                        <input type="text" class="form-control" id="Posisi" placeholder="Masukan posisi">
                                     </div>
                                     <div class="form-group">
                                         <h4><label for="Keterangan">Keterangan</label></h4>

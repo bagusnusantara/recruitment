@@ -142,10 +142,103 @@ $("#submitPengalamanOrganisasi").click(function(e){
     });
 });
 
+$("#submitMinat").click(function(e){
+    e.preventDefault();
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/submitminat",
+        method:"post",
+        data :{
+            id               : $("#minat #Negara").val(),
+            negara           : $("#minat #Negara").val(),
+            provinsi         : $("#minat #Provinsi").val(),
+            kabkota          : $("#minat #Kota").val(),
+            gaji_bulanan     : $("#minat #GajiBulan").val(),
+            bidang_bisnis   : $("#minat #BidangBisnis").val(),
+            lingkungan_kerja : $('#minat #LingkunganKerja').val(),
+            spesialisasi      : $('#minat #Spesialisasi').val(),
+            posisi_kerja     : $('#minat #PosisiKerja').val(),
+            level_jabatan    : $('#minat #LevelJabatan').val(),
+        },
+        success:function(result){
+            console.log(result.success);
+        },
+        beforeSend: function(){
+            // Show image container
+            $("#submitMinat a").each(function(){
+                $(this).text('Unggah Data');
+            });
+            $("#submitMinat #loader").each(function(){
+                $(this).show();
+            });
+        },
+        complete:function(data){
+            // Hide image container
+            $("#submitMinat a").each(function(){
+                $(this).text('Simpan');
+            });
+            $("#submitMinat #loader").each(function(){
+                $(this).hide();
+            });
+        }
+    });
+});
+
+$("#submitRiwayatPekerjaan").click(function(e){
+    e.preventDefault();
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/submitpengalamankerja",
+        method:"post",
+        data :{
+            id               : "",
+            bisnisperusahaan : $("#pekerjaan #BisnisPerusahaan").val(),
+            lokasikerja      : $("#pekerjaan #TempatKerja").val(),
+            tanggal_mulai    : $("#pekerjaan #TahunMulai").val(),
+            tanggal_akhir    : $("#pekerjaan #TahunAkhir").val(),
+            posisi           : $("#pekerjaan #Posisi").val(),
+            bawahan          : $('#pekerjaan #Bawahan').val(),
+            gaji_terakhir    : $('#pekerjaan #GajiTerakhir').val(),
+            jurusan          : $('#pekerjaan #Jurusan').val(),
+            alasan_pindah    : $('#pekerjaan #AlasanPindah').val(),
+            ketarangan       : $('#pekerjaan #Keterangan').val(),
+        },
+        success:function(result){
+            console.log(result.success);
+        },
+        beforeSend: function(){
+            // Show image container
+            $("#submitRiwayatPekerjaan a").each(function(){
+                $(this).text('Unggah Data');
+            });
+            $("#submitRiwayatPekerjaan #loader").each(function(){
+                $(this).show();
+            });
+        },
+        complete:function(data){
+            // Hide image container
+            $("#submitRiwayatPekerjaan a").each(function(){
+                $(this).text('Simpan');
+            });
+            $("#submitRiwayatPekerjaan #loader").each(function(){
+                $(this).hide();
+            });
+        }
+    });
+});
+
 //end submit data
 });
 
 function getst(id,param,selectedTarget){
+    console.log('start');
+    let now = $.now();
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -158,6 +251,7 @@ function getst(id,param,selectedTarget){
             st_id       :param
         },
         success:function(result){
+            console.log($.now()-now);
           for(var item in result.data){
               let option = result.data[item];
               selectedTarget.prop("disabled",false);

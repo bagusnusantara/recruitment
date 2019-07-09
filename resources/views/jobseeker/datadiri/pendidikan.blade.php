@@ -31,7 +31,7 @@
         <br>
         <!--modal pendidikan formal-->
         <form>
-            <div class="modal fade pendidikanformal-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div id="pendidikanformal" class="modal fade pendidikanformal-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-head">
@@ -41,8 +41,8 @@
                     <div class="inner-box" >
                         <div class="item">
                           <div class="form-group">
-                                <h4><label class="my-1 mr-2" for="negara">Tingkat Pendidikan</label></h4>
-                                <select class="custom-select my-1 mr-sm-2" id="negara">
+                                <h4><label class="my-1 mr-2" for="TingkatPendidikan">Tingkat Pendidikan</label></h4>
+                                <select class="custom-select my-1 mr-sm-2" id="TingkatPendidikan">
                                   <option selected value="0">Pilih . . .</option>
                                   @foreach ($st_data["TingkatPendidikan"] as $item)
                                     <option value="{{$item->id}}">{{$item->strata}}</option>    

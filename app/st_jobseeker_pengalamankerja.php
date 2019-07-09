@@ -11,7 +11,7 @@ class st_jobseeker_pengalamankerja extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $fillable = [
-      'user_id','bisnisperusahaan','lokasikerja','tanggal_mulai','tanggal_akhir','posisi','gaji_terakhir','jurusan','alasan_pindah','keterangan'
+      'user_id','bisnisperusahaan','lokasikerja','tanggal_mulai','tanggal_akhir','posisi','bawahan','gaji_terakhir','jurusan','alasan_pindah','keterangan'
       ];
   
     public function user_id(){
@@ -19,7 +19,7 @@ class st_jobseeker_pengalamankerja extends Model
     }
 
     public function st_bisnisperusahaan(){
-      return $this->hasOne('App\Bisnisperusahaan','id','bisnisperusahaan');
+      return $this->hasOne('App\st_Bisnisperusahaan','id','bisnisperusahaan');
     }
     
 }

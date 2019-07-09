@@ -48,6 +48,7 @@ Route::post('jobseeker/datadiri/submitpendidikanbahasa/', 'JobSeekerController@s
 Route::post('jobseeker/datadiri/submitpengalamankerja/', 'JobSeekerController@storeDataPengalamanKerja');
 Route::post('jobseeker/datadiri/submitpengalamanorganisasi/', 'JobSeekerController@storeDataPengalamanOrganisasi');
 Route::post('jobseeker/datadiri/submitriwayatpenyakit/', 'JobSeekerController@storeDataRiwayatPenyakit');
+Route::post('jobseeker/datadiri/submitminat/', 'JobSeekerController@storeDataMinat');
 
 
 Route::get('admin/dashboard', 'AdminController@getDashboard');

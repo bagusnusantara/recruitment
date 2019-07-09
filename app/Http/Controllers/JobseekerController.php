@@ -32,6 +32,7 @@ use App\st_jobseeker_pengalamankerja;
 use App\st_jobseeker_pendidikanformal;
 use App\st_jobseeker_pendidikaninformal;
 use App\st_jobseeker_pendidikanbahasa;
+use App\st_jobseeker_minatkerja;
 
 class JobseekerController extends Controller
 {
@@ -76,6 +77,8 @@ class JobseekerController extends Controller
       //st_jobseeker
       $dataUserSt['RiwayatPenyakit'] = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
       $dataUserSt['PengalamanOrganisasi'] = st_jobseeker_pengalamanorganisasi::where('user_id',$user_id)->get();
+      $dataUserSt['MinatKerja']   = st_jobseeker_minatkerja::where('user_id',$user_id)->get();
+      $dataUserSt['RiwayatKerja'] = st_jobseeker_pengalamankerja::where('user_id',$user_id)->get();
       //st_support data
       $st_data = [];
       $st_data['Idcard'] = st_Idcard::all();
@@ -129,11 +132,21 @@ class JobseekerController extends Controller
 
 
     public function storeDataPengalamanKerja(Request $request){
+      $riwayatKerja = st_jobseeker_pengalamankerja::where('user_id',\Auth::user()->id)
+                                                    ->where('id',$request->id)->first();
+      if($riwayatKerja==null)
+      {
+        $request->request->remove('id');
+        $request->request->add(['user_id'=>\Auth::user()->id]);
+        st_jobseeker_pengalamankerja::create($request->all());
+        return response()->json(["success"=>$request->all()]);
+      }
       return response()->json(["success"=>"data pengalaman kerja recaived"]);
     }
 
     public function storeDataPengalamanOrganisasi(Request $request){
-      $pengalamanOrganisasi = st_jobseeker_pengalamanorganisasi::find($request->id);
+      $pengalamanOrganisasi = st_jobseeker_pengalamanorganisasi:: where('user_id',\Auth::user()->id)
+                                                                  ->where('id',$request->id)->first();
       if($pengalamanOrganisasi==null)
       {
         $request->request->remove('id');
@@ -146,7 +159,8 @@ class JobseekerController extends Controller
 
     public function storeDataRiwayatPenyakit(Request $request){
       
-      $riwayatPenyakit = st_jobseeker_riwayatpenyakit::find($request->id);
+      $riwayatPenyakit = st_jobseeker_riwayatpenyakit:: where('user_id',\Auth::user()->id)
+                                                        ->where('id',$request->id)->first();
       if($riwayatPenyakit==null)
       {
         $request->request->remove('id');
@@ -155,6 +169,20 @@ class JobseekerController extends Controller
         return response()->json(["success"=>$request->all()]);
       }
 
+      return response()->json(["success"=>$request->all()]);
+    }
+
+    public function storeDataMinat(Request $request){
+      
+      $dataMinat = st_jobseeker_minatkerja::where('user_id',\Auth::user()->id)
+                                            ->where('id',$request->id)->first();
+      if($dataMinat==null)
+      {
+         $request->request->remove('id');
+         $request->request->add(['user_id'=>\Auth::user()->id]);
+         st_jobseeker_minatkerja::create($request->all());        
+         return response()->json(["success"=>$request->all()]);
+       }
       return response()->json(["success"=>$request->all()]);
     }
 

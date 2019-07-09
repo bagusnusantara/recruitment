@@ -30,9 +30,9 @@
 
 <!-- Job Browse Section Start -->
 <div class="section">
-  <div class="ml-auto mr-auto"style="width:80vw;">
+  <div class="mr-auto">
     <div class="row">
-      <div class="col-lg-3 col-md-4 col-xs-12">
+      <div class="ml-5 mr-5 col-lg-2 col-md-4 col-xs-12">
         <div class="right-sideabr">
           <h4>Data Diri</h4>
           <ul id="tab" class="list-item">
