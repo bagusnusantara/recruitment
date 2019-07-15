@@ -69,9 +69,9 @@
                                 <div class="form-group">
                                       <h4>Periode</h4>
                                       <label for="TahunMulai">Mulai</label>
-                                      <input type="date" class="form-control" id="TahunMulai" placeholder="Masukan Tahun Mulai">
+                                      <input type="month" class="form-control" id="TahunMulai" placeholder="Masukan Tahun Mulai">
                                       <label for="TahunAkhir">Akhir</label>
-                                      <input type="date" class="form-control" id="TahunAkhir" placeholder="Masukan Tahun Akhirs">
+                                      <input type="month" class="form-control" id="TahunAkhir" placeholder="Masukan Tahun Akhirs">
                                 </div>
                                 <div class="form-group">
                                       <h4><label for="Posisi">Posisi</label></h4>
