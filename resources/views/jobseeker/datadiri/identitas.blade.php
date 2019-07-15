@@ -140,7 +140,7 @@
     </form>
     <div class="item">
       <div class="mr-0">
-        <button type="button" class="btn btn-secondary btn-lg" width='20px' height='20px'>Reset</button>
+        <!--button type="button" class="btn btn-secondary btn-lg" width='20px' height='20px'>Reset</button -->
         <button type="button" class="btn btn-primary btn-lg" id="submitIdentitas">
           <a>Simpan</a>
           <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">

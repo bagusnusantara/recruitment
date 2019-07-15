@@ -36,9 +36,20 @@ Route::get('jobseeker/riwayattes', 'JobSeekerController@getRiwayattes');
 Route::get('jobseeker/lowonganpekerjaan', 'JobSeekerController@getLowonganpekerjaan');
 //data diri
 Route::get('jobseeker/datadiri/', 'JobSeekerController@showDataDiri');
-Route::post('jobseeker/datadiri/submitdatadiri/', 'JobSeekerController@storeDataDiri');
-//st
+
+//support ajax 
 Route::post('jobseeker/datadiri/getst/', 'JobSeekerController@getSt');
+
+//store and uupdate data jobseeker
+Route::post('jobseeker/datadiri/submitdatadiri/', 'JobSeekerController@storeDataDiri');
+Route::post('jobseeker/datadiri/submitpendidikanformal/', 'JobSeekerController@storeDataPendidikanFormal');
+Route::post('jobseeker/datadiri/submitpendidikaninformal/', 'JobSeekerController@storeDataPendidikanInformal');
+Route::post('jobseeker/datadiri/submitpendidikanbahasa/', 'JobSeekerController@storeDataPendidikanBahasa');
+Route::post('jobseeker/datadiri/submitpengalamankerja/', 'JobSeekerController@storeDataPengalamanKerja');
+Route::post('jobseeker/datadiri/submitpengalamanorganisasi/', 'JobSeekerController@storeDataPengalamanOrganisasi');
+Route::post('jobseeker/datadiri/submitriwayatpenyakit/', 'JobSeekerController@storeDataRiwayatPenyakit');
+Route::post('jobseeker/datadiri/submitminat/', 'JobSeekerController@storeDataMinat');
+
 
 Route::get('admin/dashboard', 'AdminController@getDashboard');
 Route::get('admin/notifikasi', 'AdminController@getNotifikasi');

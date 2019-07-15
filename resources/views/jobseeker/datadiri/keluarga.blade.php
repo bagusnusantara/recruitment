@@ -8,17 +8,17 @@
           <!--keluarga-->
             <div class="form-group">
             <form id="statusperkawinan">
-              <h4><label class="my-1 mr-2" for="status">Status Perkawinan</label></h4>
-              <select class="custom-select my-1 mr-sm-2" id="status">
+              <h4><label class="my-1 mr-2" for="StatusKeluarga">Status Perkawinan</label></h4>
+              <select class="custom-select my-1 mr-sm-2" id="StatusKeluarga">
                   <option {{(!isset($dataUser->status_keluarga) || $dataUser->status_keluarga == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
-                  @foreach ($st_data["StatusKeluarga"] as $item)
-                    <option value="{{$item->id}}" {{($dataUser->status_keluarga == $item->id)? "selected" : ""}}>{{$item->status}}</option>    
-                  @endforeach
+                  <option {{($dataUser->status_keluarga=='Lajang')? "selected" : ""}} value="1">Lajang</option>
+                  <option {{($dataUser->status_keluarga=='Menikah')? "selected" : ""}} value="2">Menikah</option>
+                  <option {{($dataUser->status_keluarga=='Sudah Bercerai')? "selected" : ""}} value="3">Sudah Bercerai</option>
               </select>
             </div>
             <div class="form-group">
-                <h4><label class="my-1 mr-2" for="statustahun">Sejak</label></h4>
-                <input type="date" class="form-control" id="statustahun" placeholder="Sejak Tahun" readonly >
+                <h4><label class="my-1 mr-2" for="TanggalKeluarga">Sejak</label></h4>
+                <input type="month" class="form-control" id="TanggalKeluarga" placeholder="Sejak Tahun" {{(!isset($dataUser->tanggal_keluarga) || $dataUser->tanggal_keluarga == "" )? "disabled" : ""}}  value="{{$dataUser->tanggal_keluarga}}">
             </div>
         </form>
           <!--keluarga end-->
@@ -26,19 +26,22 @@
               </div>
     <div class="item">
     <div class="mr-0">
-        <button type="button" class="btn btn-secondary btn-lg">Reset</button>
-        <button type="button" class="btn btn-primary btn-lg">Simpan</button>
+        <!--button type="button" class="btn btn-secondary btn-lg" width='20px' height='20px'>Reset</button -->
+        <button type="button" class="btn btn-primary btn-lg" id="submitIdentitas">
+          <a>Simpan</a>
+          <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
+        </button>
     </div>
     </div>
   </div>
     <script>
 
-        $("#statusperkawinan #status").change(function(){
+        $("#statusperkawinan #StatusKeluarga").change(function(){
             if(this.value==1 || this.value==0){
-                $("#statustahun").prop("readonly", true);
-                $("#statustahun").val('');
+                $("#TanggalKeluarga").prop("disabled", true);
+                $("#TanggalKeluarga").val('');
             }else{
-                $("#statustahun").prop("readonly", false);
+                $("#TanggalKeluarga").prop("disabled", false);
             }
         });
     </script>

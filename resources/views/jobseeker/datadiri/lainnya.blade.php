@@ -15,7 +15,16 @@
                         <th><h4>Pengaruh</h4></th>
                         <th width="10%"><h4>Option</h4></th>
                     </tr>
-                    <tr>
+                    @foreach ($dataUserSt['RiwayatPenyakit'] as $key=>$item)
+                      <tr>
+                        <th width="5%"><h4>{{$key+1}}</h4></th>
+                        <th><h4>{{$item->nama_penyakit}}</h4></th>
+                        <th><h4>{{$item->tanggal_mulai}}</h4></th>
+                        <th><h4>{{$item->tanggal_akhir}}</h4></th>
+                        <th><h4>{{$item->pengaruh}}</h4></th>
+                        <th width="10%"><h4>Option</h4></th>
+                      <tr>
+                    @endforeach
                       <th scope="row" colspan="7" class="th-button">
                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".lainnya-modal">
                           <i class="fa fa-plus"></i>Tambah</button>  
@@ -24,8 +33,8 @@
                 </table>
                 <br>
                 <div class="form-group">
-                  <h4><label class="my-1 mr-2" for="survey">Mengetahui informasi PT Selaras Mitra Integra dari :</label></h4>
-                  <select class="custom-select my-1 mr-sm-2" id="survey">
+                  <h4><label class="my-1 mr-2" for="SurveyReferensi">Mengetahui informasi PT Selaras Mitra Integra dari :</label></h4>
+                  <select class="custom-select my-1 mr-sm-2" id="SurveyReferensi">
                     <option {{(!isset($dataUser->referensi_dari) || $dataUser->referensi_dari=='0')? "selected" : ""}} value="0">Pilih . . .</option>
                     <option {{( $dataUser->referensi_dari=='Radio' )? "selected" : ""}} value="1">Radio</option>
                     <option {{( $dataUser->referensi_dari=='Majalah,Koran' )? "selected" : ""}} value="2">Majalah,Koran</option>
@@ -42,32 +51,35 @@
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-head">
-                              <h3 class="modal-title ml-4 mt-3">Data Minat</h3>
+                              <h3 class="modal-title ml-4 mt-3">Riwayat Penyakit</h3>
                           </div>
                           <div class="modal-body">
                             <div class="inner-box">
                                 <div class="item">
                                     <div class="form-group">
-                                        <h4><label for="organisasi">Jenis Penyakit</label></h4>
-                                        <input type="text" class="form-control" id="organisasi" placeholder="Masukan jenis penyakit">
+                                        <h4><label for="NamaPenyakit">Nama Penyakit</label></h4>
+                                        <input type="text" class="form-control" id="NamaPenyakit" placeholder="Masukan nama penyakit">
                                     </div>
                                     <div class="form-group">
                                         <h4>Lama</h4>
-                                        <label for="tahunmulai">Mulai</label>
-                                        <input type="date" class="form-control" id="tahunmulai" placeholder="Masukan tahun mulai">
-                                        <label for="tahunakhir">Akhir</label>
-                                        <input type="date" class="form-control" id="tahunakhir" placeholder="Masukan tahun akhirs">
+                                        <label for="TahunMulai">Mulai</label>
+                                        <input type="date" class="form-control" id="TahunMulai" placeholder="Masukan tahun mulai">
+                                        <label for="TahunAkhir">Akhir</label>
+                                        <input type="date" class="form-control" id="TahunAkhir" placeholder="Masukan tahun akhirs">
                                     </div>
                                     <div class="form-group">
-                                        <h4><label for="pengaruh">Pengaruh</label></h4>
-                                        <input type="text" class="form-control" id="pengaruh" placeholder="Masukan Penyakit">
+                                        <h4><label for="Pengaruh">Pengaruh</label></h4>
+                                        <input type="text" class="form-control" id="Pengaruh" placeholder="Masukan Penyakit">
                                     </div>
                               </div>
                           </div>
                           </div>
                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">//Tutup</button>
+                              <button type="button" class="btn btn-primary btn-lg" id="submitRiwayatPenyakit">
+                                <a>Simpan</a>
+                                <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
+                              </button>
                             </div>
         
                         </div>
@@ -80,8 +92,11 @@
                   </div>
     <div class="item">
       <div class="mr-0">
-        <button type="button" class="btn btn-secondary btn-lg">Reset</button>
-        <button type="button" class="btn btn-primary btn-lg">Simpan</button>
+        <!--button type="button" class="btn btn-secondary btn-lg" width='20px' height='20px'>Reset</button -->
+        <button type="button" class="btn btn-primary btn-lg" id="submitIdentitas">
+          <a>Simpan</a>
+          <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
+        </button>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
     <div class="item">
       <h3>Pendidikan</h3>
     </div>
-    <div class="inner-box" style="overflow:auto; height:80vh;">
+    <div class="inner-box" >
       <div class="item">
         <!--pendidikan formal-->
         <h4>Pendidikan Formal</h4>
@@ -31,18 +31,18 @@
         <br>
         <!--modal pendidikan formal-->
         <form>
-            <div class="modal fade pendidikanformal-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div id="pendidikanformal" class="modal fade pendidikanformal-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-head">
                       <h3 class="modal-title ml-4 mt-3">Data Pendidikan Formal</h3>
                   </div>
                   <div class="modal-body">
-                    <div class="inner-box" style="overflow:auto; height:80vh;">
+                    <div class="inner-box" >
                         <div class="item">
                           <div class="form-group">
-                                <h4><label class="my-1 mr-2" for="negara">Tingkat Pendidikan</label></h4>
-                                <select class="custom-select my-1 mr-sm-2" id="negara">
+                                <h4><label class="my-1 mr-2" for="TingkatPendidikan">Tingkat Pendidikan</label></h4>
+                                <select class="custom-select my-1 mr-sm-2" id="TingkatPendidikan">
                                   <option selected value="0">Pilih . . .</option>
                                   @foreach ($st_data["TingkatPendidikan"] as $item)
                                     <option value="{{$item->id}}">{{$item->strata}}</option>    
@@ -52,9 +52,9 @@
                         <div class="form-group">
                             <h4>Tahun</h4>
                             <label for="tahunmulai">Mulai</label>
-                            <input type="date" class="form-control" id="tahunmulai" placeholder="YYYY">
+                            <input type="month" class="form-control" id="tahunmulai" placeholder="YYYY">
                             <label for="tahunakhir">Akhir</label>
-                            <input type="date" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
+                            <input type="month" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
                         </div>
                         <div class="form-group">
                               <h4><label for="institusi">Institusi</label></h4>
@@ -131,9 +131,9 @@
                               <div class="form-group">
                                   <h4>Periode</h4>
                                   <label for="tahunmulai">Mulai</label>
-                                  <input type="date"  class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
+                                  <input type="month"  class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
                                   <label for="tahunakhir">Akhir</label>
-                                  <input type="date"  class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
+                                  <input type="month"  class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
                               </div>
                                <div class="form-group">
                                     <h4><label for="tempat">Tempat</label></h4>
@@ -217,8 +217,6 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
                       </div>
 
                   </div>
