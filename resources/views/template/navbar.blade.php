@@ -49,11 +49,28 @@
                 <a href="{{ url('hrd/payroll')}}"><i class="fa fa-money"></i> <span class="nav-label">Generate Payroll</span></a>
             </li>
             <li class="@if(url('/hrd/profil/tentangsaya') == request()->url() or url('jobseeker/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif treeview">
-                <a href="{{ url('hrd/profil/tentangsaya')}}"><i class="fa fa-cog"></i> <span class="nav-label">Setup System</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                  <li class="@if(url('hrd/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('hrd/setup/gajiperlokasi')}}">Gaji per Lokasi</a></li>
-                  <li class="@if(url('hrd/profil/riwayatpendidikan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('hrd/setup/komponengaji')}}">Komponen Gaji</a></li>
-                </ul>
+              <a href="{{ url('hrd/profil/tentangsaya')}}"><i class="fa fa fa-cog"></i> <span class="nav-label">Setup System</span><span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level collapse">
+                  <li>
+                      <a href="#" id="damian">Payroll<span class="fa arrow"></span></a>
+                      <ul class="nav nav-third-level">
+                          <li class="@if(url('hrd/setup/gajiperlokasi') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/gajiperlokasi')}}">Gaji per Lokasi</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/gajiperlokasi') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/gajiperlokasi')}}">Bonus</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/gajiperlokasi') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/gajiperlokasi')}}">THR</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/komponengaji') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/komponengaji')}}">Komponen Gaji</a>
+                          </li>
+
+                      </ul>
+                  </li>
+
+              </ul>
             </li>
             @endcan
             @can('isJobseeker')

@@ -88,3 +88,5 @@ Route::get('hrd/payroll/slipgaji', 'HRDController@getSlipgaji');
 Route::get('hrd/setup/komponengaji', 'HRDController@getKomponengaji');
 Route::get('hrd/setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin/cetak_pkwt', 'AdminController@cetak_pkwt');

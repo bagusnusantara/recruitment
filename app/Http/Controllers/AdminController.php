@@ -4,18 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Gate;
+use App\md_jobseeker;
 use App\md_lowongan_pekerjaan;
 use App\md_client;
 use App\st_Provinsi;
 use App\st_Kabkota;
-<<<<<<< HEAD
 use App\st_Kecamatan;
 use App\st_kategoripekerjaan;
 use App\st_spesialisasipekerjaan;
-=======
 use App\st_kategori_pekerjaan;
 use App\st_spesialisasi_pekerjaan;
->>>>>>> 19b01fd462a55031b64d4c8098a89735be7b364b
 use App\st_lowongan_gaji;
 use App\trans_lowongan_pekerjaan;
 use Alert;
@@ -104,13 +102,10 @@ class AdminController extends Controller
       }
       $md_client=md_client::all();
       $st_lowongan_gaji=st_lowongan_gaji::all();
-<<<<<<< HEAD
       $st_kategori_pekerjaan=st_kategoripekerjaan::all();
       $st_spesialisasi_pekerjaan=st_spesialisasipekerjaan::all();
-=======
       $st_kategori_pekerjaan=st_kategori_pekerjaan::all();
       $st_spesialisasi_pekerjaan=st_spesialisasi_pekerjaan::all();
->>>>>>> 19b01fd462a55031b64d4c8098a89735be7b364b
       $st_alamat_provinsi=st_Provinsi::all();
       $st_alamat_kabkota=st_Kabkota::all();
       return view ('admin.lowongan.create',compact('md_client','st_alamat_kabkota','st_alamat_provinsi','st_lowongan_gaji','st_kategori_pekerjaan','st_spesialisasi_pekerjaan'));
@@ -143,6 +138,13 @@ class AdminController extends Controller
             ->get();
       //dd($sdm);
       return view ('admin.sdm.index',compact('sdm'));
+    }
+
+    public function cetak_pkwt()
+    {
+    	$pegawai = md_jobseeker::all();
+      $pdf = PDF::loadview('pkwt',['pegawai'=>$pegawai]);
+	    return $pdf->stream();
     }
 
     public function createSdm(){

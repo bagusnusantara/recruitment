@@ -94,7 +94,9 @@
                                        <td><center>{{$s->jenis_kelamin}}</center></td>
                                        <td><center>{{$s->alamat}}</center></td>
                                        <td><center>SMA</center></td>
-                                       <td><center>SMA</center></td>
+                                       <td><center>
+                                         <a href="/admin/cetak_pkwt" class="btn btn-primary" target="_blank">CETAK PDF</a>
+                                       </center></td>
                                    </tr>
                                    @endforeach
                                </tbody>
