@@ -12,40 +12,51 @@
           {!!$lowongan->deskripsi_pekerjaan!!}
           <h5>Persyaratan</h5>
           {!!$lowongan->persyaratan!!}
-          <a href="#" class="btn btn-common">Lamar Pekerjaan</a>
+          <br><br>
+          <form method="POST" id="postForm" action="{{url('jobseeker/lamaran/store')}}" class="form-horizontal" enctype="multipart/form-data" onsubmit="return postForm()">
+              @csrf
+                  <div class="form-group">
+                      <div class="col-sm-10"><input type="text" class="form-control" name="users_id" value="{{\Auth::user()->id}}"></div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-sm-10"><input type="text" class="form-control" name="md_lowongan_pekerjaan_id" value="{{$lowongan->id}}"></div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="col-sm-4 col-sm-offset-2">
+                          <button class="btn btn-common" type="submit">Lamar Pekerjaan</button>
+                      </div>
+                  </div>
+            </form>
         </div>
       </div>
       <div class="col-lg-4 col-md-12 col-xs-12">
         <div class="sideber">
           <div class="widghet">
-            <h3>Job Location</h3>
-            <div class="maps">
-              <div id="map" class="map-full">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d405691.57240383344!2d-122.3212843181106!3d37.40247298383319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb68ad0cfc739%3A0x7eb356b66bd4b50e!2sSilicon+Valley%2C+CA%2C+USA!5e0!3m2!1sen!2sbd!4v1538319316724" allowfullscreen=""></iframe>
-              </div>
-            </div>
+            <h3>Lokasi Pekerjaan</h3>
+            <h6>Surabaya</h6>
           </div>
           <div class="widghet">
-            <h3>Share This Job</h3>
+            <h3>Share Pekerjaan Ini</h3>
             <div class="share-job">
               <form method="post" class="subscribe-form">
                 <div class="form-group">
-                  <input type="email" name="Email" class="form-control" placeholder="https://joburl.com" required="">
+                  <input type="email" name="Email" class="form-control" placeholder="{{url()->current()}}" required="">
                   <button type="submit" name="subscribe" class="btn btn-common sub-btn"><i class="lni-files"></i></button>
                   <div class="clearfix"></div>
+                  <br>
                 </div>
               </form>
-              <ul class="mt-4 footer-social">
-                <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
-                <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
-                <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
-                <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
-              </ul>
-              <div class="meta-tag">
-                <span class="meta-part"><a href="#"><i class="lni-star"></i> Write a Review</a></span>
-                <span class="meta-part"><a href="#"><i class="lni-warning"></i> Reports</a></span>
-                <span class="meta-part"><a href="#"><i class="lni-share"></i> Share</a></span>
-              </div>
+               <!--These buttons are created by frinmash.blogspot.com,frinton madtha-->
+               <div id="share-buttons">
+                 <!-- Facebook -->
+                 <a href="https://www.facebook.com/sharer.php?u={{url()->current()}}" target="_blank"><img src="https://4.bp.blogspot.com/-raFYZvIFUV0/UwNI2ek6i3I/AAAAAAAAGSA/zs-kwq0q58E/s1600/facebook.png" alt="Facebook" /></a>
+                 <!-- Twitter -->
+                 <a href="https://twitter.com/share?url={{url()->current()}} Share Buttons" target="_blank"><img src="https://4.bp.blogspot.com/--ISQEurz3aE/UwNI4hDaQMI/AAAAAAAAGS4/ZAgmPiM9Xpk/s1600/twitter.png" alt="Twitter" /></a>
+                 <!-- LinkedIn -->
+                 <a href="https://www.linkedin.com/shareArticle?mini=true&url={{url()->current()}}" target="_blank"><img src="https://2.bp.blogspot.com/-3_cATk7Wlho/UwNI3eoTTLI/AAAAAAAAGSQ/Y8cpq6S-SeQ/s1600/linkedin.png" alt="LinkedIn" /></a>
+                 <!-- Email -->
+                 <a href="mailto:?Subject=LowonganPekerjaan&Body=I%20saw%20this%20and%20thought%20of%20you!%20 {{url()->current()}}"><img src="https://4.bp.blogspot.com/-njgKtNLrPqI/UwNI2o-9WfI/AAAAAAAAGR4/f8da1gBgyLs/s1600/email.png" alt="Email" /></a> </div>
             </div>
           </div>
         </div>

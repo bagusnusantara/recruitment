@@ -76,7 +76,6 @@ class JobseekerController extends Controller
     }
     public function showLowonganpublic($id){
       $lowongan = md_lowongan_pekerjaan::find($id);
-      //$trans_lowongan = trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan->id);
       return view ('jobseeker.dashboard.showpublic',compact('lowongan'));
     }
 
