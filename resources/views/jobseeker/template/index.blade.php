@@ -5,11 +5,8 @@
   </head>
 
   <body>
-
-
     @include('jobseeker/template/header')
     @yield('content')
-
     <!-- Go To Top Link -->
     <a href="#" class="back-to-top">
       <i class="lni-arrow-up"></i>

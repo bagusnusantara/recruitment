@@ -45,6 +45,12 @@ class JobseekerController extends Controller
       $kota_all=st_Kabkota::all();
       return view ('jobseeker.dashboard.index',compact('lowongan_pekerjaan','provinsi','kota_all'));
     }
+    public function getPublic(){
+      $lowongan_pekerjaan=md_lowongan_pekerjaan::paginate(10);
+      $provinsi=st_Provinsi::all();
+      $kota_all=st_Kabkota::all();
+      return view ('jobseeker.dashboard.indexpublic',compact('lowongan_pekerjaan','provinsi','kota_all'));
+    }
     public function getProfil(){
       if(!Gate::allows('isJobseeker')){
           abort(404,"Maaf Anda tidak memiliki akses");
@@ -68,11 +74,16 @@ class JobseekerController extends Controller
       //$trans_lowongan = trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan->id);
       return view ('jobseeker.dashboard.show',compact('lowongan'));
     }
+    public function showLowonganpublic($id){
+      $lowongan = md_lowongan_pekerjaan::find($id);
+      //$trans_lowongan = trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan->id);
+      return view ('jobseeker.dashboard.showpublic',compact('lowongan'));
+    }
 
     //Lamaran Section
     public function showDataDiri(){
 
-      $user_id = \Auth::user()->id;      
+      $user_id = \Auth::user()->id;
       $dataUser = md_jobseeker::find($user_id)->first();
       //st_jobseeker
       $dataUserSt['RiwayatPenyakit'] = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
@@ -112,7 +123,7 @@ class JobseekerController extends Controller
         $response = st_Kecamatan::where('regency_id',$request->st_id)->get();
         return response()->json(['data'=>$response]);
       }
-      
+
     }
 
     public function storeDataDiri(Request $request){
@@ -151,21 +162,21 @@ class JobseekerController extends Controller
       {
         $request->request->remove('id');
         $request->request->add(['user_id'=>\Auth::user()->id]);
-        st_jobseeker_pengalamanorganisasi::create($request->all());        
+        st_jobseeker_pengalamanorganisasi::create($request->all());
         return response()->json(["success"=>$request->all()]);
       }
 
     }
 
     public function storeDataRiwayatPenyakit(Request $request){
-      
+
       $riwayatPenyakit = st_jobseeker_riwayatpenyakit:: where('user_id',\Auth::user()->id)
                                                         ->where('id',$request->id)->first();
       if($riwayatPenyakit==null)
       {
         $request->request->remove('id');
         $request->request->add(['user_id'=>\Auth::user()->id]);
-        st_jobseeker_riwayatpenyakit::create($request->all());        
+        st_jobseeker_riwayatpenyakit::create($request->all());
         return response()->json(["success"=>$request->all()]);
       }
 
@@ -173,14 +184,14 @@ class JobseekerController extends Controller
     }
 
     public function storeDataMinat(Request $request){
-      
+
       $dataMinat = st_jobseeker_minatkerja::where('user_id',\Auth::user()->id)
                                             ->where('id',$request->id)->first();
       if($dataMinat==null)
       {
          $request->request->remove('id');
          $request->request->add(['user_id'=>\Auth::user()->id]);
-         st_jobseeker_minatkerja::create($request->all());        
+         st_jobseeker_minatkerja::create($request->all());
          return response()->json(["success"=>$request->all()]);
        }
       return response()->json(["success"=>$request->all()]);

@@ -21,8 +21,12 @@ Route::get('/jobsingle', function () {
     return view('job_single');
 });
 Auth::routes();
-
+//Registrasi Recruitment 
+Route::get('jobseeker/public', 'JobSeekerController@getPublic');
 Route::get('jobseeker/dashboard', 'JobSeekerController@getDashboard');
+Route::get('/jobseeker/dashboard/show/{id}', 'JobSeekerController@showLowongan');
+Route::get('/jobseeker/dashboard/showpublic/{id}', 'JobSeekerController@showLowonganpublic');
+
 Route::get('jobseeker/profil/', 'JobSeekerController@getProfil');
 Route::get('jobseeker/profil/edit/{id}', 'JobSeekerController@editProfil');
 Route::get('jobseeker/profil/riwayatpekerjaan', 'JobSeekerController@getRiwayatpekerjaan');
@@ -37,7 +41,7 @@ Route::get('jobseeker/lowonganpekerjaan', 'JobSeekerController@getLowonganpekerj
 //data diri
 Route::get('jobseeker/datadiri/', 'JobSeekerController@showDataDiri');
 
-//support ajax 
+//support ajax
 Route::post('jobseeker/datadiri/getst/', 'JobSeekerController@getSt');
 
 //store and uupdate data jobseeker
@@ -89,7 +93,6 @@ Route::get('client/orderlayanan/create', 'ClientController@createOrderlayanan');
 Route::get('client/datakaryawan/create', 'ClientController@createDatakaryawan');
 
 Route::post('/admin/lowonganpekerjaan/store', 'AdminController@storeLowogan');
-Route::get('/jobseeker/dashboard/show/{id}', 'JobSeekerController@showLowongan');
 Route::post('/jobseeker/lamaran/store', 'JobSeekerController@storeLamaran');
 Route::get('/admin/lowongan/show/{id}', 'AdminController@showLowongan');
 

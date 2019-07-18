@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="main-navbar">
           <ul class="navbar-nav mr-auto w-100 justify-content-end">
             <li class="nav-item">
-              <a class="nav-link" href="{{url('lowonganpublic')}}">
+              <a class="nav-link" href="{{url('jobseeker/dashboard')}}">
                 Lowongan Pekerjaan
               </a>
             </li>
@@ -36,7 +36,7 @@
                 <li><a class="dropdown-item" href="job-details.html">Job Details</a></li>
               </ul>
             </li>
-            
+
             <li>
               <a class="nav-link" href="">
                 Welcome {{ Auth::user()->name }} !
