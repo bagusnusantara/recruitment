@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Gate;
+use App\User;
 use App\md_jobseeker;
 use App\md_lowongan_pekerjaan;
 use App\md_client;
@@ -158,7 +159,8 @@ class AdminController extends Controller
       if(!Gate::allows('isAdmin')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
-      return view ('admin.manajemenuser.index');
+      $user=User::all();
+      return view ('admin.manajemenuser.index',compact('user'));
     }
 
     public function createManajemenuser(){

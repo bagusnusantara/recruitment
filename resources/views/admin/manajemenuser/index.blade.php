@@ -45,9 +45,6 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <div class="text-right">
-                            <a class="btn btn-primary" href="{{url('admin/lowongan/create')}}">Tambah User</a>
-                        </div>
                         <input type="text" class="form-control input-sm m-b-xs" id="filter"
                                placeholder="Pencarian">
 
@@ -66,10 +63,12 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($user as $u)
+                            @endforeach
                             <tr class="gradeX">
                                 <td>1</td>
                                 <td>9812131414</td>
-                                <td>Andi Kurnia</td>
+                                <td>{{$u->name}}</td>
                                 <td class="center">Jalan Ketintang 192 Surabaya</td>
                                 <td class="center">Laki-laki</td>
                                 <td class="center">Marketing</td>
