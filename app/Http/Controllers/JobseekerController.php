@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Gate;
+use Alert;
+//---=main data
 use App\md_lowongan_pekerjaan;
 use App\md_jobseeker;
 use App\trans_lowongan_pekerjaan;
-use Alert;
 //---- st
 use App\st_Negara;
 use App\st_Provinsi;
@@ -66,14 +67,6 @@ class JobseekerController extends Controller
       return view ('jobseeker.notifikasi.index');
     }
 
-    public function showLowongan($id){
-      if(!Gate::allows('isJobseeker')){
-          abort(404,"Maaf Anda tidak memiliki akses");
-      }
-      $lowongan = md_lowongan_pekerjaan::find($id);
-      //$trans_lowongan = trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan->id);
-      return view ('jobseeker.dashboard.show',compact('lowongan'));
-    }
     public function showLowonganpublic($id){
       $lowongan = md_lowongan_pekerjaan::find($id);
       return view ('jobseeker.dashboard.showpublic',compact('lowongan'));
@@ -103,13 +96,14 @@ class JobseekerController extends Controller
     public function showDataDiri(){
 
       $user_id = \Auth::user()->id;
-      //$dataUser = md_jobseeker::find($user_id)->first();
-      $dataUser = md_jobseeker::where('users_id',$user_id)->get();
+      $dataUser = md_jobseeker::where('users_id',$user_id)->first();
+
       //st_jobseeker
       $dataUserSt['RiwayatPenyakit'] = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
       $dataUserSt['PengalamanOrganisasi'] = st_jobseeker_pengalamanorganisasi::where('user_id',$user_id)->get();
       $dataUserSt['MinatKerja']   = st_jobseeker_minatkerja::where('user_id',$user_id)->get();
       $dataUserSt['RiwayatKerja'] = st_jobseeker_pengalamankerja::where('user_id',$user_id)->get();
+
       //st_support data
       $st_data = [];
       $st_data['Idcard'] = st_Idcard::all();
@@ -129,27 +123,13 @@ class JobseekerController extends Controller
       return view('jobseeker.datadiri.index',compact('st_data','dataUser','dataUserSt'));
     }
 
-    public function getSt(Request $request){
-
-      if($request->st_category==  "Negara"){
-        $response = st_Provinsi::where('country_id',$request->st_id)->get();
-        return response()->json(['data'=>$response]);
-      }
-      else if($request->st_category==  "Provinsi"){
-        $response = st_Kabkota::where('province_id',$request->st_id)->get();
-        return response()->json(['data'=>$response]);
-      }
-      else if($request->st_category==  "Kota"){
-        $response = st_Kecamatan::where('regency_id',$request->st_id)->get();
-        return response()->json(['data'=>$response]);
-      }
-
-    }
-
     public function storeDataDiri(Request $request){
       $dataUser = md_jobseeker::find(\Auth::user())->first();
-      $dataUser->update($request->all());
-
+      try {
+        $dataUser->update($request->all());
+      } catch (\Throwable $th) {
+        return response()->json(["success"=>$th]);
+      }
       return response()->json(["success"=>"data retraived"]);
     }
 
@@ -196,8 +176,11 @@ class JobseekerController extends Controller
       {
         $request->request->remove('id');
         $request->request->add(['user_id'=>\Auth::user()->id]);
+        $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
+        $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
+        return response()->json(['success'=>$request->all()]);
         st_jobseeker_pengalamanorganisasi::create($request->all());
-        return response()->json(["success"=>$request->all()]);
+        
       }
 
     }
@@ -230,8 +213,43 @@ class JobseekerController extends Controller
        }
       return response()->json(["success"=>$request->all()]);
     }
+    //Pelamaran Lowongan
+    public function showLowongan($id){
+      if(!Gate::allows('isJobseeker')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $lowongan = md_lowongan_pekerjaan::find($id);
+      $transLowongan = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$id)
+                      ->where('users_id',\Auth::user()->id)
+                      ->first();
+      $status = ($transLowongan==null)?false:true;
+      
+      //$trans_lowongan = trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan->id);
+      return view ('jobseeker.dashboard.show',compact('lowongan','id','status'));
+    }
 
+    public function subscribeLamaran(Request $request){
+      $userId = \Auth::user()->id;
+      $status = false;
+      $transLowongan = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$request->jobid)
+                      ->where('users_id',$userId)
+                      ->first();
 
+      if($transLowongan!=null){
+        $transLowongan->delete();
+        $transLowongan->md_lowongan_pekerjaan = $request->jobid;
+        $transLowongan->users_id = $userId;
+      }
+      else{
+        $account = new trans_lowongan_pekerjaan;
+        $account->users_id = $userId;
+        $account->md_lowongan_pekerjaan_id = $request->jobid;
+        $account->save();
+        $status = true;
+      }
+
+      return redirect()->back()->with(compact('status'));
+    }
 
     public function storeLamaran(Request $request){
       $this->validate($request,[
@@ -246,6 +264,4 @@ class JobseekerController extends Controller
         Alert::success('Lowongan Pekerjaan berhasil terkirim');
         return redirect()->back()->with('successMsg','Slider Successfully Saved');
     }
-
-
 }

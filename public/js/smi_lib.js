@@ -1,5 +1,6 @@
-//identitas
 $(document).ready(function(){
+//document onload
+identitasValidate();
 $("button#submitIdentitas").each(function(){
         $(this).click(function(e){
             e.preventDefault();
@@ -232,8 +233,7 @@ $("#submitRiwayatPekerjaan").click(function(e){
         }
     });
 });
-
-//end submit data
+//end document ready
 });
 
 function getst(id,param,selectedTarget){
@@ -244,7 +244,7 @@ function getst(id,param,selectedTarget){
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
         } });
     $.ajax({
-        url:"/jobseeker/datadiri/getst",
+        url:"/support/getst/",
         method:"post",
         data :{
             st_category : id,
@@ -378,3 +378,5 @@ function remnotif(parent){
 $('.modal').on('shown.bs.modal', function () {
     $('html,body').animate({ scrollTop: 0 }, '500');
 })
+
+

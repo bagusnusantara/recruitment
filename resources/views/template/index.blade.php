@@ -12,5 +12,6 @@
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         @include('sweet::alert')
     </div>
+    @yield('script')
 </body>
 </html>

@@ -16,6 +16,7 @@ use App\st_spesialisasipekerjaan;
 use App\st_spesialisasi_pekerjaan;
 use App\st_lowongan_gaji;
 use App\trans_lowongan_pekerjaan;
+use App\st_Negara;
 use Alert;
 use Excel;
 use PDF;
@@ -57,7 +58,7 @@ class AdminController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       $lowongan_pekerjaan=md_lowongan_pekerjaan::find($id);
-      //$pendaftar=trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan_pekerjaan->id);
+      
       $pendaftar=DB::table('trans_lowongan_pekerjaan')
                      ->join('md_jobseeker', 'trans_lowongan_pekerjaan.users_id', '=', 'md_jobseeker.users_id')
                      ->select('trans_lowongan_pekerjaan.*', 'md_jobseeker.nama_lengkap','md_jobseeker.nik')
@@ -68,6 +69,7 @@ class AdminController extends Controller
                   ->select('st_lowongan_gaji.deskripsi')
                   ->where('md_lowongan_pekerjaan.id',$lowongan_pekerjaan->id)
                   ->get();
+      
       return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar','detail'));
     }
 
@@ -93,7 +95,8 @@ class AdminController extends Controller
     }
 
     public function showPenilaian(){
-      return view ('admin.lowongan.show_penilaian');
+      $status = [0,1,1,1,1];
+      return view ('admin.lowongan.show_penilaian',compact('status'));
     }
 
     public function createLowongan(){
@@ -104,9 +107,8 @@ class AdminController extends Controller
       $st_lowongan_gaji=st_lowongan_gaji::all();
       $st_kategori_pekerjaan=st_Kategoripekerjaan::all();
       $st_spesialisasi_pekerjaan=st_spesialisasipekerjaan::all();
-      $st_alamat_provinsi=st_Provinsi::all();
-      $st_alamat_kabkota=st_Kabkota::all();
-      return view ('admin.lowongan.create',compact('md_client','st_alamat_kabkota','st_alamat_provinsi','st_lowongan_gaji','st_kategori_pekerjaan','st_spesialisasi_pekerjaan'));
+      $st_negara = st_Negara::all();
+      return view ('admin.lowongan.create',compact('md_client','st_negara','st_lowongan_gaji','st_kategori_pekerjaan','st_spesialisasi_pekerjaan'));
     }
 
     public function getKlien(){
@@ -175,17 +177,12 @@ class AdminController extends Controller
     }
 
     public function storeLowogan(Request $request){
-      $this->validate($request,[
-            // 'nama_alat' => 'required',
-            // 'jenis_alat' => 'required',
-            // 'jumlah' => 'required',
-            // 'status_kepemilikan' => 'required',
-            // 'status_kelaikan' => 'required'
-        ]);
         $lowongan = md_lowongan_pekerjaan::create($request->all());
         $lowongan->save();
+        dd($lowongan);
         Alert::success('Data berhasil tersimpan !');
         return redirect('admin/lowongan')->with('successMsg','Slider Successfully Saved');
     }
 
+    
 }

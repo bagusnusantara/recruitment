@@ -15,4 +15,9 @@ class trans_lowongan_pekerjaan extends Model
       'md_lowongan_pekerjaan_id','users_id','status'
     ];
 
+  const CREATED_AT = 'entry_date';
+
+  public function MD_Pelamar(){
+    return $this->hasOne('App\User','id','users_id');
+  }
 }

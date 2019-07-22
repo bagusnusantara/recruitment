@@ -12,7 +12,7 @@
             <span class="lni-menu"></span>
             <span class="lni-menu"></span>
           </button>
-          <a href="index.html" class="navbar-brand"><img src="{{asset('jobx/assets/img/logo.png') }}" alt=""></a>
+        <a href="{{route('JobseekerPublic')}}" class="navbar-brand"><img src="{{asset('jobx/assets/img/logo.png') }}" alt=""></a>
         </div>
         <div class="collapse navbar-collapse" id="main-navbar">
           <ul class="navbar-nav mr-auto w-100 justify-content-end">

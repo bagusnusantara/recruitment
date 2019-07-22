@@ -13,9 +13,9 @@ class st_Provinsi extends Model
 
   protected $guarded = ['id','name','country_id'];
   public function kabkota(){
-        return $this->hasMany('App\st\Kabkota');
+        return $this->hasMany('App\st\Kabkota','id');
   }
   public function negara(){
-        return $this->belongsTo('App\st\Negara');
+        return $this->belongsTo('App\st\Negara','id','coutry_id');
   }
 }

@@ -45,8 +45,10 @@
                             Seleksi Penerimaan Karyawan
                         </h2>
 
+                        <div class="row">
                         <form id="form" action="#" class="wizard-big">
-                            <h1>Administrasi</h1>
+                            @if($status[0])
+                            <h1 class='col'>Administrasi</h1>
                             <fieldset>
                                 <h2>Seleksi Administrasi</h2>
                                 <div class="row">
@@ -72,7 +74,8 @@
                                     </div>
                                 </div>
                             </fieldset>
-                            <h1>Walk in Interview</h1>
+                            @endif
+                            <h1 class="col">Walk in Interview</h1>
                             <fieldset>
                                 <h2>Seleksi Walk in Interview</h2>
                                 <div class="row">
@@ -99,7 +102,7 @@
                                 </div>
                             </fieldset>
 
-                            <h1>TKD</h1>
+                            <h1 class='col'>TKD</h1>
                             <fieldset>
                               <div class="row">
                                   <div class="col-lg-2">
@@ -156,7 +159,7 @@
                               </div>
                             </fieldset>
 
-                            <h1>Psikotes</h1>
+                            <h1 class='col'>Psikotes</h1>
                             <fieldset>
                                 <h2>Hasil Seleksi Psikotes</h2>
                                 <div class="row">
@@ -214,6 +217,7 @@
                                 </div>
                             </fieldset>
                         </form>
+                        </div>
                     </div>
                 </div>
                 </div>

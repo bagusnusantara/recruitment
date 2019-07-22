@@ -63,6 +63,7 @@
                             <div class="form-group"><label class="col-sm-2 control-label">Kategori Pekerjaan</label>
                                 <div class="col-sm-10">
                                     <select class="form-control m-b" name="st_kategori_pekerjaan">
+                                      <option value="0">Pilih ... </option>
                                       @foreach($st_kategori_pekerjaan as $kategori)
                                       <option value="{{$kategori->id}}">{{$kategori->deskripsi}}</option>
                                       @endforeach
@@ -72,30 +73,37 @@
                             <div class="form-group"><label class="col-sm-2 control-label">Spesialisasi Pekerjaan</label>
                                 <div class="col-sm-10">
                                     <select class="form-control m-b" name="st_spesialisasi_pekerjaan">
+                                      <option value="0" selected>Pilih ... </option>
                                       @foreach($st_spesialisasi_pekerjaan as $spesialisasi)
-                                      <option value="{{$spesialisasi->id}}">{{$spesialisasi->deskripsi}}</option>
+                                      <option value="{{$spesialisasi->id}}">{{$spesialisasi->spesial}}</option>
                                       @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group"><label class="col-sm-2 control-label">Provinsi</label>
+                            <div class="form-group"><label class="col-sm-2 control-label" for="Negara">Negara</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control m-b" name="st_alamat_provinsi">
-                                      @foreach($st_alamat_provinsi as $provinsi)
-                                      <option value="{{$provinsi->id_provinsi}}">{{$provinsi->deskripsi}}</option>
+                                    <select class="form-control m-b custom-select my-1 mr-sm-2" id="Negara" name="Negara">
+                                      <option value="0">Pilih . . .</option>
+                                      @foreach ($st_negara as $item)
+                                      <option value="{{$item->id}}">{{$item->negara}}</option>    
                                       @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group"><label class="col-sm-2 control-label">Kabupaten/Kota</label>
+                            <div class="form-group"><label class="col-sm-2 control-label" for="Provinsi" >Provinsi</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control m-b" name="st_alamat_kabkota">
-                                      @foreach($st_alamat_kabkota as $kabkota)
-                                      <option value="{{$kabkota->id}}">{{$kabkota->deskripsi}}</option>
-                                      @endforeach
+                                    <select class="form-control custom-select my-1 mr-sm-2" id="Provinsi" name="Provinsi" disabled>
+                                        <option value="0">Pilih . . .</option>
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group"><label class="col-sm-2 control-label" for="Kota">Kota</label>
+                                <div class="col-sm-10">
+                                  <select class="form-control custom-select my-1 mr-sm-2" id="Kota" name="Kota" disabled>
+                                      <option value="0">Pilih . . .</option>
+                                  </select>
+                                </div>
+                             </div>
                             <div class="form-group" id="data_1">
                                 <label class="col-sm-2 control-label">Start Date</label>
                                 <div class="input-group date">
@@ -125,17 +133,16 @@
                                         </p>
                                      </fieldset>
                             </div>
-                            <div class="form-group"><label class="col-sm-2 control-label">Komposisi Tes</label>
-                                    <div class="col-sm-10">
-                                        <div><label> <input type="checkbox" value="">Psikotes</label></div>
-                                    </div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label">Komposisi Tes</label>
-
-                                    <div class="col-sm-10">
-                                        <div class="i-checks"><label> <input type="checkbox" value="" name="st_psikotes"> <i></i> Psikotes</label></div>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Komposisi Tes</label>
+                                <div class="col-sm-10">
+                                    <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_administrasi"> <i></i> Administrasi</label></div>
+                                    <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_interview_walk"> <i></i> Walk in Interview</label></div>
+                                    <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_psikotes"> <i></i> Psikotes</label></div>
+                                    <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_interview_regular"> <i></i>Interview Regular</label></div>
+                                    <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_interview_user"> <i></i>Interview User/HR</label></div>
                                 </div>
+                            </div>
 
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
@@ -210,6 +217,69 @@
                 });
             });
         </script>
-
-
 @endsection
+
+@section('script')
+    <script>
+    function getst(id,param,selectedTarget){
+        console.log('start');
+        let now = $.now();
+        $.ajaxSetup({
+            headers:{
+            'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+            } });
+        $.ajax({
+            url:"/support/getst/",
+            method:"post",
+            data :{
+                st_category : id,
+                st_id       :param
+            },
+            success:function(result){
+                console.log($.now()-now);
+            for(var item in result.data){
+                let option = result.data[item];
+                selectedTarget.prop("disabled",false);
+                selectedTarget.append($('<option>',{
+                    value : option.id,
+                    text  : option.name
+                    }));
+            }
+                
+            }
+        });
+    };
+
+    $("#Negara").change(function(){
+        $("#Provinsi").find('option').remove().end();
+        $("#Provinsi").append($('<option>',{
+            value : "0",
+            text  : "Pilih . . ."
+        }));
+        if(this.value==0){
+            $("#Provinsi").prop("disabled",true);
+            $("#Kota").prop("disabled",true);
+            $("#Kecamatan").prop("disabled",true);
+        }
+       else
+            getst("Negara",$("#Negara > option:selected").val(),$("#Provinsi"));
+    });
+    
+    $("#Provinsi").change(function(){
+        $("#Kota").find('option').remove().end();
+        $("#Kota").append($('<option>',{
+            value : "0",
+            text  : "Pilih . . ."
+        }));
+    
+        if(this.value==0){
+            $("#Kota").prop("disabled",true);
+            $("#Kecamatan").prop("disabled",true);
+        }
+        else
+             getst("Provinsi",$("#Provinsi > option:selected").val(),$("#Kota"));
+     });
+    
+</script>
+@endsection
+

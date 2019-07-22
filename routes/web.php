@@ -23,10 +23,11 @@ Route::get('/jobsingle', function () {
 Auth::routes();
 //Registrasi Recruitment
 Route::get('jobseeker/public', 'JobSeekerController@getPublic');
-Route::get('jobseeker/dashboard', 'JobSeekerController@getDashboard');
+Route::get('jobseeker/dashboard', 'JobSeekerController@getDashboard')->name('JobseekerPublic');
 Route::get('/jobseeker/dashboard/show/{id}', 'JobSeekerController@showLowongan');
 Route::get('/jobseeker/dashboard/showpublic/{id}', 'JobSeekerController@showLowonganpublic');
 Route::post('/jobseeker/lamaran/store', 'JobSeekerController@storeLamaran');
+Route::post('/jobseeker/lamaran/subscribe','JobSeekerController@subscribeLamaran')->name('subscribe');
 
 Route::get('jobseeker/profil/', 'JobSeekerController@getProfil');
 Route::get('jobseeker/profil/edit/{id}', 'JobSeekerController@editProfil');
@@ -43,7 +44,7 @@ Route::get('jobseeker/lowonganpekerjaan', 'JobSeekerController@getLowonganpekerj
 Route::get('jobseeker/datadiri/', 'JobSeekerController@showDataDiri');
 Route::get('jobseeker/datadiri/insert', 'JobSeekerController@insertDataDiri');
 //support ajax
-Route::post('jobseeker/datadiri/getst/', 'JobSeekerController@getSt');
+Route::post('support/getst/', 'SupportController@getSt');
 
 //store and uupdate data jobseeker
 Route::post('jobseeker/datadiri/submitdatadiriawal/', 'JobSeekerController@storeDataDiriAwal');

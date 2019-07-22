@@ -13,18 +13,16 @@
           <h5>Persyaratan</h5>
           {!!$lowongan->persyaratan!!}
           <br><br>
-          <form method="POST" id="postForm" action="{{url('jobseeker/lamaran/store')}}" class="form-horizontal" enctype="multipart/form-data" onsubmit="return postForm()">
+          <form method="POST" id="postForm" action="{{route('subscribe')}}" class="form-horizontal" enctype="multipart/form-data" onsubmit="return postForm()">
               @csrf
                   <div class="form-group">
-                      <div class="col-sm-10"><input type="text" class="form-control" name="users_id" value="{{\Auth::user()->id}}"></div>
-                  </div>
-                  <div class="form-group">
-                      <div class="col-sm-10"><input type="text" class="form-control" name="md_lowongan_pekerjaan_id" value="{{$lowongan->id}}"></div>
-                  </div>
-
-                  <div class="form-group">
+                  <input type='number' name="jobid" value="{{$id}}" readonly hidden></input>
                       <div class="col-sm-4 col-sm-offset-2">
-                          <button class="btn btn-common" type="submit">Lamar Pekerjaan</button>
+                        @if($status==false)
+                          <button class="btn btn-danger" type="submit">Lamar Pekerjaan</button>
+                        @else
+                          <button class="btn btn-secondary" type="submit">Berhenti Lamar Pekerjaan</button>
+                        @endif
                       </div>
                   </div>
             </form>

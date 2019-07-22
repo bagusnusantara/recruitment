@@ -6,7 +6,7 @@
             <h2>Dashboard</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="{{url('/dashboard')}}">Home</a>
+                    <a href="{{url('/admin/dashboard')}}">Home</a>
                 </li>
                 <li class="active">
                     <strong>Dashboard</strong>

@@ -7,7 +7,7 @@
       <div class="item">
         <!--pendidikan formal-->
         <h4>Pendidikan Formal</h4>
-          <table class="table table-bordered table-responsive" style="border-radius:10px;">
+          <table id="pendidikan-formal" class="table table-bordered table-responsive" style="border-radius:10px;">
               <tr class="thead-smi th-center">
                 <th  width="5%"><h4>#</h4></th>
                 <th  width="10%"><h4>Tingkatan</h4></th>
@@ -227,12 +227,6 @@
         <!--kemampuan bahasa asing end-->
             </div>
           </div>
-    <div class="item">
-      <div class="mr-0">
-        <button type="button" class="btn btn-secondary btn-lg">Reset</button>
-        <button type="button" class="btn btn-primary btn-lg">Simpan</button>
-      </div>
-    </div>
   </div>
 </div>
 

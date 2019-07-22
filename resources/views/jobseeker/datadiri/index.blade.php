@@ -52,7 +52,8 @@
             </ul>
         </div>
       </div>
-          <div class="col-lg-9 col-md-8 col-xs-12 tabs-stage">
+          <script src="{{asset('js/smi_onevents.js')}}"></script>
+          <div class="col-lg-9 col-md-7 col-xs-12 tabs-stage">
             <!--Detail Identitas-->
             @include('jobseeker.datadiri.identitas')
             <!--Identitas end-->
