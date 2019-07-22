@@ -11,9 +11,8 @@ use App\md_client;
 use App\st_Provinsi;
 use App\st_Kabkota;
 use App\st_Kecamatan;
-use App\st_kategoripekerjaan;
+use App\st_Kategoripekerjaan;
 use App\st_spesialisasipekerjaan;
-use App\st_kategori_pekerjaan;
 use App\st_spesialisasi_pekerjaan;
 use App\st_lowongan_gaji;
 use App\trans_lowongan_pekerjaan;
@@ -103,10 +102,8 @@ class AdminController extends Controller
       }
       $md_client=md_client::all();
       $st_lowongan_gaji=st_lowongan_gaji::all();
-      $st_kategori_pekerjaan=st_kategoripekerjaan::all();
+      $st_kategori_pekerjaan=st_Kategoripekerjaan::all();
       $st_spesialisasi_pekerjaan=st_spesialisasipekerjaan::all();
-      $st_kategori_pekerjaan=st_kategori_pekerjaan::all();
-      $st_spesialisasi_pekerjaan=st_spesialisasi_pekerjaan::all();
       $st_alamat_provinsi=st_Provinsi::all();
       $st_alamat_kabkota=st_Kabkota::all();
       return view ('admin.lowongan.create',compact('md_client','st_alamat_kabkota','st_alamat_provinsi','st_lowongan_gaji','st_kategori_pekerjaan','st_spesialisasi_pekerjaan'));

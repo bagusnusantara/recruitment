@@ -78,12 +78,33 @@ class JobseekerController extends Controller
       $lowongan = md_lowongan_pekerjaan::find($id);
       return view ('jobseeker.dashboard.showpublic',compact('lowongan'));
     }
-
+    //insert Data diri
+    public function insertDataDiri()
+    {
+      //st_support data
+      $st_data = [];
+      $st_data['Idcard'] = st_Idcard::all();
+      $st_data['TingkatPendidikan'] = st_Tingkatpendidikan::all();
+      $st_data['Bahasa'] = st_Bahasa::all();
+      $st_data['Kemampuan'] = st_Kemampuan::all();
+      $st_data['BisnisPerusahaan'] = st_Bisnisperusahaan::all();
+      $st_data['kategoriPekerjaan'] = st_Kategoripekerjaan::all();
+      $st_data['SpesialisasiPekerjaan']=st_Spesialisasipekerjaan::all();
+      $st_data['LingkunganKerja']= st_Lingkungankerja::all();
+      $st_data['LevelJabatan']= st_Leveljabatan::all();
+      $st_data['PosisiKerja']= st_Posisikerja::all();
+      $st_data['Negara'] = st_Negara::all();
+      $st_data['Provinsi'] = st_Provinsi::all();
+      $st_data['Kabkota'] = st_Kabkota::all();
+      $st_data['Kecamatan'] = st_Kecamatan::all();
+      return view('jobseeker.datadiri.insertdatadiri',compact('st_data'));
+    }
     //Lamaran Section
     public function showDataDiri(){
 
       $user_id = \Auth::user()->id;
-      $dataUser = md_jobseeker::find($user_id)->first();
+      //$dataUser = md_jobseeker::find($user_id)->first();
+      $dataUser = md_jobseeker::where('users_id',$user_id)->get();
       //st_jobseeker
       $dataUserSt['RiwayatPenyakit'] = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
       $dataUserSt['PengalamanOrganisasi'] = st_jobseeker_pengalamanorganisasi::where('user_id',$user_id)->get();
@@ -130,6 +151,20 @@ class JobseekerController extends Controller
       $dataUser->update($request->all());
 
       return response()->json(["success"=>"data retraived"]);
+    }
+
+    public function storeDataDiriAwal(Request $request){
+      $this->validate($request,[
+            // 'nama_alat' => 'required',
+            // 'jenis_alat' => 'required',
+            // 'jumlah' => 'required',
+            // 'status_kepemilikan' => 'required',
+            // 'status_kelaikan' => 'required'
+        ]);
+        $dataUser = md_jobseeker::create($request->all());
+        $dataUser->save();
+        Alert::success('Lowongan Pekerjaan berhasil terkirim');
+        return redirect()->back()->with('successMsg','Slider Successfully Saved');
     }
 
     public function storeDataPendidikanFormal(Request $request){

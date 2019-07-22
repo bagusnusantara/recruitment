@@ -41,11 +41,12 @@ Route::get('jobseeker/riwayattes', 'JobSeekerController@getRiwayattes');
 Route::get('jobseeker/lowonganpekerjaan', 'JobSeekerController@getLowonganpekerjaan');
 //data diri
 Route::get('jobseeker/datadiri/', 'JobSeekerController@showDataDiri');
-
+Route::get('jobseeker/datadiri/insert', 'JobSeekerController@insertDataDiri');
 //support ajax
 Route::post('jobseeker/datadiri/getst/', 'JobSeekerController@getSt');
 
 //store and uupdate data jobseeker
+Route::post('jobseeker/datadiri/submitdatadiriawal/', 'JobSeekerController@storeDataDiriAwal');
 Route::post('jobseeker/datadiri/submitdatadiri/', 'JobSeekerController@storeDataDiri');
 Route::post('jobseeker/datadiri/submitpendidikanformal/', 'JobSeekerController@storeDataPendidikanFormal');
 Route::post('jobseeker/datadiri/submitpendidikaninformal/', 'JobSeekerController@storeDataPendidikanInformal');

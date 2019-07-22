@@ -62,40 +62,29 @@
                                    <tr>
                                        <th><center>No</center></th>
                                        <th><center>Nama</center></th>
-                                       <th><center>Usia</center></th>
+                                       <th><center>Tanggal Lahir</center></th>
                                        <th><center>Janis Kelamin</center></th>
                                        <th><center>Alamat</center></th>
                                        <th><center>Pendidikan Terakhir</center></th>
                                        <th><center>Action</center></th>
                                    </tr>
                                </thead>
+
                                <tbody>
                                     @php
                                     $i=1;
                                     @endphp
                                     @foreach($sdm as $s)
-                                @php
-                                function umur($tgl_lahir,$delimiter='-') {
-                                    list($hari,$bulan,$tahun) = explode($delimiter, $tgl_lahir);
-                                    $selisih_hari = date('d') - $hari;
-                                    $selisih_bulan = date('m') - $bulan;
-                                    $selisih_tahun = date('Y') - $tahun;
-                                    if ($selisih_hari < 0 || $selisih_bulan < 0) {
-                                        $selisih_tahun--;
-                                    }
-                                    return $selisih_tahun;
-                                }
-                                $x=umur(date('d-m-Y', strtotime($s->tanggal_lahir))).' tahun';
-                                @endphp
+
                                    <tr>
                                        <td><center>{{$i++}}</center></td>
                                        <td><center>{{$s->nama_lengkap}}</center></td>
-                                       <td><center>{{$x}}</center></td>
+                                       <td><center>{{$s->tanggal_lahir}}</center></td>
                                        <td><center>{{$s->jenis_kelamin}}</center></td>
                                        <td><center>{{$s->alamat}}</center></td>
                                        <td><center>SMA</center></td>
                                        <td><center>
-                                         <a href="/admin/cetak_pkwt" class="btn btn-primary" target="_blank">CETAK PDF</a>
+                                         <a href="/admin/cetak_pkwt" class="btn btn-primary" target="_blank">CETAK PKWT</a>
                                        </center></td>
                                    </tr>
                                    @endforeach
