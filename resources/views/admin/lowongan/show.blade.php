@@ -134,7 +134,7 @@
                                   <center>
                                   <a type="button" class="btn btn-default btn-circle" href="#" type="button"><i class="fa fa-eye"></i></a>
                                   <!-- <a type="button" class="btn btn-default btn-circle" href="{{$lowongan_pekerjaan->id}}/showpenilaian" type="button"><i class="fa fa-eye"></i></a> -->
-                                  <a type="button" class="btn btn-default btn-circle" href="/showpenilaian" type="button"><i class="fa fa-pencil-square-o"></i></a>
+                                  <a type="button" class="btn btn-default btn-circle" href="{{route('penilaian',['jobid'=>$id,'usersid'=>$p->users_id])}}" type="button"><i class="fa fa-pencil-square-o"></i></a>
 
                                   <!-- <button class="btn btn-default btn-circle" type="button"><i class="fa fa-trash"></i> -->
                                   </center>

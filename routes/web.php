@@ -58,14 +58,6 @@ Route::post('jobseeker/datadiri/submitriwayatpenyakit/', 'JobSeekerController@st
 Route::post('jobseeker/datadiri/submitminat/', 'JobSeekerController@storeDataMinat');
 
 
-Route::get('admin/dashboard', 'AdminController@getDashboard');
-Route::get('admin/notifikasi', 'AdminController@getNotifikasi');
-Route::get('admin/sdm', 'AdminController@getSdm');
-Route::get('admin/klien', 'AdminController@getKlien');
-Route::get('admin/lowongan', 'AdminController@getLowongan');
-Route::get('admin/manajementes', 'AdminController@getManajementes');
-Route::get('admin/manajemenuser', 'AdminController@getManajemenuser');
-
 Route::get('client/dashboard', 'ClientController@getDashboard');
 Route::get('client/notifikasi', 'ClientController@getNotifikasi');
 Route::get('client/orderlayanan', 'ClientController@getOrderlayanan');
@@ -81,22 +73,37 @@ Route::get('jobseeker/notifikasi/create', 'JobSeekerController@createNotifikasi'
 Route::get('jobseeker/riwayattes/create', 'JobSeekerController@createRiwayattes');
 Route::get('jobseeker/lowonganpekerjaan/create', 'JobSeekerController@createtLowonganpekerjaan');
 
-Route::get('admin/dashboard/create', 'AdminController@createDashboard');
-Route::get('admin/notifikasi/create', 'AdminController@createNotifikasi');
-Route::get('admin/sdm/create', 'AdminController@createSdm');
-Route::get('admin/klien/create', 'AdminController@createKlien');
-Route::get('admin/lowongan/create', 'AdminController@createLowongan');
-Route::get('admin/manajementes/create', 'AdminController@createManajementes');
-Route::get('admin/manajemenuser/create', 'AdminController@createManajemenuser');
-Route::get('/showpenilaian', 'AdminController@showPenilaian');
+//admin
+Route::prefix('admin')->group(function(){
+    //---------Get Method
+    Route::get('dashboard', 'AdminController@getDashboard');
+    Route::get('notifikasi', 'AdminController@getNotifikasi');
+    Route::get('sdm', 'AdminController@getSdm');
+    Route::get('klien', 'AdminController@getKlien');
+    Route::get('lowongan', 'AdminController@getLowongan');
+    Route::get('manajementes', 'AdminController@getManajementes');
+    Route::get('manajemenuser', 'AdminController@getManajemenuser');
+    Route::get('lowongan/show/{id}', 'AdminController@showLowongan')->name('showAdminLowongan');
+    Route::get('lowongan/penilaian/{jobid}/users/{userid}', 'AdminController@showPenilaian')->name('penilaian');
+    //-----------Create Method
+    Route::get('dashboard/create', 'AdminController@createDashboard');
+    Route::get('notifikasi/create', 'AdminController@createNotifikasi');
+    Route::get('sdm/create', 'AdminController@createSdm');
+    Route::get('klien/create', 'AdminController@createKlien');
+    Route::get('lowongan/create', 'AdminController@createLowongan');
+    Route::get('manajementes/create', 'AdminController@createManajementes');
+    Route::get('manajemenuser/create', 'AdminController@createManajemenuser');
+    //------------Store Method
+    Route::post('lowonganpekerjaan/store', 'AdminController@storeLowogan');
+});
+
 
 Route::get('client/dashboard/create', 'ClientController@createDashboard');
 Route::get('client/notifikasi/create', 'ClientController@createNotifikasi');
 Route::get('client/orderlayanan/create', 'ClientController@createOrderlayanan');
 Route::get('client/datakaryawan/create', 'ClientController@createDatakaryawan');
 
-Route::post('/admin/lowonganpekerjaan/store', 'AdminController@storeLowogan');
-Route::get('/admin/lowongan/show/{id}', 'AdminController@showLowongan');
+
 
 Route::get('hrd/dashboard', 'HRDController@getDashboard');
 Route::get('hrd/payroll', 'HRDController@getPayroll');

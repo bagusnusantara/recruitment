@@ -70,7 +70,7 @@ class AdminController extends Controller
                   ->where('md_lowongan_pekerjaan.id',$lowongan_pekerjaan->id)
                   ->get();
       
-      return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar','detail'));
+      return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar','detail','id'));
     }
 
     public function showPelamar($id){
@@ -94,9 +94,16 @@ class AdminController extends Controller
       return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar','detail'));
     }
 
-    public function showPenilaian(){
-      $status = [0,1,1,1,1];
-      return view ('admin.lowongan.show_penilaian',compact('status'));
+    public function showPenilaian($jobid,$userid){
+      $status = [1,0,0,0,1];
+      $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
+                                        ->where('users_id',$userid)->count();
+      if($check){
+        return view ('admin.lowongan.show_penilaian',compact('status')); 
+      }else {
+        Alert::warning('Penilaian Tidak Tersedia !');
+        return redirect()->route('showAdminLowongan',['id'=>$jobid]);
+      }
     }
 
     public function createLowongan(){
