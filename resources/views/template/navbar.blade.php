@@ -81,10 +81,10 @@
                 <a href="{{ url('admin/dashboard')}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Dashboard</span></a>
             </li>
 
-            <li class="@if(url('admin/notifikasi') == request()->url()
+            <!-- <li class="@if(url('admin/notifikasi') == request()->url()
                ) active @else '' @endif  treeview">
                 <a href="{{ url('admin/notifikasi')}}"><i class="fa fa-envelope"></i> <span class="nav-label">Notifikasi</span></a>
-            </li>
+            </li> -->
 
             <li class="@if(url('admin/sdm') == request()->url()
                ) active @else '' @endif  treeview">
