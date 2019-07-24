@@ -46,12 +46,7 @@ class JobseekerController extends Controller
       $kota_all=st_Kabkota::all();
       return view ('jobseeker.dashboard.index',compact('lowongan_pekerjaan','provinsi','kota_all'));
     }
-    public function getPublic(){
-      $lowongan_pekerjaan=md_lowongan_pekerjaan::paginate(10);
-      $provinsi=st_Provinsi::all();
-      $kota_all=st_Kabkota::all();
-      return view ('jobseeker.dashboard.indexpublic',compact('lowongan_pekerjaan','provinsi','kota_all'));
-    }
+    
     public function getProfil(){
       if(!Gate::allows('isJobseeker')){
           abort(404,"Maaf Anda tidak memiliki akses");

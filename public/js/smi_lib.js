@@ -303,6 +303,7 @@ $("#identitas #Provinsi").change(function(){
         value : "0",
         text  : "Pilih . . ."
     }));
+
     if(this.value==0)
         $("#identitas #Kecamatan").prop("disabled",true);
     else
