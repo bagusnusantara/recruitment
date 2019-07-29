@@ -35,6 +35,9 @@ use App\st_jobseeker_pendidikaninformal;
 use App\st_jobseeker_pendidikanbahasa;
 use App\st_jobseeker_minatkerja;
 
+//temporary
+use Illuminate\Support\Facades\DB;
+
 class JobseekerController extends Controller
 {
     public function getDashboard(){
@@ -89,10 +92,9 @@ class JobseekerController extends Controller
     }
     //Lamaran Section
     public function showDataDiri(){
-
       $user_id = \Auth::user()->id;
       $dataUser = md_jobseeker::where('users_id',$user_id)->first();
-
+      
       //st_jobseeker
       $dataUserSt['RiwayatPenyakit'] = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
       $dataUserSt['PengalamanOrganisasi'] = st_jobseeker_pengalamanorganisasi::where('user_id',$user_id)->get();
