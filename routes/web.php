@@ -24,7 +24,7 @@ Route::prefix('jobseeker')->group(function(){
     Route::get('lowonganpekerjaan', 'JobSeekerController@getLowonganpekerjaan');
 
     //-x data diri
-    Route::get('datadiri/', 'JobSeekerController@showDataDiri')->name('')
+    Route::get('datadiri/', 'JobSeekerController@showDataDiri')->name('JobseekerDatadiri');
     Route::get('datadiri/insert', 'JobSeekerController@insertDataDiri');
 
     //-x Hubungan jobseeker dengan lowongan
@@ -90,11 +90,11 @@ Route::prefix('admin')->group(function(){
 //-> HRD
 Route::prefix('hrd')->group(function(){
     //-x get method
-    Route::get('hrd/dashboard', 'HRDController@getDashboard');
-    Route::get('hrd/payroll', 'HRDController@getPayroll');
-    Route::get('hrd/payroll/slipgaji', 'HRDController@getSlipgaji');
-    Route::get('hrd/setup/komponengaji', 'HRDController@getKomponengaji');
-    Route::get('hrd/setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
+    Route::get('dashboard', 'HRDController@getDashboard');
+    Route::get('payroll', 'HRDController@getPayroll');
+    Route::get('payroll/slipgaji', 'HRDController@getSlipgaji');
+    Route::get('setup/komponengaji', 'HRDController@getKomponengaji');
+    Route::get('setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
 });
 
 //-> client
