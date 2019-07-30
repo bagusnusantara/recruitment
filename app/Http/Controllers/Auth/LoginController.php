@@ -40,11 +40,7 @@ class LoginController extends Controller
           return redirect('client/dashboard') ;
        }
     elseif($user->roles=='jobseeker'){
-         $status = DB::table('md_jobseeker')->select('status_umum','status_pendidikan','status_pengalamankerja','status_aktivitas','status_riwayatpenyakit','status_minatkerja')->where('users_id',\Auth::user()->id)->first();
-         if($status->status_pendidikan=1 and $status->status_minatkerja==1 and $status->status_umum==1)
-         {
-            return   redirect('jobseeker/dashboard');
-         }
+     
          return redirect()->route('JobseekerDatadiri');
        }
     elseif($user->roles=='hrd'){

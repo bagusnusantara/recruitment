@@ -42,8 +42,13 @@ class JobseekerController extends Controller
 {
     public function getDashboard(){
       if(!Gate::allows('isJobseeker')){
-          abort(404,"Maaf Anda tidak memiliki akses");
+          return redirect()->route("PublicLowongan");
       }
+      $statusUser  = DB::table('md_jobseeker')->select('status_identitas','status_pendidikan','status_pengalamankerja','status_aktivitas','status_riwayatpenyakit','status_minatkerja')
+                    ->where('users_id',\Auth::user()->id)->first();
+      if($statusUser->status_identitas==0 ||  $statusUser->status_pendidikan==0 || $statusUser->status_minatkerja==0)
+      return redirect()->route('JobseekerDatadiri')->with('alert','Anda belum dapat melihat lowongan !!');
+
       $lowongan_pekerjaan=md_lowongan_pekerjaan::paginate(10);
       $provinsi=st_Provinsi::all();
       $kota_all=st_Kabkota::all();
@@ -97,9 +102,18 @@ class JobseekerController extends Controller
       
       //st_jobseeker
       $dataUserSt['RiwayatPenyakit'] = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
-      $dataUserSt['PengalamanOrganisasi'] = st_jobseeker_pengalamanorganisasi::where('user_id',$user_id)->get();
+      $dataUserSt['PengalamanOrganisasi'] = st_jobseeker_pengalamanorganisasi::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
       $dataUserSt['MinatKerja']   = st_jobseeker_minatkerja::where('user_id',$user_id)->get();
-      $dataUserSt['RiwayatKerja'] = st_jobseeker_pengalamankerja::where('user_id',$user_id)->get();
+      $dataUserSt['RiwayatKerja'] = st_jobseeker_pengalamankerja::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
+      $dataUserSt['Status'] = 
+      [
+        "identitas"=>$dataUser->status_identitas,
+        "pendidikan"=>$dataUser->status_pendidikan,
+        "pengalamankerja"=>$dataUser->status_pengalamankerja,
+        "minatkerja"=>$dataUser->status_minatkerja,
+        "aktivitas"=>$dataUser->aktivitas,
+        "riwayatpenyakit"=>$dataUser->riwayatpenyakit,
+      ];
 
       //st_support data
       $st_data = [];
@@ -130,6 +144,7 @@ class JobseekerController extends Controller
       return response()->json(["success"=>"data retraived"]);
     }
 
+    /*
     public function storeDataDiriAwal(Request $request){
       $this->validate($request,[
             // 'nama_alat' => 'required',
@@ -143,6 +158,7 @@ class JobseekerController extends Controller
         Alert::success('Lowongan Pekerjaan berhasil terkirim');
         return redirect()->back()->with('successMsg','Slider Successfully Saved');
     }
+    */
 
     public function storeDataPendidikanFormal(Request $request){
       return response()->json(["success"=>"data pendidikan formal recaived"]);

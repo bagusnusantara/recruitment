@@ -14,21 +14,11 @@
                 <th  width="10%"><h4>Tahun Sekolah</h4></th>
                 <th  width="30%"><h4>Nama Institusi</h4></th>
                 <th><h4>Tempat</h4></th>
+                <th><h4>Fakultas</h4></th>
                 <th><h4>Jurusan</h4></th>
-                <th width="7%"><h4><small>IPK/Nilai Akhir</small></h4></th>
+                <th width="7%"><h4>IPK</h4></th>
                 <th width="10%"><h4>Keterangan</h4></th>
                 <th width="10%"><h4>Option</h4></th>
-            </tr>
-            <tr>
-                <th  width="5%"><h4>1</h4></th>
-                <th  width="10%"><h4>SMA</h4></th>
-                <th  width="10%"><h4>2012</h4></th>
-                <th  width="30%"><h4>SMA N 1 Ngawi</h4></th>
-                <th><h4>Ngawi</h4></th>
-                <th><h4>IPA</h4></th>
-                <th width="7%"><h4>100</h4></th>
-                <th width="10%"><h4>tidak ada</h4></th>
-                <th width="10%"><h4></h4></th>
             </tr>
             <tr>
               <th scope="row" colspan="11" class="th-button">
@@ -74,7 +64,7 @@
                               <h4><label for="tempat">Tempat</label></h4>
                               <input type="text" class="form-control" id="tempat" placeholder="Masukan tempat institusi">
                          </div>
-                         <div class="form-group" style="display:none">
+                         <div class="form-group">
                               <h4><label for="fakultas">Fakultas</label></h4>
                               <input type="text" class="form-control" id="fakultas" placeholder="Masukan nama fakultas">
                          </div>
@@ -116,14 +106,6 @@
               <th  colspan="2"  ><h4>Periode</h4></th>
               <th  width="10%"><h4>Keterangan</h4></th>
               <th  width="5%"><h4>Option</h4></th>
-          </tr>
-          <tr>
-              <th  width="5%"><h4>1</h4></th>
-              <th ><h4>LKMM TD</h4></th>
-              <th ><h4>Instititut Teknologi Sepuluh Nopember</h4></th>
-              <th  colspan="2"  ><h4>2019</h4></th>
-              <th  width="10%"><h4>Sudah</h4></th>
-              <th  width="5%"><h4></h4></th>
           </tr>
           <tr>
             <th scope="row" colspan="11" class="th-button">
@@ -187,13 +169,6 @@
                     <th  colspan="2" width="15%"><h4>Lisan</h4></th>
                     <th  width="15%"><h4>Tertulis</h4></th>
                     <th  width="5%"><h4>Option</h4></th>
-                </tr>
-                <tr>
-                    <th  width="5%"><h4>1</h4></th>
-                    <th  ><h4>Arab</h4></th>
-                    <th  colspan="2" width="15%"><h4>Baik</h4></th>
-                    <th  width="15%"><h4>Sangat Baik</h4></th>
-                    <th  width="5%"><h4></h4></th>
                 </tr>
                 <tr>
                   <th scope="row" colspan="11" class="th-button">

@@ -1,4 +1,4 @@
-@extends('public.template.index')
+@extends('jobseeker.template.index')
 
 @section('content')
 

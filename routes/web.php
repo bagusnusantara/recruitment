@@ -12,8 +12,10 @@ Route::get('/joblist', function () {
 Route::get('/jobsingle', function () {
     return view('job_single');
 });
+//->Public
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('lowongan/{id}', 'JobSeekerController@showLowonganpublic');
+Route::get('lowongan/', 'PublicController@showLowonganpublic')->name('PublicLowongan');
+Route::get('lowongan/{id}', 'PublicController@getLowonganpublic')->name('PublicLowonganById');
 //-> Jobseeker
 Route::prefix('jobseeker')->group(function(){
     //-x regular
@@ -28,7 +30,7 @@ Route::prefix('jobseeker')->group(function(){
     Route::get('datadiri/insert', 'JobSeekerController@insertDataDiri');
 
     //-x Hubungan jobseeker dengan lowongan
-    Route::get('dashboard', 'JobSeekerController@getDashboard')->name('JobseekerPublic');
+    Route::get('dashboard', 'JobSeekerController@getDashboard')->name('JobseekerDashboard');
     Route::get('dashboard/show/{id}', 'JobSeekerController@showLowongan');
     Route::post('lamaran/subscribe','JobSeekerController@subscribeLamaran')->name('subscribeJob');
 
