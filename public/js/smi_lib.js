@@ -233,6 +233,53 @@ $("#submitRiwayatPekerjaan").click(function(e){
         }
     });
 });
+
+$("#submitPendidikanFormal").click(function(e){
+    e.preventDefault();
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/submitpengalamankerja",
+        method:"post",
+        data :{
+            id                             : "",
+            tingkat_pendidikan             :$("#pendidikanformal #TingkatPendidikan").val(),
+            tahun_mulai                    :$("#pendidikanformal #tahunmulai").val(),
+            tahun_akhir                    :$("#pendidikanformal #tahunakhir").val(),
+            institusi                      :$("#pendidikanformal #institusi").val(),
+            tempat                         :$("#pendidikanformal #tempat").val(),
+            fakultas                       :$("#pendidikanformal #fakultas").val(),
+            jurusan                        :$("#pendidikanformal #jurusan").val(),
+            IPK                            :$("#pendidikanformal #IPK").val(),
+            keterangan                     :$("#pendidikanformal #keterangan").val(),
+        },
+        success:function(result){
+            console.log(result.success);
+        },
+        beforeSend: function(){
+            // Show image container
+            $("#submitRiwayatPekerjaan a").each(function(){
+                $(this).text('Unggah Data');
+            });
+            $("#submitRiwayatPekerjaan #loader").each(function(){
+                $(this).show();
+            });
+        },
+        complete:function(data){
+            // Hide image container
+            $("#submitRiwayatPekerjaan a").each(function(){
+                $(this).text('Simpan');
+            });
+            $("#submitRiwayatPekerjaan #loader").each(function(){
+                $(this).hide();
+            });
+        }
+    });
+});
+
+
 //end document ready
 });
 
@@ -303,6 +350,7 @@ $("#identitas #Provinsi").change(function(){
         value : "0",
         text  : "Pilih . . ."
     }));
+
     if(this.value==0)
         $("#identitas #Kecamatan").prop("disabled",true);
     else

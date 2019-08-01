@@ -36,19 +36,6 @@
                 <li><a class="dropdown-item" href="job-details.html">Job Details</a></li>
               </ul>
             </li> -->
-
-            <li>
-              <a class="nav-link" href="">
-                Welcome {{ Auth::user()->name }} !
-              </a>
-
-            </li>
-            <li class="button-group">
-              <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="button btn btn-common">Sign out</a>
-              <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none">
-                @csrf
-              </form>
-            </li>
           </ul>
         </div>
       </div>

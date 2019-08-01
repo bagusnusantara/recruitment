@@ -1,0 +1,91 @@
+@extends('jobseeker.template.index_content')
+@section('css')
+<style>
+  .thead-smi{
+    background-color: aliceblue;
+  }
+  .th-center th{
+    text-align: center;
+    vertical-align: middle;
+  }
+  .th-button
+  {
+    text-align: right;
+    vertical-align: middle;
+    margin-left:3%;
+  }
+
+  .menu-badge
+  {
+    z-index: 0;
+    position: relative;
+    top:0;
+    right:0;
+  }
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@endsection
+@section('content')
+
+<!-- Job Browse Section Start -->
+<div class="section">
+  <div class="mr-auto">
+    <div class="row">
+      <div class="ml-5 mr-5 col-lg-2 col-md-4 col-xs-12">
+        <div class="right-sideabr">
+          <h4>Data Diri</h4>
+          <ul id="tab" class="list-item">
+              <li class="active"><a   class="list-group-item-action" href="#identitas">Identitas</a>
+
+              </li>
+              <li>
+                <a  class="tab-active list-group-item-action" href="#pendidikan">Pendidikan</a>
+                <span class="menu-badge badge badge-pill badge-danger">Belum Lengkap</span>
+              </li>
+              <li><a  class="list-group-item-action" href="#keluarga">Keluarga</a> </li>
+              <li><a  class="list-group-item-action" href="#pekerjaan">Pekerjaan</a></li>
+              <li><a  class="list-group-item-action" href="#minat">Minat</a></li>
+              <li><a  class="list-group-item-action" href="#aktifitas">Aktifitas</a></li>
+              <li><a  class="list-group-item-action" href="#lainnya">Lainnya</a></li>
+              <li><a  class="list-group-item-action" href="#lampiran">Lampiran</a></li>
+            </ul>
+        </div>
+      </div>
+          <div class="col-lg-9 col-md-8 col-xs-12 tabs-stage">
+            <form method="POST" id="postForm" action="{{url('jobseeker/datadiri/submitdatadiriawal')}}" class="form-horizontal" enctype="multipart/form-data" onsubmit="return postForm()">
+            @csrf
+            <!--Detail Identitas-->
+            @include('jobseeker.datadiri.insertidentitas')
+            <!--Identitas end-->
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <button class="btn btn-common" type="submit">Simpan</button>
+                </div>
+            </div>
+            </form>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Job Browse Section End -->
+@endsection
+@section('script')
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+    $('#tab li').on('click', function (event) {
+      $('#tab li').css('background-color','');
+      $(this).css('background-color','#f2f7fb');
+      event.preventDefault();
+      $('.tab-active').removeClass('tab-active');
+      $(this).parent().addClass('tab-active');
+      $('.tabs-stage .tab-content').hide();
+      $($(this).find("a").attr('href') ).fadeIn(300);
+    });
+
+    $('#tab li a:first').trigger('click'); // Default
+</script>
+<script src="{{asset('js/smi_lib.js') }}"></script>
+@endsection

@@ -37,17 +37,11 @@
         <i class="fa fa-info-circle fa-2x">&nbsp;</i>
         <strong>Lengkapi Data Diri untuk melamar pekerjaan (wajib untuk identitas,pendidikan,dan minat kerja')</strong>
     </div>
-    @if(Session::has('alert'))
-    <div class="alert alert-warning col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
-        <i class="fa fa-exclamation-triangle fa-2x">&nbsp;</i>
-        <strong>{{Session::get('alert')}}</strong>
-    </div>
-    @endif
     @if($dataUserSt['Status']['identitas']==0)
     <div class="alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
         <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
-        <strong>Data Identitas Belum Lengkap</strong>
-        <span class="menu-badge badge badge-pill badge-danger" id="btn-identitas" href="#">
+        <strong>Data Identitas Belum Lengkap !</strong>
+        <span class="menu-badge badge badge-pill badge-danger" id="btn-pendidikan" href="#">
           <i class="fa fa-edit fa-1x">&nbsp;</i>Selsaikan 
          </span>
    </div>
@@ -65,7 +59,7 @@
     <div class="alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
         <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
         <strong>Data Minat Belum Lengkap !</strong>
-        <span class="menu-badge badge badge-pill badge-danger" id="btn-minat" href="#">
+        <span class="menu-badge badge badge-pill badge-danger" id="btn-pendidikan" href="#">
           <i class="fa fa-edit fa-1x">&nbsp;</i>Selsaikan 
          </span>
    </div>
@@ -167,17 +161,10 @@
 @section('script')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
-$('#btn-identitas').on('click',function(event){
-    event.preventDefault();
-  	$('#tab li [href=#identitas]').trigger('click');
-  });
+
   $('#btn-pendidikan').on('click',function(event){
     event.preventDefault();
   	$('#tab li [href=#pendidikan]').trigger('click');
-  });
-  $('#btn-minat').on('click',function(event){
-    event.preventDefault();
-  	$('#tab li [href=#minat]').trigger('click');
   });
 
     $('#tab li').on('click', function (event) {

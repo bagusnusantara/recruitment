@@ -1,4 +1,4 @@
-@extends('public.template.index')
+@extends('jobseeker.template.index_content')
 
 @section('content')
 
@@ -13,7 +13,19 @@
           <h5>Persyaratan</h5>
           {!!$lowongan->persyaratan!!}
           <br><br>
-          <a href="{{url('login')}}" class="btn btn-common">Lamar Pekerjaan</a>
+          <form method="POST" id="postForm" action="{{route('subscribe')}}" class="form-horizontal" enctype="multipart/form-data" onsubmit="return postForm()">
+              @csrf
+                  <div class="form-group">
+                  <input type='number' name="jobid" value="{{$id}}" readonly hidden></input>
+                      <div class="col-sm-4 col-sm-offset-2">
+                        @if($status==false)
+                          <button class="btn btn-danger" type="submit">Lamar Pekerjaan</button>
+                        @else
+                          <button class="btn btn-secondary" type="submit">Berhenti Lamar Pekerjaan</button>
+                        @endif
+                      </div>
+                  </div>
+            </form>
         </div>
       </div>
       <div class="col-lg-4 col-md-12 col-xs-12">

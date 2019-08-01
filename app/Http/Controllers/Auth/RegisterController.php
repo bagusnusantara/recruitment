@@ -28,7 +28,9 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo(){
+        return route('jobseeker_datadiri');
+    }
 
     /**
      * Create a new controller instance.

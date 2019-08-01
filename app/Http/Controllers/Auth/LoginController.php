@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
+
 
 class LoginController extends Controller
 {
@@ -32,13 +34,14 @@ class LoginController extends Controller
     protected function authenticated($request, $user)
       {
      if($user->roles=='admin'){
-          return redirect('admin/dashboard') ;
+          return redirect('admin/dashboard');
        }
     elseif($user->roles=='client'){
           return redirect('client/dashboard') ;
        }
     elseif($user->roles=='jobseeker'){
-          return redirect('jobseeker/dashboard') ;
+     
+         return redirect()->route('JobseekerDatadiri');
        }
     elseif($user->roles=='hrd'){
           return redirect('hrd/dashboard') ;

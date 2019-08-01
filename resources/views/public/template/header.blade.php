@@ -12,7 +12,7 @@
             <span class="lni-menu"></span>
             <span class="lni-menu"></span>
           </button>
-        <a href="{{route('JobseekerDashboard')}}" class="navbar-brand"><img src="{{asset('jobx/assets/img/logo.png') }}" alt=""></a>
+        <a href="{{route('PublicLowongan')}}" class="navbar-brand"><img src="{{asset('jobx/assets/img/logo.png') }}" alt=""></a>
         </div>
         <div class="collapse navbar-collapse" id="main-navbar">
           <ul class="navbar-nav mr-auto w-100 justify-content-end">
@@ -22,7 +22,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{route('PublicLowongan')}}">
+              <a class="nav-link" href="{{url('jobseeker/public')}}">
                 Lowongan Pekerjaan
               </a>
             </li>
@@ -30,7 +30,7 @@
               <a href="{{url('login')}}" class="button btn btn-common">Sign in</a>
             </li>
           </ul>
-      </div>
+        </div>
       </div>
     </div>
     <div class="mobile-menu" data-logo="{{asset('jobx/assets/img/logo-mobile.png') }}"></div>
