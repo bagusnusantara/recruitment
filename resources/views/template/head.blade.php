@@ -53,7 +53,6 @@
     <script src="{{asset('inspinia/js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
 
 
-
     <style>
         td.details-control {
             background: url('https://datatables.net/examples/resources/details_open.png') no-repeat center center;

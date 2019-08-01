@@ -103,12 +103,13 @@ Route::get('client/notifikasi/create', 'ClientController@createNotifikasi');
 Route::get('client/orderlayanan/create', 'ClientController@createOrderlayanan');
 Route::get('client/datakaryawan/create', 'ClientController@createDatakaryawan');
 
-
-
 Route::get('hrd/dashboard', 'HRDController@getDashboard');
 Route::get('hrd/payroll', 'HRDController@getPayroll');
 Route::get('hrd/payroll/slipgaji', 'HRDController@getSlipgaji');
 Route::get('hrd/setup/komponengaji', 'HRDController@getKomponengaji');
+Route::post('/hrd/setup/komponengaji/store', 'HRDController@storeKomponengaji');
+Route::post('/hrd/setup/komponengaji/update/{id}', 'HRDController@updateKomponengaji');
+Route::delete('hrd/setup/komponengaji/delete/{id}', 'HRDController@destroyKomponengaji')->name('post-delete');
 Route::get('hrd/setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
 Route::get('/home', 'HomeController@index')->name('home');
 
