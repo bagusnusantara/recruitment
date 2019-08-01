@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
                 <h4><label class="my-1 mr-2" for="TanggalKeluarga">Sejak</label></h4>
-                <input type="month" class="form-control" id="TanggalKeluarga" placeholder="Sejak Tahun" {{(!isset($dataUser->tanggal_keluarga) || $dataUser->tanggal_keluarga == "" )? "disabled" : ""}}  value="{{$dataUser->tanggal_keluarga}}">
+                <input type="date" class="form-control" id="TanggalKeluarga" placeholder="Sejak Tahun" {{(!isset($dataUser->tanggal_keluarga) || $dataUser->tanggal_keluarga == "" )? "disabled" : ""}}  value="{{$dataUser->tanggal_keluarga}}">
             </div>
         </form>
           <!--keluarga end-->

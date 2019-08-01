@@ -144,28 +144,64 @@ class JobseekerController extends Controller
       return response()->json(["success"=>"data retraived"]);
     }
 
-    /*
-    public function storeDataDiriAwal(Request $request){
-      $this->validate($request,[
-            // 'nama_alat' => 'required',
-            // 'jenis_alat' => 'required',
-            // 'jumlah' => 'required',
-            // 'status_kepemilikan' => 'required',
-            // 'status_kelaikan' => 'required'
-        ]);
-        $dataUser = md_jobseeker::create($request->all());
-        $dataUser->save();
-        Alert::success('Lowongan Pekerjaan berhasil terkirim');
-        return redirect()->back()->with('successMsg','Slider Successfully Saved');
-    }
-    */
-
     public function storeDataPendidikanFormal(Request $request){
-      return response()->json(["success"=>"data pendidikan formal recaived"]);
+      $pendidikanFormal = st_jobseeker_pendidikanformal::where('user_id',\Auth::user()->id)
+                                                         ->where('id',$request->id)->first();
+      if($pendidikanFormal==null)
+      {
+        $request->request->remove('id');
+        $request->request->add(['user_id'=>\Auth::user()->id]);
+        $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
+        $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
+        
+        try {
+          st_jobseeker_pendidikanformal::create($request->all());
+          dump('success');
+          return response()->json(['success'=>true]);
+        } catch (\Throwable $th) {
+          dump($th);
+          return response()->json(['success'=>false]);
+        }
+      }
+    }
+
+    public function storeDataPendidikanInformal(Request $request){
+      $pendidikanInformal = st_jobseeker_pendidikaninformal::where('user_id',\Auth::user()->id)
+                                                         ->where('id',$request->id)->first();
+      if($pendidikanInformal==null)
+      {
+        $request->request->remove('id');
+        $request->request->add(['user_id'=>\Auth::user()->id]);
+        $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
+        $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
+        
+        try {
+          st_jobseeker_pendidikaninformal::create($request->all());
+          dump('success');
+          return response()->json(['success'=>true]);
+        } catch (\Throwable $th) {
+          dump($th);
+          return response()->json(['success'=>false]);
+        }
+      }
     }
 
     public function storeDataPendidikanBahasa(Request $request){
-      return response()->json(["success"=>"data pendidikan informal recaived"]);
+      $pendidikanBahasa = st_jobseeker_pendidikanbahasa::where('user_id',\Auth::user()->id)
+                                                          ->where('id',$request->id)->first();
+      if($pendidikanBahasa==null)
+      {
+        $request->request->remove('id');
+        $request->request->add(['user_id'=>\Auth::user()->id]);
+        try {
+          st_jobseeker_pendidikanbahasa::create($request->all());
+          dump('success');
+          return response()->json(['success'=>true]);
+        } catch (\Throwable $th) {
+          dump($th);
+          return response()->json(['success'=>false]);
+        }
+      }
     }
 
 
@@ -192,8 +228,7 @@ class JobseekerController extends Controller
         $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
         $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
         return response()->json(['success'=>$request->all()]);
-        st_jobseeker_pengalamanorganisasi::create($request->all());
-        
+        st_jobseeker_pengalamanorganisasi::create($request->all()); 
       }
 
     }

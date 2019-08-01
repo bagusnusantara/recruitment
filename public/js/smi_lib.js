@@ -236,12 +236,16 @@ $("#submitRiwayatPekerjaan").click(function(e){
 
 $("#submitPendidikanFormal").click(function(e){
     e.preventDefault();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
         } });
     $.ajax({
-        url:"/jobseeker/datadiri/submitpengalamankerja",
+        url:"/jobseeker/datadiri/submitpendidikanformal/",
         method:"post",
         data :{
             id                             : "",
@@ -259,27 +263,117 @@ $("#submitPendidikanFormal").click(function(e){
             console.log(result.success);
         },
         beforeSend: function(){
-            // Show image container
-            $("#submitRiwayatPekerjaan a").each(function(){
+            $("#submitPendidikanFormal a").each(function(){
                 $(this).text('Unggah Data');
             });
-            $("#submitRiwayatPekerjaan #loader").each(function(){
+            $("#submitPendidikanFormal #loader").each(function(){
                 $(this).show();
             });
         },
         complete:function(data){
             // Hide image container
-            $("#submitRiwayatPekerjaan a").each(function(){
+            sendProsses.data('run',false);
+            $("#submitPendidikanFormal a").each(function(){
                 $(this).text('Simpan');
             });
-            $("#submitRiwayatPekerjaan #loader").each(function(){
+            $("#submitPendidikanFormal #loader").each(function(){
                 $(this).hide();
             });
         }
     });
 });
 
+$("#submitPendidikanInformal").click(function(e){
+    e.preventDefault();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
 
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/submitpendidikaninformal/",
+        method:"post",
+        data :{
+            id                             : "",
+            jenispelatihan                 :$("#pendidikaninformal #TingkatPendidikan").val(),
+            tahun_mulai                    :$("#pendidikaninformal #tahunmulai").val(),
+            tahun_akhir                    :$("#pendidikaninformal #tahunakhir").val(),
+            tempat                         :$("#pendidikaninformal #tempat").val(),
+            keterangan                     :$("#pendidikaninformal #keterangan").val(),
+        },
+        success:function(result){
+            console.log(result.success);
+        },
+        beforeSend: function(){
+            // Show image container
+            $("#submitPendidikanInformal a").each(function(){
+                $(this).text('Unggah Data');
+            });
+            $("#submitPendidikanInformal #loader").each(function(){
+                $(this).show();
+            });
+        },
+        complete:function(data){
+            sendProsses.data('run',false);
+            $("#submitPendidikanInformal a").each(function(){
+                $(this).text('Simpan');
+            });
+            $("#submitPendidikanInformal #loader").each(function(){
+                $(this).hide();
+            });
+        }
+    });
+});
+
+$("#submitPendidikanBahasa").click(function(e){
+    e.preventDefault();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/submitpendidikanbahasa/",
+        method:"post",
+        data :{
+            id                            : "",
+            bahasa                        :$("#pendidikanbahasa #bahasa").val(),
+            kemampuan_lisan               :$("#pendidikanbahasa #kemampuanlisan").val(),
+            kemampuan_tertulis            :$("#pendidikanbahasa #kemampuantertulis").val(),
+        },
+        success:function(result){
+            console.log(result.success);
+        },
+        beforeSend: function(){
+            // Show image container
+            sendProsses.data('run',false);
+            $("#submitPendidikanBahasa a").each(function(){
+                $(this).text('Unggah Data');
+            });
+            $("#submitPendidikanBahasa #loader").each(function(){
+                $(this).show();
+            });
+        },
+        complete:function(data){
+            // Hide image container
+            $("#submitPendidikanBahasa a").each(function(){
+                $(this).text('Simpan');
+            });
+            $("#submitPendidikanBahasa #loader").each(function(){
+                $(this).hide();
+            });
+        }
+    });
+});
+
+$('input.typeTahun').datepicker(inputDateYear);
+$('input.typeBulan').datepicker(inputDateYear);
 //end document ready
 });
 

@@ -16,6 +16,7 @@
 <script src="{{asset('js/jquery/jquery.sparkline/jquery.sparkline.min.js')}}"></script>
 <script src="{{asset('js/jquery/jquery.validate/jquery.validate.min.js')}}"></script>
 <script src="{{asset('js/jquery/jquery.datatables/datatables.min.js')}}"></script>
+<script src="{{asset('js/bootstrap_datepicker/bootstrap-datepicker.min.js')}}"></script>
 
 <!-- our script-->
 

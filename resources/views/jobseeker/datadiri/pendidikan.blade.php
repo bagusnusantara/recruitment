@@ -11,7 +11,7 @@
               <tr class="thead-smi th-center">
                 <th  width="5%"><h4>#</h4></th>
                 <th  width="10%"><h4>Tingkatan</h4></th>
-                <th  width="10%"><h4>Tahun Sekolah</h4></th>
+                <th  width="10%" ><h4>Tahun Sekolah</h4></th>
                 <th  width="30%"><h4>Nama Institusi</h4></th>
                 <th><h4>Tempat</h4></th>
                 <th><h4>Jurusan</h4></th>
@@ -22,13 +22,16 @@
             <tr>
                 <th  width="5%"><h4>1</h4></th>
                 <th  width="10%"><h4>SMA</h4></th>
-                <th  width="10%"><h4>2012</h4></th>
+                <th  width="10%"><h4>2012 - 2015</h4></th>
                 <th  width="30%"><h4>SMA N 1 Ngawi</h4></th>
                 <th><h4>Ngawi</h4></th>
                 <th><h4>IPA</h4></th>
                 <th width="7%"><h4>100</h4></th>
                 <th width="10%"><h4>tidak ada</h4></th>
-                <th width="10%"><h4></h4></th>
+                <th width="10%"><h4>
+                  <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                  <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                </h4></th>
             </tr>
             <tr>
               <th scope="row" colspan="11" class="th-button">
@@ -62,9 +65,9 @@
                         <div class="form-group">
                             <h4>Tahun</h4>
                             <label for="tahunmulai">Mulai</label>
-                            <input type="month" class="form-control" id="tahunmulai" placeholder="YYYY">
+                            <input type="text" class="form-control typeTahun" id="tahunmulai" placeholder="Masukan Tahun Mulai">
                             <label for="tahunakhir">Akhir</label>
-                            <input type="month" class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
+                            <input type="text" class="form-control typeTahun" id="tahunakhir" placeholder="Masukan Tahun Akhir">
                         </div>
                         <div class="form-group">
                               <h4><label for="institusi">Institusi</label></h4>
@@ -83,7 +86,7 @@
                               <input type="text" class="form-control" id="jurusan" placeholder="Masukan nama jurusan">
                          </div>
                          <div class="form-group">
-                              <h4><label for="IPK">IPK</label></h4>
+                              <h4><label for="IPK">IPK / Nilai Akhir</label></h4>
                               <input type="number" min="0" max="100" step="0.01" class="form-control" id="IPK" placeholder="Masukan Nilai Akhir">
                           </div>
                           <div class="form-group">
@@ -94,8 +97,8 @@
                   </div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" id="submitPendidikanFormal" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Simpan
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" id="submitPendidikanFormal">Simpan
                           <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
                       </button>
                     </div>
@@ -115,15 +118,18 @@
               <th ><h4>Tempat</h4></th>
               <th  colspan="2"  ><h4>Periode</h4></th>
               <th  width="10%"><h4>Keterangan</h4></th>
-              <th  width="5%"><h4>Option</h4></th>
+              <th  width="10%"><h4>Option</h4></th>
           </tr>
           <tr>
               <th  width="5%"><h4>1</h4></th>
               <th ><h4>LKMM TD</h4></th>
               <th ><h4>Instititut Teknologi Sepuluh Nopember</h4></th>
               <th  colspan="2"  ><h4>2019</h4></th>
-              <th  width="10%"><h4>Sudah</h4></th>
-              <th  width="5%"><h4></h4></th>
+              <th ><h4>Sudah</h4></th>
+              <th><h4>
+                  <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                  <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+              </h4></th>
           </tr>
           <tr>
             <th scope="row" colspan="11" class="th-button">
@@ -135,7 +141,7 @@
       </table>
               <!--modal pendidikan formal-->
               <form>
-                  <div class="modal fade pendidikaninformal-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                  <div id="pendidikaninformal" class="modal fade pendidikaninformal-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-head">
@@ -151,9 +157,9 @@
                               <div class="form-group">
                                   <h4>Periode</h4>
                                   <label for="tahunmulai">Mulai</label>
-                                  <input type="month"  class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
+                                  <input type="text"  class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
                                   <label for="tahunakhir">Akhir</label>
-                                  <input type="month"  class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
+                                  <input type="text"  class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
                               </div>
                                <div class="form-group">
                                     <h4><label for="tempat">Tempat</label></h4>
@@ -168,7 +174,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-primary">Simpan
+                            <button type="button" class="btn btn-primary"  id="submitPendidikanInformal">Simpan
                                 <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;"><button>
                         </div>
       
@@ -183,17 +189,20 @@
             <table class="table table-bordered table-responsive" style="border-radius:10px;">
                 <tr class="thead-smi th-center">
                     <th  width="5%"><h4>No</h4></th>
-                    <th  ><h4>Bahasa</h4></th>
-                    <th  colspan="2" width="15%"><h4>Lisan</h4></th>
-                    <th  width="15%"><h4>Tertulis</h4></th>
-                    <th  width="5%"><h4>Option</h4></th>
+                    <th ><h4>Bahasa</h4></th>
+                    <th width="30%"><h4>Lisan</h4></th>
+                    <th width="30%"><h4>Tertulis</h4></th>
+                    <th width="15%"><h4>Option</h4></th>
                 </tr>
                 <tr>
                     <th  width="5%"><h4>1</h4></th>
                     <th  ><h4>Arab</h4></th>
-                    <th  colspan="2" width="15%"><h4>Baik</h4></th>
-                    <th  width="15%"><h4>Sangat Baik</h4></th>
-                    <th  width="5%"><h4></h4></th>
+                    <th ><h4>Baik</h4></th>
+                    <th ><h4>Sangat Baik</h4></th>
+                    <th  width="15%"><h4>
+                        <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                        <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                    </h4></th>
                 </tr>
                 <tr>
                   <th scope="row" colspan="11" class="th-button">
@@ -205,7 +214,7 @@
             </table>
           <!--modal kemampuan bahasa asing-->
           <form>
-              <div class="modal fade kemampuanbahasaasing-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div id="pendidikanbahasa" class="modal fade kemampuanbahasaasing-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-head">
@@ -234,7 +243,7 @@
                             </div>
                             <div class="form-group">
                                 <h4><label class="my-1 mr-2" for="kemampuantertulis">Kemampuan Tertulis</label></h4>
-                                <select class="custom-select my-1 mr-sm-2" id="kemampuanlisan">
+                                <select class="custom-select my-1 mr-sm-2" id="kemampuantertulis">
                                     <option selected value="0">Pilih . . . </option>
                                     @foreach ($st_data["Kemampuan"] as $item)
                                       <option value="{{$item->id}}">{{$item->tingkat}}</option>    
@@ -246,7 +255,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-primary">Simpan
+                        <button type="button" class="btn btn-primary" id="submitPendidikanBahasa">Simpan
                             <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;"><button>
                     </div>
 
@@ -259,5 +268,6 @@
             </div>
           </div>
   </div>
+  <script>
+  </script>
 </div>
-

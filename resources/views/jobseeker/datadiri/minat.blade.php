@@ -9,7 +9,7 @@
           <h4>Minat dan Harapan</h4>
             <table class="table table-bordered table-responsive" style="border-radius:10px;">
                 <tr class="thead-smi th-center">
-                    <th rowspan="2" width="5%"><h4>Nomor</h4></th>
+                    <th rowspan="2" width="3%"><h4>Nomor</h4></th>
                     <th rowspan="1" colspan="3" width="10%"><h4>Preferensi Lokasi</h4></th>
                     <th rowspan="2" width="10%"><h4>Gaji Bulanan(IDR)</h4></th>
                     <th rowspan="2"><h4>Bidang Bisnis</h4></th>
@@ -36,7 +36,10 @@
                   <th>{{$item->st_spesialisasipekerjaan->spesial}}</th>
                   <th>{{$item->st_posisikerja->posisi}}</th>
                   <th>{{$item->st_leveljabatan->jabatan}}</th>
-                  <th>tes</th>
+                  <th>
+                      <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                      <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                  </th>
                 </tr>    
                 @endforeach
                 <tr>

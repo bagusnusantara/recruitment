@@ -34,7 +34,10 @@
                         <th><h4>{{$item->tempat}}</h4></th>
                         <th><h4>{{$item->posisi}}</h4></th>
                         <th><h4>{{$item->keterangan}}</h4></th>
-                        <th width="10%"><h4>Option</h4></th>
+                        <th width="10%"><h4>
+                            <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                            <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>    
+                        </h4></th>
                     </tr>
                     @endforeach
                     <tr>
@@ -63,9 +66,9 @@
                                     <div class="form-group">
                                         <h4>Periode</h4>
                                         <label for="tahunmulai">Mulai</label>
-                                        <input type="month" class="form-control" id="TahunMulai" placeholder="Masukan tahun mulai">
+                                        <input type="text" class="form-control typeTahun" id="TahunMulai" placeholder="Masukan tahun mulai">
                                         <label for="tahunakhir">Akhir</label>
-                                        <input type="date" class="form-control" id="TahunAkhir" placeholder="Masukan tahun akhir">
+                                        <input type="date" class="form-control typeTahun" id="TahunAkhir" placeholder="Masukan tahun akhir">
                                     </div>
                                     <div class="form-group">
                                         <h4><label for="Tempat">Tempat</label></h4>

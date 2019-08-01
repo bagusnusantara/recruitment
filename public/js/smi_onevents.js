@@ -1,3 +1,9 @@
+const inputDateYear ={
+    format : "yyyy",
+    minViewMode : "years",
+    maxViewMode : "years"
+}
+
 function identitasValidate(){
     $('.form-identitas').validate({
         rules:{
@@ -59,7 +65,7 @@ function identitasValidate(){
             },
         },
         messages:{
-            NIK:"*Wajib untuk diisi",
+            NIK:"*Masukan 16 digit No.NIK ",
             NamaLengkap:"*Wajib untuk diisi",
             NamaPanggilan:"*Wajib untuk diisi",
             TempatLahir:"*Wajib untuk diisi",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43f97e45f8aa09bf647279d3f531a88b",
+    "content-hash": "145bdbb1723fde2ad10ba7fb1652d5dc",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -4362,8 +4362,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "The PHP Unit Testing framework.",

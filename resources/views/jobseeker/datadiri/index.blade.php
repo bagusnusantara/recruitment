@@ -1,29 +1,5 @@
 @extends('jobseeker.template.index_content')
 @section('css')
-<style>
-  .thead-smi{
-    background-color: aliceblue;
-  }
-  .th-center th{
-    text-align: center;
-    vertical-align: middle;
-  }
-  .th-button
-  {
-    text-align: right;
-    vertical-align: middle;
-    margin-left:3%;
-  }
-
-  .menu-badge
-  {
-    z-index: 0;
-    position: relative;
-    top:0;
-    right:0;
-  }
-  
-</style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('header-title')
@@ -78,7 +54,7 @@
 <div class="section">
   <div class="mr-auto">
     <div class="row">
-      <div class="ml-5 mr-5 col-lg-2 col-md-4 col-xs-12">
+      <div class="ml-5 mr-5 col-lg-2 col-md-3 col-xs-12">
         <div class="right-sideabr">
           <h4>Data Diri</h4>
           <ul id="tab" class="list-item">
@@ -132,7 +108,7 @@
         </div>
       </div>
           <script src="{{asset('js/smi_onevents.js')}}"></script>
-          <div class="col-lg-9 col-md-7 col-xs-12 tabs-stage">
+          <div class="col-lg-9 col-md-8 col-xs-12 tabs-stage">
             <!--Detail Identitas-->
             @include('jobseeker.datadiri.identitas')
             <!--Identitas end-->

@@ -4465,3 +4465,26 @@ footer .menu li .small-title {
   color: #333;
   font-weight: 400;
 }
+
+/*smi new lib*/
+.thead-smi{
+  background-color: aliceblue;
+}
+.th-center th{
+  text-align: center;
+  vertical-align: middle;
+}
+.th-button
+{
+  text-align: right;
+  vertical-align: middle;
+  margin-left:3%;
+}
+
+.menu-badge
+{
+  z-index: 0;
+  position: relative;
+  top:0;
+  right:0;
+}

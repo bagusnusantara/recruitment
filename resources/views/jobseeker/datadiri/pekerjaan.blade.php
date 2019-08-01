@@ -33,7 +33,10 @@
                     <th>{{$item->jurusan}}</th>
                     <th>{{$item->alasan_pindah}}</th>
                     <th>{{$item->keterangan}}</th>
-                    <th>tes</th>
+                    <th>
+                        <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                        <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                    </th>
                   </tr>
                   @endforeach
                   <tr>
@@ -70,9 +73,9 @@
                                 <div class="form-group">
                                       <h4>Periode</h4>
                                       <label for="TahunMulai">Mulai</label>
-                                      <input type="month" class="form-control" id="TahunMulai" placeholder="Masukan Tahun Mulai">
+                                      <input type="text" class="form-control typeTahun" id="TahunMulai" placeholder="Masukan Tahun Mulai">
                                       <label for="TahunAkhir">Akhir</label>
-                                      <input type="month" class="form-control" id="TahunAkhir" placeholder="Masukan Tahun Akhirs">
+                                      <input type="text" class="form-control typeTahun" id="TahunAkhir" placeholder="Masukan Tahun Akhirs">
                                 </div>
                                 <div class="form-group">
                                       <h4><label for="Posisi">Posisi</label></h4>
