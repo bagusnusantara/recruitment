@@ -85,7 +85,7 @@ Route::prefix('admin')->group(function(){
     //-x Store Method
     Route::post('lowonganpekerjaan/store', 'AdminController@storeLowogan');
 
-<<<<<<< HEAD
+
 Route::get('hrd/dashboard', 'HRDController@getDashboard');
 Route::get('hrd/payroll', 'HRDController@getPayroll');
 Route::get('hrd/payroll/slipgaji', 'HRDController@getSlipgaji');
@@ -95,7 +95,6 @@ Route::post('/hrd/setup/komponengaji/update/{id}', 'HRDController@updateKomponen
 Route::delete('hrd/setup/komponengaji/delete/{id}', 'HRDController@destroyKomponengaji')->name('post-delete');
 Route::get('hrd/setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
 Route::get('/home', 'HomeController@index')->name('home');
-=======
     //-x Cetak
     Route::get('cetak_pkwt', 'AdminController@cetak_pkwt');
 });
@@ -117,7 +116,6 @@ Route::prefix('client')->group(function(){
     Route::get('notifikasi', 'ClientController@getNotifikasi');
     Route::get('orderlayanan', 'ClientController@getOrderlayanan');
     Route::get('datakaryawan', 'ClientController@getDatakaryawan');    
->>>>>>> 09b56e30812aaee8ec4d45244fe18ff56958f921
 
     //--x create method
     Route::get('dashboard/create', 'ClientController@createDashboard');
