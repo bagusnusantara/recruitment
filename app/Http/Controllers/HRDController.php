@@ -13,6 +13,7 @@ use App\st_spesialisasi_pekerjaan;
 use App\st_lowongan_gaji;
 use App\trans_lowongan_pekerjaan;
 use App\st_komponen_gaji;
+use App\md_karyawan;
 use Alert;
 use DB;
 class HRDController extends Controller
@@ -23,6 +24,13 @@ class HRDController extends Controller
       }
       Alert::success('Selamat Datang di Sistem Recruitment SMI', 'Halo HRD SMI!!!');
       return view ('hrd.dashboard.index');
+    }
+    public function getSMI(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $md_karyawan=md_karyawan::where('status',1)->get();
+      return view ('hrd.sdm.smi.index',compact('md_karyawan'));
     }
     public function getPayroll(){
       if(!Gate::allows('isHRD')){

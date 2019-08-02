@@ -28,12 +28,12 @@
                ) active @else '' @endif  treeview">
                 <a href="{{ url('hrd/dashboard')}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Dashboard</span></a>
             </li>
-            <li class="@if(url('/hrd/profil/tentangsaya') == request()->url() or url('jobseeker/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif treeview">
-                <a href="{{ url('hrd/profil/tentangsaya')}}"><i class="fa fa-address-book"></i> <span class="nav-label">Master Data Karyawan</span><span class="fa arrow"></span></a>
+            <li class="@if(url('hrd/sdm/smi') == request()->url() or url('hrd/sdm/worker') == request()->url()) or url('hrd/sdm/resign') == request()->url()) active @else '' @endif treeview">
+                <a href="#"><i class="fa fa-address-book"></i> <span class="nav-label">Master Data Karyawan</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                  <li class="@if(url('hrd/profil/riwayatpekerjaan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/riwayatpekerjaan')}}">Data Karyawan SMI</a></li>
-                  <li class="@if(url('hrd/profil/riwayatpendidikan') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/riwayatpendidikan')}}">Data Worker</a></li>
-                  <li class="@if(url('hrd/profil/sertifikatkeahlian') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('jobseeker/profil/sertifikatkeahlian')}}">Data Karyawan Resign</a></li>
+                  <li class="@if(url('hrd/sdm/smi') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('hrd/sdm/smi')}}">Data Karyawan SMI</a></li>
+                  <li class="@if(url('hrd/sdm/worker') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('hrd/sdm/worker')}}">Data Worker</a></li>
+                  <li class="@if(url('hrd/sdm/resign') == request()->url()) active @else '' @endif  treeview"><a href="{{ url('hrd/sdm/resign')}}">Data Karyawan Resign</a></li>
                 </ul>
             </li>
             <li class="@if(url('/hrd/dashboard') == request()->url()

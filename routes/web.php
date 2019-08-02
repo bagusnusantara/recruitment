@@ -1,7 +1,9 @@
 <?php
 //-# Authentifikasi
 Auth::routes();
-
+include ('hrd.php');
+include ('admin.php');
+include ('client.php');
 //-> public
 Route::get('/', function () {
     return view('welcome');
@@ -58,68 +60,4 @@ Route::prefix('jobseeker')->group(function(){
 
     //-x support ajax
     Route::post('support/getst/', 'SupportController@getSt');
-});
-
-//-> Admin
-Route::prefix('admin')->group(function(){
-    //-x Get Method
-    Route::get('dashboard', 'AdminController@getDashboard');
-    Route::get('notifikasi', 'AdminController@getNotifikasi');
-    Route::get('sdm', 'AdminController@getSdm');
-    Route::get('klien', 'AdminController@getKlien');
-    Route::get('lowongan', 'AdminController@getLowongan');
-    Route::get('manajementes', 'AdminController@getManajementes');
-    Route::get('manajemenuser', 'AdminController@getManajemenuser');
-    Route::get('lowongan/show/{id}', 'AdminController@showLowongan')->name('showAdminLowongan');
-    Route::get('lowongan/penilaian/{jobid}/users/{userid}', 'AdminController@showPenilaian')->name('penilaian');
-    
-    //-x Create Method
-    Route::get('dashboard/create', 'AdminController@createDashboard');
-    Route::get('notifikasi/create', 'AdminController@createNotifikasi');
-    Route::get('sdm/create', 'AdminController@createSdm');
-    Route::get('klien/create', 'AdminController@createKlien');
-    Route::get('lowongan/create', 'AdminController@createLowongan');
-    Route::get('manajementes/create', 'AdminController@createManajementes');
-    Route::get('manajemenuser/create', 'AdminController@createManajemenuser');
-    
-    //-x Store Method
-    Route::post('lowonganpekerjaan/store', 'AdminController@storeLowogan');
-
-
-Route::get('hrd/dashboard', 'HRDController@getDashboard');
-Route::get('hrd/payroll', 'HRDController@getPayroll');
-Route::get('hrd/payroll/slipgaji', 'HRDController@getSlipgaji');
-Route::get('hrd/setup/komponengaji', 'HRDController@getKomponengaji');
-Route::post('/hrd/setup/komponengaji/store', 'HRDController@storeKomponengaji');
-Route::post('/hrd/setup/komponengaji/update/{id}', 'HRDController@updateKomponengaji');
-Route::delete('hrd/setup/komponengaji/delete/{id}', 'HRDController@destroyKomponengaji')->name('post-delete');
-Route::get('hrd/setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
-Route::get('/home', 'HomeController@index')->name('home');
-    //-x Cetak
-    Route::get('cetak_pkwt', 'AdminController@cetak_pkwt');
-});
-
-//-> HRD
-Route::prefix('hrd')->group(function(){
-    //-x get method
-    Route::get('dashboard', 'HRDController@getDashboard');
-    Route::get('payroll', 'HRDController@getPayroll');
-    Route::get('payroll/slipgaji', 'HRDController@getSlipgaji');
-    Route::get('setup/komponengaji', 'HRDController@getKomponengaji');
-    Route::get('setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
-});
-
-//-> client
-Route::prefix('client')->group(function(){
-    //--x get method
-    Route::get('dashboard', 'ClientController@getDashboard');
-    Route::get('notifikasi', 'ClientController@getNotifikasi');
-    Route::get('orderlayanan', 'ClientController@getOrderlayanan');
-    Route::get('datakaryawan', 'ClientController@getDatakaryawan');    
-
-    //--x create method
-    Route::get('dashboard/create', 'ClientController@createDashboard');
-    Route::get('notifikasi/create', 'ClientController@createNotifikasi');
-    Route::get('orderlayanan/create', 'ClientController@createOrderlayanan');
-    Route::get('datakaryawan/create', 'ClientController@createDatakaryawan');    
 });
