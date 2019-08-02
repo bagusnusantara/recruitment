@@ -1,5 +1,5 @@
 @extends('jobseeker.template.index_content')
-@section('css')
+@section('css')z
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('header-title')
@@ -11,7 +11,7 @@
     
     <div class="alert alert-primary col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
         <i class="fa fa-info-circle fa-2x">&nbsp;</i>
-        <strong>Lengkapi Data Diri untuk melamar pekerjaan (wajib untuk identitas,pendidikan,dan minat kerja')</strong>
+        <strong>Lengkapi Data Diri untuk melamar pekerjaan (wajib untuk identitas,pendidikan,dan minat kerja)</strong>
     </div>
     @if(Session::has('alert'))
     <div class="alert alert-warning col-md-11 col-lg-11 ml-auto mr-auto" role="alert">

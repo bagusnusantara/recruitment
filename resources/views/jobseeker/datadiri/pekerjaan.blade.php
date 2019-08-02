@@ -7,30 +7,28 @@
             <div class="item">
               <!--pekerjaan-->
               <h4>Pengalaman Kerja</h4>
-              <table class="table table-bordered table-responsive black-font" style="border-radius:10px;">
+              <table class="table table-bordered table-responsive black-font" id="riwayatpekerjaan-table" style="border-radius:10px;">
                   <tr class="thead-smi th-center">
                       <th width="3%"><h4>Nomor</h4></th>
                       <th><h4>Bisinis Perusahaan</h4></th>
-                      <th width="15%" colspan="2"><h4>Periode</h4></th>
-                      <th width="10%"><h4>Jumlah Anggota</h4></th>
+                      <th width="15%" ><h4>Periode</h4></th>
                       <th width="10%"><h4>Posisi</h4></th>
                       <th ><h4>Jumlah Anggota</h4></th>
                       <th><h4>Gaji Terakhir(IDR)</h4></th>
-                      <th width="15%"><h4>Alasan Pindah</h4></th>
+                      <th width="20%"><h4>Alasan Pindah</h4></th>
                       <th><h4>Keterangan</h4></th>
                       <th width="5%"><h4>Option</h4></th>
                   </tr>
-
+                  @php
+                  @endphp
                   @foreach ($dataUserSt['RiwayatKerja'] as $key=>$item)
                   <tr>
                     <th>{{$key}}</th>
                     <th>{{$item->st_bisnisperusahaan['name']}}</th>
-                    <th>{{date("Y",strtotime($item->tanggal_mulai)) }}</th>
-                    <th>{{date("Y",strtotime($item->tanggal_akhir))}}</th>
+                    <th>{{date("Y",strtotime($item->tanggal_mulai)) }} - {{date("Y",strtotime($item->tanggal_akhir))}}</th>
                     <th>{{$item->posisi}}</th>
                     <th>{{$item->bawahan}}</th>
-                    <th>{{"Rp".$item->gaji_terakhir.".00"}}</th>
-                    <th>{{$item->jurusan}}</th>
+                    <th>{{"Rp. ".number_format($item->gaji_terakhir,2,",",".")}}</th>
                     <th>{{$item->alasan_pindah}}</th>
                     <th>{{$item->keterangan}}</th>
                     <th>
@@ -39,16 +37,12 @@
                     </th>
                   </tr>
                   @endforeach
-                  <tr>
-                    <th scope="row" colspan="11" class="th-button">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".pengalamankerja-modal">
-                            <i class="fa fa-plus"></i>Tambah</button>  
-                    </th>
-                  </tr>
               </table>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".pengalamankerja-modal">
+                  <i class="fa fa-plus"></i>Tambah</button>  
                 <!--modal pekerjaan-->
                 <form>
-                    <div id="RiwayatKerja" class="modal fade pengalamankerja-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div id="RiwayatKerjaModal" class="modal fade pengalamankerja-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-head">
@@ -73,9 +67,9 @@
                                 <div class="form-group">
                                       <h4>Periode</h4>
                                       <label for="TahunMulai">Mulai</label>
-                                      <input type="text" class="form-control typeTahun" id="TahunMulai" placeholder="Masukan Tahun Mulai">
+                                      <input type="text" class="form-control typeBulan" id="TahunMulai" placeholder="Masukan Tahun Mulai">
                                       <label for="TahunAkhir">Akhir</label>
-                                      <input type="text" class="form-control typeTahun" id="TahunAkhir" placeholder="Masukan Tahun Akhirs">
+                                      <input type="text" class="form-control typeBulan" id="TahunAkhir" placeholder="Masukan Tahun Akhirs">
                                 </div>
                                 <div class="form-group">
                                       <h4><label for="Posisi">Posisi</label></h4>
@@ -91,7 +85,8 @@
                                         <div class="input-group-prepend">
                                           <div class="input-group-text">Rp.</div>
                                         </div>
-                                        <input type="number" min="0" step="1" class="form-control" id="GajiTerakhir" placeholder="Masukan gaji terakhir">
+                                        <input type="text" min="0" step="1" class="form-control" id="_GajiTerakhir" placeholder="Masukan gaji terakhir">
+                                        <input type="hidden" min="0" step="1" class="form-control" id="GajiTerakhir" placeholder="Masukan gaji terakhir">
                                         <div class="input-group-append">
                                           <div class="input-group-text">.00</div>
                                         </div>

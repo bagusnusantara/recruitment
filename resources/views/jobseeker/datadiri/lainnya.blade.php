@@ -7,7 +7,7 @@
             <div class="item">
               <!--lainnya-->
               <h4>Riwayat Penyakit 2 Tahun Terakhir </h4>
-                <table class="table table-bordered table-responsive" style="border-radius:10px;">
+                <table class="table table-bordered table-responsive" id="riwayatpenyakit-table"style="border-radius:10px;">
                     <tr class="thead-smi th-center">
                         <th width="5%"><h4>Nomor</h4></th>
                         <th><h4>Jenis Penyakit</h4></th>
@@ -17,20 +17,20 @@
                     </tr>
                     @foreach ($dataUserSt['RiwayatPenyakit'] as $key=>$item)
                       <tr>
-                        <th width="5%"><h4>{{$key+1}}</h4></th>
+                        <th ><h4>{{$key+1}}</h4></th>
                         <th><h4>{{$item->nama_penyakit}}</h4></th>
                         <th><h4>{{$item->tanggal_mulai}}</h4></th>
                         <th><h4>{{$item->tanggal_akhir}}</h4></th>
                         <th><h4>{{$item->pengaruh}}</h4></th>
-                        <th width="10%"><h4>Option</h4></th>
+                        <th ><h4>
+                            <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                            <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>    
+                          </h4></th>
                       <tr>
                     @endforeach
-                      <th scope="row" colspan="7" class="th-button">
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".lainnya-modal">
-                          <i class="fa fa-plus"></i>Tambah</button>  
-                      </th>
-                    </tr>
-                </table>
+                  </table>
+                    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".lainnya-modal">
+                    <i class="fa fa-plus"></i>Tambah</button>
                 <br>
                 <div class="form-group">
                   <h4><label class="my-1 mr-2" for="SurveyReferensi">Mengetahui informasi PT Selaras Mitra Integra dari :</label></h4>
@@ -63,9 +63,9 @@
                                     <div class="form-group">
                                         <h4>Lama</h4>
                                         <label for="TahunMulai">Mulai</label>
-                                        <input type="date" class="form-control typeBulan" id="TahunMulai" placeholder="Masukan tahun mulai">
+                                        <input type="text" class="form-control typeBulan" id="TahunMulai" placeholder="Masukan tahun mulai">
                                         <label for="TahunAkhir">Akhir</label>
-                                        <input type="date" class="form-control typeBulan" id="TahunAkhir" placeholder="Masukan tahun akhirs">
+                                        <input type="text" class="form-control typeBulan" id="TahunAkhir" placeholder="Masukan tahun akhirs">
                                     </div>
                                     <div class="form-group">
                                         <h4><label for="Pengaruh">Pengaruh</label></h4>
@@ -75,7 +75,7 @@
                           </div>
                           </div>
                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">//Tutup</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                               <button type="button" class="btn btn-primary btn-lg" id="submitRiwayatPenyakit">
                                 <a>Simpan</a>
                                 <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">

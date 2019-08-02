@@ -4,6 +4,12 @@ const inputDateYear ={
     maxViewMode : "years"
 }
 
+const inputDateMonth ={
+    format : "M-yyyy",
+    minViewMode : "months",
+    maxViewMode : "years"
+}
+
 function identitasValidate(){
     $('.form-identitas').validate({
         rules:{

@@ -7,7 +7,7 @@
         <div class="item">
           <!--minat-->
           <h4>Minat dan Harapan</h4>
-            <table class="table table-bordered table-responsive" style="border-radius:10px;">
+            <table id="minat-table" class="table table-bordered table-responsive" style="border-radius:10px;">
                 <tr class="thead-smi th-center">
                     <th rowspan="2" width="3%"><h4>Nomor</h4></th>
                     <th rowspan="1" colspan="3" width="10%"><h4>Preferensi Lokasi</h4></th>
@@ -24,7 +24,7 @@
                     <th><h4>Provinsi</h4></th>
                     <th><h4>Kota</h4></th>
                 </tr>
-                @foreach ($dataUserSt['MinatKerja'] as $key => $item)
+              @foreach ($dataUserSt['MinatKerja'] as $key => $item)
                 <tr>
                   <th>{{$key}}</th>
                   <th>{{$item->st_negara->negara}}</th>
@@ -40,20 +40,16 @@
                       <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
                       <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
                   </th>
-                </tr>    
+                 </tr>    
                 @endforeach
-                <tr>
-                  <th scope="row" colspan="11" class="th-button">
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".minat-modal">
-                          <i class="fa fa-plus"></i>
-                        Tambah</button>  
-                  </th>
-                </tr>
             </table>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".minat-modal">
+                <i class="fa fa-plus"></i>
+              Tambah</button>
             <br>
             <!--modal minat-->
             <form>
-                <div class="modal fade minat-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal fade minat-modal" id="MinatKerjaModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-head">
@@ -62,32 +58,37 @@
                       <div class="modal-body">
                         <div class="inner-box">
                             <div class="item">
-                              <div class="form-group">
+                                <div class="row">
+                                  <div class="form-group col-12">
                                       <h4><label class="my-1 mr-2" for="Negara">Negara</label></h4>
                                       <select class="custom-select my-1 mr-sm-2" id="Negara">
-                                        <option selected value="0">Pilih . . .</option>
-                                        @foreach ($st_data["Negara"] as $item)
-                                          <option value="{{$item->id}}">{{$item->negara}}</option>    
-                                        @endforeach
-                                      </select>
-                                      <br>
+                                          <option selected value="0">Pilih . . .</option>
+                                          @foreach ($st_data["Negara"] as $item)
+                                            <option value="{{$item->id}}">{{$item->negara}}</option>    
+                                          @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-6">
                                       <h4><label class="my-1 mr-2" for="Provinsi">Provinsi</label></h4>
                                       <select class="custom-select my-1 mr-sm-2" id="Provinsi" disabled>
-                                        <option selected>Pilih...</option>
+                                          <option selected>Pilih...</option>
                                       </select>
-                                      <br>
-                                      <h4><label class="my-1 mr-2" for="Kota">Kota/Kab</label></h4>
-                                      <select class="custom-select my-1 mr-sm-2" id="Kota" disabled>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <h4><label class="my-1 mr-2" for="Kota">Kota/Kab</label></h4>
+                                        <select class="custom-select my-1 mr-sm-2" id="Kota" disabled>
                                         <option selected>Pilih...</option>
-                                      </select>
-                              </div>
+                                        </select>
+                                    </div>
+                                </div>
                               <div class="form-group">
                                 <h4><label for="gajibulan">Gaji Bulanan</label></h4>
                                 <div class="input-group">
                                   <div class="input-group-prepend">
                                     <div class="input-group-text">Rp.</div>
                                   </div>
-                                  <input type="number" min="0" step="1" class="form-control" id="GajiBulan" placeholder="Masukan minat gaji ">
+                                  <input type="text" class="form-control" id="_GajiBulan" placeholder="Masukan minat gaji ">
+                                  <input type="hidden" class="form-control" id="GajiBulan" placeholder="Masukan minat gaji ">
                                   <div class="input-group-append">
                                     <div class="input-group-text">.00</div>
                                   </div>

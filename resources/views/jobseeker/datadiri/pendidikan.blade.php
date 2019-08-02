@@ -7,10 +7,10 @@
       <div class="item">
         <!--pendidikan formal-->
         <h4>Pendidikan Formal</h4>
-          <table id="pendidikan-formal" class="table table-bordered table-responsive" style="border-radius:10px;">
+          <table id="pendidikan-formal-table" class="table table-bordered table-responsive" style="border-radius:10px;">
               <tr class="thead-smi th-center">
                 <th  width="5%"><h4>#</h4></th>
-                <th  width="10%"><h4>Tingkatan</h4></th>
+                <th  width="7%"><h4>Tingkatan</h4></th>
                 <th  width="10%" ><h4>Tahun Sekolah</h4></th>
                 <th  width="30%"><h4>Nama Institusi</h4></th>
                 <th><h4>Tempat</h4></th>
@@ -19,28 +19,10 @@
                 <th width="10%"><h4>Keterangan</h4></th>
                 <th width="10%"><h4>Option</h4></th>
             </tr>
-            <tr>
-                <th  width="5%"><h4>1</h4></th>
-                <th  width="10%"><h4>SMA</h4></th>
-                <th  width="10%"><h4>2012 - 2015</h4></th>
-                <th  width="30%"><h4>SMA N 1 Ngawi</h4></th>
-                <th><h4>Ngawi</h4></th>
-                <th><h4>IPA</h4></th>
-                <th width="7%"><h4>100</h4></th>
-                <th width="10%"><h4>tidak ada</h4></th>
-                <th width="10%"><h4>
-                  <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                  <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
-                </h4></th>
-            </tr>
-            <tr>
-              <th scope="row" colspan="11" class="th-button">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".pendidikanformal-modal">
-                      <i class="fa fa-plus"></i>
-                    Tambah</button>  
-              </th>
-            </tr>
         </table>
+        <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".pendidikanformal-modal">
+          <i class="fa fa-plus"></i>
+        Tambah</button>  
         <br>
         <!--modal pendidikan formal-->
         <form>
@@ -62,7 +44,7 @@
                                   @endforeach
                                 </select>
                           </div>
-                        <div class="form-group">
+                        <div class="form-group input-date-range">
                             <h4>Tahun</h4>
                             <label for="tahunmulai">Mulai</label>
                             <input type="text" class="form-control typeTahun" id="tahunmulai" placeholder="Masukan Tahun Mulai">
@@ -101,92 +83,90 @@
                       <button type="button" class="btn btn-primary" id="submitPendidikanFormal">Simpan
                           <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
                       </button>
-                    </div>
+                  </div>
 
                 </div>
               </div>
             </div>
-          </form>
+          </form>          
       <!--modal pendidikan formal end-->
       <!--pendidikan formal end-->
       <!--pendidikan informal -->
       <h4>Pendidikan Informal / Pelatihan Kursus</h4>
-      <table class="table table-bordered table-responsive" style="border-radius:10px;">
+      <table class="table table-bordered table-responsive" id="pendidikan-informal-table" style="border-radius:10px;">
           <tr class="thead-smi th-center">
-              <th  width="5%"><h4>No</h4></th>
-              <th ><h4>Jenis Pelatihan</h4></th>
-              <th ><h4>Tempat</h4></th>
-              <th  colspan="2"  ><h4>Periode</h4></th>
-              <th  width="10%"><h4>Keterangan</h4></th>
-              <th  width="10%"><h4>Option</h4></th>
+              <th width="5%"><h4>No</h4></th>
+              <th><h4>Jenis Pelatihan</h4></th>
+              <th><h4>Tempat</h4></th>
+              <th><h4>Periode</h4></th>
+              <th width="10%"><h4>Keterangan</h4></th>
+              <th width="10%"><h4>Option</h4></th>
           </tr>
           <tr>
-              <th  width="5%"><h4>1</h4></th>
-              <th ><h4>LKMM TD</h4></th>
-              <th ><h4>Instititut Teknologi Sepuluh Nopember</h4></th>
-              <th  colspan="2"  ><h4>2019</h4></th>
-              <th ><h4>Sudah</h4></th>
+              <th><h4>1</h4></th>
+              <th><h4>LKMM TD</h4></th>
+              <th><h4>Instititut Teknologi Sepuluh Nopember</h4></th>
+              <th><h4>2019</h4></th>
+              <th><h4>Sudah</h4></th>
               <th><h4>
                   <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
                   <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
               </h4></th>
           </tr>
-          <tr>
-            <th scope="row" colspan="11" class="th-button">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".pendidikaninformal-modal">
-                    <i class="fa fa-plus"></i>
-                  Tambah</button>  
-            </th>
-          </tr>
-      </table>
-              <!--modal pendidikan formal-->
-              <form>
-                  <div id="pendidikaninformal" class="modal fade pendidikaninformal-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-head">
-                            <h3 class="modal-title ml-4 mt-3">Data Pendidikan Informal / Pelatihan Kursus</h3>
-                        </div>
-                        <div class="modal-body">
-                          <div class="inner-box">
-                              <div class="item">
-                              <div class="form-group">
-                                  <h4><label for="tempat">Jenis Pelatihan</label></h4>
-                                  <input type="text" class="form-control" id="jenispelatihan" placeholder="Masukan jenis pelatihan">
-                              </div>
-                              <div class="form-group">
-                                  <h4>Periode</h4>
-                                  <label for="tahunmulai">Mulai</label>
-                                  <input type="text"  class="form-control" id="tahunmulai" placeholder="Masukan Tahun Mulai">
-                                  <label for="tahunakhir">Akhir</label>
-                                  <input type="text"  class="form-control" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
-                              </div>
-                               <div class="form-group">
-                                    <h4><label for="tempat">Tempat</label></h4>
-                                    <input type="text" class="form-control" id="tempat" placeholder="Masukan tempat lembaga">
-                               </div>
-                               <div class="form-group">
-                                    <h4><label for="keterangan">Keterangan</label></h4>
-                                    <input type="text" class="form-control" rows="3" id="ketarangan" placeholder="Ketarangan">
-                               </div>
+        </table>
+        <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".pendidikaninformal-modal">
+          <i class="fa fa-plus"></i>
+        Tambah</button>
+          <!--modal pendidikan formal-->
+          <br>
+          <form>
+              <div id="pendidikaninformal" class="modal fade pendidikaninformal-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-head">
+                        <h3 class="modal-title ml-4 mt-3">Data Pendidikan Informal / Pelatihan Kursus</h3>
+                    </div>
+                    <div class="modal-body">
+                      <div class="inner-box">
+                          <div class="item">
+                          <div class="form-group">
+                              <h4><label for="tempat">Jenis Pelatihan</label></h4>
+                              <input type="text" class="form-control" id="jenispelatihan" placeholder="Masukan jenis pelatihan">
                           </div>
-                        </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-primary"  id="submitPendidikanInformal">Simpan
-                                <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;"><button>
-                        </div>
-      
+                          <div class="form-group">
+                              <h4>Periode</h4>
+                              <label for="tahunmulai">Mulai</label>
+                              <input type="text"  class="form-control typeTahun" id="tahunmulai" placeholder="Masukan Tahun Mulai">
+                              <label for="tahunakhir">Akhir</label>
+                              <input type="text"  class="form-control typeTahun" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
+                          </div>
+                            <div class="form-group">
+                                <h4><label for="tempat">Tempat</label></h4>
+                                <input type="text" class="form-control" id="tempat" placeholder="Masukan tempat lembaga">
+                            </div>
+                            <div class="form-group">
+                                <h4><label for="keterangan">Keterangan</label></h4>
+                                <input type="text" class="form-control" rows="3" id="ketarangan" placeholder="Ketarangan">
+                            </div>
                       </div>
                     </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary"  id="submitPendidikanInformal">Simpan
+                        <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;"><button>
+                    </div>
+
                   </div>
-                </form>
-            <!--modal pendidikan informal end-->
-            <!--pendidikan informal end-->
+                </div>
+              </div>
+            </form>
+        <!--modal pendidikan informal end-->
+        <!--pendidikan informal end-->
+
             <!--kemampuan bahasa asing-->
             <h4>Kemampuan Bahasa Asing</h4>
-            <table class="table table-bordered table-responsive" style="border-radius:10px;">
+            <table class="table table-bordered table-responsive" id="pendidikan-bahasa-table" style="border-radius:10px;">
                 <tr class="thead-smi th-center">
                     <th  width="5%"><h4>No</h4></th>
                     <th ><h4>Bahasa</h4></th>
@@ -195,24 +175,21 @@
                     <th width="15%"><h4>Option</h4></th>
                 </tr>
                 <tr>
-                    <th  width="5%"><h4>1</h4></th>
-                    <th  ><h4>Arab</h4></th>
-                    <th ><h4>Baik</h4></th>
-                    <th ><h4>Sangat Baik</h4></th>
-                    <th  width="15%"><h4>
+                    <th><h4>1</h4></th>
+                    <th><h4>Arab</h4></th>
+                    <th><h4>Baik</h4></th>
+                    <th><h4>Sangat Baik</h4></th>
+                    <th><h4>
                         <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
                         <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
                     </h4></th>
                 </tr>
-                <tr>
-                  <th scope="row" colspan="11" class="th-button">
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".kemampuanbahasaasing-modal">
-                          <i class="fa fa-plus"></i>
-                        Tambah</button>  
-                  </th>
-                </tr>
-            </table>
+              </table>
+              <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".kemampuanbahasaasing-modal">
+                <i class="fa fa-plus"></i>
+              Tambah</button>  
           <!--modal kemampuan bahasa asing-->
+          <br>
           <form>
               <div id="pendidikanbahasa" class="modal fade kemampuanbahasaasing-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -256,7 +233,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         <button type="button" class="btn btn-primary" id="submitPendidikanBahasa">Simpan
-                            <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;"><button>
+                        <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;"><button>
                     </div>
 
                   </div>

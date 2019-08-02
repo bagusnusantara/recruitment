@@ -210,16 +210,23 @@ class JobseekerController extends Controller
                                                     ->where('id',$request->id)->first();
       if($riwayatKerja==null)
       {
-        $request->request->remove('id');
-        $request->request->add(['user_id'=>\Auth::user()->id]);
-        st_jobseeker_pengalamankerja::create($request->all());
-        return response()->json(["success"=>$request->all()]);
+        try {
+          $request->request->remove('id');
+          $request->request->add(['user_id'=>\Auth::user()->id]);
+          $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
+          $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
+          dump("success");
+          st_jobseeker_pengalamankerja::create($request->all());
+          return response()->json(["success"=>true]);
+        } catch (\Throwable $th) {
+          return response()->json(["success"=>false]);
+        }
+
       }
-      return response()->json(["success"=>"data pengalaman kerja recaived"]);
     }
 
     public function storeDataPengalamanOrganisasi(Request $request){
-      $pengalamanOrganisasi = st_jobseeker_pengalamanorganisasi:: where('user_id',\Auth::user()->id)
+       $pengalamanOrganisasi = st_jobseeker_pengalamanorganisasi:: where('user_id',\Auth::user()->id)
                                                                   ->where('id',$request->id)->first();
       if($pengalamanOrganisasi==null)
       {
@@ -241,8 +248,17 @@ class JobseekerController extends Controller
       {
         $request->request->remove('id');
         $request->request->add(['user_id'=>\Auth::user()->id]);
-        st_jobseeker_riwayatpenyakit::create($request->all());
-        return response()->json(["success"=>$request->all()]);
+        try{
+          $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
+          $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
+          st_jobseeker_riwayatpenyakit::create($request->all());
+          dump($request->aLL());
+          dump('success');
+          return response()->json(["success"=>true]);
+        }catch(\Throwable $Th){
+          dump($Th);
+          return response()->json(["success"=>false]);
+        }
       }
 
       return response()->json(["success"=>$request->all()]);
@@ -254,12 +270,15 @@ class JobseekerController extends Controller
                                             ->where('id',$request->id)->first();
       if($dataMinat==null)
       {
-         $request->request->remove('id');
-         $request->request->add(['user_id'=>\Auth::user()->id]);
-         st_jobseeker_minatkerja::create($request->all());
-         return response()->json(["success"=>$request->all()]);
+        try {
+          $request->request->remove('id');
+          $request->request->add(['user_id'=>\Auth::user()->id]);
+          st_jobseeker_minatkerja::create($request->all());
+          return response()->json(["success"=>true]); 
+        } catch (\Throwable $th) {
+          return response()->json(["success"=>false]); 
+        }
        }
-      return response()->json(["success"=>$request->all()]);
     }
     //Pelamaran Lowongan
     public function showLowongan($id){

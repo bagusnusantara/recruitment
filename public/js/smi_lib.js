@@ -1,9 +1,182 @@
 $(document).ready(function(){
-//document onload
+//document onload start
 identitasValidate();
+
+$("#submitPendidikanFormal").click(function(e){
+    e.preventDefault();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/submitpendidikanformal/",
+        method:"post",
+        data :{
+            id                             : "",
+            tingkat_pendidikan             :$("#pendidikanformal #TingkatPendidikan").val(),
+            tahun_mulai                    :$("#pendidikanformal #tahunmulai").val(),
+            tahun_akhir                    :$("#pendidikanformal #tahunakhir").val(),
+            institusi                      :$("#pendidikanformal #institusi").val(),
+            tempat                         :$("#pendidikanformal #tempat").val(),
+            jurusan                        :$("#pendidikanformal #jurusan").val(),
+            IPK                            :$("#pendidikanformal #IPK").val(),
+            keterangan                     :$("#pendidikanformal #keterangan").val(),
+        },
+        success:function(result){
+            console.log(result.success);
+            if(result.success){
+                $('#pendidikan-formal-table').append(
+                    `<tr>
+                    <th  width="5%"><h4>${$('#pendidikan-formal-table tr').length}</h4></th>
+                    <th  width="10%"><h4>${$("#pendidikanformal #TingkatPendidikan option:selected").text()}</h4></th>
+                    <th  width="10%"><h4>${$("#pendidikanformal #tahunmulai").text()} - ${$("#pendidikanformal #tahunakhir").text()}</h4></th>
+                    <th  width="30%"><h4>${$("#pendidikanformal #institusi").val()}</h4></th>
+                    <th><h4>${$("#pendidikanformal #tempat").val()}</h4></th>
+                    <th><h4>${$("#pendidikanformal #jurusan").val()}</h4></th>
+                    <th width="7%"><h4>${$("#pendidikanformal #IPK").val()}</h4></th>
+                    <th width="10%"><h4>${$("#pendidikanformal #keterangan").val()}</h4></th>
+                    <th width="10%"><h4>
+                        <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                        <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                      </h4>
+                    </th>
+                </tr>`
+                )
+            }
+        },
+        beforeSend: function(){
+
+            $("#submitPendidikanFormal a").text('Unggah Data');
+            $("#submitPendidikanFormal #loader").show();
+        },
+        complete:function(data){
+            
+            sendProsses.data('run',false);
+            $("#submitPendidikanFormal a").text('Simpan');
+            $("#submitPendidikanFormal #loader").hide();
+        }
+    });
+});
+
+$("#submitPendidikanInformal").click(function(e){
+    e.preventDefault();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/submitpendidikaninformal/",
+        method:"post",
+        data :{
+            id                             : "",
+            jenispelatihan                 :$("#pendidikaninformal #jenispelatihan").val(),
+            tahun_mulai                    :$("#pendidikaninformal #tahunmulai").val(),
+            tahun_akhir                    :$("#pendidikaninformal #tahunakhir").val(),
+            tempat                         :$("#pendidikaninformal #tempat").val(),
+            keterangan                     :$("#pendidikaninformal #keterangan").val(),
+        },
+        success:function(result){
+            console.log(result.success);
+            if(result.success){
+                $('#pendidikan-informal-table').append(
+                    `<tr>
+                    <th><h4>${$('#pendidikan-informal-table tr').length}</h4></th>
+                    <th><h4>${$("#pendidikaninformal #jenispelatihan").val()}</h4></th>
+                    <th><h4>${$("#pendidikaninformal #tahunmulai").val()} - ${$("#pendidikaninformal #tahunakhir").val()}</h4></th>
+                    <th><h4>${$("#pendidikaninformal #tempat").val()}</h4></th>
+                    <th><h4>${$("#pendidikaninformal #keterangan").val()}</h4></th>
+                    <th><h4>
+                    <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                    <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                    </h4></th>
+                    </tr>`
+                );
+            }
+        },
+        beforeSend: function(){
+            // Show image container
+            $("#submitPendidikanInformal a").text('Unggah Data');
+            $("#submitPendidikanInformal #loader").show()
+        },
+        complete:function(data){
+            sendProsses.data('run',false);
+            $("#submitPendidikanInformal a").text('Simpan'); 
+            $("#submitPendidikanInformal #loader").hide();
+        }
+    });
+});
+
+$("#submitPendidikanBahasa").click(function(e){
+    e.preventDefault();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/submitpendidikanbahasa/",
+        method:"post",
+        data :{
+            id                            : "",
+            bahasa                        :$("#pendidikanbahasa #bahasa").val(),
+            kemampuan_lisan               :$("#pendidikanbahasa #kemampuanlisan").val(),
+            kemampuan_tertulis            :$("#pendidikanbahasa #kemampuantertulis").val(),
+        },
+        success:function(result){
+            console.log(result.success);
+            if(result.success){
+                $('#pendidikan-bahasa-table').append(`
+                <th><h4>${$('#pendidikan-bahasa-table tr').length}</h4></th>
+                    <th><h4>${$('#pendidikanbahasa #bahasa option:selected').text()}</h4></th>
+                    <th><h4>${$('#pendidikanbahasa #kemampuanlisan option:selected').text()}</h4></th>
+                    <th><h4>${$('#pendidikanbahasa #kemampuantertulis option:selected').text()} Baik</h4></th>
+                    <th><h4>
+                        <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                        <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                </h4></th>
+                `);
+            }
+        },
+        beforeSend: function(){
+            // Show image container
+            sendProsses.data('run',false);
+            $("#submitPendidikanBahasa a").each(function(){
+                $(this).text('Unggah Data');
+            });
+            $("#submitPendidikanBahasa #loader").each(function(){
+                $(this).show();
+            });
+        },
+        complete:function(data){
+            // Hide image container
+            $("#submitPendidikanBahasa a").each(function(){
+                $(this).text('Simpan');
+            });
+            $("#submitPendidikanBahasa #loader").each(function(){
+                $(this).hide();
+            });
+        }
+    });
+});
 $("button#submitIdentitas").each(function(){
+        
         $(this).click(function(e){
+            
             e.preventDefault();
+            let sendProsses = $(this);
+            if($(this).data('run'))return;
+            sendProsses.data('run',true);
+
             $.ajaxSetup({
                 headers:{
                 'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -51,6 +224,7 @@ $("button#submitIdentitas").each(function(){
                 },
                 complete:function(data){
                     // Hide image container
+                    sendProsses.data('run',false);
                     $("#submitIdentitas a").each(function(){
                         $(this).text('Simpan');
                     });
@@ -63,6 +237,10 @@ $("button#submitIdentitas").each(function(){
 });
 $("#submitRiwayatPenyakit").click(function(e){
             e.preventDefault();
+            let sendProsses = $(this);
+            if($(this).data('run'))return;
+            sendProsses.data('run',true);
+
             $.ajaxSetup({
                 headers:{
                 'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -78,7 +256,23 @@ $("#submitRiwayatPenyakit").click(function(e){
                     pengaruh          : $("#lainnya #Pengaruh").val(),
                 },
                 success:function(result){
-                    console.log(result.success);                    
+                    console.log(result.success);
+                    if(result.success)
+                    {
+                        $('#riwayatpenyakit-table').append(
+                            `
+                            <th width="5%"><h4>${$('#riwayatpenyakit-table tr').length}</h4></th>
+                            <th><h4>${$("#lainnya #NamaPenyakit").val()}</h4></th>
+                            <th><h4>${$("#lainnya #TahunMulai").val()}</h4></th>
+                            <th><h4>${$("#lainnya #TahunAkhir").val()}</h4></th>
+                            <th><h4>${$("#lainnya #Pengaruh").val()}</h4></th>
+                            <th width="10%"><h4>
+                                <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                                <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                            </h4></th>`
+                        );
+                    }
+
                 },
                 beforeSend: function(){
                     // Show image container
@@ -91,6 +285,7 @@ $("#submitRiwayatPenyakit").click(function(e){
                 },
                 complete:function(data){
                     // Hide image container
+                    sendProsses.data('run',false);
                     $("#submitRiwayatPenyakit a").each(function(){
                         $(this).text('Simpan');
                     });
@@ -103,6 +298,10 @@ $("#submitRiwayatPenyakit").click(function(e){
         
 $("#submitPengalamanOrganisasi").click(function(e){
     e.preventDefault();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+    
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -124,27 +323,23 @@ $("#submitPengalamanOrganisasi").click(function(e){
         },
         beforeSend: function(){
             // Show image container
-            $("#submitPengalamanOrganisasi a").each(function(){
-                $(this).text('Unggah Data');
-            });
-            $("#submitPengalamanOrganisasi #loader").each(function(){
-                $(this).show();
-            });
+            $("#submitPengalamanOrganisasi a").text('Unggah Data');
+            $("#submitPengalamanOrganisasi #loader").show();
         },
         complete:function(data){
             // Hide image container
-            $("#submitPengalamanOrganisasi a").each(function(){
-                $(this).text('Simpan');
-            });
-            $("#submitPengalamanOrganisasi #loader").each(function(){
-                $(this).hide();
-            });
+            sendProsses.data('run',false);
+            $("#submitPengalamanOrganisasi a").text('Simpan');
+            $("#submitPengalamanOrganisasi #loader").hide();
         }
     });
 });
 
 $("#submitMinat").click(function(e){
     e.preventDefault();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -166,30 +361,46 @@ $("#submitMinat").click(function(e){
         },
         success:function(result){
             console.log(result.success);
+            if(result.success){
+                $('#minat-table').append(`
+                <tr>
+                  <th>${$("#minat-table tr").length}</th>
+                  <th>${$("#minat #Negara option:selected").text()}</th>
+                  <th>${$("#minat #Provinsi option:selected").text()}</th>
+                  <th>${$("#minat #Kota option:selected").text()}</th>
+                  <th>${$("#minat #_GajiBulan").val()}</th>
+                  <th>${$("#minat #BidangBisnis option:selected").text()}</th>
+                  <th>${$("#minat #LingkunganKerja option:selected").text()}</th>
+                  <th>${$('#minat #Spesialisasi option:selected').text()}</th>
+                  <th>${$('#minat #PosisiKerja option:selected').text()}</th>
+                  <th>${$('#minat #LevelJabatan option:selected').text()}</th>
+                  <th>
+                      <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                      <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                  </th>
+                 </tr>    
+                `);
+            }
         },
         beforeSend: function(){
             // Show image container
-            $("#submitMinat a").each(function(){
-                $(this).text('Unggah Data');
-            });
-            $("#submitMinat #loader").each(function(){
-                $(this).show();
-            });
+            $("#submitMinat a").text('Unggah Data');
+            $("#submitMinat #loader").show();
         },
         complete:function(data){
             // Hide image container
-            $("#submitMinat a").each(function(){
-                $(this).text('Simpan');
-            });
-            $("#submitMinat #loader").each(function(){
-                $(this).hide();
-            });
+            sendProsses.data('run',false);
+            $("#submitMinat a").text('Simpan');
+            $("#submitMinat #loader").hide();
         }
     });
 });
 
 $("#submitRiwayatPekerjaan").click(function(e){
     e.preventDefault();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -212,168 +423,55 @@ $("#submitRiwayatPekerjaan").click(function(e){
         },
         success:function(result){
             console.log(result.success);
+            if(result.success){
+                $('#riwayatpekerjaan-table').append(`<tr>
+                <th>${$('#riwayatpekerjaan-table tr').length}</th>
+                <th>${$("#pekerjaan #BisnisPerusahaan option:selected").text()}</th>
+                <th>${$("#pekerjaan #TahunMulai").val()} - ${$("#pekerjaan #TahunAkhir").val()}</th>
+                <th>${$("#pekerjaan #Posisi").val()}</th>
+                <th>${$('#pekerjaan #Bawahan').val()}</th>
+                <th>Rp. ${$('#pekerjaan #_GajiTerakhir').val()}</th>
+                <th>${$('#pekerjaan #AlasanPindah').val()}</th>
+                <th>${$('#pekerjaan #Keterangan').val()}</th>
+                <th>
+                    <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                    <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                </th>
+              </tr>`);
+            }
         },
         beforeSend: function(){
             // Show image container
-            $("#submitRiwayatPekerjaan a").each(function(){
-                $(this).text('Unggah Data');
-            });
-            $("#submitRiwayatPekerjaan #loader").each(function(){
-                $(this).show();
-            });
-        },
-        complete:function(data){
-            // Hide image container
-            $("#submitRiwayatPekerjaan a").each(function(){
-                $(this).text('Simpan');
-            });
-            $("#submitRiwayatPekerjaan #loader").each(function(){
-                $(this).hide();
-            });
-        }
-    });
-});
-
-$("#submitPendidikanFormal").click(function(e){
-    e.preventDefault();
-    let sendProsses = $(this);
-    if($(this).data('run'))return;
-    sendProsses.data('run',true);
-
-    $.ajaxSetup({
-        headers:{
-        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
-        } });
-    $.ajax({
-        url:"/jobseeker/datadiri/submitpendidikanformal/",
-        method:"post",
-        data :{
-            id                             : "",
-            tingkat_pendidikan             :$("#pendidikanformal #TingkatPendidikan").val(),
-            tahun_mulai                    :$("#pendidikanformal #tahunmulai").val(),
-            tahun_akhir                    :$("#pendidikanformal #tahunakhir").val(),
-            institusi                      :$("#pendidikanformal #institusi").val(),
-            tempat                         :$("#pendidikanformal #tempat").val(),
-            fakultas                       :$("#pendidikanformal #fakultas").val(),
-            jurusan                        :$("#pendidikanformal #jurusan").val(),
-            IPK                            :$("#pendidikanformal #IPK").val(),
-            keterangan                     :$("#pendidikanformal #keterangan").val(),
-        },
-        success:function(result){
-            console.log(result.success);
-        },
-        beforeSend: function(){
-            $("#submitPendidikanFormal a").each(function(){
-                $(this).text('Unggah Data');
-            });
-            $("#submitPendidikanFormal #loader").each(function(){
-                $(this).show();
-            });
+            $("#submitRiwayatPekerjaan a").text('Unggah Data');
+            $("#submitRiwayatPekerjaan #loader").show();
         },
         complete:function(data){
             // Hide image container
             sendProsses.data('run',false);
-            $("#submitPendidikanFormal a").each(function(){
-                $(this).text('Simpan');
-            });
-            $("#submitPendidikanFormal #loader").each(function(){
-                $(this).hide();
-            });
+            $("#submitRiwayatPekerjaan a").text('Simpan');
+            $("#submitRiwayatPekerjaan #loader").hide();
         }
     });
 });
 
-$("#submitPendidikanInformal").click(function(e){
-    e.preventDefault();
-    let sendProsses = $(this);
-    if($(this).data('run'))return;
-    sendProsses.data('run',true);
-
-    $.ajaxSetup({
-        headers:{
-        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
-        } });
-    $.ajax({
-        url:"/jobseeker/datadiri/submitpendidikaninformal/",
-        method:"post",
-        data :{
-            id                             : "",
-            jenispelatihan                 :$("#pendidikaninformal #TingkatPendidikan").val(),
-            tahun_mulai                    :$("#pendidikaninformal #tahunmulai").val(),
-            tahun_akhir                    :$("#pendidikaninformal #tahunakhir").val(),
-            tempat                         :$("#pendidikaninformal #tempat").val(),
-            keterangan                     :$("#pendidikaninformal #keterangan").val(),
-        },
-        success:function(result){
-            console.log(result.success);
-        },
-        beforeSend: function(){
-            // Show image container
-            $("#submitPendidikanInformal a").each(function(){
-                $(this).text('Unggah Data');
-            });
-            $("#submitPendidikanInformal #loader").each(function(){
-                $(this).show();
-            });
-        },
-        complete:function(data){
-            sendProsses.data('run',false);
-            $("#submitPendidikanInformal a").each(function(){
-                $(this).text('Simpan');
-            });
-            $("#submitPendidikanInformal #loader").each(function(){
-                $(this).hide();
-            });
-        }
-    });
+$('#RiwayatKerjaModal  #_GajiTerakhir').keyup(function(){
+    let val = $(this).val();
+    let valInt = parseInt(val.replace(/[^0-9]+/g,""));
+    $('#RiwayatKerjaModal  #_GajiTerakhir').val(formatRp(val));
+    $('#RiwayatKerjaModal  #GajiTerakhir').val(valInt);
 });
 
-$("#submitPendidikanBahasa").click(function(e){
-    e.preventDefault();
-    let sendProsses = $(this);
-    if($(this).data('run'))return;
-    sendProsses.data('run',true);
+$('#MinatKerjaModal  #_GajiBulan').keyup(function(){
 
-    $.ajaxSetup({
-        headers:{
-        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
-        } });
-    $.ajax({
-        url:"/jobseeker/datadiri/submitpendidikanbahasa/",
-        method:"post",
-        data :{
-            id                            : "",
-            bahasa                        :$("#pendidikanbahasa #bahasa").val(),
-            kemampuan_lisan               :$("#pendidikanbahasa #kemampuanlisan").val(),
-            kemampuan_tertulis            :$("#pendidikanbahasa #kemampuantertulis").val(),
-        },
-        success:function(result){
-            console.log(result.success);
-        },
-        beforeSend: function(){
-            // Show image container
-            sendProsses.data('run',false);
-            $("#submitPendidikanBahasa a").each(function(){
-                $(this).text('Unggah Data');
-            });
-            $("#submitPendidikanBahasa #loader").each(function(){
-                $(this).show();
-            });
-        },
-        complete:function(data){
-            // Hide image container
-            $("#submitPendidikanBahasa a").each(function(){
-                $(this).text('Simpan');
-            });
-            $("#submitPendidikanBahasa #loader").each(function(){
-                $(this).hide();
-            });
-        }
-    });
+    let val = $(this).val();
+    let valInt = parseInt(val.replace(/[^0-9]+/g,""));
+    $('#MinatKerjaModal  #_GajiBulan').val(formatRp(val));
+    $('#MinatKerjaModal  #GajiBulan').val(valInt);
 });
 
 $('input.typeTahun').datepicker(inputDateYear);
-$('input.typeBulan').datepicker(inputDateYear);
+$('input.typeBulan').datepicker(inputDateMonth);
+
 //end document ready
 });
 
@@ -385,7 +483,7 @@ function getst(id,param,selectedTarget){
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
         } });
     $.ajax({
-        url:"/support/getst/",
+        url:"/jobseeker/support/getst/",
         method:"post",
         data :{
             st_category : id,
@@ -393,22 +491,23 @@ function getst(id,param,selectedTarget){
         },
         success:function(result){
             console.log($.now()-now);
-          for(var item in result.data){
+            for(var item in result.data){
               let option = result.data[item];
               selectedTarget.prop("disabled",false);
               selectedTarget.append($('<option>',{
                   value : option.id,
                   text  : option.name
                 }));
+          }},
+          fail:function(result){
+            console.log(result);
           }
-            
-        }
+        
     });
 };
 
-
 //Callback Alamat
-$("#identitas #Negara").change(function(){
+$("#identitas #Negara").click(function(){
     $("#identitas #Provinsi").find('option').remove().end();
     $("#identitas #Provinsi").append($('<option>',{
         value : "0",
@@ -423,7 +522,8 @@ $("#identitas #Negara").change(function(){
         getst("Negara",$("#identitas #Negara > option:selected").val(),$("#identitas #Provinsi"));
 });
 
-$("#identitas #Provinsi").change(function(){
+$("#identitas #Provinsi").click(function(){
+    
     $("#identitas #Kota").find('option').remove().end();
     $("#identitas #Kota").append($('<option>',{
         value : "0",
@@ -438,7 +538,7 @@ $("#identitas #Provinsi").change(function(){
          getst("Provinsi",$("#identitas #Provinsi > option:selected").val(),$("#identitas #Kota"));
  });
 
- $("#identitas #Kota").change(function(){
+ $("#identitas #Kota").click(function(){
     $("#identitas #Kecamatan").find('option').remove().end();
     $("#identitas #Kecamatan").append($('<option>',{
         value : "0",
@@ -452,7 +552,7 @@ $("#identitas #Provinsi").change(function(){
  });
 
  // minat
- $("#minat #Negara").change(function(){
+ $("#minat #Negara").click(function(){
     $("#minat #Provinsi").find('option').remove().end();
     $("#minat #Provinsi").append($('<option>',{
         value : "0",
@@ -467,7 +567,13 @@ $("#identitas #Provinsi").change(function(){
         getst("Negara",$("#minat #Negara > option:selected").val(),$("#minat #Provinsi"));
 });
 
-$("#minat #Provinsi").change(function(){
+$("#minat #Provinsi").click(function(){
+    if($("#minat #Negara").val()>0 && $("#minat #Provinsi option").length <= 1){
+        $("#minat #Negara").trigger("click");
+        console.log('run');
+        return ;
+    }
+
     $("#minat #Kota").find('option').remove().end();
     $("#minat #Kota").append($('<option>',{
         value : "0",
@@ -482,7 +588,7 @@ $("#minat #Provinsi").change(function(){
          getst("Provinsi",$("#minat #Provinsi > option:selected").val(),$("#minat #Kota"));
  });
 
- $("#minat #Kota").change(function(){
+ $("#minat #Kota").click(function(){
     $("#minat #Kecamatan").find('option').remove().end();
     $("#minat #Kecamatan").append($('<option>',{
         value : "0",
@@ -521,4 +627,18 @@ $('.modal').on('shown.bs.modal', function () {
     $('html,body').animate({ scrollTop: 0 }, '500');
 })
 
+function formatRp(angka){
+    let number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    rupiah     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
 
+    if(ribuan){
+        separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+    }
+
+    rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+    return rupiah;
+}
