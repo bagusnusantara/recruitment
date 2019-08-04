@@ -31,15 +31,15 @@ $("#submitPendidikanFormal").click(function(e){
             if(result.success){
                 $('#pendidikan-formal-table').append(
                     `<tr>
-                    <th  width="5%"><h4>${$('#pendidikan-formal-table tr').length}</h4></th>
-                    <th  width="10%"><h4>${$("#pendidikanformal #TingkatPendidikan option:selected").text()}</h4></th>
-                    <th  width="10%"><h4>${$("#pendidikanformal #tahunmulai").text()} - ${$("#pendidikanformal #tahunakhir").text()}</h4></th>
-                    <th  width="30%"><h4>${$("#pendidikanformal #institusi").val()}</h4></th>
+                    <th><h4>${$('#pendidikan-formal-table tr').length}</h4></th>
+                    <th><h4>${$("#pendidikanformal #TingkatPendidikan option:selected").text()}</h4></th>
+                    <th><h4>${$("#pendidikanformal #tahunmulai").val()} - ${$("#pendidikanformal #tahunakhir").val()}</h4></th>
+                    <th><h4>${$("#pendidikanformal #institusi").val()}</h4></th>
                     <th><h4>${$("#pendidikanformal #tempat").val()}</h4></th>
                     <th><h4>${$("#pendidikanformal #jurusan").val()}</h4></th>
-                    <th width="7%"><h4>${$("#pendidikanformal #IPK").val()}</h4></th>
-                    <th width="10%"><h4>${$("#pendidikanformal #keterangan").val()}</h4></th>
-                    <th width="10%"><h4>
+                    <th><h4>${$("#pendidikanformal #IPK").val()}</h4></th>
+                    <th><h4>${$("#pendidikanformal #keterangan").val()}</h4></th>
+                    <th><h4>
                         <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
                         <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                       </h4>
@@ -136,6 +136,7 @@ $("#submitPendidikanBahasa").click(function(e){
             console.log(result.success);
             if(result.success){
                 $('#pendidikan-bahasa-table').append(`
+                <tr>
                 <th><h4>${$('#pendidikan-bahasa-table tr').length}</h4></th>
                     <th><h4>${$('#pendidikanbahasa #bahasa option:selected').text()}</h4></th>
                     <th><h4>${$('#pendidikanbahasa #kemampuanlisan option:selected').text()}</h4></th>
@@ -144,6 +145,7 @@ $("#submitPendidikanBahasa").click(function(e){
                         <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
                         <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
                 </h4></th>
+                </tr>
                 `);
             }
         },
@@ -261,6 +263,7 @@ $("#submitRiwayatPenyakit").click(function(e){
                     {
                         $('#riwayatpenyakit-table').append(
                             `
+                            <tr>
                             <th width="5%"><h4>${$('#riwayatpenyakit-table tr').length}</h4></th>
                             <th><h4>${$("#lainnya #NamaPenyakit").val()}</h4></th>
                             <th><h4>${$("#lainnya #TahunMulai").val()}</h4></th>
@@ -269,7 +272,8 @@ $("#submitRiwayatPenyakit").click(function(e){
                             <th width="10%"><h4>
                                 <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
                                 <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
-                            </h4></th>`
+                            </h4></th>
+                            <tr>`
                         );
                     }
 
@@ -311,15 +315,33 @@ $("#submitPengalamanOrganisasi").click(function(e){
         method:"post",
         data :{
             id              : "",
-            organisasi      : $("#aktifitas #Organisasi").val(),
-            tanggal_mulai   : $("#aktifitas #TahunMulai").val(),
-            tanggal_akhir   : $("#aktifitas #TahunAkhir").val(),
-            tempat          : $("#aktifitas #Tempat").val(),
-            posisi          : $("#aktifitas #Posisi").val(),
-            keterangan      : $("#aktifitas #Keterangan").val(),
+            organisasi      : $("#aktivitas #Organisasi").val(),
+            tanggal_mulai   : $("#aktivitas #TahunMulai").val(),
+            tanggal_akhir   : $("#aktivitas #TahunAkhir").val(),
+            tempat          : $("#aktivitas #Tempat").val(),
+            posisi          : $("#aktivitas #Posisi").val(),
+            keterangan      : $("#aktivitas #Keterangan").val(),
         },
         success:function(result){
             console.log(result.success);
+            if(result.success)
+            {
+             $("#aktivitas-table").append(
+                `<tr>
+                <th><h4>${$('#aktivitas-table tr').length}</h4></th>
+                <th><h4>${$("#aktivitas #Organisasi").val()}</h4></th>
+                <th><h4>${$("#aktivitas #TahunMulai").val()}</h4></th>
+                <th><h4>${$("#aktivitas #TahunAkhir").val()}</h4></th>
+                <th><h4>${$("#aktivitas #Tempat").val()}</h4></th>
+                <th><h4>${$("#aktivitas #Posisi").val()}</h4></th>
+                <th><h4>${$("#aktivitas #Keterangan").val()}</h4></th>
+                <th width="10%"><h4>
+                    <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                    <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>    
+                </h4></th>
+            </tr>`
+             );
+            }
         },
         beforeSend: function(){
             // Show image container
@@ -365,9 +387,7 @@ $("#submitMinat").click(function(e){
                 $('#minat-table').append(`
                 <tr>
                   <th>${$("#minat-table tr").length}</th>
-                  <th>${$("#minat #Negara option:selected").text()}</th>
-                  <th>${$("#minat #Provinsi option:selected").text()}</th>
-                  <th>${$("#minat #Kota option:selected").text()}</th>
+                  <th><small><strong>${$("#minat #Kota option:selected").text()},  ${$("#minat #Provinsi option:selected").text()}</strong></small></th>
                   <th>${$("#minat #_GajiBulan").val()}</th>
                   <th>${$("#minat #BidangBisnis option:selected").text()}</th>
                   <th>${$("#minat #LingkunganKerja option:selected").text()}</th>

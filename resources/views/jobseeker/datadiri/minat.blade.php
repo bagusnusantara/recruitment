@@ -6,31 +6,25 @@
       <div class="inner-box" style="overflow:auto; height:50vh;">
         <div class="item">
           <!--minat-->
+          <div class="table-responsive">
           <h4>Minat dan Harapan</h4>
-            <table id="minat-table" class="table table-bordered table-responsive" style="border-radius:10px;">
+            <table id="minat-table" class="table table-bordered" style="border-radius:25px;">
                 <tr class="thead-smi th-center">
-                    <th rowspan="2" width="3%"><h4>Nomor</h4></th>
-                    <th rowspan="1" colspan="3" width="10%"><h4>Preferensi Lokasi</h4></th>
-                    <th rowspan="2" width="10%"><h4>Gaji Bulanan(IDR)</h4></th>
-                    <th rowspan="2"><h4>Bidang Bisnis</h4></th>
-                    <th rowspan="2"><h4>Lingkungan Kerja</h4></th>
-                    <th rowspan="2"><h4>Spesialisasi</h4></th>
-                    <th rowspan="2"><h4>Posisi Kerja</h4></th>
-                    <th rowspan="2"><h4>Level Jabatan</h4></th>
-                    <th rowspan="2" width="10%"><h4>Option</h4></th>
-                </tr>
-                <tr class="thead-smi">
-                    <th><h4>Negara</h4></th>
-                    <th><h4>Provinsi</h4></th>
-                    <th><h4>Kota</h4></th>
+                    <th width="3%"><h4>Nomor</h4></th>
+                    <th><h4>Preferensi Lokasi</h4></th>
+                    <th><h4>Gaji Bulanan(IDR)</h4></th>
+                    <th><h4>Bidang Bisnis</h4></th>
+                    <th><h4>Lingkungan Kerja</h4></th>
+                    <th><h4>Spesialisasi</h4></th>
+                    <th><h4>Posisi Kerja</h4></th>
+                    <th><h4>Level Jabatan</h4></th>
+                    <th width="10%"><h4>Option</h4></th>
                 </tr>
               @foreach ($dataUserSt['MinatKerja'] as $key => $item)
                 <tr>
-                  <th>{{$key}}</th>
-                  <th>{{$item->st_negara->negara}}</th>
-                  <th>{{$item->st_provinsi->name}}</th>
-                  <th>{{$item->st_kabkota->name}}</th>
-                  <th>{{$item->gaji_bulanan}}</th>
+                  <th>{{$key+1}}</th>
+                  <th><small><strong>{{$item->st_kabkota->name}},  {{$item->st_provinsi->name}}</strong></small></th>
+                  <th>{{"Rp. ".number_format($item->gaji_bulanan,2,",",".")}}</th>
                   <th>{{$item->st_bisnisperusahaan->name}}</th>
                   <th>{{$item->st_lingkungankerja->lingkungan}}</th>
                   <th>{{$item->st_spesialisasipekerjaan->spesial}}</th>
@@ -43,9 +37,10 @@
                  </tr>    
                 @endforeach
             </table>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".minat-modal">
+            <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".minat-modal">
                 <i class="fa fa-plus"></i>
               Tambah</button>
+            </div>
             <br>
             <!--modal minat-->
             <form>

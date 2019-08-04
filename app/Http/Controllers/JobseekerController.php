@@ -101,6 +101,9 @@ class JobseekerController extends Controller
       $dataUser = md_jobseeker::where('users_id',$user_id)->first();
       
       //st_jobseeker
+      $dataUserSt['PendidikanFormal'] = st_jobseeker_pendidikanformal::where('user_id',$user_id)->get();
+      $dataUserSt['PendidikanInformal'] = st_jobseeker_pendidikaninformal::where('user_id',$user_id)->get();
+      $dataUserSt['PendidikanBahasa'] = st_jobseeker_pendidikanbahasa::where('user_id',$user_id)->get();
       $dataUserSt['RiwayatPenyakit'] = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
       $dataUserSt['PengalamanOrganisasi'] = st_jobseeker_pengalamanorganisasi::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
       $dataUserSt['MinatKerja']   = st_jobseeker_minatkerja::where('user_id',$user_id)->get();
@@ -151,8 +154,8 @@ class JobseekerController extends Controller
       {
         $request->request->remove('id');
         $request->request->add(['user_id'=>\Auth::user()->id]);
-        $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
-        $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
+        $request['tanggal_mulai'] = date('Y-01-01',strtotime($request->tahunmulai));
+        $request['tanggal_akhir'] = date('Y-12-t',strtotime($request->tahunakhir));
         
         try {
           st_jobseeker_pendidikanformal::create($request->all());
@@ -173,7 +176,7 @@ class JobseekerController extends Controller
         $request->request->remove('id');
         $request->request->add(['user_id'=>\Auth::user()->id]);
         $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
-        $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
+        $request['tahggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
         
         try {
           st_jobseeker_pendidikaninformal::create($request->all());
@@ -230,12 +233,19 @@ class JobseekerController extends Controller
                                                                   ->where('id',$request->id)->first();
       if($pengalamanOrganisasi==null)
       {
-        $request->request->remove('id');
-        $request->request->add(['user_id'=>\Auth::user()->id]);
-        $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
-        $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
-        return response()->json(['success'=>$request->all()]);
-        st_jobseeker_pengalamanorganisasi::create($request->all()); 
+        try {
+          
+          $request->request->remove('id');
+          $request->request->add(['user_id'=>\Auth::user()->id]);
+          $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
+          $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
+          st_jobseeker_pengalamanorganisasi::create($request->all()); 
+          dump("success");
+          return response()->json(['success'=>true]);
+        } catch (\Throwable $th) {
+          return response()->json(['success'=>false]);
+        }
+
       }
 
     }

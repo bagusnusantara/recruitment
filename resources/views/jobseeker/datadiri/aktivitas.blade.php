@@ -14,8 +14,9 @@
                     <h4><label for="Hobi">Hobi</label></h4>
                     <input type="text" class="form-control" id="Hobi" placeholder="Masukan hobi" value="{{$dataUser->hobi}}"> 
                 </div>
+              <div class="table-responsive">
               <h4>Organisasi</h4>
-                <table id="aktivitas-table" class="table table-bordered table-responsive" style="border-radius:10px;">
+                <table id="aktivitas-table" class="table table-bordered" style="border-radius:10px;">
                     <tr class="thead-smi th-center">
                         <th width="5%"><h4>Nomor</h4></th>
                         <th><h4>Organisasi</h4></th>
@@ -44,6 +45,7 @@
                 <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".aktivitas-modal">
                   <i class="fa fa-plus"></i>Tambah</button>  
                 <br>
+                </div>
                 <!--modal aktivitas-->
                 <form id="minatform">
                     <div class="modal fade aktivitas-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

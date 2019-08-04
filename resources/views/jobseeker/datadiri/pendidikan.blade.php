@@ -6,8 +6,11 @@
     <div class="inner-box" >
       <div class="item">
         <!--pendidikan formal-->
+        <div class="row">
+        <div class="col-12">
+        <div class="table-responsive">
         <h4>Pendidikan Formal</h4>
-          <table id="pendidikan-formal-table" class="table table-bordered table-responsive" style="border-radius:10px;">
+          <table id="pendidikan-formal-table" class="table table-bordered" style="border-radius:25px;">
               <tr class="thead-smi th-center">
                 <th  width="5%"><h4>#</h4></th>
                 <th  width="7%"><h4>Tingkatan</h4></th>
@@ -19,11 +22,29 @@
                 <th width="10%"><h4>Keterangan</h4></th>
                 <th width="10%"><h4>Option</h4></th>
             </tr>
+            @foreach ($dataUserSt['PendidikanFormal'] as $key => $item)
+            <tr>
+                <th><h4>{{$key+1}}</h4></th>
+                <th><h4>{{$item->st_tingkatpendidikan->strata}}</h4></th>
+                <th><h4>{{$item->tanggal_mulai." - ".$item->tanggal_akhir}}</h4></th>
+                <th><h4>{{$item->institusi}}</h4></th>
+                <th><h4>{{$item->tempat}}</h4></th>
+                <th><h4>{{$item->jurusan}}</h4></th>
+                <th><h4>{{$item->IPK}}</h4></th>
+                <th><h4>{{$item->keterangan}}</h4></th>
+                <th><h4>
+                    <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                    <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                  </h4>
+                </th>
+            </tr>
+            @endforeach
         </table>
         <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".pendidikanformal-modal">
           <i class="fa fa-plus"></i>
         Tambah</button>  
         <br>
+        </div>
         <!--modal pendidikan formal-->
         <form>
             <div id="pendidikanformal" class="modal fade pendidikanformal-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -88,12 +109,15 @@
                 </div>
               </div>
             </div>
-          </form>          
+          </form>
+      </div>
       <!--modal pendidikan formal end-->
       <!--pendidikan formal end-->
       <!--pendidikan informal -->
+      <div class="col-12">
       <h4>Pendidikan Informal / Pelatihan Kursus</h4>
-      <table class="table table-bordered table-responsive" id="pendidikan-informal-table" style="border-radius:10px;">
+      <div class="table-responsive">
+      <table class="table table-bordered" id="pendidikan-informal-table" style="border-radius:25px;">
           <tr class="thead-smi th-center">
               <th width="5%"><h4>No</h4></th>
               <th><h4>Jenis Pelatihan</h4></th>
@@ -102,21 +126,24 @@
               <th width="10%"><h4>Keterangan</h4></th>
               <th width="10%"><h4>Option</h4></th>
           </tr>
+          @foreach ($dataUserSt['PendidikanInformal'] as $key => $item)
           <tr>
-              <th><h4>1</h4></th>
-              <th><h4>LKMM TD</h4></th>
-              <th><h4>Instititut Teknologi Sepuluh Nopember</h4></th>
-              <th><h4>2019</h4></th>
-              <th><h4>Sudah</h4></th>
+              <th><h4>{{$key+1}}</h4></th>
+              <th><h4>{{$item->jenispelatihan}}</h4></th>
+              <th><h4>{{$item->tanggal_mulai." - ".$item->tanggal_akhir}}</h4></th>
+              <th><h4>{{$item->tempat}}</h4></th>
+              <th><h4>{{$item->keterangan}}</h4></th>
               <th><h4>
-                  <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                  <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+              <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+              <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
               </h4></th>
-          </tr>
+              </tr>
+          @endforeach
         </table>
         <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".pendidikaninformal-modal">
           <i class="fa fa-plus"></i>
         Tambah</button>
+        </div>
           <!--modal pendidikan formal-->
           <br>
           <form>
@@ -161,33 +188,40 @@
                 </div>
               </div>
             </form>
+        </div>
+        </div>
         <!--modal pendidikan informal end-->
         <!--pendidikan informal end-->
 
             <!--kemampuan bahasa asing-->
+            <div class="col-12">
             <h4>Kemampuan Bahasa Asing</h4>
-            <table class="table table-bordered table-responsive" id="pendidikan-bahasa-table" style="border-radius:10px;">
+            <div class="table-responsive">
+            <table class="table table-bordered" id="pendidikan-bahasa-table" style="border-radius:20px;">
                 <tr class="thead-smi th-center">
                     <th  width="5%"><h4>No</h4></th>
-                    <th ><h4>Bahasa</h4></th>
-                    <th width="30%"><h4>Lisan</h4></th>
-                    <th width="30%"><h4>Tertulis</h4></th>
+                    <th><h4>Bahasa</h4></th>
+                    <th><h4>Lisan</h4></th>
+                    <th><h4>Tertulis</h4></th>
                     <th width="15%"><h4>Option</h4></th>
                 </tr>
-                <tr>
-                    <th><h4>1</h4></th>
-                    <th><h4>Arab</h4></th>
-                    <th><h4>Baik</h4></th>
-                    <th><h4>Sangat Baik</h4></th>
-                    <th><h4>
-                        <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                        <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
-                    </h4></th>
-                </tr>
+                @foreach ($dataUserSt['PendidikanBahasa'] as $key=>$item)
+                    <tr>
+                          <th><h4>{{$key+1}}</h4></th>
+                          <th><h4>{{$item->st_bahasa->deskripsi}}</h4></th>
+                          <th><h4>{{$item->st_kemampuanlisan->tingkat}}</h4></th>
+                          <th><h4>{{$item->st_kemampuantertulis->tingkat}}</h4></th>
+                          <th><h4>
+                              <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                              <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                          </h4></th>
+                    </tr>
+                @endforeach
               </table>
               <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".kemampuanbahasaasing-modal">
                 <i class="fa fa-plus"></i>
-              Tambah</button>  
+              Tambah</button>
+            </div>
           <!--modal kemampuan bahasa asing-->
           <br>
           <form>
@@ -240,6 +274,7 @@
                 </div>
               </div>
             </form>
+          </div>
         <!--modal kamampuan bahasa asing end-->
         <!--kemampuan bahasa asing end-->
             </div>

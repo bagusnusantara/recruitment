@@ -11,7 +11,7 @@ class st_jobseeker_pendidikanbahasa extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $fillable = [
-        'user_id','bahasa','kemampuan_lisan','kemampuan_bahasa'
+        'user_id','bahasa','kemampuan_lisan','kemampuan_tertulis'
       ];
   
     public function user_id(){
@@ -19,15 +19,15 @@ class st_jobseeker_pendidikanbahasa extends Model
     }
 
     public function st_bahasa(){
-      return $this->hasOne('App\st_bahasa','bahasa','id');
+      return $this->hasOne('App\st_Bahasa','id','bahasa');
     }
 
     public function st_kemampuanlisan(){
-      return $this->hasOne('App\st_Kemampuan','kemampuan_lisan','id');
+      return $this->hasOne('App\st_Kemampuan','id','kemampuan_lisan');
     }
 
     public function st_kemampuantertulis(){
-      return $this->hasOne('App\st_Kemampuan','kemampuan_tertulis','id');
+      return $this->hasOne('App\st_Kemampuan','id','kemampuan_tertulis');
     }
     
 }

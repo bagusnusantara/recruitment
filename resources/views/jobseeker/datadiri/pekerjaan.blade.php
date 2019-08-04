@@ -6,8 +6,9 @@
           <div class="inner-box" style="overflow:auto; height:50vh;">
             <div class="item">
               <!--pekerjaan-->
+              <div class="table-responsive">
               <h4>Pengalaman Kerja</h4>
-              <table class="table table-bordered table-responsive black-font" id="riwayatpekerjaan-table" style="border-radius:10px;">
+              <table class="table table-bordered black-font" id="riwayatpekerjaan-table" style="border-radius:25px;">
                   <tr class="thead-smi th-center">
                       <th width="3%"><h4>Nomor</h4></th>
                       <th><h4>Bisinis Perusahaan</h4></th>
@@ -38,8 +39,9 @@
                   </tr>
                   @endforeach
               </table>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".pengalamankerja-modal">
+              <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".pengalamankerja-modal">
                   <i class="fa fa-plus"></i>Tambah</button>  
+            </div>
                 <!--modal pekerjaan-->
                 <form>
                     <div id="RiwayatKerjaModal" class="modal fade pengalamankerja-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

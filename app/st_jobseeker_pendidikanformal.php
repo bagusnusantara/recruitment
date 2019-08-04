@@ -17,5 +17,9 @@ class st_jobseeker_pendidikanformal extends Model
     public function user_id(){
       return $this->hasOne('App\md_jobseeker','id','users_id');
     }
+
+    public function st_tingkatpendidikan(){
+      return $this->hasOne('App\st_Tingkatpendidikan','id','tingkat_pendidikan');
+    }
     
 }

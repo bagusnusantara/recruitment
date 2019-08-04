@@ -107,7 +107,7 @@
                 @endif
               </li>
               <li>
-                <a  class="list-group-item-action" href="#aktifitas">Aktifitas</a>
+                <a  class="list-group-item-action" href="#aktivitas">Aktivitas</a>
                 @if($dataUserSt['Status']['aktivitas']==0 && !$dataUser->exists('olahraga') && !$dataUser->exists('hobi'))
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
@@ -142,9 +142,9 @@
             <!--Detail  Minat-->
             @include('jobseeker.datadiri.minat')
             <!--Minat end-->
-            <!--Detail Aktifitas-->
-            @include('jobseeker.datadiri.aktifitas')
-            <!--Aktifitas end-->
+            <!--Detail Aktibitas-->
+            @include('jobseeker.datadiri.aktivitas')
+            <!--Aktivitas end-->
             <!--Detail Lain-lain-->
             @include('jobseeker.datadiri.lainnya')
             <!--Lain-lain end-->

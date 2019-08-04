@@ -1,14 +1,14 @@
-<div id="aktifitas"  class="tab-content my-resume">
+<div id="aktivitas"  class="tab-content my-resume">
         <div class="inner-box">
           <div class="item">
-            <h3>Aktifitas Sosial</h3>
+            <h3>aktivitas Sosial</h3>
           </div>
           <div class="inner-box" style="overflow:auto; height:60vh;">
             <div class="item">
-              <!--aktifitas-->
+              <!--aktivitas-->
               <div class="form-group">
                     <h4><label for="Olahraga">Olahraga</label></h4>
-              <input type="text" class="form-control" id="Olahraga" placeholder="Masukan aktifitas olahraga" value="{{$dataUser->olahraga}}">
+              <input type="text" class="form-control" id="Olahraga" placeholder="Masukan aktivitas olahraga" value="{{$dataUser->olahraga}}">
                 </div>
                 <div class="form-group">
                     <h4><label for="Hobi">Hobi</label></h4>
@@ -39,15 +39,15 @@
                     @endforeach
                     <tr>
                       <th scope="row" colspan="8" class="th-button">
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".aktifitas-modal">
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".aktivitas-modal">
                           <i class="fa fa-plus"></i>Tambah</button>  
                       </th>
                     </tr>
                 </table>
                 <br>
-                <!--modal aktifitas-->
+                <!--modal aktivitas-->
                 <form id="minatform">
-                    <div class="modal fade aktifitas-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal fade aktivitas-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-head">

@@ -6,8 +6,9 @@
           <div class="inner-box" style="overflow:auto; height:60vh;">
             <div class="item">
               <!--lainnya-->
+              <div class="table-responsive">
               <h4>Riwayat Penyakit 2 Tahun Terakhir </h4>
-                <table class="table table-bordered table-responsive" id="riwayatpenyakit-table"style="border-radius:10px;">
+                <table class="table table-bordered" id="riwayatpenyakit-table"style="border-radius:25px;">
                     <tr class="thead-smi th-center">
                         <th width="5%"><h4>Nomor</h4></th>
                         <th><h4>Jenis Penyakit</h4></th>
@@ -31,6 +32,7 @@
                   </table>
                     <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".lainnya-modal">
                     <i class="fa fa-plus"></i>Tambah</button>
+              </div>
                 <br>
                 <div class="form-group">
                   <h4><label class="my-1 mr-2" for="SurveyReferensi">Mengetahui informasi PT Selaras Mitra Integra dari :</label></h4>

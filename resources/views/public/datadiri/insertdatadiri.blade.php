@@ -46,7 +46,7 @@
               <li><a  class="list-group-item-action" href="#keluarga">Keluarga</a> </li>
               <li><a  class="list-group-item-action" href="#pekerjaan">Pekerjaan</a></li>
               <li><a  class="list-group-item-action" href="#minat">Minat</a></li>
-              <li><a  class="list-group-item-action" href="#aktifitas">Aktifitas</a></li>
+              <li><a  class="list-group-item-action" href="#aktivitas">aktivitas</a></li>
               <li><a  class="list-group-item-action" href="#lainnya">Lainnya</a></li>
               <li><a  class="list-group-item-action" href="#lampiran">Lampiran</a></li>
             </ul>
