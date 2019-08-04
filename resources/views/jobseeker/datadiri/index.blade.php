@@ -134,9 +134,35 @@
             @include('jobseeker.datadiri.lampiran')
             <!--Lampiran end-->
         </div>
+        <!-- Button trigger modal -->
+        <!----Modal delete end---->
+        <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header justify-content-center">
+                  <h5 class="delete-title align-middle">
+                    <i class="text-danger fa fa-exclamation-circle fa-2x">&nbsp;</i>Yakin Untuk Hapus ?
+                  </h5>
+              </div>
+              <div class="modal-body justify-content-center" style="display:none">
+                  <h6 id="delete-caution" class="text-danger delete-caution align-middle">
+                      <i class="text-danger fa fa-info-circle">&nbsp;</i>Penghapusan gagal !!
+                  </h6>
+              </div>
+              <div class="d-flex modal-footer justify-content-around">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button id="delete_supreme" href="" type="button" class="btn btn-danger ">Hapus
+                    <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!----Modal delete end---->
     </div>
   </div>      
 </div>
+
 
 <!-- Job Browse Section End -->
 @endsection

@@ -1,5 +1,54 @@
 $(document).ready(function(){
 //document onload start
+$('#delete_supreme').click(function(e){
+    e.preventDefault();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+
+    let href = $(this).data("href");
+    let tr_delete = $(this).parents("tr");
+
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/submitpendidikanformal/",
+        method:"post",
+        data :{
+            id                             : "",
+        },
+        success:function(result){
+            console.log(result.success);
+            if(result.success){
+            $("#deletemodal").modal("hide");
+            }else{
+                $("#delete-caution").parent("div").show();
+            }
+        },
+        fail:function(){
+            $("#delete-caution").parent("div").show();
+        },
+        beforeSend: function(){
+
+            $("#delete_supreme a").text('Hapus...');
+            $("#delete_supreme #loader").show();
+        },
+        complete:function(data){
+            
+            sendProsses.data('run',false);
+            $("#delete_supreme a").text('Hapus');
+            $("#delete_supreme #loader").hide();
+        }
+    });
+});
+
+$('#deletemodal').on("hidden.bs.modal",function(e){
+    e.preventDefault();
+    $("#delete-caution").parent("div").hide();
+});
+
 identitasValidate();
 
 $("#submitPendidikanFormal").click(function(e){

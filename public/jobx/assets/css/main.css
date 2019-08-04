@@ -4488,3 +4488,13 @@ footer .menu li .small-title {
   top:0;
   right:0;
 }
+
+.delete-title
+{
+  font-size:22px;
+}
+
+.delete-caution
+{
+  font-size:18px;
+}
