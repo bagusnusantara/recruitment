@@ -13,7 +13,7 @@ class st_jobseeker_riwayatpenyakit extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $fillable = [
-        'user_id','nama_penyakit','tanggal_mulai','tanggal_akhir','pengaruh'
+      'id','user_id','nama_penyakit','tanggal_mulai','tanggal_akhir','pengaruh'
       ];
   
     public function st_idcard(){

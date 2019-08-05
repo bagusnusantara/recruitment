@@ -13,7 +13,7 @@ class st_jobseeker_minatkerja extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $fillable = [
-      'user_id','negara','provinsi','kabkota','gaji_bulanan','bidang_bisnis','lingkungan_kerja','spesialisasi','posisi_kerja','level_jabatan'
+      'id','user_id','negara','provinsi','kabkota','gaji_bulanan','bidang_bisnis','lingkungan_kerja','spesialisasi','posisi_kerja','level_jabatan'
       ];
     public function st_negara(){
       return $this->hasOne('App\st_Negara','id','negara');
@@ -45,7 +45,7 @@ class st_jobseeker_minatkerja extends Model
     public function st_leveljabatan(){
       return $this->hasOne('App\st_Leveljabatan','id','level_jabatan');
     }
-    
+
     protected static function boot(){
       parent::boot();
       static::creating(function ($model) {

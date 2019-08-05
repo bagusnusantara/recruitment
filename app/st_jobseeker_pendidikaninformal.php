@@ -13,7 +13,7 @@ class st_jobseeker_pendidikaninformal extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $fillable = [
-      'user_id','jenis_pelatihan','tanggal_mulai','tanggal_akhir','tempat','keterangan'
+      'id','user_id','jenis_pelatihan','tanggal_mulai','tanggal_akhir','tempat','keterangan'
       ];
   
     public function user_id(){

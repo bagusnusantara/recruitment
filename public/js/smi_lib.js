@@ -1,20 +1,19 @@
 $(document).ready(function(){
 //document onload start
 //----------------on show modal
-$(".pendidikanformal-modal").on('show.bs.modal', function (e) {
-    $(this).data("id",$(e.relatedTarget).data("id"));
+$(".pendidikanformal-modal").on('shown.bs.modal', function (e) {
+    $(this).find("input#id").val($(e.relatedTarget).data("id")|| "");
     let tabledata = $(e.relatedTarget).parents('tr').find('th');
-    console.log('tes');
-    console.log(tabledata.eq(1).data('value'));
-    
-    $("#pendidikanformal #TingkatPendidikan").val(tabledata.eq(1).data('value'));
-    // $("#pendidikanformal #tahunmulai").val($tabledata),
-    // $("#pendidikanformal #tahunakhir").val(),
-    // $("#pendidikanformal #institusi").val(),
-    // $("#pendidikanformal #tempat").val(),
-    // $("#pendidikanformal #jurusan").val(),
-    // $("#pendidikanformal #IPK").val(),
-    // $("#pendidikanformal #keterangan").val(),
+    $(this).data("tr",tabledata);
+
+    $("#pendidikanformal #TingkatPendidikan").val(tabledata.eq(0).data('value')|| 0);
+    $("#pendidikanformal #tahunmulai").val(tabledata.eq(1).data('tanggalmulai')|| "");
+    $("#pendidikanformal #tahunakhir").val(tabledata.eq(1).data('tanggalakhir')|| "");
+    $("#pendidikanformal #institusi").val(tabledata.eq(2).text()|| "");
+    $("#pendidikanformal #tempat").val(tabledata.eq(3).text()|| "");
+    $("#pendidikanformal #jurusan").val(tabledata.eq(4).text()|| "");
+    $("#pendidikanformal #IPK").val(tabledata.eq(5).text()|| "");
+    $("#pendidikanformal #keterangan").val(tabledata.eq(6).text()|| "");
 });
 
 $(".pendidikaninformal-modal").on('show.bs.modal', function (e) {
@@ -126,7 +125,7 @@ $("#submitPendidikanFormal").click(function(e){
     if($(this).data('run'))return;
     sendProsses.data('run',true);
 
-    let dataId = $('.pendidikanformal-modal').data('id');
+    let tabledata = $('.pendidikanformal-modal').data('tr');
 
     $.ajaxSetup({
         headers:{
@@ -136,7 +135,7 @@ $("#submitPendidikanFormal").click(function(e){
         url:"/jobseeker/datadiri/submitpendidikanformal/",
         method:"post",
         data :{
-            id                             : dataId,
+            id                             :$("#pendidikanformal #id").val(),
             tingkat_pendidikan             :$("#pendidikanformal #TingkatPendidikan").val(),
             tahun_mulai                    :$("#pendidikanformal #tahunmulai").val(),
             tahun_akhir                    :$("#pendidikanformal #tahunakhir").val(),
@@ -147,29 +146,41 @@ $("#submitPendidikanFormal").click(function(e){
             keterangan                     :$("#pendidikanformal #keterangan").val(),
         },
         success:function(result){
-            console.log(result.success);
-            if(result.success && dataId==""){
-                $('pendidikanformal-modal').data('id',result.id);
+            console.log(result);
+            console.log('before');
+
+            if(result.success && !$("#pendidikanformal #id").val()){
+                console.log('here');
+                $("#pendidikanformal #id").val(result.id);
+                $('.pendidikanformal-modal').data('ta',100);
+                $('.pendidikanformal-modal').data('tr',$('#pendidikan-formal-table tr').last().find('th'));
                 $('#pendidikan-formal-table').append(
                     `<tr>
-                    <th><h4>${$('#pendidikan-formal-table tr').length}</h4></th>
-                    <th><h4>${$("#pendidikanformal #TingkatPendidikan option:selected").text()}</h4></th>
-                    <th><h4>${$("#pendidikanformal #tahunmulai").val()} - ${$("#pendidikanformal #tahunakhir").val()}</h4></th>
+                    <th data-value="${result.id}"><h4>${$("#pendidikanformal #TingkatPendidikan option:selected").text()}</h4></th>
+                    <th data-tanggalmulai="${$("#pendidikanformal #tahunmulai").val()}" data-tanggalakhir="${$("#pendidikanformal #tahunakhir").val()}"><h4>${$("#pendidikanformal #tahunmulai").val()} - ${$("#pendidikanformal #tahunakhir").val()}</h4></th>
                     <th><h4>${$("#pendidikanformal #institusi").val()}</h4></th>
                     <th><h4>${$("#pendidikanformal #tempat").val()}</h4></th>
                     <th><h4>${$("#pendidikanformal #jurusan").val()}</h4></th>
                     <th><h4>${$("#pendidikanformal #IPK").val()}</h4></th>
                     <th><h4>${$("#pendidikanformal #keterangan").val()}</h4></th>
                     <th><h4>
-                        <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                        <button data-target="#deletemodal"  data-href="" class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                    <button data-toggle="modal"  data-target=".pendidikanformal-modal"  data-id="${result.id}" class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                    <button data-toggle="modal"  data-target="#deletemodal"  data-id="${result.id}" data-href="datadiri/deletependidikanformal/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                       </h4>
                     </th>
                 </tr>`
                 )
             }else{
-                let tr = $(this).parents("tr");
-                console.log(tr);
+                tabledata.eq(0).text($("#pendidikanformal #TingkatPendidikan option:selected").text());
+                tabledata.eq(0).data("value",$("#pendidikanformal #TingkatPendidikan").val());
+                tabledata.eq(1).text($("#pendidikanformal #tahunmulai").val()+" - "+$("#pendidikanformal #tahunakhir").val());
+                tabledata.eq(1).data("tanggalmulai",$("#pendidikanformal #tahunmulai").val());
+                tabledata.eq(1).data("tanggalakhir",$("#pendidikanformal #tahunakhir").val());
+                tabledata.eq(2).text($("#pendidikanformal #institusi").val());
+                tabledata.eq(3).text($("#pendidikanformal #tempat").val());
+                tabledata.eq(4).text($("#pendidikanformal #jurusan").val());
+                tabledata.eq(5).text($("#pendidikanformal #IPK").val());
+                tabledata.eq(6).text($("#pendidikanformal #keterangan").val());
             }
         },
         beforeSend: function(){

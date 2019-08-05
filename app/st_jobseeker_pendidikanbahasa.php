@@ -13,7 +13,7 @@ class st_jobseeker_pendidikanbahasa extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $fillable = [
-        'user_id','bahasa','kemampuan_lisan','kemampuan_tertulis'
+      'id','user_id','bahasa','kemampuan_lisan','kemampuan_tertulis'
       ];
   
     public function user_id(){

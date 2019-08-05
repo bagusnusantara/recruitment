@@ -13,7 +13,7 @@ class st_jobseeker_pendidikanformal extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $fillable = [
-      'user_id','tingkat_pendidikan','tanggal_mulai','tanggal_akhir','institusi','tempat','fakultas','jurusan','IPK','keterangan'
+      'id','user_id','tingkat_pendidikan','tanggal_mulai','tanggal_akhir','institusi','tempat','fakultas','jurusan','IPK','keterangan'
       ];
   
     public function user_id(){

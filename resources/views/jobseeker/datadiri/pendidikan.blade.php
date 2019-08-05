@@ -12,7 +12,6 @@
         <h4>Pendidikan Formal</h4>
           <table id="pendidikan-formal-table" class="table table-bordered" style="border-radius:25px;">
               <tr class="thead-smi th-center">
-                <th  width="5%"><h4>#</h4></th>
                 <th  width="7%"><h4>Tingkatan</h4></th>
                 <th  width="10%" ><h4>Tahun Sekolah</h4></th>
                 <th  width="30%"><h4>Nama Institusi</h4></th>
@@ -24,9 +23,8 @@
             </tr>
             @foreach ($dataUserSt['PendidikanFormal'] as $key => $item)
             <tr>
-                <th><h4>{{$key+1}}</h4></th>
                 <th data-value="{{$item->tingkat_pendidikan}}"><h4>{{$item->st_tingkatpendidikan->strata}}</h4></th>
-                <th><h4>{{date("Y",strtotime($item->tanggal_mulai))." - ".date("Y",strtotime($item->tanggal_akhir))}}</h4></th>
+                <th data-tanggalmulai="{{date("Y",strtotime($item->tanggal_mulai))}}" data-tanggalakhir="{{date("Y",strtotime($item->tanggal_akhir))}}"><h4>{{date("Y",strtotime($item->tanggal_mulai))." - ".date("Y",strtotime($item->tanggal_akhir))}}</h4></th>
                 <th><h4>{{$item->institusi}}</h4></th>
                 <th><h4>{{$item->tempat}}</h4></th>
                 <th><h4>{{$item->jurusan}}</h4></th>
@@ -56,6 +54,7 @@
                   <div class="modal-body">
                     <div class="inner-box" >
                         <div class="item">
+                          <input type="hidden" class="form-control typeTahun" id="id" placeholder="Masukan Tahun Mulai">
                           <div class="form-group">
                                 <h4><label class="my-1 mr-2" for="TingkatPendidikan">Tingkat Pendidikan</label></h4>
                                 <select class="custom-select my-1 mr-sm-2" id="TingkatPendidikan">
@@ -152,6 +151,7 @@
                     <div class="modal-body">
                       <div class="inner-box">
                           <div class="item">
+                          <input type="hidden" class="form-control typeTahun" id="id" placeholder="Masukan Tahun Mulai">
                           <div class="form-group">
                               <h4><label for="tempat">Jenis Pelatihan</label></h4>
                               <input type="text" class="form-control" id="jenispelatihan" placeholder="Masukan jenis pelatihan">
@@ -230,6 +230,7 @@
                     <div class="modal-body">
                       <div class="inner-box">
                           <div class="item">
+                              <input type="hidden" class="form-control typeTahun" id="id">
                               <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="bahasa">Bahasa</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="bahasa">

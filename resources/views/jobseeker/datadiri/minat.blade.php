@@ -54,6 +54,7 @@
                         <div class="inner-box">
                             <div class="item">
                                 <div class="row">
+                                  <input type="hidden" class="form-control typeTahun" id="id">
                                   <div class="form-group col-12">
                                       <h4><label class="my-1 mr-2" for="Negara">Negara</label></h4>
                                       <select class="custom-select my-1 mr-sm-2" id="Negara">

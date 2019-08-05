@@ -57,6 +57,7 @@
                           <div class="modal-body">
                             <div class="inner-box">
                                 <div class="item">
+                                    <input type="hidden" class="form-control typeTahun" id="id">
                                     <div class="form-group">
                                         <h4><label for="Organisasi">Organisasi</label></h4>
                                         <input type="text" class="form-control" id="Organisasi" placeholder="Masukan nama organisasi">

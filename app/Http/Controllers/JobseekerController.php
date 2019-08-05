@@ -152,13 +152,15 @@ class JobseekerController extends Controller
                                                          ->where('id',$request->id)->first();
 
       $request->request->add(['user_id'=>\Auth::user()->id]);
-      $request['tanggal_mulai'] = date('Y-01-01',strtotime($request->tahunmulai));
-      $request['tanggal_akhir'] = date('Y-12-t',strtotime($request->tahunakhir));
+      $request['tanggal_mulai'] = $request->tahun_mulai."-01"."-01";
+      $request['tanggal_akhir'] = $request->tahun_akhir."-12"."-31";
+      dump($request->all());
       if($pendidikanFormal==null){
+
         $request->request->remove('id');
         try {
+          dump('regis');
           $newdata = st_jobseeker_pendidikanformal::create($request->all());
-          dump('success');
           return response()->json(['success'=>true,"id"=>$newdata->id]);
         } catch (\Throwable $th) {
           dump($th);
@@ -166,9 +168,10 @@ class JobseekerController extends Controller
         }}
       else {
         try {
-          $pendidikanFormal->update($request->all);
+          $pendidikanFormal->update($request->all());
           return response()->json(['success'=>true]);
         } catch (\Throwable $th) {
+          dump($th);
           return response()->json(['success'=>false]);
         }}
     }
