@@ -90,7 +90,7 @@ $("#submitPendidikanFormal").click(function(e){
                     <th><h4>${$("#pendidikanformal #keterangan").val()}</h4></th>
                     <th><h4>
                         <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                        <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                        <button data-target="#deletemodal"  data-href="" class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                       </h4>
                     </th>
                 </tr>`
@@ -144,7 +144,7 @@ $("#submitPendidikanInformal").click(function(e){
                     <th><h4>${$("#pendidikaninformal #keterangan").val()}</h4></th>
                     <th><h4>
                     <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                    <button class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                    <button data-target="#deletemodal"  data-href="" class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
                     </h4></th>
                     </tr>`
                 );
@@ -192,7 +192,7 @@ $("#submitPendidikanBahasa").click(function(e){
                     <th><h4>${$('#pendidikanbahasa #kemampuantertulis option:selected').text()} Baik</h4></th>
                     <th><h4>
                         <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                        <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                        <button data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
                 </h4></th>
                 </tr>
                 `);
@@ -320,7 +320,7 @@ $("#submitRiwayatPenyakit").click(function(e){
                             <th><h4>${$("#lainnya #Pengaruh").val()}</h4></th>
                             <th width="10%"><h4>
                                 <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                                <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                                <button data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
                             </h4></th>
                             <tr>`
                         );
@@ -386,7 +386,7 @@ $("#submitPengalamanOrganisasi").click(function(e){
                 <th><h4>${$("#aktivitas #Keterangan").val()}</h4></th>
                 <th width="10%"><h4>
                     <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                    <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>    
+                    <button data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>    
                 </h4></th>
             </tr>`
              );
@@ -445,7 +445,7 @@ $("#submitMinat").click(function(e){
                   <th>${$('#minat #LevelJabatan option:selected').text()}</th>
                   <th>
                       <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                      <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                      <button data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
                   </th>
                  </tr>    
                 `);
@@ -504,7 +504,7 @@ $("#submitRiwayatPekerjaan").click(function(e){
                 <th>${$('#pekerjaan #Keterangan').val()}</th>
                 <th>
                     <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                    <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                    <button data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
                 </th>
               </tr>`);
             }

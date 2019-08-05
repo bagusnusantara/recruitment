@@ -58,6 +58,15 @@ Route::prefix('jobseeker')->group(function(){
     Route::post('datadiri/submitriwayatpenyakit/', 'JobSeekerController@storeDataRiwayatPenyakit');
     Route::post('datadiri/submitminat/', 'JobSeekerController@storeDataMinat');
 
+    //delete data
+    Route::post('datadiri/deletependidikanformal/', 'JobSeekerController@destroyDataPendidikanFormal');
+    Route::post('datadiri/deletependidikaninformal/', 'JobSeekerController@destroyDataPendidikanInformal');
+    Route::post('datadiri/deletependidikanbahasa/', 'JobSeekerController@destroyDataPendidikanBahasa');
+    Route::post('datadiri/deletepengalamankerja/', 'JobSeekerController@destroyDataPengalamanKerja');
+    Route::post('datadiri/deletepengalamanorganisasi/', 'JobSeekerController@destroyDataPengalamanOrganisasi');
+    Route::post('datadiri/deleteriwayatpenyakit/', 'JobSeekerController@destroyDataRiwayatPenyakit');
+    Route::post('datadiri/deleteminat/', 'JobSeekerController@destroyDataMinat');
+
     //-x support ajax
     Route::post('support/getst/', 'SupportController@getSt');
 });

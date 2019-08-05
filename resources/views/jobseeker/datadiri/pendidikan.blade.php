@@ -34,7 +34,7 @@
                 <th><h4>{{$item->keterangan}}</h4></th>
                 <th><h4>
                     <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                    <button data-toggle="modal"  data-target="#deletemodal"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                    <button data-toggle="modal"  data-target="#deletemodal"  data-href=""  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                   </h4>
                 </th>
             </tr>
@@ -135,7 +135,7 @@
               <th><h4>{{$item->keterangan}}</h4></th>
               <th><h4>
               <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-              <button  data-toggle="modal" data-target="#deletemodal"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+              <button  data-toggle="modal" data-target="#deletemodal"  data-href=""  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
               </h4></th>
               </tr>
           @endforeach
@@ -213,7 +213,7 @@
                           <th><h4>{{$item->st_kemampuantertulis->tingkat}}</h4></th>
                           <th><h4>
                               <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                              <button data-toggle="modal" data-target="#deletemodal" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                              <button data-toggle="modal" data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
                           </h4></th>
                     </tr>
                 @endforeach

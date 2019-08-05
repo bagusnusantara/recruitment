@@ -36,7 +36,7 @@
                         <th><h4>{{$item->keterangan}}</h4></th>
                         <th width="10%"><h4>
                             <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                            <button class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>    
+                            <button data-target="#deletemodal" data-href="" data-toggle="modal" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>    
                         </h4></th>
                     </tr>
                     @endforeach
