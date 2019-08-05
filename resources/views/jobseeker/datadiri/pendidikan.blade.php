@@ -25,16 +25,16 @@
             @foreach ($dataUserSt['PendidikanFormal'] as $key => $item)
             <tr>
                 <th><h4>{{$key+1}}</h4></th>
-                <th><h4>{{$item->st_tingkatpendidikan->strata}}</h4></th>
-                <th><h4>{{$item->tanggal_mulai." - ".$item->tanggal_akhir}}</h4></th>
+                <th data-value="{{$item->tingkat_pendidikan}}"><h4>{{$item->st_tingkatpendidikan->strata}}</h4></th>
+                <th><h4>{{date("Y",strtotime($item->tanggal_mulai))." - ".date("Y",strtotime($item->tanggal_akhir))}}</h4></th>
                 <th><h4>{{$item->institusi}}</h4></th>
                 <th><h4>{{$item->tempat}}</h4></th>
                 <th><h4>{{$item->jurusan}}</h4></th>
                 <th><h4>{{$item->IPK}}</h4></th>
                 <th><h4>{{$item->keterangan}}</h4></th>
                 <th><h4>
-                    <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                    <button data-toggle="modal"  data-target="#deletemodal"  data-href=""  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                    <button data-toggle="modal"  data-target=".pendidikanformal-modal"  data-id="{{$item->id}}" class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                    <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deletependidikanformal/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                   </h4>
                 </th>
             </tr>
@@ -79,10 +79,6 @@
                          <div class="form-group">
                               <h4><label for="tempat">Tempat</label></h4>
                               <input type="text" class="form-control" id="tempat" placeholder="Masukan tempat institusi">
-                         </div>
-                         <div class="form-group" style="display:none">
-                              <h4><label for="fakultas">Fakultas</label></h4>
-                              <input type="text" class="form-control" id="fakultas" placeholder="Masukan nama fakultas">
                          </div>
                          <div class="form-group">
                               <h4><label for="jurusan">Jurusan</label></h4>
@@ -130,12 +126,12 @@
           <tr>
               <th><h4>{{$key+1}}</h4></th>
               <th><h4>{{$item->jenispelatihan}}</h4></th>
-              <th><h4>{{$item->tanggal_mulai." - ".$item->tanggal_akhir}}</h4></th>
+              <th><h4>{{date("Y",strtotime($item->tanggal_mulai))." - ".date("Y",strtotime($item->tanggal_akhir))}}</h4></th>
               <th><h4>{{$item->tempat}}</h4></th>
               <th><h4>{{$item->keterangan}}</h4></th>
               <th><h4>
               <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-              <button  data-toggle="modal" data-target="#deletemodal"  data-href=""  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+              <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deletependidikaninformal/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
               </h4></th>
               </tr>
           @endforeach
@@ -173,7 +169,7 @@
                             </div>
                             <div class="form-group">
                                 <h4><label for="keterangan">Keterangan</label></h4>
-                                <input type="text" class="form-control" rows="3" id="ketarangan" placeholder="Ketarangan">
+                                <input type="text" class="form-control" rows="3" id="keterangan" placeholder="Ketarangan">
                             </div>
                       </div>
                     </div>
@@ -213,19 +209,19 @@
                           <th><h4>{{$item->st_kemampuantertulis->tingkat}}</h4></th>
                           <th><h4>
                               <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                              <button data-toggle="modal" data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                              <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deletependidikanbahasa/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                           </h4></th>
                     </tr>
                 @endforeach
               </table>
-              <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".kemampuanbahasaasing-modal">
+              <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".pendidikanbahasa-modal">
                 <i class="fa fa-plus"></i>
               Tambah</button>
             </div>
           <!--modal kemampuan bahasa asing-->
           <br>
           <form>
-              <div id="pendidikanbahasa" class="modal fade kemampuanbahasaasing-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div id="pendidikanbahasa" class="modal fade pendidikanbahasa-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-head">

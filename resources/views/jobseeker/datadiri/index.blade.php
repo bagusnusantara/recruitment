@@ -89,7 +89,7 @@
                 @endif
               </li>
               <li>
-                <a  class="list-group-item-action" href="#aktivitas">aktivitas</a>
+                <a  class="list-group-item-action" href="#aktivitas">Aktivitas</a>
                 @if($dataUserSt['Status']['aktivitas']==0 && !$dataUser->exists('olahraga') && !$dataUser->exists('hobi'))
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif

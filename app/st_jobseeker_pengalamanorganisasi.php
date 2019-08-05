@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use Ramsey\Uuid\Uuid;
 
 class st_jobseeker_pengalamanorganisasi extends Model
 {
@@ -14,4 +16,14 @@ class st_jobseeker_pengalamanorganisasi extends Model
       'user_id','organisasi','tanggal_mulai','tanggal_akhir','tempat','posisi','keterangan'
       ];
 
+      protected static function boot(){
+        parent::boot();
+        static::creating(function ($model) {
+            try {
+                $model->id = Uuid::uuid4()->toString();
+            } catch (UnsatisfiedDependencyException $e) {
+                abort(500, $e->getMessage());
+            }
+        });
+      }
 }

@@ -4,10 +4,7 @@ Auth::routes();
 include ('hrd.php');
 include ('admin.php');
 include ('client.php');
-//-> public
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/joblist', function () {
     return view('job_list');
 });
@@ -16,6 +13,7 @@ Route::get('/jobsingle', function () {
 });
 //->Public
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'PublicController@showhome')->name('PublicHome');
 Route::get('lowongan/', 'PublicController@showLowonganpublic')->name('PublicLowongan');
 Route::get('lowongan/{id}', 'PublicController@getLowonganpublic')->name('PublicLowonganById');
 //-> Jobseeker
@@ -59,13 +57,13 @@ Route::prefix('jobseeker')->group(function(){
     Route::post('datadiri/submitminat/', 'JobSeekerController@storeDataMinat');
 
     //delete data
-    Route::post('datadiri/deletependidikanformal/', 'JobSeekerController@destroyDataPendidikanFormal');
-    Route::post('datadiri/deletependidikaninformal/', 'JobSeekerController@destroyDataPendidikanInformal');
-    Route::post('datadiri/deletependidikanbahasa/', 'JobSeekerController@destroyDataPendidikanBahasa');
-    Route::post('datadiri/deletepengalamankerja/', 'JobSeekerController@destroyDataPengalamanKerja');
-    Route::post('datadiri/deletepengalamanorganisasi/', 'JobSeekerController@destroyDataPengalamanOrganisasi');
-    Route::post('datadiri/deleteriwayatpenyakit/', 'JobSeekerController@destroyDataRiwayatPenyakit');
-    Route::post('datadiri/deleteminat/', 'JobSeekerController@destroyDataMinat');
+    Route::delete('datadiri/deletependidikanformal/', 'JobSeekerController@destroyDataPendidikanFormal');
+    Route::delete('datadiri/deletependidikaninformal/', 'JobSeekerController@destroyDataPendidikanInformal');
+    Route::delete('datadiri/deletependidikanbahasa/', 'JobSeekerController@destroyDataPendidikanBahasa');
+    Route::delete('datadiri/deletepengalamankerja/', 'JobSeekerController@destroyDataPengalamanKerja');
+    Route::delete('datadiri/deletepengalamanorganisasi/', 'JobSeekerController@destroyDataPengalamanOrganisasi');
+    Route::delete('datadiri/deleteriwayatpenyakit/', 'JobSeekerController@destroyDataRiwayatPenyakit');
+    Route::delete('datadiri/deleteminat/', 'JobSeekerController@destroyDataMinat');
 
     //-x support ajax
     Route::post('support/getst/', 'SupportController@getSt');

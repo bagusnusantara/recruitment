@@ -1,28 +1,97 @@
 $(document).ready(function(){
 //document onload start
+//----------------on show modal
+$(".pendidikanformal-modal").on('show.bs.modal', function (e) {
+    $(this).data("id",$(e.relatedTarget).data("id"));
+    let tabledata = $(e.relatedTarget).parents('tr').find('th');
+    console.log('tes');
+    console.log(tabledata.eq(1).data('value'));
+    
+    $("#pendidikanformal #TingkatPendidikan").val(tabledata.eq(1).data('value'));
+    // $("#pendidikanformal #tahunmulai").val($tabledata),
+    // $("#pendidikanformal #tahunakhir").val(),
+    // $("#pendidikanformal #institusi").val(),
+    // $("#pendidikanformal #tempat").val(),
+    // $("#pendidikanformal #jurusan").val(),
+    // $("#pendidikanformal #IPK").val(),
+    // $("#pendidikanformal #keterangan").val(),
+});
+
+$(".pendidikaninformal-modal").on('show.bs.modal', function (e) {
+    $(this).data("id",$(e.relatedTarget).data("id"));
+});
+$(".pendidikanbahasa-modal").on('show.bs.modal', function (e) {
+    $(this).data("id",$(e.relatedTarget).data("id"));
+});
+$(".aktivitas-modal").on('show.bs.modal', function (e) {
+    $(this).data("id",$(e.relatedTarget).data("id"));
+});
+$(".minat-modal").on('show.bs.modal', function (e) {
+    $(this).data("id",$(e.relatedTarget).data("id"));
+});
+$(".riwayatpenyakit-modal").on('show.bs.modal', function (e) {
+    $(this).data("id",$(e.relatedTarget).data("id"));
+});
+$('.pengalamankerja-modal').on('show.bs.modal', function (e) {
+    $(this).data("id",$(e.relatedTarget).data("id"));
+});
+
+$('#deletemodal').on('show.bs.modal', function (e) {
+    $(this).data("id",$(e.relatedTarget).data("id"));
+    $(this).data("href",$(e.relatedTarget).data("href"));
+    $(this).data("tr",$(e.relatedTarget).parents('tr'));
+});
+//----------------on hide modal
+$(".pendidikanformal-modal").on('hide.bs.modal', function (e) {
+    $(this).removeData("id");
+});
+$(".pendidikaninformal-modal").on('hide.bs.modal', function (e) {
+    $(this).removeData("id");
+});
+$(".pendidikanbahasa-modal").on('hide.bs.modal', function (e) {
+    $(this).removeData("id");
+});
+$(".aktivitas-modal").on('hide.bs.modal', function (e) {
+    $(this).removeData("id");
+});
+$(".minat-modal").on('hide.bs.modal', function (e) {
+    $(this).removeData("id");
+});
+$(".riwayatpenyakit-modal").on('hide.bs.modal', function (e) {
+    $(this).removeData("id");
+});
+$('.pengalamankerja-modal').on('hide.bs.modal', function (e) {
+    $(this).removeData("id");
+});
+
+
+
 $('#delete_supreme').click(function(e){
     e.preventDefault();
     let sendProsses = $(this);
     if($(this).data('run'))return;
     sendProsses.data('run',true);
 
-    let href = $(this).data("href");
-    let tr_delete = $(this).parents("tr");
+    let href = $("#deletemodal").data("href");
+    let dataId = $("#deletemodal").data("id");
+    let tr_delete = $("#deletemodal").data('tr');
+    console.log(href,dataId,tr_delete);
 
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
         } });
     $.ajax({
-        url:"/jobseeker/datadiri/submitpendidikanformal/",
-        method:"post",
+        url:href,
+        method:"delete",
         data :{
-            id                             : "",
+            id: dataId,
         },
         success:function(result){
             console.log(result.success);
             if(result.success){
-            $("#deletemodal").modal("hide");
+                tr_delete.remove();
+                $("#deletemodal").modal("hide");
             }else{
                 $("#delete-caution").parent("div").show();
             }
@@ -57,6 +126,8 @@ $("#submitPendidikanFormal").click(function(e){
     if($(this).data('run'))return;
     sendProsses.data('run',true);
 
+    let dataId = $('.pendidikanformal-modal').data('id');
+
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -65,7 +136,7 @@ $("#submitPendidikanFormal").click(function(e){
         url:"/jobseeker/datadiri/submitpendidikanformal/",
         method:"post",
         data :{
-            id                             : "",
+            id                             : dataId,
             tingkat_pendidikan             :$("#pendidikanformal #TingkatPendidikan").val(),
             tahun_mulai                    :$("#pendidikanformal #tahunmulai").val(),
             tahun_akhir                    :$("#pendidikanformal #tahunakhir").val(),
@@ -77,7 +148,8 @@ $("#submitPendidikanFormal").click(function(e){
         },
         success:function(result){
             console.log(result.success);
-            if(result.success){
+            if(result.success && dataId==""){
+                $('pendidikanformal-modal').data('id',result.id);
                 $('#pendidikan-formal-table').append(
                     `<tr>
                     <th><h4>${$('#pendidikan-formal-table tr').length}</h4></th>
@@ -95,6 +167,9 @@ $("#submitPendidikanFormal").click(function(e){
                     </th>
                 </tr>`
                 )
+            }else{
+                let tr = $(this).parents("tr");
+                console.log(tr);
             }
         },
         beforeSend: function(){
@@ -116,7 +191,7 @@ $("#submitPendidikanInformal").click(function(e){
     let sendProsses = $(this);
     if($(this).data('run'))return;
     sendProsses.data('run',true);
-
+    
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -125,16 +200,17 @@ $("#submitPendidikanInformal").click(function(e){
         url:"/jobseeker/datadiri/submitpendidikaninformal/",
         method:"post",
         data :{
-            id                             : "",
-            jenispelatihan                 :$("#pendidikaninformal #jenispelatihan").val(),
-            tahun_mulai                    :$("#pendidikaninformal #tahunmulai").val(),
-            tahun_akhir                    :$("#pendidikaninformal #tahunakhir").val(),
+            id                             : send_id,
+            jenis_pelatihan                 :$("#pendidikaninformal #jenispelatihan").val(),
+            tanggal_mulai                    :$("#pendidikaninformal #tahunmulai").val(),
+            tanggal_akhir                    :$("#pendidikaninformal #tahunakhir").val(),
             tempat                         :$("#pendidikaninformal #tempat").val(),
             keterangan                     :$("#pendidikaninformal #keterangan").val(),
         },
         success:function(result){
-            console.log(result.success);
-            if(result.success){
+
+            if(result.success && send_id==""){
+                $("#pendidikaninformal-modal").data(result.id);
                 $('#pendidikan-informal-table').append(
                     `<tr>
                     <th><h4>${$('#pendidikan-informal-table tr').length}</h4></th>
@@ -143,7 +219,7 @@ $("#submitPendidikanInformal").click(function(e){
                     <th><h4>${$("#pendidikaninformal #tempat").val()}</h4></th>
                     <th><h4>${$("#pendidikaninformal #keterangan").val()}</h4></th>
                     <th><h4>
-                    <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                    <button data-id="${result.id}"class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
                     <button data-target="#deletemodal"  data-href="" class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
                     </h4></th>
                     </tr>`

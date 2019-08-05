@@ -25,12 +25,12 @@
                         <th><h4>{{$item->pengaruh}}</h4></th>
                         <th ><h4>
                             <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                            <button data-toggle="modal" data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>    
+                            <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deleteriwayatpenyakit/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                           </h4></th>
                       <tr>
                     @endforeach
                   </table>
-                    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".lainnya-modal">
+                    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".riwayatpenyakit-modal">
                     <i class="fa fa-plus"></i>Tambah</button>
               </div>
                 <br>
@@ -49,7 +49,7 @@
                 </div>
                 <!--modal lainnya-->
                 <form id="minatform">
-                    <div class="modal fade lainnya-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal fade riwayatpenyakit-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-head">

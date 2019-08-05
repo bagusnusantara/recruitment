@@ -32,7 +32,7 @@
                   <th>{{$item->st_leveljabatan->jabatan}}</th>
                   <th>
                       <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                      <button  data-toggle="modal" data-target="#deletemodal" data-href=""  class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                      <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deleteminat/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                   </th>
                  </tr>    
                 @endforeach

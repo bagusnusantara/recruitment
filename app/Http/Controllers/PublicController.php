@@ -16,6 +16,11 @@ class PublicController extends Controller
         return view ('public.dashboard.showpublic',compact('lowongan'));
     }
 
+    public function showhome(){
+      return Uuid::uuid4()->toString();
+      //return view('welcome');
+    }
+
     public function showLowonganpublic(){
       $lowongan_pekerjaan=md_lowongan_pekerjaan::paginate(10);
       $provinsi=st_Provinsi::all();

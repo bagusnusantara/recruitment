@@ -141,7 +141,7 @@ class JobseekerController extends Controller
       $dataUser = md_jobseeker::find(\Auth::user())->first();
       try {
         $dataUser->update($request->all());
-        return response()->json(["success"=><i class="fas fa-tire-rugged    "></i>]);
+        return response()->json(["success"=>true]);
       } catch (\Throwable $th) {
         return response()->json(["success"=>false]);
       }
@@ -157,9 +157,9 @@ class JobseekerController extends Controller
       if($pendidikanFormal==null){
         $request->request->remove('id');
         try {
-          st_jobseeker_pendidikanformal::create($request->all());
+          $newdata = st_jobseeker_pendidikanformal::create($request->all());
           dump('success');
-          return response()->json(['success'=>true]);
+          return response()->json(['success'=>true,"id"=>$newdata->id]);
         } catch (\Throwable $th) {
           dump($th);
           return response()->json(['success'=>false]);
@@ -179,13 +179,14 @@ class JobseekerController extends Controller
       
       $request->request->add(['user_id'=>\Auth::user()->id]);
       $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
-      $request['tahggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
+      $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
       if($pendidikanInformal==null){
         $request->request->remove('id');        
         try {
-          st_jobseeker_pendidikaninformal::create($request->all());
-          dump('success');
-          return response()->json(['success'=>true]);
+          dump($request->all());
+          $data = st_jobseeker_pendidikaninformal::create($request->all());
+          dump($data->id);
+          return response()->json(['success'=>true,"id"=>$data->id]);
         } catch (\Throwable $th) {
           dump($th);
           return response()->json(['success'=>false]);
@@ -312,6 +313,7 @@ class JobseekerController extends Controller
           st_jobseeker_minatkerja::create($request->all());
           return response()->json(["success"=>true]); 
         } catch (\Throwable $th) {
+          dump($th);
           return response()->json(["success"=>false]); 
         }}
         else{
@@ -373,19 +375,18 @@ class JobseekerController extends Controller
     //     Alert::success('Lowongan Pekerjaan berhasil terkirim');
     //     return redirect()->back()->with('successMsg','Slider Successfully Saved');
     //   }
-      public function destroyDataPendidikanFormal()
-      {
+      public function destroyDataPendidikanFormal(Request $request){
         try {
           $pendidikanFormal = st_jobseeker_pendidikanformal::where('user_id',\Auth::user()->id)
                                                          ->where('id',$request->id)->first();
           $pendidikanFormal->delete();
+          dump('success');
           return response()->json(["success"=>true]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
-        }
-      }
-      public function destroyDataPendidikanInformal()
-      {
+        }}
+
+      public function destroyDataPendidikanInformal(Request $request){
         try {
           $pendidikanInformal = st_jobseeker_pendidikaninformal::where('user_id',\Auth::user()->id)
                                                          ->where('id',$request->id)->first();
@@ -393,11 +394,9 @@ class JobseekerController extends Controller
           return response()->json(["success"=>true]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
-        }
-      }
+        }}
       
-      public function destroyDataPendidikanBahasa()
-      {
+      public function destroyDataPendidikanBahasa(Request $request){
         try {
           $pendidikanBahasa = st_jobseeker_pendidikanbahasa::where('user_id',\Auth::user()->id)
                                                           ->where('id',$request->id)->first();
@@ -405,10 +404,9 @@ class JobseekerController extends Controller
           return response()->json(["success"=>true]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
-        }
-      }
-      public function destroyDataPengalamanKerja()
-      {
+        }}
+
+      public function destroyDataPengalamanKerja(Request $request){
        try {
             $riwayatKerja = st_jobseeker_pengalamankerja::where('user_id',\Auth::user()->id)
                                                           ->where('id',$request->id)->first();
@@ -416,10 +414,9 @@ class JobseekerController extends Controller
             return response()->json(["success"=>true]);
        } catch (\Throwable $th) {
             return response()->json(["success"=>false]);
-       } 
-      }
-      public function destroyDataPengalamanOrganisasi()
-      {
+       } }
+
+      public function destroyDataPengalamanOrganisasi(Request $request){
         try {
           $pengalamanOrganisasi = st_jobseeker_pengalamanorganisasi:: where('user_id',\Auth::user()->id)
                                                                   ->where('id',$request->id)->first();
@@ -427,30 +424,27 @@ class JobseekerController extends Controller
           return response()->json(["success"=>true]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
-        }
-      }
-      public function destroyDataRiwayatPenyakit()
-      {
+        }}
+
+      public function destroyDataRiwayatPenyakit(Request $request){
         try {
           $riwayatPenyakit = st_jobseeker_riwayatpenyakit:: where('user_id',\Auth::user()->id)
                                                           ->where('id',$request->id)->first();
           $riwayatPenyakit->delete();
-          return response()->json(["success"=>true])
+          return response()->json(["success"=>true]);
         } catch (\Throwable $th) {
-          return response()->json(["success"=>false])
-        }
-      }
-      public function destroyDataMinat()
-      {
+          return response()->json(["success"=>false]);
+        }}
+
+      public function destroyDataMinat(Request $request){
         try {
           $dataMinat = st_jobseeker_minatkerja::where('user_id',\Auth::user()->id)
                                             ->where('id',$request->id)->first();
           $dataMinat->delete();
           return response()->json(["success"=>true]);
         } catch (\Throwable $th) {
+          dump($th);
           return response()->json(["success"=>false]);
-        }
-      }
+        }}
   
-    }
 }

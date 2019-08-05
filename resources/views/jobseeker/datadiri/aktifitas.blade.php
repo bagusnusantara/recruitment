@@ -36,7 +36,7 @@
                         <th><h4>{{$item->keterangan}}</h4></th>
                         <th width="10%"><h4>
                             <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                            <button data-target="#deletemodal" data-href="" data-toggle="modal" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>    
+                            <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deletepengalamanorganisasi/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                         </h4></th>
                     </tr>
                     @endforeach
@@ -71,7 +71,7 @@
                                         <input type="text" class="form-control" id="Tempat" placeholder="Masukan tempat">
                                     </div>
                                     <div class="form-group">
-                                        <h4><label for="Posisi">posisi</label></h4>
+                                        <h4><label for="Posisi">Posisi</label></h4>
                                         <input type="text" class="form-control" id="Posisi" placeholder="Masukan posisi">
                                     </div>
                                     <div class="form-group">

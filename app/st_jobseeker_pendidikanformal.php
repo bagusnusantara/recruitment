@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use Ramsey\Uuid\Uuid;
 
 class st_jobseeker_pendidikanformal extends Model
 {
@@ -20,6 +22,17 @@ class st_jobseeker_pendidikanformal extends Model
 
     public function st_tingkatpendidikan(){
       return $this->hasOne('App\st_Tingkatpendidikan','id','tingkat_pendidikan');
+    }
+
+     protected static function boot(){
+      parent::boot();
+      static::creating(function ($model) {
+          try {
+              $model->id = Uuid::uuid4()->toString();
+          } catch (UnsatisfiedDependencyException $e) {
+              abort(500, $e->getMessage());
+          }
+      });
     }
     
 }
