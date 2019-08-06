@@ -18,9 +18,8 @@
               <h4>Organisasi</h4>
                 <table id="aktivitas-table" class="table table-bordered" style="border-radius:10px;">
                     <tr class="thead-smi th-center">
-                        <th width="5%"><h4>Nomor</h4></th>
                         <th><h4>Organisasi</h4></th>
-                        <th colspan="2"><h4>Periode</h4></th>
+                        <th><h4>Periode</h4></th>
                         <th><h4>Tempat</h4></th>
                         <th><h4>Posisi</h4></th>
                         <th><h4>Ketarangan</h4></th>
@@ -28,15 +27,13 @@
                     </tr>
                     @foreach ($dataUserSt['PengalamanOrganisasi'] as $key=>$item)
                     <tr>
-                        <th width="5%"><h4>{{$key+1}}</h4></th>
                         <th><h4>{{$item->organisasi}}</h4></th>
-                        <th><h4>{{$item->tanggal_mulai}}</h4></th>
-                        <th><h4>{{$item->tanggal_akhir}}</h4></th>
+                        <th data-tanggalmulai="{{date("M-Y",strtotime($item->tanggal_mulai))}}" data-tanggalakhir="{{date("M-Y",strtotime($item->tanggal_akhir))}}"><h4>{{date("M-Y",strtotime($item->tanggal_mulai))}} - {{date("M-Y",strtotime($item->tanggal_akhir))}}</h4></th>
                         <th><h4>{{$item->tempat}}</h4></th>
                         <th><h4>{{$item->posisi}}</h4></th>
                         <th><h4>{{$item->keterangan}}</h4></th>
                         <th width="10%"><h4>
-                            <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                            <button data-toggle="modal"  data-target=".aktivitas-modal" data-id="{{$item->id}}" class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
                             <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deletepengalamanorganisasi/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                         </h4></th>
                     </tr>

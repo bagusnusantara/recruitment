@@ -8,30 +8,29 @@
               <!--lainnya-->
               <div class="table-responsive">
               <h4>Riwayat Penyakit 2 Tahun Terakhir </h4>
-                <table class="table table-bordered" id="riwayatpenyakit-table"style="border-radius:25px;">
+                <table class="table table-bordered" id="riwayatpenyakit-table" style="border-radius:25px;">
                     <tr class="thead-smi th-center">
-                        <th width="5%"><h4>Nomor</h4></th>
                         <th><h4>Jenis Penyakit</h4></th>
-                        <th colspan="2"><h4>Periode</h4></th>
+                        <th><h4>Periode</h4></th>
                         <th><h4>Pengaruh</h4></th>
                         <th width="10%"><h4>Option</h4></th>
                     </tr>
                     @foreach ($dataUserSt['RiwayatPenyakit'] as $key=>$item)
                       <tr>
-                        <th ><h4>{{$key+1}}</h4></th>
                         <th><h4>{{$item->nama_penyakit}}</h4></th>
-                        <th><h4>{{$item->tanggal_mulai}}</h4></th>
-                        <th><h4>{{$item->tanggal_akhir}}</h4></th>
+                        <th data-tanggalmulai="{{date("M-Y",strtotime($item->tanggal_mulai))}}" data-tanggalakhir="{{date("M-Y",strtotime($item->tanggal_akhir))}}" ><h4>{{date("M-Y",strtotime($item->tanggal_mulai))." - ".date("M-Y",strtotime($item->tanggal_akhir))}}</h4></th>
                         <th><h4>{{$item->pengaruh}}</h4></th>
-                        <th ><h4>
-                            <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                            <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deleteriwayatpenyakit/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
-                          </h4></th>
-                      <tr>
+                        <th><h4>
+                            <button data-toggle="modal" data-target=".riwayatpenyakit-modal" data-id="{{$item->id}}" class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                            <button data-toggle="modal" data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deleteriwayatpenyakit/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                          </h4>
+                        </th>
+                      </tr>
+                      
                     @endforeach
                   </table>
-                    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".riwayatpenyakit-modal">
-                    <i class="fa fa-plus"></i>Tambah</button>
+                  <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target=".riwayatpenyakit-modal">
+                  <i class="fa fa-plus"></i>Tambah</button>
               </div>
                 <br>
                 <div class="form-group">

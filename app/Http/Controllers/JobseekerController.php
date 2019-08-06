@@ -159,11 +159,9 @@ class JobseekerController extends Controller
 
         $request->request->remove('id');
         try {
-          dump('regis');
           $newdata = st_jobseeker_pendidikanformal::create($request->all());
           return response()->json(['success'=>true,"id"=>$newdata->id]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(['success'=>false]);
         }}
       else {
@@ -171,7 +169,6 @@ class JobseekerController extends Controller
           $pendidikanFormal->update($request->all());
           return response()->json(['success'=>true]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(['success'=>false]);
         }}
     }
@@ -181,14 +178,12 @@ class JobseekerController extends Controller
                                                          ->where('id',$request->id)->first();
       
       $request->request->add(['user_id'=>\Auth::user()->id]);
-      $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
-      $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
+      $request['tanggal_mulai'] = $request->tanggal_mulai."-01"."-01";
+      $request['tanggal_akhir'] = $request->tanggal_akhir."-12"."-31";
       if($pendidikanInformal==null){
         $request->request->remove('id');        
         try {
-          dump($request->all());
           $data = st_jobseeker_pendidikaninformal::create($request->all());
-          dump($data->id);
           return response()->json(['success'=>true,"id"=>$data->id]);
         } catch (\Throwable $th) {
           dump($th);
@@ -196,9 +191,10 @@ class JobseekerController extends Controller
         }}
       else{
         try {
-          $pendidikanFormal->update($request->all);
+          $pendidikanInformal->update($request->all());
           return response()->json(['success'=>true]);
         } catch (\Throwable $th) {
+          dump($th);
           return response()->json(['success'=>false]);
         }}
     }
@@ -211,9 +207,9 @@ class JobseekerController extends Controller
       if($pendidikanBahasa==null){
         $request->request->remove('id');
         try {
-          st_jobseeker_pendidikanbahasa::create($request->all());
-          dump('success');
-          return response()->json(['success'=>true]);
+          dump('succss');
+          $dataUser = st_jobseeker_pendidikanbahasa::create($request->all());
+          return response()->json(['success'=>true,'id'=> $dataUser->id]);
         } catch (\Throwable $th) {
           dump($th);
           return response()->json(['success'=>false]);
@@ -221,9 +217,11 @@ class JobseekerController extends Controller
       }
       else{
         try {
-          $pendidikanBahasa->update($request->all);
+          dump('update');
+          $pendidikanBahasa->update($request->all());
           return response()->json(['success'=>true]);
         } catch (\Throwable $th) {
+          dump($th);
           return response()->json(['success'=>false]);
         }}
     }
@@ -262,17 +260,19 @@ class JobseekerController extends Controller
       if($pengalamanOrganisasi==null){
         try {
           $request->request->remove('id');
-          st_jobseeker_pengalamanorganisasi::create($request->all()); 
+          $dataUser = st_jobseeker_pengalamanorganisasi::create($request->all()); 
           dump("success");
-          return response()->json(['success'=>true]);
+          return respondump("success");se()->json(['success'=>true,"id"=>$dataUser->id]);
         } catch (\Throwable $th) {
           return response()->json(['success'=>false]);
         }}
         else{
           try {
-            $pengalamanOrganisasi->update($request->all);
+            dump("update");
+            $pengalamanOrganisasi->update($request->all());
             return response()->json(['success'=>true]);
           } catch (\Throwable $th) {
+            dump($th);
             return response()->json(['success'=>false]);
           }
         }
@@ -283,25 +283,27 @@ class JobseekerController extends Controller
 
       $riwayatPenyakit = st_jobseeker_riwayatpenyakit:: where('user_id',\Auth::user()->id)
                                                         ->where('id',$request->id)->first();
+      $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
+      $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
       $request->request->add(['user_id'=>\Auth::user()->id]);
       if($riwayatPenyakit==null){
         $request->request->remove('id');
         try{
-          $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
-          $request['tanggal_akhir'] = date('Y-m-t',strtotime($request->tanggal_akhir));
-          st_jobseeker_riwayatpenyakit::create($request->all());
+          $dataUser = st_jobseeker_riwayatpenyakit::create($request->all());
           dump($request->aLL());
           dump('success');
-          return response()->json(["success"=>true]);
-        }catch(\Throwable $Th){
-          dump($Th);
+          return response()->json(["success"=>true,"id"=>$dataUser->id]);
+        }catch(\Throwable $th){
+          dump($th);
           return response()->json(["success"=>false]);
         }}
         else{
           try {
-            $riwayatPenyakit->update($request->all);
+            dump($request->all());
+            $riwayatPenyakit->update($request->all());
             return response()->json(["success"=>true]);
           } catch (\Throwable $th) {
+            dump($th);
             return response()->json(["success"=>false]);
           }}
     }

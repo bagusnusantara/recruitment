@@ -4498,3 +4498,8 @@ footer .menu li .small-title {
 {
   font-size:18px;
 }
+
+.upload-btn
+{
+  height:calc(2.25rem + 2px);
+}

@@ -4,7 +4,6 @@
       @include('jobseeker/template/head')
       @yield('css')
   </head>
-
   <body>
 
 

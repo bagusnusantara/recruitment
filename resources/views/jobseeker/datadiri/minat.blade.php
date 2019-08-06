@@ -10,8 +10,6 @@
           <h4>Minat dan Harapan</h4>
             <table id="minat-table" class="table table-bordered" style="border-radius:25px;">
                 <tr class="thead-smi th-center">
-                    <th width="3%"><h4>Nomor</h4></th>
-                    <th><h4>Preferensi Lokasi</h4></th>
                     <th><h4>Gaji Bulanan(IDR)</h4></th>
                     <th><h4>Bidang Bisnis</h4></th>
                     <th><h4>Lingkungan Kerja</h4></th>
@@ -22,14 +20,12 @@
                 </tr>
               @foreach ($dataUserSt['MinatKerja'] as $key => $item)
                 <tr>
-                  <th>{{$key+1}}</th>
-                  <th><small><strong>{{$item->st_kabkota->name}},  {{$item->st_provinsi->name}}</strong></small></th>
                   <th>{{"Rp. ".number_format($item->gaji_bulanan,2,",",".")}}</th>
-                  <th>{{$item->st_bisnisperusahaan->name}}</th>
-                  <th>{{$item->st_lingkungankerja->lingkungan}}</th>
-                  <th>{{$item->st_spesialisasipekerjaan->spesial}}</th>
-                  <th>{{$item->st_posisikerja->posisi}}</th>
-                  <th>{{$item->st_leveljabatan->jabatan}}</th>
+                  <th data-value="">{{$item->st_bisnisperusahaan->name}}</th>
+                  <th data-value="">{{$item->st_lingkungankerja->lingkungan}}</th>
+                  <th data-value="">{{$item->st_spesialisasipekerjaan->spesial}}</th>
+                  <th data-value="">{{$item->st_posisikerja->posisi}}</th>
+                  <th data-value="">{{$item->st_leveljabatan->jabatan}}</th>
                   <th>
                       <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
                       <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deleteminat/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
@@ -53,30 +49,7 @@
                       <div class="modal-body">
                         <div class="inner-box">
                             <div class="item">
-                                <div class="row">
-                                  <input type="hidden" class="form-control typeTahun" id="id">
-                                  <div class="form-group col-12">
-                                      <h4><label class="my-1 mr-2" for="Negara">Negara</label></h4>
-                                      <select class="custom-select my-1 mr-sm-2" id="Negara">
-                                          <option selected value="0">Pilih . . .</option>
-                                          @foreach ($st_data["Negara"] as $item)
-                                            <option value="{{$item->id}}">{{$item->negara}}</option>    
-                                          @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-6">
-                                      <h4><label class="my-1 mr-2" for="Provinsi">Provinsi</label></h4>
-                                      <select class="custom-select my-1 mr-sm-2" id="Provinsi" disabled>
-                                          <option selected>Pilih...</option>
-                                      </select>
-                                    </div>
-                                    <div class="form-group col-6">
-                                        <h4><label class="my-1 mr-2" for="Kota">Kota/Kab</label></h4>
-                                        <select class="custom-select my-1 mr-sm-2" id="Kota" disabled>
-                                        <option selected>Pilih...</option>
-                                        </select>
-                                    </div>
-                                </div>
+                              <input type="hidden" class="form-control typeTahun" id="id">
                               <div class="form-group">
                                 <h4><label for="gajibulan">Gaji Bulanan</label></h4>
                                 <div class="input-group">

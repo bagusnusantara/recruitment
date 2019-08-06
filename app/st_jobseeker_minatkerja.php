@@ -15,17 +15,6 @@ class st_jobseeker_minatkerja extends Model
     protected $fillable = [
       'id','user_id','negara','provinsi','kabkota','gaji_bulanan','bidang_bisnis','lingkungan_kerja','spesialisasi','posisi_kerja','level_jabatan'
       ];
-    public function st_negara(){
-      return $this->hasOne('App\st_Negara','id','negara');
-    }
-  
-    public function st_provinsi(){
-      return $this->hasOne('App\st_Provinsi','id','provinsi');
-    }
-  
-    public function st_kabkota(){
-      return $this->hasOne('App\st_Kabkota','id','kabkota');
-    }
     
     public function st_bisnisperusahaan(){
       return $this->hasOne('App\st_Bisnisperusahaan','id','bidang_bisnis');

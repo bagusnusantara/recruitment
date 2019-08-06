@@ -1,5 +1,5 @@
 @extends('jobseeker.template.index_content')
-@section('css')z
+@section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('header-title')
@@ -8,17 +8,19 @@
 @section('content')
 <!--Alert -->
 <div class="row mt-5">
-    
+
     <div class="alert alert-primary col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
         <i class="fa fa-info-circle fa-2x">&nbsp;</i>
         <strong>Lengkapi Data Diri untuk melamar pekerjaan (wajib untuk identitas,pendidikan,dan minat kerja)</strong>
     </div>
+    
     @if(Session::has('alert'))
     <div class="alert alert-warning col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
         <i class="fa fa-exclamation-triangle fa-2x">&nbsp;</i>
         <strong>{{Session::get('alert')}}</strong>
     </div>
     @endif
+
     @if($dataUserSt['Status']['identitas']==0)
     <div class="alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
         <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
@@ -26,29 +28,30 @@
         <span class="menu-badge badge badge-pill badge-danger" id="btn-identitas" href="#">
           <i class="fa fa-edit fa-1x">&nbsp;</i>Selsaikan 
          </span>
-   </div>
-   @endif
-   @if($dataUserSt['Status']['pendidikan']==0)
-    <div class="alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
-         <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
-         <strong>Data Pendidikan Belum Lengkap !</strong>
-         <span class="menu-badge badge badge-pill badge-danger" id="btn-pendidikan" href="#">
-           <i class="fa fa-edit fa-1x">&nbsp;</i>Selsaikan 
+      </div>
+      @endif
+
+    @if($dataUserSt['Status']['pendidikan']==0)
+      <div class="alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
+          <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
+          <strong>Data Pendidikan Belum Lengkap !</strong>
+          <span class="menu-badge badge badge-pill badge-danger" id="btn-pendidikan" href="#">
+            <i class="fa fa-edit fa-1x">&nbsp;</i>Selsaikan 
+            </span>
+      </div>
+      @endif
+
+      @if($dataUserSt['Status']['minatkerja']==0)
+      <div class="alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
+          <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
+          <strong>Data Minat Belum Lengkap !</strong>
+          <span class="menu-badge badge badge-pill badge-danger" id="btn-minat" href="#">
+            <i class="fa fa-edit fa-1x">&nbsp;</i>Selsaikan 
           </span>
-    </div>
-    @endif
-    @if($dataUserSt['Status']['minatkerja']==0)
-    <div class="alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
-        <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
-        <strong>Data Minat Belum Lengkap !</strong>
-        <span class="menu-badge badge badge-pill badge-danger" id="btn-minat" href="#">
-          <i class="fa fa-edit fa-1x">&nbsp;</i>Selsaikan 
-         </span>
-   </div>
-   @endif
+      </div>
+      @endif
     
  </div>
-</div>
 
 <!-- Job Browse Section Start -->
 <div class="section">
@@ -135,7 +138,7 @@
             <!--Lampiran end-->
         </div>
         <!-- Button trigger modal -->
-        <!----Modal delete end---->
+        <!-- Modal delete end -->
         <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -158,9 +161,9 @@
             </div>
           </div>
         </div>
-        <!----Modal delete end---->
+        <!-- Modal delete end -->
     </div>
-  </div>      
+  </div>
 </div>
 
 
@@ -192,7 +195,7 @@ $('#btn-identitas').on('click',function(event){
       $($(this).find("a").attr('href') ).fadeIn(300);
     });
     
-    $('#tab li a:first').trigger('click'); // First 
+    $('#tab li a:first').trigger('click');
 </script>  
 <script src="{{asset('js/smi_lib.js') }}"></script>   
 @endsection

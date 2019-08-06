@@ -2,10 +2,10 @@ $(document).ready(function(){
 //document onload start
 //----------------on show modal
 $(".pendidikanformal-modal").on('shown.bs.modal', function (e) {
-    $(this).find("input#id").val($(e.relatedTarget).data("id")|| "");
     let tabledata = $(e.relatedTarget).parents('tr').find('th');
     $(this).data("tr",tabledata);
 
+    $("#pendidikanformal #TingkatPendidikan").val($(e.relatedTarget).data("id")|| "");
     $("#pendidikanformal #TingkatPendidikan").val(tabledata.eq(0).data('value')|| 0);
     $("#pendidikanformal #tahunmulai").val(tabledata.eq(1).data('tanggalmulai')|| "");
     $("#pendidikanformal #tahunakhir").val(tabledata.eq(1).data('tanggalakhir')|| "");
@@ -16,26 +16,62 @@ $(".pendidikanformal-modal").on('shown.bs.modal', function (e) {
     $("#pendidikanformal #keterangan").val(tabledata.eq(6).text()|| "");
 });
 
-$(".pendidikaninformal-modal").on('show.bs.modal', function (e) {
-    $(this).data("id",$(e.relatedTarget).data("id"));
-});
-$(".pendidikanbahasa-modal").on('show.bs.modal', function (e) {
-    $(this).data("id",$(e.relatedTarget).data("id"));
-});
-$(".aktivitas-modal").on('show.bs.modal', function (e) {
-    $(this).data("id",$(e.relatedTarget).data("id"));
-});
-$(".minat-modal").on('show.bs.modal', function (e) {
-    $(this).data("id",$(e.relatedTarget).data("id"));
-});
-$(".riwayatpenyakit-modal").on('show.bs.modal', function (e) {
-    $(this).data("id",$(e.relatedTarget).data("id"));
-});
-$('.pengalamankerja-modal').on('show.bs.modal', function (e) {
-    $(this).data("id",$(e.relatedTarget).data("id"));
+$(".pendidikaninformal-modal").on('shown.bs.modal', function (e) {
+    let tabledata = $(e.relatedTarget).parents('tr').find('th');
+    $(this).data("tr",tabledata);
+    
+    $("#pendidikaninformal #id").val($(e.relatedTarget).data("id")|| "");
+    $("#pendidikaninformal #jenispelatihan").val(tabledata.eq(0).data('value')||"");
+    $("#pendidikaninformal #tahunmulai").val(tabledata.eq(1).data('tanggalmulai')|| "");
+    $("#pendidikaninformal #tahunakhir").val(tabledata.eq(1).data('tanggalakhir')|| "");
+    $("#pendidikaninformal #tempat").val(tabledata.eq(2).text()|| "");
+    $("#pendidikanformal #keterangan").val(tabledata.eq(3).text()|| "");
 });
 
-$('#deletemodal').on('show.bs.modal', function (e) {
+$(".pendidikanbahasa-modal").on('shown.bs.modal', function (e) {
+    let tabledata = $(e.relatedTarget).parents('tr').find('th');
+    $(this).data("tr",tabledata);
+    
+    $("#pendidikanbahasa #id").val($(e.relatedTarget).data("id")|| "");
+    $("#pendidikanbahasa #bahasa").val(tabledata.eq(0).data('value')||"");
+    $("#pendidikanbahasa #kemampuanlisan").val(tabledata.eq(1).data('value')||"");
+    $("#pendidikanbahasa #kemampuantertutlis").val(tabledata.eq(2).data('value')||"");
+});
+$(".aktivitas-modal").on('shown.bs.modal', function (e) {
+    let tabledata = $(e.relatedTarget).parents('tr').find('th');
+    $(this).data("tr",tabledata);
+    
+    $("#aktivitas #id").val($(e.relatedTarget).data("id") || "");
+    $("#aktivitas #Organisasi").val(tabledata.eq(0).text() || "");
+    $("#aktivitas #TahunMulai").val(tabledata.eq(1).data('tanggalmulai') || "");
+    $("#aktivitas #TahunAkhir").val(tabledata.eq(1).data('tanggalakhir') || "");
+    $("#aktivitas #Tempat").val(tabledata.eq(2).text() || "");
+    $("#aktivitas #Posisi").val(tabledata.eq(3).text() || "");
+    $("#aktivitas #Keterangan").val(tabledata.eq(4).text() || "");
+});
+$(".minat-modal").on('shown.bs.modal', function (e) {
+    let tabledata = $(e.relatedTarget).parents('tr').find('th');
+    $(this).data("tr",tabledata);
+
+
+});
+$(".riwayatpenyakit-modal").on('shown.bs.modal', function (e) {
+    let tabledata = $(e.relatedTarget).parents('tr').find('th');
+    $(this).data("tr",tabledata);
+    
+    $("#lainnya #id").val($(e.relatedTarget).data("id")|| "");
+    $("#lainnya #NamaPenyakit").val(tabledata.eq(0).text()||"");
+    $("#lainnya #TahunMulai").val(tabledata.eq(1).data('tanggalmulai')||"");
+    $("#lainnya #TahunAkhir").val(tabledata.eq(1).data('tanggalakhir')||"");
+    $("#lainnya #Pengaruh").val(tabledata.eq(2).text()||"");
+});
+
+$('.pengalamankerja-modal').on('shown.bs.modal', function (e) {
+    let tabledata = $(e.relatedTarget).parents('tr').find('th');
+    $(this).data("tr",tabledata);
+});
+
+$('#deletemodal').on('shown.bs.modal', function (e) {
     $(this).data("id",$(e.relatedTarget).data("id"));
     $(this).data("href",$(e.relatedTarget).data("href"));
     $(this).data("tr",$(e.relatedTarget).parents('tr'));
@@ -146,42 +182,44 @@ $("#submitPendidikanFormal").click(function(e){
             keterangan                     :$("#pendidikanformal #keterangan").val(),
         },
         success:function(result){
-            console.log(result);
-            console.log('before');
 
-            if(result.success && !$("#pendidikanformal #id").val()){
-                console.log('here');
-                $("#pendidikanformal #id").val(result.id);
-                $('.pendidikanformal-modal').data('ta',100);
-                $('.pendidikanformal-modal').data('tr',$('#pendidikan-formal-table tr').last().find('th'));
-                $('#pendidikan-formal-table').append(
-                    `<tr>
-                    <th data-value="${result.id}"><h4>${$("#pendidikanformal #TingkatPendidikan option:selected").text()}</h4></th>
-                    <th data-tanggalmulai="${$("#pendidikanformal #tahunmulai").val()}" data-tanggalakhir="${$("#pendidikanformal #tahunakhir").val()}"><h4>${$("#pendidikanformal #tahunmulai").val()} - ${$("#pendidikanformal #tahunakhir").val()}</h4></th>
-                    <th><h4>${$("#pendidikanformal #institusi").val()}</h4></th>
-                    <th><h4>${$("#pendidikanformal #tempat").val()}</h4></th>
-                    <th><h4>${$("#pendidikanformal #jurusan").val()}</h4></th>
-                    <th><h4>${$("#pendidikanformal #IPK").val()}</h4></th>
-                    <th><h4>${$("#pendidikanformal #keterangan").val()}</h4></th>
-                    <th><h4>
-                    <button data-toggle="modal"  data-target=".pendidikanformal-modal"  data-id="${result.id}" class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                    <button data-toggle="modal"  data-target="#deletemodal"  data-id="${result.id}" data-href="datadiri/deletependidikanformal/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
-                      </h4>
-                    </th>
-                </tr>`
-                )
-            }else{
-                tabledata.eq(0).text($("#pendidikanformal #TingkatPendidikan option:selected").text());
-                tabledata.eq(0).data("value",$("#pendidikanformal #TingkatPendidikan").val());
-                tabledata.eq(1).text($("#pendidikanformal #tahunmulai").val()+" - "+$("#pendidikanformal #tahunakhir").val());
-                tabledata.eq(1).data("tanggalmulai",$("#pendidikanformal #tahunmulai").val());
-                tabledata.eq(1).data("tanggalakhir",$("#pendidikanformal #tahunakhir").val());
-                tabledata.eq(2).text($("#pendidikanformal #institusi").val());
-                tabledata.eq(3).text($("#pendidikanformal #tempat").val());
-                tabledata.eq(4).text($("#pendidikanformal #jurusan").val());
-                tabledata.eq(5).text($("#pendidikanformal #IPK").val());
-                tabledata.eq(6).text($("#pendidikanformal #keterangan").val());
+            if(result.success){
+                if($("#pendidikanformal #id").val()){
+
+                    tabledata.eq(0).text($("#pendidikanformal #TingkatPendidikan option:selected").text());
+                    tabledata.eq(0).data("value",$("#pendidikanformal #TingkatPendidikan").val());
+                    tabledata.eq(1).text($("#pendidikanformal #tahunmulai").val()+" - "+$("#pendidikanformal #tahunakhir").val());
+                    tabledata.eq(1).data("tanggalmulai",$("#pendidikanformal #tahunmulai").val());
+                    tabledata.eq(1).data("tanggalakhir",$("#pendidikanformal #tahunakhir").val());
+                    tabledata.eq(2).text($("#pendidikanformal #institusi").val());
+                    tabledata.eq(3).text($("#pendidikanformal #tempat").val());
+                    tabledata.eq(4).text($("#pendidikanformal #jurusan").val());
+                    tabledata.eq(5).text($("#pendidikanformal #IPK").val());
+                    tabledata.eq(6).text($("#pendidikanformal #keterangan").val());
+
+                }else{
+
+                    $("#pendidikanformal #id").val(result.id);
+                    $('#pendidikan-formal-table tbody').append(
+                        `<tr>
+                        <th data-value="${result.id}"><h4>${$("#pendidikanformal #TingkatPendidikan option:selected").text()}</h4></th>
+                        <th data-tanggalmulai="${$("#pendidikanformal #tahunmulai").val()}" data-tanggalakhir="${$("#pendidikanformal #tahunakhir").val()}"><h4>${$("#pendidikanformal #tahunmulai").val()} - ${$("#pendidikanformal #tahunakhir").val()}</h4></th>
+                        <th><h4>${$("#pendidikanformal #institusi").val()}</h4></th>
+                        <th><h4>${$("#pendidikanformal #tempat").val()}</h4></th>
+                        <th><h4>${$("#pendidikanformal #jurusan").val()}</h4></th>
+                        <th><h4>${$("#pendidikanformal #IPK").val()}</h4></th>
+                        <th><h4>${$("#pendidikanformal #keterangan").val()}</h4></th>
+                        <th><h4>
+                        <button data-toggle="modal"  data-target=".pendidikanformal-modal"  data-id="${result.id}" class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                        <button data-toggle="modal"  data-target="#deletemodal"  data-id="${result.id}" data-href="datadiri/deletependidikanformal/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                          </h4>
+                        </th>
+                    </tr>`);
+                    $('.pendidikanformal-modal').data('tr',$('#pendidikan-formal-table tr').last().find('th'));
+
+                }
             }
+                
         },
         beforeSend: function(){
 
@@ -202,6 +240,8 @@ $("#submitPendidikanInformal").click(function(e){
     let sendProsses = $(this);
     if($(this).data('run'))return;
     sendProsses.data('run',true);
+
+    let tabledata = $('.pendidikaninformal-modal').data('tr');
     
     $.ajaxSetup({
         headers:{
@@ -211,30 +251,40 @@ $("#submitPendidikanInformal").click(function(e){
         url:"/jobseeker/datadiri/submitpendidikaninformal/",
         method:"post",
         data :{
-            id                             : send_id,
-            jenis_pelatihan                 :$("#pendidikaninformal #jenispelatihan").val(),
-            tanggal_mulai                    :$("#pendidikaninformal #tahunmulai").val(),
-            tanggal_akhir                    :$("#pendidikaninformal #tahunakhir").val(),
+            id                             :$("#pendidikaninformal #id").val(),
+            jenis_pelatihan                :$("#pendidikaninformal #jenispelatihan").val(),
+            tanggal_mulai                  :$("#pendidikaninformal #tahunmulai").val(),
+            tanggal_akhir                  :$("#pendidikaninformal #tahunakhir").val(),
             tempat                         :$("#pendidikaninformal #tempat").val(),
             keterangan                     :$("#pendidikaninformal #keterangan").val(),
         },
         success:function(result){
+            if(result.success){
+                if($("#pendidikaninformal #id").val()){
 
-            if(result.success && send_id==""){
-                $("#pendidikaninformal-modal").data(result.id);
-                $('#pendidikan-informal-table').append(
-                    `<tr>
-                    <th><h4>${$('#pendidikan-informal-table tr').length}</h4></th>
-                    <th><h4>${$("#pendidikaninformal #jenispelatihan").val()}</h4></th>
-                    <th><h4>${$("#pendidikaninformal #tahunmulai").val()} - ${$("#pendidikaninformal #tahunakhir").val()}</h4></th>
-                    <th><h4>${$("#pendidikaninformal #tempat").val()}</h4></th>
-                    <th><h4>${$("#pendidikaninformal #keterangan").val()}</h4></th>
-                    <th><h4>
-                    <button data-id="${result.id}"class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                    <button data-target="#deletemodal"  data-href="" class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
-                    </h4></th>
-                    </tr>`
-                );
+                    tabledata.eq(0).text($("#pendidikaninformal #jenispelatihan").val());
+                    tabledata.eq(1).text($("#pendidikaninformal #tahunmulai").val()+" - "+$("#pendidikaninformal #tahunakhir").val());
+                    tabledata.eq(1).data('tanggalmulai',$("#pendidikaninformal #tahunmulai").val());
+                    tabledata.eq(1).data('tanggalakhir',$("#pendidikaninformal #tahunakhir").val());
+                    tabledata.eq(2).text($("#pendidikaninformal #tempat").val());
+                    tabledata.eq(3).text($("#pendidikaninformal #keterangan").val());
+
+                }else{
+                    $("#pendidikaninformal #id").val(result.id);
+                    $('#pendidikan-informal-table tbody').append(
+                        `<tr>
+                        <th><h4>${$("#pendidikaninformal #jenispelatihan").val()}</h4></th>
+                        <th><h4>${$("#pendidikaninformal #tahunmulai").val()} - ${$("#pendidikaninformal #tahunakhir").val()}</h4></th>
+                        <th><h4>${$("#pendidikaninformal #tempat").val()}</h4></th>
+                        <th><h4>${$("#pendidikaninformal #keterangan").val()}</h4></th>
+                        <th><h4>
+                        <button data-id="${result.id}" id="submitPendidikanInformal" class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                        <button data-target="#deletemodal" data-id="${result.id}" data-href="datadiri/deletependidikaninformal/" class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                        </h4></th>
+                        </tr>`
+                    );
+                    $('.pendidikanformal-modal').data('tr',$('#pendidikan-informal-table tr').last().find('th'));
+                }
             }
         },
         beforeSend: function(){
@@ -255,6 +305,7 @@ $("#submitPendidikanBahasa").click(function(e){
     let sendProsses = $(this);
     if($(this).data('run'))return;
     sendProsses.data('run',true);
+    let tabledata = $('.pendidikanbahasa-modal').data('tr');
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -263,26 +314,37 @@ $("#submitPendidikanBahasa").click(function(e){
         url:"/jobseeker/datadiri/submitpendidikanbahasa/",
         method:"post",
         data :{
-            id                            : "",
+            id                            :$("#pendidikanbahasa #id").val(),
             bahasa                        :$("#pendidikanbahasa #bahasa").val(),
             kemampuan_lisan               :$("#pendidikanbahasa #kemampuanlisan").val(),
             kemampuan_tertulis            :$("#pendidikanbahasa #kemampuantertulis").val(),
         },
         success:function(result){
-            console.log(result.success);
+            
             if(result.success){
-                $('#pendidikan-bahasa-table').append(`
-                <tr>
-                <th><h4>${$('#pendidikan-bahasa-table tr').length}</h4></th>
-                    <th><h4>${$('#pendidikanbahasa #bahasa option:selected').text()}</h4></th>
-                    <th><h4>${$('#pendidikanbahasa #kemampuanlisan option:selected').text()}</h4></th>
-                    <th><h4>${$('#pendidikanbahasa #kemampuantertulis option:selected').text()} Baik</h4></th>
-                    <th><h4>
-                        <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                        <button data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
-                </h4></th>
-                </tr>
-                `);
+                if($("#pendidikanbahasa #id").val()){
+                    console.log(result.success,$("#pendidikanbahasa #id").val());
+                    tabledata.eq(0).text($('#pendidikanbahasa #bahasa option:selected').text());
+                    tabledata.eq(0).data('value',$('#pendidikanbahasa #bahasa').val());
+                    tabledata.eq(1).text($('#pendidikanbahasa #kemampuanlisan option:selected').text());
+                    tabledata.eq(1).data('value',$('#pendidikanbahasa #kemampuanlisan').val());
+                    tabledata.eq(2).text($('#pendidikanbahasa #kemampuantertulis option:selected').text());
+                    tabledata.eq(2).data('value',$('#pendidikanbahasa #kemampuantertulis').val());
+                }else{
+                    $('#pendidikanbahasa #id').val(result.id);
+                    $('#pendidikan-bahasa-table tbody').append(`
+                    <tr>
+                        <th><h4>${$('#pendidikanbahasa #bahasa option:selected').text()}</h4></th>
+                        <th><h4>${$('#pendidikanbahasa #kemampuanlisan option:selected').text()}</h4></th>
+                        <th><h4>${$('#pendidikanbahasa #kemampuantertulis option:selected').text()} Baik</h4></th>
+                        <th><h4>
+                            <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                            <button data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                    </h4></th>
+                    </tr>
+                    `);
+                    $('.pendidibahasa-modal').data('tr',$('#pendidikan-bahasa-table tr').last().find('th'));
+                }
             }
         },
         beforeSend: function(){
@@ -306,6 +368,7 @@ $("#submitPendidikanBahasa").click(function(e){
         }
     });
 });
+
 $("button#submitIdentitas").each(function(){
         
         $(this).click(function(e){
@@ -373,11 +436,14 @@ $("button#submitIdentitas").each(function(){
             });
      });
 });
+
 $("#submitRiwayatPenyakit").click(function(e){
             e.preventDefault();
             let sendProsses = $(this);
             if($(this).data('run'))return;
             sendProsses.data('run',true);
+
+            let tabledata = $('.riwayatpenyakit-modal').data('tr');
 
             $.ajaxSetup({
                 headers:{
@@ -387,7 +453,7 @@ $("#submitRiwayatPenyakit").click(function(e){
                 url:"/jobseeker/datadiri/submitriwayatpenyakit",
                 method:"post",
                 data :{
-                    id                : "",
+                    id                : $("#lainnya #id").val(),
                     nama_penyakit     : $("#lainnya #NamaPenyakit").val(),
                     tanggal_mulai     : $("#lainnya #TahunMulai").val(),
                     tanggal_akhir     : $("#lainnya #TahunAkhir").val(),
@@ -397,22 +463,30 @@ $("#submitRiwayatPenyakit").click(function(e){
                     console.log(result.success);
                     if(result.success)
                     {
-                        $('#riwayatpenyakit-table').append(
-                            `
-                            <tr>
-                            <th width="5%"><h4>${$('#riwayatpenyakit-table tr').length}</h4></th>
-                            <th><h4>${$("#lainnya #NamaPenyakit").val()}</h4></th>
-                            <th><h4>${$("#lainnya #TahunMulai").val()}</h4></th>
-                            <th><h4>${$("#lainnya #TahunAkhir").val()}</h4></th>
-                            <th><h4>${$("#lainnya #Pengaruh").val()}</h4></th>
-                            <th width="10%"><h4>
-                                <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                                <button data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
-                            </h4></th>
-                            <tr>`
-                        );
+                        if($("#lainnya #id").val()){
+                            tabledata.eq(0).text($("#lainnya #NamaPenyakit").val());
+                            tabledata.eq(1).text($("#lainnya #TahunMulai").val()+" - "+$("#lainnya #TahunAkhir").val());
+                            tabledata.eq(1).data("tanggalmulai",$("#lainnya #TahunMulai").val());
+                            tabledata.eq(1).data("tanggalakhir",$("#lainnya #TahunAkhir").val());
+                            tabledata.eq(2).text($("#lainnya #Pengaruh").val());
+                        }
+                        else{
+                            $('#lainnya #id').val(result.id);
+                            $('#riwayatpenyakit-table tbody').append(
+                                `
+                                <tr>
+                                <th><h4>${$("#lainnya #NamaPenyakit").val()}</h4></th>
+                                <th><h4>${$("#lainnya #TahunMulai").val()} - ${$("#lainnya #TahunAkhir").val()}</h4></th>
+                                <th><h4>${$("#lainnya #Pengaruh").val()}</h4></th>
+                                <th width="10%"><h4>
+                                <button data-toggle="modal" data-target=".riwayatpenyakit-modal" data-id="${result.id}" class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                                <button data-toggle="modal" data-target="#deletemodal"  data-id="${result.id}" data-href="datadiri/deleteriwayatpenyakit/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                                </h4></th>
+                                </tr>`
+                            );
+                            $('.riwayatpenyakit-modal').data('tr',$('#riwayatpenyakit-table tr').last().find('th'));
+                        }
                     }
-
                 },
                 beforeSend: function(){
                     // Show image container
@@ -441,6 +515,8 @@ $("#submitPengalamanOrganisasi").click(function(e){
     let sendProsses = $(this);
     if($(this).data('run'))return;
     sendProsses.data('run',true);
+
+    let tabledata = $('.aktivitas-modal').data('tr');
     
     $.ajaxSetup({
         headers:{
@@ -450,7 +526,7 @@ $("#submitPengalamanOrganisasi").click(function(e){
         url:"/jobseeker/datadiri/submitpengalamanorganisasi",
         method:"post",
         data :{
-            id              : "",
+            id              : $("#aktivitas #id").val(),
             organisasi      : $("#aktivitas #Organisasi").val(),
             tanggal_mulai   : $("#aktivitas #TahunMulai").val(),
             tanggal_akhir   : $("#aktivitas #TahunAkhir").val(),
@@ -460,23 +536,33 @@ $("#submitPengalamanOrganisasi").click(function(e){
         },
         success:function(result){
             console.log(result.success);
-            if(result.success)
-            {
-             $("#aktivitas-table").append(
-                `<tr>
-                <th><h4>${$('#aktivitas-table tr').length}</h4></th>
-                <th><h4>${$("#aktivitas #Organisasi").val()}</h4></th>
-                <th><h4>${$("#aktivitas #TahunMulai").val()}</h4></th>
-                <th><h4>${$("#aktivitas #TahunAkhir").val()}</h4></th>
-                <th><h4>${$("#aktivitas #Tempat").val()}</h4></th>
-                <th><h4>${$("#aktivitas #Posisi").val()}</h4></th>
-                <th><h4>${$("#aktivitas #Keterangan").val()}</h4></th>
-                <th width="10%"><h4>
-                    <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                    <button data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>    
-                </h4></th>
-            </tr>`
-             );
+            if(result.success){
+
+             if($('#aktivitas #id').val()){
+                tabledata.eq(0).text($("#aktivitas #Organisasi").val());
+                tabledata.eq(1).text($("#aktivitas #TahunMulai").val()+" - "+$("#aktivitas #TahunAkhir").val());
+                tabledata.eq(1).data("tanggalmulai",$("#aktivitas #TahunMulai").val());
+                tabledata.eq(1).data("tanggalakhir",$("#aktivitas #TahunAkhir").val());
+                tabledata.eq(2).text($("#aktivitas #Tempat").val());
+                tabledata.eq(3).text($("#aktivitas #Posisi").val());
+                tabledata.eq(4).text($("#aktivitas #Keterangan").val());
+             }else{
+                $('#aktivitas #id').val(result.id);
+                $("#aktivitas-table tbody").append(
+                    `<tr>
+                    <th><h4>${$("#aktivitas #Organisasi").val()}</h4></th>
+                    <th><h4>${$("#aktivitas #TahunMulai").val()} - ${$("#aktivitas #TahunAkhir").val()}</h4></th>
+                    <th><h4>${$("#aktivitas #Tempat").val()}</h4></th>
+                    <th><h4>${$("#aktivitas #Posisi").val()}</h4></th>
+                    <th><h4>${$("#aktivitas #Keterangan").val()}</h4></th>
+                    <th width="10%"><h4>
+                        <button data-toggle="modal"  data-target=".aktivitas-modal" data-id="${result.id}" class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                        <button data-toggle="modal"  data-target="#deletemodal"  data-id="${result.id}" data-href="datadiri/deletepengalamanorganisasi/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                    </h4></th>
+                </tr>`
+                 );
+                $('.aktivitas-modal').data('tr',$('#aktivitas-table tr').last().find('th'));
+             }
             }
         },
         beforeSend: function(){
@@ -507,9 +593,6 @@ $("#submitMinat").click(function(e){
         method:"post",
         data :{
             id               : $("#minat #Negara").val(),
-            negara           : $("#minat #Negara").val(),
-            provinsi         : $("#minat #Provinsi").val(),
-            kabkota          : $("#minat #Kota").val(),
             gaji_bulanan     : $("#minat #GajiBulan").val(),
             bidang_bisnis   : $("#minat #BidangBisnis").val(),
             lingkungan_kerja : $('#minat #LingkunganKerja').val(),
@@ -520,7 +603,7 @@ $("#submitMinat").click(function(e){
         success:function(result){
             console.log(result.success);
             if(result.success){
-                $('#minat-table').append(`
+                $('#minat-table tbody').append(`
                 <tr>
                   <th>${$("#minat-table tr").length}</th>
                   <th><small><strong>${$("#minat #Kota option:selected").text()},  ${$("#minat #Provinsi option:selected").text()}</strong></small></th>
@@ -580,7 +663,7 @@ $("#submitRiwayatPekerjaan").click(function(e){
         success:function(result){
             console.log(result.success);
             if(result.success){
-                $('#riwayatpekerjaan-table').append(`<tr>
+                $('#riwayatpekerjaan-table tbody').append(`<tr>
                 <th>${$('#riwayatpekerjaan-table tr').length}</th>
                 <th>${$("#pekerjaan #BisnisPerusahaan option:selected").text()}</th>
                 <th>${$("#pekerjaan #TahunMulai").val()} - ${$("#pekerjaan #TahunAkhir").val()}</th>

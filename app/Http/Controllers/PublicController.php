@@ -16,9 +16,9 @@ class PublicController extends Controller
         return view ('public.dashboard.showpublic',compact('lowongan'));
     }
 
-    public function showhome(){
-      return Uuid::uuid4()->toString();
-      //return view('welcome');
+    public function showhome(Request $r){
+    
+    return view('welcome');
     }
 
     public function showLowonganpublic(){

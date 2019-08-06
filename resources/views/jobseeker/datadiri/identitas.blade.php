@@ -38,55 +38,107 @@
                     <option {{($dataUser->jenis_kelamin=='Perempuan')? "selected" : ""}} value="2">Perempuan</option> 
                   </select>
               </div>
-              <div class="form-group">
-                  <h4><label for="Alamat">Alamat Domisili</label></h4>
-                  <textarea name="Alamat" class="form-control" rows="3"  id="Alamat">{{$dataUser->alamat}}</textarea>
-              </div>
-              <div class="form-group">
-                  <h4><label for="Alamat">Alamat KTP</label></h4>
-                  <textarea name="Alamat" class="form-control" rows="3"  id="Alamat">{{$dataUser->alamat}}</textarea>
-              </div>
-              <div class="row">
-                      <div class="col-6 form-group">
-                          <h4><label class="my-1 mr-2" for="Negara">Negara</label></h4>
-                          <select class="custom-select my-1 mr-sm-2" id="Negara" name="Negara">
-                            <option {{(!isset($dataUser->negara) || $dataUser->negara == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
-                            @foreach ($st_data["Negara"] as $item)
-                            <option value="{{$item->id}}" {{($dataUser->negara == $item->id)? "selected" : ""}}>{{$item->negara}}</option>    
-                            @endforeach
-                          </select>
+              <div class="border rounded form-group">
+                <div class="form-group mx-2">
+                    <h4><label for="Alamat">Alamat KTP</label></h4>
+                    <textarea name="Alamat" class="form-control" rows="3"  id="Alamat">{{$dataUser->alamat}}</textarea>
+                </div>
+                <div class="row">
+                        <div class="col-lg-5 col-xs-10 mx-2 form-group">
+                            <h4><label class="my-1 mr-2" for="Negara">Negara</label></h4>
+                            <select class="custom-select my-1 mr-sm-2" id="Negara" name="Negara">
+                              <option {{(!isset($dataUser->negara) || $dataUser->negara == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
+                              @foreach ($st_data["Negara"] as $item)
+                              <option value="{{$item->id}}" {{($dataUser->negara == $item->id)? "selected" : ""}}>{{$item->negara}}</option>    
+                              @endforeach
+                            </select>
+                        </div>
+                        <div class="col-lg-5 col-xs-10 mx-2 form-group">
+                            <h4><label class="my-1 mr-2" for="Provinsi" >Provinsi</label></h4>
+                            <select class="custom-select my-1 mr-sm-2" id="Provinsi" name="Provinsi" {{(!isset($dataUser->negara) || $dataUser->negara == "0" )? "disabled" : ""}}>
+                                <option {{(!isset($dataUser->provinsi) || $dataUser->provinsi == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
+                                @foreach ($st_data["Provinsi"] as $item)
+                                <option value="{{$item->id}}" {{($dataUser->provinsi == $item->id)? "selected" : ""}}>{{$item->name}}</option>    
+                                @endforeach
+                            </select>
                       </div>
-                      <div class="col-6 form-group">
-                          <h4><label class="my-1 mr-2" for="Provinsi" >Provinsi</label></h4>
-                          <select class="custom-select my-1 mr-sm-2" id="Provinsi" name="Provinsi" {{(!isset($dataUser->negara) || $dataUser->negara == "0" )? "disabled" : ""}}>
-                              <option {{(!isset($dataUser->provinsi) || $dataUser->provinsi == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
-                              @foreach ($st_data["Provinsi"] as $item)
-                              <option value="{{$item->id}}" {{($dataUser->provinsi == $item->id)? "selected" : ""}}>{{$item->name}}</option>    
+                      <div class="col-lg-5 col-xs-10 mx-2 form-group">
+                          <h4><label class="my-1 mr-2" for="Kota">Kota</label></h4>
+                          <select class="custom-select my-1 mr-sm-2" id="Kota" name="Kota" {{(!isset($dataUser->provinsi) || $dataUser->provinsi == "0" )? "disabled" : ""}}>
+                              <option {{(!isset($dataUser->kabkota) || $dataUser->kabkota == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
+                              @foreach ($st_data["Kabkota"] as $item)
+                              <option value="{{$item->id}}" {{($dataUser->kabkota == $item->id)? "selected" : ""}}>{{$item->name}}</option>    
                               @endforeach
                           </select>
-                    </div>
-                    <div class="col-6 form-group">
-                        <h4><label class="my-1 mr-2" for="Kota">Kota</label></h4>
-                        <select class="custom-select my-1 mr-sm-2" id="Kota" name="Kota" {{(!isset($dataUser->provinsi) || $dataUser->provinsi == "0" )? "disabled" : ""}}>
-                            <option {{(!isset($dataUser->kabkota) || $dataUser->kabkota == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
-                            @foreach ($st_data["Kabkota"] as $item)
-                            <option value="{{$item->id}}" {{($dataUser->kabkota == $item->id)? "selected" : ""}}>{{$item->name}}</option>    
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-6 form-group">
-                        <h4><label class="my-1 mr-2" for="Kecamatan" >Kecamatan</label></h4>
-                        <select class="custom-select my-1 mr-sm-2" id="Kecamatan" Name="Kecamatan" {{(!isset($dataUser->kabkota) || $dataUser->kecamatan == "0" )? "disabled" : ""}}>
-                            <option {{!(isset($dataUser->kecamatan) || $dataUser->kecamatan == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
-                            @foreach ($st_data["Kecamatan"] as $item)
-                            <option value="{{$item->id}}" {{($dataUser->kecamatan == $item->id)? "selected" : ""}}>{{$item->name}}</option>    
-                            @endforeach
-                        </select>
-                    </div>
-              </div>
-           <div class="form-group">
-              <h4><label for="KodePos">Kode Pos</label></h4>
-              <input type="number" class="form-control" id="KodePos" name="KodePos" placeholder="Masukan Kode Pos" value="{{$dataUser->kode_pos}}">
+                      </div>
+                      <div class="col-lg-5 col-xs-10 mx-2 form-group">
+                          <h4><label class="my-1 mr-2" for="Kecamatan" >Kecamatan</label></h4>
+                          <select class="custom-select my-1 mr-sm-2" id="Kecamatan" Name="Kecamatan" {{(!isset($dataUser->kabkota) || $dataUser->kecamatan == "0" )? "disabled" : ""}}>
+                              <option {{!(isset($dataUser->kecamatan) || $dataUser->kecamatan == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
+                              @foreach ($st_data["Kecamatan"] as $item)
+                              <option value="{{$item->id}}" {{($dataUser->kecamatan == $item->id)? "selected" : ""}}>{{$item->name}}</option>    
+                              @endforeach
+                          </select>
+                      </div>
+
+                      <div class="col-lg-5 col-xs-10 mx-2 form-group">
+                          <h4><label for="KodePos">Kode Pos</label></h4>
+                          <input type="number" class="form-control" id="KodePos" name="KodePos" placeholder="Masukan Kode Pos" value="{{$dataUser->kode_pos}}">
+                      </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4><label for="check">Email</label></h4>
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="Masukan alamat email" value="{{$dataUser->email}}">
+            </div>
+            <div class="border rounded form-group">
+                <div class="form-group mx-2">
+                    <h4><label for="Alamat">Alamat Domisili</label></h4>
+                    <textarea name="Alamat" class="form-control" rows="3"  id="Alamat">{{$dataUser->alamat}}</textarea>
+                </div>
+                <div class="row">
+                        <div class="col-lg-5 col-xs-10 mx-2 form-group">
+                            <h4><label class="my-1 mr-2" for="Negara">Negara</label></h4>
+                            <select class="custom-select my-1 mr-sm-2" id="Negara" name="Negara">
+                              <option {{(!isset($dataUser->negara) || $dataUser->negara == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
+                              @foreach ($st_data["Negara"] as $item)
+                              <option value="{{$item->id}}" {{($dataUser->negara == $item->id)? "selected" : ""}}>{{$item->negara}}</option>    
+                              @endforeach
+                            </select>
+                        </div>
+                        <div class="col-lg-5 col-xs-10 mx-2 form-group">
+                            <h4><label class="my-1 mr-2" for="Provinsi" >Provinsi</label></h4>
+                            <select class="custom-select my-1 mr-sm-2" id="Provinsi" name="Provinsi" {{(!isset($dataUser->negara) || $dataUser->negara == "0" )? "disabled" : ""}}>
+                                <option {{(!isset($dataUser->provinsi) || $dataUser->provinsi == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
+                                @foreach ($st_data["Provinsi"] as $item)
+                                <option value="{{$item->id}}" {{($dataUser->provinsi == $item->id)? "selected" : ""}}>{{$item->name}}</option>    
+                                @endforeach
+                            </select>
+                      </div>
+                      <div class="col-lg-5 col-xs-10 mx-2 form-group">
+                          <h4><label class="my-1 mr-2" for="Kota">Kota</label></h4>
+                          <select class="custom-select my-1 mr-sm-2" id="Kota" name="Kota" {{(!isset($dataUser->provinsi) || $dataUser->provinsi == "0" )? "disabled" : ""}}>
+                              <option {{(!isset($dataUser->kabkota) || $dataUser->kabkota == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
+                              @foreach ($st_data["Kabkota"] as $item)
+                              <option value="{{$item->id}}" {{($dataUser->kabkota == $item->id)? "selected" : ""}}>{{$item->name}}</option>    
+                              @endforeach
+                          </select>
+                      </div>
+                      <div class="col-lg-5 col-xs-10 mx-2 form-group">
+                          <h4><label class="my-1 mr-2" for="Kecamatan" >Kecamatan</label></h4>
+                          <select class="custom-select my-1 mr-sm-2" id="Kecamatan" Name="Kecamatan" {{(!isset($dataUser->kabkota) || $dataUser->kecamatan == "0" )? "disabled" : ""}}>
+                              <option {{!(isset($dataUser->kecamatan) || $dataUser->kecamatan == "0" )? "selected" : ""}} value="0">Pilih . . .</option>
+                              @foreach ($st_data["Kecamatan"] as $item)
+                              <option value="{{$item->id}}" {{($dataUser->kecamatan == $item->id)? "selected" : ""}}>{{$item->name}}</option>    
+                              @endforeach
+                          </select>
+                      </div>
+
+                      <div class="col-lg-5 col-xs-10 mx-2 form-group">
+                          <h4><label for="KodePos">Kode Pos</label></h4>
+                          <input type="number" class="form-control" id="KodePos" name="KodePos" placeholder="Masukan Kode Pos" value="{{$dataUser->kode_pos}}">
+                      </div>
+                </div>
           </div>
           <div class="form-group">
               <h4><label for="Email">Email</label></h4>

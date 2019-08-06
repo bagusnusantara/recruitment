@@ -114,23 +114,21 @@
       <div class="table-responsive">
       <table class="table table-bordered" id="pendidikan-informal-table" style="border-radius:25px;">
           <tr class="thead-smi th-center">
-              <th width="5%"><h4>No</h4></th>
               <th><h4>Jenis Pelatihan</h4></th>
-              <th><h4>Tempat</h4></th>
               <th><h4>Periode</h4></th>
-              <th width="10%"><h4>Keterangan</h4></th>
+              <th><h4>Tempat</h4></th>
+              <th><h4>Keterangan</h4></th>
               <th width="10%"><h4>Option</h4></th>
           </tr>
           @foreach ($dataUserSt['PendidikanInformal'] as $key => $item)
           <tr>
-              <th><h4>{{$key+1}}</h4></th>
-              <th><h4>{{$item->jenispelatihan}}</h4></th>
-              <th><h4>{{date("Y",strtotime($item->tanggal_mulai))." - ".date("Y",strtotime($item->tanggal_akhir))}}</h4></th>
+              <th><h4>{{$item->jenis_pelatihan}}</h4></th>
+          <th data-tanggalmulai="{{date("Y",strtotime($item->tanggal_mulai))}}" data-tanggalakhir="{{date("Y",strtotime($item->tanggal_akhir))}}"><h4>{{date("Y",strtotime($item->tanggal_mulai))." - ".date("Y",strtotime($item->tanggal_akhir))}}</h4></th>
               <th><h4>{{$item->tempat}}</h4></th>
               <th><h4>{{$item->keterangan}}</h4></th>
               <th><h4>
-              <button class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-              <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deletependidikaninformal/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+              <button data-toggle="modal" data-target=".pendidikaninformal-modal" data-id="{{$item->id}}"  class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+              <button data-toggle="modal" data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deletependidikaninformal/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
               </h4></th>
               </tr>
           @endforeach
@@ -151,7 +149,7 @@
                     <div class="modal-body">
                       <div class="inner-box">
                           <div class="item">
-                          <input type="hidden" class="form-control typeTahun" id="id" placeholder="Masukan Tahun Mulai">
+                          <input type="hidden" class="form-control typeTahun" id="id">
                           <div class="form-group">
                               <h4><label for="tempat">Jenis Pelatihan</label></h4>
                               <input type="text" class="form-control" id="jenispelatihan" placeholder="Masukan jenis pelatihan">
@@ -161,7 +159,7 @@
                               <label for="tahunmulai">Mulai</label>
                               <input type="text"  class="form-control typeTahun" id="tahunmulai" placeholder="Masukan Tahun Mulai">
                               <label for="tahunakhir">Akhir</label>
-                              <input type="text"  class="form-control typeTahun" id="tahunakhir" placeholder="Masukan Tahun Akhirs">
+                              <input type="text"  class="form-control typeTahun" id="tahunakhir" placeholder="Masukan Tahun Akhir">
                           </div>
                             <div class="form-group">
                                 <h4><label for="tempat">Tempat</label></h4>
@@ -195,7 +193,6 @@
             <div class="table-responsive">
             <table class="table table-bordered" id="pendidikan-bahasa-table" style="border-radius:20px;">
                 <tr class="thead-smi th-center">
-                    <th  width="5%"><h4>No</h4></th>
                     <th><h4>Bahasa</h4></th>
                     <th><h4>Lisan</h4></th>
                     <th><h4>Tertulis</h4></th>
@@ -203,12 +200,11 @@
                 </tr>
                 @foreach ($dataUserSt['PendidikanBahasa'] as $key=>$item)
                     <tr>
-                          <th><h4>{{$key+1}}</h4></th>
-                          <th><h4>{{$item->st_bahasa->deskripsi}}</h4></th>
-                          <th><h4>{{$item->st_kemampuanlisan->tingkat}}</h4></th>
-                          <th><h4>{{$item->st_kemampuantertulis->tingkat}}</h4></th>
+                          <th data-value="{{$item->bahasa}}"><h4>{{$item->st_bahasa->deskripsi}}</h4></th>
+                          <th data-value="{{$item->kemampuan_lisan}}"><h4>{{$item->st_kemampuanlisan->tingkat}}</h4></th>
+                          <th data-value="{{$item->kemampuan_tertulis}}"><h4>{{$item->st_kemampuantertulis->tingkat}}</h4></th>
                           <th><h4>
-                              <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                              <button data-toggle="modal"  data-target=".pendidikanbahasa-modal" data-id="{{$item->id}}" class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
                               <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deletependidikanbahasa/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                           </h4></th>
                     </tr>

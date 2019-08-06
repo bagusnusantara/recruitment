@@ -9,7 +9,7 @@
 <script src="{{asset('jobx/assets/js/form-validator.min.js') }}"></script>
 <script src="{{asset('jobx/assets/js/contact-form-script.js') }}"></script>
 <script src="{{asset('jobx/assets/js/main.js') }}"></script>
-<!--jqury plugins------------->
+<!-- jqury plugins -->
 <script src="{{asset('js/jquery/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
 <script src="{{asset('js/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js')}}"></script>
 <script src="{{asset('js/jquery/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js')}}"></script>
