@@ -7,12 +7,12 @@
             <div class="item">
                 <!--keluarga-->
                 
-                <form id="formlampiran">
+                <form id="formlampiran" enctype="multipart/form-data">
                     <div class="form-group">
                         <h4>Foto Pelamar</h4>
                         <div class="input-group">
                           <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="fotopelamar">
+                            <input type="file" name="fotopelamar" class="custom-file-input" id="fotopelamar">
                             <label class="custom-file-label" for="fotopelamar">Choose file</label>
                           </div>
                         </div>
@@ -22,7 +22,7 @@
                           <h4>Scan Ijazah</h4>
                           <div class="input-group">
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="scanijazah">
+                              <input type="file" name="scanijazah" class="custom-file-input" id="scanijazah">
                               <label class="custom-file-label" for="scanijazah" >Choose file</label>
                             </div>
                           </div>
@@ -32,8 +32,8 @@
                             <h4>Scan Transkrip Nilai</h4>
                             <div class="input-group">
                                 <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="scantranskip">
-                                  <label class="custom-file-label" for="scantranskip">Choose file</label>
+                                  <input type="file" name="scantranskrip" class="custom-file-input" id="scantranskrip">
+                                  <label class="custom-file-label" for="scantranskrip">Choose file</label>
                                 </div>
                               </div>
                           </div>
@@ -42,19 +42,21 @@
                               <h4>Scan Referensi Kerja</h4>
                               <div class="input-group">
                                   <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="scanreferensi">
+                                    <input type="file" name="scanreferensi" class="custom-file-input" id="scanreferensi">
                                     <label class="custom-file-label" for="scanreferensi">Choose file</label>
                                   </div>
                                 </div>
                             </div>
-                </form>
+                    </form>
                 <!--keluarga end-->
             </div>
         </div>
           <div class="item">
             <div class="mr-0">
-              <button type="button" class="btn btn-secondary btn-lg">Reset</button>
-              <button type="button" class="btn btn-primary btn-lg">Simpan</button>
+              <button type="button" id="submitLampiran" class="btn btn-primary btn-lg">
+                  <a>Simpan</a>
+                  <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
+              </button>
             </div>
           </div>
     </div>

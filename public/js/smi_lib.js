@@ -389,8 +389,58 @@ $("#submitPendidikanBahasa").click(function(e){
     });
 });
 
+$("#submitLampiran").click(function(e){
+    e.preventDefault();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+    }});
+    
+    let sendData = new FormData();
+    sendData.append('id',11);
+    sendData.append('foto',$('#fotopelamar')[0].files[0]);
+
+    $.ajax({
+        url:"/jobseeker/datadiri/submitlampiran",
+        method:"post",
+        data :sendData,
+        processData: false,
+        contentType: false,
+        success:function(result){                    
+            console.log(result);
+        },
+        fail:function(error){
+            console.log(error);
+        },
+        beforeSend: function(){
+            // Show image container
+            $("#submitLampiran a").each(function(){
+                $(this).text('Unggah Data');
+            });
+            $("#submitLampiran #loader").each(function(){
+                $(this).show();
+            });
+        },
+        complete:function(data){
+            // Hide image container
+            console.log(data);
+            sendProsses.data('run',false);
+            $("#submitLampiran a").each(function(){
+                $(this).text('Simpan');
+            });
+            $("#submitLampiran #loader").each(function(){
+                $(this).hide();
+            });
+        }
+    });
+
+
+});
 $("button#submitIdentitas").each(function(){
-        
         $(this).click(function(e){
             
             e.preventDefault();
@@ -402,6 +452,7 @@ $("button#submitIdentitas").each(function(){
                 headers:{
                 'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
                 } });
+
             $.ajax({
                 url:"/jobseeker/datadiri/submitdatadiri",
                 method:"post",

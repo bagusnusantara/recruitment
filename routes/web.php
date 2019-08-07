@@ -56,7 +56,7 @@ Route::prefix('jobseeker')->group(function(){
     Route::post('datadiri/submitpengalamanorganisasi/', 'JobSeekerController@storeDataPengalamanOrganisasi');
     Route::post('datadiri/submitriwayatpenyakit/', 'JobSeekerController@storeDataRiwayatPenyakit');
     Route::post('datadiri/submitminat/', 'JobSeekerController@storeDataMinat');
-    Route::post('datadiri/submitlampiran/', 'JobSeekerController@storeDataLampirar');
+    Route::post('datadiri/submitlampiran/', 'JobSeekerController@storeDataLampiran');
 
     //delete data
     Route::delete('datadiri/deletependidikanformal/', 'JobSeekerController@destroyDataPendidikanFormal');

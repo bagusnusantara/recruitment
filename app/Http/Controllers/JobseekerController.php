@@ -450,4 +450,16 @@ class JobseekerController extends Controller
           return response()->json(["success"=>false]);
         }}
   
+      public function storeDataLampiran(Request $request){
+        try {
+          dump($request->all);
+        } catch (\Throwable $th) {
+          dump($th);
+        }
+        
+      }
+
+      public function destroyDataLampiran(Request $request){
+      dump($request->all());
+      }
 }
