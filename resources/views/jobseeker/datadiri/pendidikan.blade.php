@@ -167,7 +167,7 @@
                             </div>
                             <div class="form-group">
                                 <h4><label for="keterangan">Keterangan</label></h4>
-                                <input type="text" class="form-control" rows="3" id="keterangan" placeholder="Ketarangan">
+                                <textarea class="form-control" rows="3"  id="Keterangan"></textarea>
                             </div>
                       </div>
                     </div>

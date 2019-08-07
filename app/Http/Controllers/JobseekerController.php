@@ -217,11 +217,9 @@ class JobseekerController extends Controller
       }
       else{
         try {
-          dump('update');
           $pendidikanBahasa->update($request->all());
           return response()->json(['success'=>true]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(['success'=>false]);
         }}
     }
@@ -237,14 +235,16 @@ class JobseekerController extends Controller
         $request->request->remove('id');
         try {
           dump("success");
-          st_jobseeker_pengalamankerja::create($request->all());
-          return response()->json(["success"=>true]);
+          $dataUser = st_jobseeker_pengalamankerja::create($request->all());
+          return response()->json(["success"=>true,"id"=>$dataUser->id]);
         } catch (\Throwable $th) {
+          dump($th);
           return response()->json(["success"=>false]);
         }}
       else{
         try {
-          $riwayatKerja->update($request->all);
+          dump("update");
+          $riwayatKerja->update($request->all());
           return response()->json(["success"=>true]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
@@ -261,14 +261,13 @@ class JobseekerController extends Controller
         try {
           $request->request->remove('id');
           $dataUser = st_jobseeker_pengalamanorganisasi::create($request->all()); 
-          dump("success");
-          return respondump("success");se()->json(['success'=>true,"id"=>$dataUser->id]);
+          return response()->json(['success'=>true,"id"=>$dataUser->id]);
         } catch (\Throwable $th) {
+          dump($th);
           return response()->json(['success'=>false]);
         }}
         else{
           try {
-            dump("update");
             $pengalamanOrganisasi->update($request->all());
             return response()->json(['success'=>true]);
           } catch (\Throwable $th) {
@@ -315,15 +314,14 @@ class JobseekerController extends Controller
       if($dataMinat==null){
         $request->request->remove('id');
         try {
-          st_jobseeker_minatkerja::create($request->all());
-          return response()->json(["success"=>true]); 
+          $dataUser = st_jobseeker_minatkerja::create($request->all());
+          return response()->json(["success"=>true,"id"=>$dataUser->id]); 
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(["success"=>false]); 
         }}
         else{
           try {
-            $dataMinat->update($request->all);
+            $dataMinat->update($request->all());
             return response()->json(["success"=>true]); 
           } catch (\Throwable $th) {
             return response()->json(["success"=>false]); 

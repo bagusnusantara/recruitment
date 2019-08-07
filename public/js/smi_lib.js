@@ -52,8 +52,15 @@ $(".aktivitas-modal").on('shown.bs.modal', function (e) {
 $(".minat-modal").on('shown.bs.modal', function (e) {
     let tabledata = $(e.relatedTarget).parents('tr').find('th');
     $(this).data("tr",tabledata);
-
-
+    
+    $("#minat #id").val($(e.relatedTarget).data("id") || "");
+    $("#minat #BidangBisnis").val(tabledata.eq(0).data('value') || '0' );
+    $('#minat #LingkunganKerja').val(tabledata.eq(1).data('value') || '0');
+    $('#minat #Spesialisasi').val(tabledata.eq(2).data('value') || '0');
+    $('#minat #PosisiKerja').val(tabledata.eq(3).data('value') || '0');
+    $('#minat #LevelJabatan').val(tabledata.eq(4).data('value')|| '0' );
+    $("#minat #_GajiBulan").val(formatRp(tabledata.eq(5).text())|| '0');
+    $("#minat #GajiBulan").val(parseInt(getAngka(tabledata.eq(5).text())) || '0');
 });
 $(".riwayatpenyakit-modal").on('shown.bs.modal', function (e) {
     let tabledata = $(e.relatedTarget).parents('tr').find('th');
@@ -69,6 +76,19 @@ $(".riwayatpenyakit-modal").on('shown.bs.modal', function (e) {
 $('.pengalamankerja-modal').on('shown.bs.modal', function (e) {
     let tabledata = $(e.relatedTarget).parents('tr').find('th');
     $(this).data("tr",tabledata);
+    
+    $("#pekerjaan #id").val($(e.relatedTarget).data("id")|| "");
+    $("#pekerjaan #NamaPerusahaan").val(tabledata.eq(0).text() || "");
+    $("#pekerjaan #BisnisPerusahaan").val(tabledata.eq(1).data('value') || "0");
+    $("#pekerjaan #TahunMulai").val(tabledata.eq(2).data('tanggalmulai')|| "");
+    $("#pekerjaan #TahunAkhir").val(tabledata.eq(2).data('tanggalakhir')|| "");
+    $("#pekerjaan #TempatKerja").val(tabledata.eq(3).text() || "");
+    $("#pekerjaan #Posisi").val(tabledata.eq(4).text()|| "");
+    $('#pekerjaan #Bawahan').val(tabledata.eq(5).text()|| "");
+    $('#pekerjaan #_GajiTerakhir').val(formatRp(tabledata.eq(6).text())|| "");
+    $('#pekerjaan #GajiTerakhir').val(parseInt(getAngka(tabledata.eq(6).text()))|| "");
+    $('#pekerjaan #AlasanPindah').val(tabledata.eq(7).text()|| "");
+    $('#pekerjaan #Keterangan').val(tabledata.eq(8).text()|| "");
 });
 
 $('#deletemodal').on('shown.bs.modal', function (e) {
@@ -584,6 +604,7 @@ $("#submitMinat").click(function(e){
     let sendProsses = $(this);
     if($(this).data('run'))return;
     sendProsses.data('run',true);
+    let tabledata = $('.minat-modal').data('tr');
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -592,33 +613,45 @@ $("#submitMinat").click(function(e){
         url:"/jobseeker/datadiri/submitminat",
         method:"post",
         data :{
-            id               : $("#minat #Negara").val(),
-            gaji_bulanan     : $("#minat #GajiBulan").val(),
-            bidang_bisnis   : $("#minat #BidangBisnis").val(),
+            id               : $("#minat #id").val(),
+            bidang_bisnis    : $("#minat #BidangBisnis").val(),
             lingkungan_kerja : $('#minat #LingkunganKerja').val(),
-            spesialisasi      : $('#minat #Spesialisasi').val(),
+            spesialisasi     : $('#minat #Spesialisasi').val(),
             posisi_kerja     : $('#minat #PosisiKerja').val(),
             level_jabatan    : $('#minat #LevelJabatan').val(),
+            gaji_bulanan     : $("#minat #GajiBulan").val(),
         },
         success:function(result){
             console.log(result.success);
             if(result.success){
-                $('#minat-table tbody').append(`
-                <tr>
-                  <th>${$("#minat-table tr").length}</th>
-                  <th><small><strong>${$("#minat #Kota option:selected").text()},  ${$("#minat #Provinsi option:selected").text()}</strong></small></th>
-                  <th>${$("#minat #_GajiBulan").val()}</th>
-                  <th>${$("#minat #BidangBisnis option:selected").text()}</th>
-                  <th>${$("#minat #LingkunganKerja option:selected").text()}</th>
-                  <th>${$('#minat #Spesialisasi option:selected').text()}</th>
-                  <th>${$('#minat #PosisiKerja option:selected').text()}</th>
-                  <th>${$('#minat #LevelJabatan option:selected').text()}</th>
-                  <th>
-                      <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                      <button data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
-                  </th>
-                 </tr>    
-                `);
+                if($("#minat #id").val()){
+                    tabledata.eq(0).text($("#minat #BidangBisnis  option:selected").text());
+                    tabledata.eq(1).text($('#minat #LingkunganKerja  option:selected').text());
+                    tabledata.eq(1).data("value",$('#minat #LingkunganKerja').val());
+                    tabledata.eq(2).text($('#minat #Spesialisasi  option:selected').text());
+                    tabledata.eq(2).data("value",$('#minat #Spesialisasi').val());
+                    tabledata.eq(3).text($('#minat #PosisiKerja  option:selected').text());
+                    tabledata.eq(3).data("value",$('#minat #PosisiKerja').val());
+                    tabledata.eq(4).text($('#minat #LevelJabatan  option:selected').text());
+                    tabledata.eq(4).data("value",$('#minat #LevelJabatan').val());
+                    tabledata.eq(5).text("Rp."+$("#minat #_GajiBulan").val()+",00");
+                }else{
+                    $('#minat #id').val(result.id);
+                    $('#minat-table tbody').append(`
+                    <tr>
+                    <th data-value="">${$("#minat #BidangBisnis option:selected").text()}</th>
+                    <th data-value="">${$("#minat #LingkunganKerja option:selected").text()}</th>
+                    <th data-value="">${$('#minat #Spesialisasi option:selected').text()}</th>
+                    <th data-value="">${$('#minat #PosisiKerja option:selected').text()}</th>
+                    <th data-value="">${$('#minat #LevelJabatan option:selected').text()}</th>
+                    <th data-value="">Rp. ${$("#minat #_GajiBulan").val()},00</th>
+                    <th>
+                    <button data-toggle="modal" data-target=".modal-minat" data-id="${result.id}" class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                    <button data-toggle="modal"  data-target="#deletemodal"  data-id="${result.id}" data-href="datadiri/deleteminat/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                    </th>
+                    </tr>`);
+                    $('.minat-modal').data('tr',$('#minat-table tr').last().find('th'));
+                }
             }
         },
         beforeSend: function(){
@@ -640,6 +673,9 @@ $("#submitRiwayatPekerjaan").click(function(e){
     let sendProsses = $(this);
     if($(this).data('run'))return;
     sendProsses.data('run',true);
+    
+    let tabledata = $('.pengalamankerja-modal').data('tr');
+
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -648,35 +684,58 @@ $("#submitRiwayatPekerjaan").click(function(e){
         url:"/jobseeker/datadiri/submitpengalamankerja",
         method:"post",
         data :{
-            id               : "",
-            bisnisperusahaan : $("#pekerjaan #BisnisPerusahaan").val(),
-            lokasikerja      : $("#pekerjaan #TempatKerja").val(),
+            id               : $("#pekerjaan #id").val(),
+            nama_perusahaan  : $("#pekerjaan #NamaPerusahaan").val(),
+            bisnis_perusahaan: $("#pekerjaan #BisnisPerusahaan").val(),
+            lokasi_perusahaan: $("#pekerjaan #TempatKerja").val(),
             tanggal_mulai    : $("#pekerjaan #TahunMulai").val(),
             tanggal_akhir    : $("#pekerjaan #TahunAkhir").val(),
+            lokasikerja      : $("#pekerjaan #TempatKerja").val(),
             posisi           : $("#pekerjaan #Posisi").val(),
             bawahan          : $('#pekerjaan #Bawahan').val(),
             gaji_terakhir    : $('#pekerjaan #GajiTerakhir').val(),
-            jurusan          : $('#pekerjaan #Jurusan').val(),
             alasan_pindah    : $('#pekerjaan #AlasanPindah').val(),
-            ketarangan       : $('#pekerjaan #Keterangan').val(),
+            keterangan       : $('#pekerjaan #Keterangan').val(),
         },
         success:function(result){
             console.log(result.success);
             if(result.success){
-                $('#riwayatpekerjaan-table tbody').append(`<tr>
-                <th>${$('#riwayatpekerjaan-table tr').length}</th>
-                <th>${$("#pekerjaan #BisnisPerusahaan option:selected").text()}</th>
-                <th>${$("#pekerjaan #TahunMulai").val()} - ${$("#pekerjaan #TahunAkhir").val()}</th>
-                <th>${$("#pekerjaan #Posisi").val()}</th>
-                <th>${$('#pekerjaan #Bawahan').val()}</th>
-                <th>Rp. ${$('#pekerjaan #_GajiTerakhir').val()}</th>
-                <th>${$('#pekerjaan #AlasanPindah').val()}</th>
-                <th>${$('#pekerjaan #Keterangan').val()}</th>
-                <th>
-                    <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                    <button data-target="#deletemodal"  data-href="" class="mx-auto btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
-                </th>
-              </tr>`);
+                if($('#pekerjaan #id').val()){
+                    console.log('overwrite');
+                    tabledata.eq(0).text($("#pekerjaan #NamaPerusahaan").val());
+                    tabledata.eq(1).text($("#pekerjaan #BisnisPerusahaan option:selected").text());
+                    tabledata.eq(1).data('value',$("#pekerjaan #BisnisPerusahaan").val());
+                    tabledata.eq(2).text($("#pekerjaan #TahunMulai").val()+" - "+$("#pekerjaan #TahunAkhir").val());
+                    tabledata.eq(2).data('tanggalmulai',$("#pekerjaan #TahunMulai").val());
+                    tabledata.eq(2).data('tanggalakhir',$("#pekerjaan #TahunAkhir").val());
+                    tabledata.eq(3).text($("#pekerjaan #TempatKerja").val());
+                    tabledata.eq(4).text($("#pekerjaan #Posisi").val());
+                    tabledata.eq(5).text($('#pekerjaan #Bawahan').val());
+                    tabledata.eq(6).text("Rp."+$('#pekerjaan #_GajiTerakhir').val()+",00");
+                    tabledata.eq(7).text($('#pekerjaan #AlasanPindah').val());
+                    tabledata.eq(8).text($('#pekerjaan #Keterangan').val());
+                }else{
+                    console.log('append');
+                    $('#pekerjaan #id').val(result.id);
+                    $('#riwayatpekerjaan-table tbody').append(`
+                    <tr>
+                    <th>${$("#pekerjaan #NamaPerusahaan").val()}</th>
+                    <th>${$("#pekerjaan #BisnisPerusahaan option:selected").text()}</th>
+                    <th>${$("#pekerjaan #TahunMulai").val()} - ${$("#pekerjaan #TahunAkhir").val()}</th>
+                    <th>${$("#pekerjaan #TempatKerja").val()}</th>
+                    <th>${$("#pekerjaan #Posisi").val()}</th>
+                    <th>${$('#pekerjaan #Bawahan').val()}</th>
+                    <th>Rp. ${$('#pekerjaan #_GajiTerakhir').val()}</th>
+                    <th>${$('#pekerjaan #AlasanPindah').val()}</th>
+                    <th>${$('#pekerjaan #Keterangan').val()}</th>
+                    <th>
+                        <button data-toggle="modal"  data-target=".pengalamankerja-modal" data-id="${result.id}" class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                        <button data-toggle="modal"  data-target="#deletemodal"  data-id="${result.id}" data-href="datadiri/deletepengalamankerja/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
+                    </th>
+                    </tr>`);
+                    $('.pengalamankerja-modal').data('tr',$('#riwayatpekerjaan-table tr').last().find('th'));
+                }
+                
             }
         },
         beforeSend: function(){
@@ -695,7 +754,7 @@ $("#submitRiwayatPekerjaan").click(function(e){
 
 $('#RiwayatKerjaModal  #_GajiTerakhir').keyup(function(){
     let val = $(this).val();
-    let valInt = parseInt(val.replace(/[^0-9]+/g,""));
+    let valInt = getAngka(val);
     $('#RiwayatKerjaModal  #_GajiTerakhir').val(formatRp(val));
     $('#RiwayatKerjaModal  #GajiTerakhir').val(valInt);
 });
@@ -867,7 +926,7 @@ $('.modal').on('shown.bs.modal', function () {
 })
 
 function formatRp(angka){
-    let number_string = angka.replace(/[^,\d]/g, '').toString(),
+    let number_string = (angka).replace(/[^,\d]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     rupiah     		= split[0].substr(0, sisa),
@@ -880,4 +939,10 @@ function formatRp(angka){
 
     rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
     return rupiah;
+}
+
+function getAngka(angka){
+    let number_string = angka.replace(/[^0-9,]/g, '').toString();
+    number_string = number_string.split(',');
+    return number_string[0];
 }

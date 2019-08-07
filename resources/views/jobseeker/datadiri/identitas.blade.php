@@ -4,7 +4,7 @@
           <div class="item">
               <h3>Identitas</h3>
           </div>
-          <div class="inner-box" style="overflow:auto; height:80vh; overflow-y:scroll;">
+          <div class="inner-box" style="overflow:auto; height:90vh; overflow-y:scroll;">
               <div class="item"> 
               <form class="form-identitas" > 
               <div class="form-group">
@@ -80,7 +80,6 @@
                               @endforeach
                           </select>
                       </div>
-
                       <div class="col-lg-5 col-xs-10 mx-2 form-group">
                           <h4><label for="KodePos">Kode Pos</label></h4>
                           <input type="number" class="form-control" id="KodePos" name="KodePos" placeholder="Masukan Kode Pos" value="{{$dataUser->kode_pos}}">
@@ -90,7 +89,7 @@
             <div class="form-group">
                 <h4><label for="check">Email</label></h4>
                 <input type="email" class="form-control" id="Email" name="Email" placeholder="Masukan alamat email" value="{{$dataUser->email}}">
-            </div>
+            </div>heid
             <div class="border rounded form-group">
                 <div class="form-group mx-2">
                     <h4><label for="Alamat">Alamat Domisili</label></h4>

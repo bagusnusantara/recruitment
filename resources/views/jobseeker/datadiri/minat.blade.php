@@ -3,31 +3,31 @@
       <div class="item">
         <h3>Minat</h3>
       </div>
-      <div class="inner-box" style="overflow:auto; height:50vh;">
+      <div class="inner-box">
         <div class="item">
           <!--minat-->
           <div class="table-responsive">
           <h4>Minat dan Harapan</h4>
             <table id="minat-table" class="table table-bordered" style="border-radius:25px;">
                 <tr class="thead-smi th-center">
-                    <th><h4>Gaji Bulanan(IDR)</h4></th>
                     <th><h4>Bidang Bisnis</h4></th>
                     <th><h4>Lingkungan Kerja</h4></th>
                     <th><h4>Spesialisasi</h4></th>
                     <th><h4>Posisi Kerja</h4></th>
                     <th><h4>Level Jabatan</h4></th>
+                    <th><h4>Gaji Bulanan(IDR)</h4></th>
                     <th width="10%"><h4>Option</h4></th>
                 </tr>
               @foreach ($dataUserSt['MinatKerja'] as $key => $item)
                 <tr>
+                  <th data-value="{{$item->bidang_bisnis}}">{{$item->st_bisnisperusahaan->name}}</th>
+                  <th data-value="{{$item->lingkungan_kerja}}">{{$item->st_lingkungankerja->lingkungan}}</th>
+                  <th data-value="{{$item->spesialisasi}}">{{$item->st_spesialisasipekerjaan->spesial}}</th>
+                  <th data-value="{{$item->posisi_kerja}}">{{$item->st_posisikerja->posisi}}</th>
+                  <th data-value="{{$item->level_jabatan}}">{{$item->st_leveljabatan->jabatan}}</th>
                   <th>{{"Rp. ".number_format($item->gaji_bulanan,2,",",".")}}</th>
-                  <th data-value="">{{$item->st_bisnisperusahaan->name}}</th>
-                  <th data-value="">{{$item->st_lingkungankerja->lingkungan}}</th>
-                  <th data-value="">{{$item->st_spesialisasipekerjaan->spesial}}</th>
-                  <th data-value="">{{$item->st_posisikerja->posisi}}</th>
-                  <th data-value="">{{$item->st_leveljabatan->jabatan}}</th>
                   <th>
-                      <button class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                      <button data-toggle="modal" data-target=".minat-modal" data-id="{{$item->id}}" class="mx-auto btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
                       <button data-toggle="modal"  data-target="#deletemodal"  data-id="{{$item->id}}" data-href="datadiri/deleteminat/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                   </th>
                  </tr>    
@@ -50,19 +50,6 @@
                         <div class="inner-box">
                             <div class="item">
                               <input type="hidden" class="form-control typeTahun" id="id">
-                              <div class="form-group">
-                                <h4><label for="gajibulan">Gaji Bulanan</label></h4>
-                                <div class="input-group">
-                                  <div class="input-group-prepend">
-                                    <div class="input-group-text">Rp.</div>
-                                  </div>
-                                  <input type="text" class="form-control" id="_GajiBulan" placeholder="Masukan minat gaji ">
-                                  <input type="hidden" class="form-control" id="GajiBulan" placeholder="Masukan minat gaji ">
-                                  <div class="input-group-append">
-                                    <div class="input-group-text">.00</div>
-                                  </div>
-                                </div>
-                              </div>
                               <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="BidangBisnis">Bidang Bisnis</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="BidangBisnis">
@@ -108,6 +95,19 @@
                                     @endforeach
                                   </select>
                               </div>
+                              <div class="form-group">
+                                <h4><label for="gajibulan">Gaji Bulanan</label></h4>
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <div class="input-group-text">Rp.</div>
+                                  </div>
+                                  <input type="text" class="form-control" id="_GajiBulan" placeholder="Masukan minat gaji ">
+                                  <input type="hidden" class="form-control" id="GajiBulan" placeholder="Masukan minat gaji ">
+                                  <div class="input-group-append">
+                                    <div class="input-group-text">.00</div>
+                                  </div>
+                                </div>
+                              </div>
                           </div>
                       </div>
                       </div>
@@ -129,5 +129,3 @@
               </div>
   </div>
 </div>
-    
-    

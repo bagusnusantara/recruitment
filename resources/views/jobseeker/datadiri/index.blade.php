@@ -113,7 +113,7 @@
           <script src="{{asset('js/smi_onevents.js')}}"></script>
           <div class="col-lg-9 col-md-8 col-xs-12 tabs-stage">
             <!--Detail Identitas-->
-            @include('jobseeker.datadiri.identitas')
+            {{-- @include('jobseeker.datadiri.identitas')
             <!--Identitas end-->
             <!--Detail Pendidikan-->
             @include('jobseeker.datadiri.pendidikan')
@@ -131,7 +131,7 @@
             @include('jobseeker.datadiri.aktivitas')
             <!--aktivitas end-->
             <!--Detail Lain-lain-->
-            @include('jobseeker.datadiri.lainnya')
+            @include('jobseeker.datadiri.lainnya') --}}
             <!--Lain-lain end-->
             <!--Detail Lampiran-->
             @include('jobseeker.datadiri.lampiran')

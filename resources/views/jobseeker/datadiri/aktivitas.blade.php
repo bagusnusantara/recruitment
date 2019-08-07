@@ -3,7 +3,7 @@
           <div class="item">
             <h3>Aktivitas Sosial</h3>
           </div>
-          <div class="inner-box" style="overflow:auto; height:60vh;">
+          <div class="inner-box">
             <div class="item">
               <!--aktivitas-->
               <div class="form-group">
