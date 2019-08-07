@@ -3,13 +3,13 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Setup</h2>
+            <h2>Setup UMK</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/dashboard')}}">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Komponen Gaji</strong>
+                    <strong>Setup UMK</strong>
                 </li>
             </ol>
 
@@ -24,7 +24,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>List Komponen Gaji</h5>
+                        <h5>UMK</h5>
 
                         <div class="ibox-tools">
                             <a class="collapse-link">
@@ -53,12 +53,12 @@
                                   <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title">Tambah Komponen Gaji</h4>
+                                        <h4 class="modal-title">Tambah UMK</h4>
                                     </div>
                                     <div class="modal-body">
                                       <form method="POST" action="{{url('/hrd/setup/komponengaji/store')}}" class="form-horizontal" enctype="multipart/form-data">
                                             @csrf
-                                            @include('hrd.setup.komponengaji.form')
+                                            {{--@include('hrd.setup.komponengaji.form')--}}
                                     </div>
 
                                     <div class="modal-footer">
@@ -74,10 +74,9 @@
                             <thead>
                             <tr>
                               <th class="text-center">No</th>
-                              <th class="text-center">Kode</th>
-                              <th class="text-center">Deskripsi</th>
-                              <th class="text-center">Label Slip Gaji</th>
-                              <th class="text-center">Kelompok Pendapatan</th>
+                              <th class="text-center">Tanggal Mulai Berlaku</th>
+                              <th class="text-center">Klien</th>
+                              <th class="text-center">UMK</th>
                               <th class="text-center">Action</th>
                             </tr>
                             </thead>
@@ -85,70 +84,23 @@
                               @php
                 								$i=1;
                 							@endphp
-                              @foreach($komponen_gaji as $komponen)
+                              @foreach($umk as $u)
 
                               <tr>
                                   <td class="text-center">{{$i}}</td>
-                                  <td class="text-center">{{$komponen->kode_komponen_gaji}}</td>
-                                  <td>{{$komponen->desc_komponen_gaji}}</td>
-                                  <td><center>{{$komponen->label_slip_gaji}}</center></td>
-                                  <td>
-                                    <center>
-                                      @if ( $komponen->id_pendapatan === 1)
-                                      <button type="button" class="btn btn-primary btn-xs">Pendapatan</button>
-                                      @else
-                                      <button type="button" class="btn btn-danger btn-xs">Potongan</button>
-                                      @endif
-                                    </center>
-                                  </td>
+                                  <td class="text-center">{{$u->tanggal}}</td>
+                                  <td>{{$u->nama_client}}</td>
+                                  <td><center>{{$u->umk}}</center></td>
                                   <td class="text-center">
                                     <button class="btn btn-default btn-circle"
-                                          data-mykode="{{$komponen->kode_komponen_gaji}}"
-                                          data-mydesc="{{$komponen->desc_komponen_gaji}}"
-                                          data-mylabel="{{$komponen->label_slip_gaji}}"
-                                          data-myid_pendapatan="{{$komponen->id_pendapatan}}"
                                           data-toggle="modal" data-target="#show"><i class="fa fa-eye"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
-                                          data-mykode="{{$komponen->kode_komponen_gaji}}"
-                                          data-mydesc="{{$komponen->desc_komponen_gaji}}"
-                                          data-mylabel="{{$komponen->label_slip_gaji}}"
-                                          data-myid_pendapatan="{{$komponen->id_pendapatan}}"
                                           data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i>
-                                    </button>
-                                    <button class="btn btn-default btn-circle"
-                                          data-mykode="{{$komponen->kode_komponen_gaji}}"
-                                          data-mydesc="{{$komponen->desc_komponen_gaji}}"
-                                          data-mylabel="{{$komponen->label_slip_gaji}}"
-                                          data-myid_pendapatan="{{$komponen->id_pendapatan}}"
-                                          data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i>
                                     </button>
                                   </td>
 
-                                  {{-- Delete data --}}
-                                  <div class="modal inmodal fade" id="delete" tabindex="-1" role="dialog"  aria-hidden="true">
-                                          <div class="modal-dialog modal-lg">
-                                              <div class="modal-content">
-                                                  <div class="modal-header">
-                                                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                                      <h4 class="modal-title">Delete Confirmation</h4>
-                                                  </div>
-                                                  <div class="modal-body">
-                                                  <form method="POST" action="{{ route('post-delete',$komponen->kode_komponen_gaji) }}" class="form-horizontal" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <h4 class="text-center">Apakah Anda yakin untuk menghapus data?</h4>
-                                                        <input type="text" class="form-control" name="kode_komponen_gaji" id="kode_komponen_gaji" disabled>
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                      <button type="button" class="btn btn-white" data-dismiss="modal">Tidak</button>
-                                                      <button type="submit" class="btn btn-primary">Ya</button>
-                                                  </div>
-                                                  </form>
-                                          </div>
-                                      </div>
-                                  </div>
-
+                                  
                               @php
                 								$i++;
                 							@endphp
