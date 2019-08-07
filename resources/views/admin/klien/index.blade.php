@@ -3,13 +3,13 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Dashboard</h2>
+            <h2>List Klien</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/dashboard')}}">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Dashboard</strong>
+                    <strong>List Klien</strong>
                 </li>
             </ol>
 

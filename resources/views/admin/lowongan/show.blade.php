@@ -3,13 +3,16 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Dashboard</h2>
+            <h2>Lowongan Pekerjaan</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/dashboard')}}">Home</a>
                 </li>
+                <li>
+                    <a href="#">Lowongan Pekerjaan</a>
+                </li>
                 <li class="active">
-                    <strong>Dashboard</strong>
+                    <strong>Show</strong>
                 </li>
             </ol>
 
@@ -32,9 +35,9 @@
                                 <div class="product-images">
 
                                     <div>
-                                        <div class="image-imitation">
-                                            [IMAGE 1]
-                                        </div>
+                                        <!-- <div class="image-imitation"> -->
+                                        <img src="https://render.fineartamerica.com/images/rendered/default/acrylic-print/8.000/8.000/hangingwire/break/images-medium-5/recruitment-flat-line-icon-cnythzl.jpg" style="width:250px;height:300px;">
+                                        <!-- </div> -->
                                     </div>
 
                                 </div>

@@ -3,13 +3,13 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Dashboard</h2>
+            <h2>Lowongan Pekerjaan</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/admin/dashboard')}}">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Dashboard</strong>
+                    <strong>Lowongan Pekerjaan</strong>
                 </li>
             </ol>
 
@@ -53,13 +53,11 @@
                         <table class="table table-striped table-bordered table-hover dataTables-client" style="width: 100%">
                             <thead>
                             <tr>
-                              <th>No</th>
-                              <th>Klien</th>
-                              <th data-hide="phone,tablet">Job Tittle</th>
-                              <th data-hide="phone,tablet">Lokasi</th>
-                              <th data-hide="phone,tablet">Kategori</th>
-                              <th data-hide="phone,tablet">Masa Berlaku</th>
-                              <th>Action</th>
+                              <th class="center">No</th>
+                              <th class="center">Job Tittle</th>
+                              <th class="center">Klien</th>
+                              <th class="center">Masa Berlaku</th>
+                              <th class="center">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -70,12 +68,10 @@
 
                               <tr>
                                   <td>{{$i}}</td>
-                                  <td>{{$lowongan->md_client->nama_client}}</td>
                                   <td>{{$lowongan->job_tittle}}</td>
-                                  <td class="center">{{$lowongan->st_alamat_kabkota}} {{$lowongan->st_alamat_provinsi}}</td>
-                                  <td class="center"></td>
-                                  <td>{{date('d-m-Y', strtotime($lowongan->start_date))}} sampai {{$lowongan->end_date}}</td>
-                                  <td>
+                                  <td>{{$lowongan->nama_client}}</td>
+                                  <td class="center">{{date('d-m-Y', strtotime($lowongan->start_date))}} sampai {{$lowongan->end_date}}</td>
+                                  <td class="center">
                                     <a type="button" class="btn btn-default btn-circle" href="lowongan/show/{{$lowongan->id}}" type="button"><i class="fa fa-eye"></i></a>
                                     <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
                                     <!-- <button class="btn btn-default btn-circle" type="button"><i class="fa fa-trash"></i> -->

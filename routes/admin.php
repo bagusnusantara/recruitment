@@ -22,7 +22,7 @@ Route::prefix('admin')->group(function(){
     Route::get('manajemenuser/create', 'AdminController@createManajemenuser');
 
     //-x Store Method
-    Route::post('lowonganpekerjaan/store', 'AdminController@storeLowogan');
+    Route::post('lowongan/store', 'AdminController@storeLowogan');
 
 Route::get('hrd/setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
 Route::get('/home', 'HomeController@index')->name('home');

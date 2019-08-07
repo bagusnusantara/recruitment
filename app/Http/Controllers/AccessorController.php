@@ -22,40 +22,19 @@ use Excel;
 use PDF;
 use DB;
 use Carbon\Carbon;
-class AdminController extends Controller
+class AccessorController extends Controller
 {
-    public function getDashboard(){
-      if(!Gate::allows('isAdmin')){
-          abort(404,"Maaf Anda tidak memiliki akses");
-      }
-      Alert::success('Selamat Datang di Sistem Recruitment SMI', 'Halo Admin SMI!!!');
-      return view ('admin.dashboard.index');
-    }
-
-    public function getNotifikasi(){
-      if(!Gate::allows('isAdmin')){
-          abort(404,"Maaf Anda tidak memiliki akses");
-      }
-      return view ('admin.notifikasi.index');
-    }
-
-    public function createNotifikasi(){
-      if(!Gate::allows('isAdmin')){
-          abort(404,"Maaf Anda tidak memiliki akses");
-      }
-      return view ('admin.notifikasi.create');
-    }
+    
 
     public function getLowongan(){
-      if(!Gate::allows('isAdmin')){
+      if(!Gate::allows('isAccessor')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
-      //$lowongan_pekerjaan=md_lowongan_pekerjaan::all();
       $lowongan_pekerjaan=DB::table('md_lowongan_pekerjaan')
                      ->join('md_client', 'md_lowongan_pekerjaan.md_client_id', '=', 'md_client.id')
                      ->select('md_lowongan_pekerjaan.*', 'md_client.nama_client')
                      ->get();
-      return view ('admin.lowongan.index',compact('lowongan_pekerjaan'));
+      return view ('accessor.lowongan.index',compact('lowongan_pekerjaan'));
     }
 
     public function showLowongan($id){
@@ -75,7 +54,7 @@ class AdminController extends Controller
                   ->where('md_lowongan_pekerjaan.id',$lowongan_pekerjaan->id)
                   ->get();
       
-      return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar','detail','id'));
+      return view ('accessor.lowongan.show',compact('lowongan_pekerjaan','pendaftar','detail','id'));
     }
 
     public function showPelamar($id){

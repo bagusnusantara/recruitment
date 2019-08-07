@@ -3,7 +3,7 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Create Lowongan Pekerjaan</h2>
+            <h2>Lowongan Pekerjaan</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/dashboard')}}">Home</a>
@@ -25,7 +25,7 @@
           <div class="col-lg-12">
               <div class="ibox float-e-margins">
                   <div class="ibox-title">
-                      <h5>Insert Lowongan Pekerjaan</h5>
+                      <h5>Create Lowongan Pekerjaan</h5>
                       <div class="ibox-tools">
                           <a class="collapse-link">
                               <i class="fa fa-chevron-up"></i>
@@ -45,7 +45,7 @@
                       </div>
                   </div>
                   <div class="ibox-content">
-                    <form method="POST" id="postForm" action="{{url('/admin/lowonganpekerjaan/store')}}" class="form-horizontal" enctype="multipart/form-data" onsubmit="return postForm()">
+                    <form method="POST" id="postForm" action="{{url('/admin/lowongan/store')}}" class="form-horizontal" enctype="multipart/form-data" onsubmit="return postForm()">
                         @csrf
                             <div class="form-group"><label class="col-sm-2 control-label">Job Tittle</label>
                                 <div class="col-sm-10"><input type="text" class="form-control" name="job_tittle"></div>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="form-group"><label class="col-sm-2 control-label">Kategori Pekerjaan</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control m-b" name="st_kategori_pekerjaan">
+                                    <select class="form-control m-b" name="st_kategori_pekerjaan_id">
                                       <option value="0">Pilih ... </option>
                                       @foreach($st_kategori_pekerjaan as $kategori)
                                       <option value="{{$kategori->id}}">{{$kategori->deskripsi}}</option>
@@ -72,7 +72,7 @@
                             </div>
                             <div class="form-group"><label class="col-sm-2 control-label">Spesialisasi Pekerjaan</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control m-b" name="st_spesialisasi_pekerjaan">
+                                    <select class="form-control m-b" name="st_spesialisasi_pekerjaan_id">
                                       <option value="0" selected>Pilih ... </option>
                                       @foreach($st_spesialisasi_pekerjaan as $spesialisasi)
                                       <option value="{{$spesialisasi->id}}">{{$spesialisasi->spesial}}</option>
@@ -92,14 +92,17 @@
                             </div>
                             <div class="form-group"><label class="col-sm-2 control-label" for="Provinsi" >Provinsi</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control custom-select my-1 mr-sm-2" id="Provinsi" name="Provinsi" disabled>
+                                    <select class="form-control custom-select my-1 mr-sm-2" id="Provinsi" name="Provinsi">
                                         <option value="0">Pilih . . .</option>
+                                        @foreach ($st_provinsi as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>    
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group"><label class="col-sm-2 control-label" for="Kota">Kota</label>
                                 <div class="col-sm-10">
-                                  <select class="form-control custom-select my-1 mr-sm-2" id="Kota" name="Kota" disabled>
+                                  <select class="form-control custom-select my-1 mr-sm-2" id="Kota" name="Kota">
                                       <option value="0">Pilih . . .</option>
                                   </select>
                                 </div>
@@ -107,13 +110,13 @@
                             <div class="form-group" id="data_1">
                                 <label class="col-sm-2 control-label">Start Date</label>
                                 <div class="input-group date">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="" name"start_date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="start_date" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group" id="data_1">
                                 <label class="col-sm-2 control-label">End Date</label>
                                 <div class="input-group date">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="" name"end  _date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="end_date" class="form-control" value="">
                                 </div>
                             </div>
 
