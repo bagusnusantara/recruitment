@@ -128,8 +128,8 @@
                                   <button type="button" class="btn btn-primary btn-xs">Diterima</button>
                                   @elseif ( $p->status === 'tidak diterima')
                                   <button type="button" class="btn btn-danger btn-xs">Tidak Diterima</button>
-                                  @elseif ( $p->status === 'menunggu')
-                                  <button type="button" class="btn btn-primary btn-xs">Menunggu</button>
+                                  @elseif ( $p->status === 'melamar')
+                                  <button type="button" class="btn btn-warning btn-xs">Melamar</button>
                                   @endif
                                 </center>
                                 </td>

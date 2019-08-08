@@ -84,11 +84,57 @@ class HRDController extends Controller
     }
 
 
-    public function getGajiperlokasi(){
+    public function getUMK(){
       if(!Gate::allows('isHRD')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
-      return view ('hrd.setup.gajiperlokasi.index');
+      $umk=DB::table('st_umk')
+      ->join('md_client', 'st_umk.md_client_id', '=', 'md_client.id')
+      ->select('st_umk.*', 'md_client.nama_client')
+      ->get();
+      return view ('hrd.setup.umk.index',compact('umk'));
+    }
+
+    public function getTunjanganjabatan(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_tunj_jabatan=DB::table('st_tunj_jabatan')
+      ->select('st_tunj_jabatan.*')
+      ->get();
+      return view ('hrd.setup.tunjanganjabatan.index',compact('st_tunj_jabatan'));
+    }
+
+    public function getTunjangantransport(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_tunjtransport=DB::table('st_tunjtransport')
+      ->join('md_client', 'st_tunjtransport.md_client_id', '=', 'md_client.id')
+      ->select('st_tunjtransport.*', 'md_client.nama_client')
+      ->get();
+      return view ('hrd.setup.tunjangantransport.index',compact('st_tunjtransport'));
+    }
+
+    public function getTunjanganmakan(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_tunjmakan=DB::table('st_tunjmakan')
+      ->join('md_client', 'st_tunjmakan.md_client_id', '=', 'md_client.id')
+      ->select('st_tunjmakan.*', 'md_client.nama_client')
+      ->get();
+      return view ('hrd.setup.tunjanganmakan.index',compact('st_tunjmakan'));
+    }
+
+    public function getPeriodecutoff(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_cutoff_gaji=DB::table('st_cutoff_gaji')
+      ->select('st_cutoff_gaji.*')
+      ->get();
+      return view ('hrd.setup.periodecutoffgaji.index',compact('st_cutoff_gaji'));
     }
 
 }
