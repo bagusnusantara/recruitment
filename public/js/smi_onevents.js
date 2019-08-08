@@ -10,6 +10,10 @@ const inputDateMonth ={
     maxViewMode : "years"
 }
 
+const inputBirth ={
+    format : "dd-M-yyyy",
+}
+
 function identitasValidate(){
     $('.form-identitas').validate({
         rules:{

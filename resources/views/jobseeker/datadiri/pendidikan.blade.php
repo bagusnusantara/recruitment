@@ -123,7 +123,7 @@
           @foreach ($dataUserSt['PendidikanInformal'] as $key => $item)
           <tr>
               <th><h4>{{$item->jenis_pelatihan}}</h4></th>
-          <th data-tanggalmulai="{{date("Y",strtotime($item->tanggal_mulai))}}" data-tanggalakhir="{{date("Y",strtotime($item->tanggal_akhir))}}"><h4>{{date("Y",strtotime($item->tanggal_mulai))." - ".date("Y",strtotime($item->tanggal_akhir))}}</h4></th>
+              <th data-tanggalmulai="{{date("Y",strtotime($item->tanggal_mulai))}}" data-tanggalakhir="{{date("Y",strtotime($item->tanggal_akhir))}}"><h4>{{date("Y",strtotime($item->tanggal_mulai))." - ".date("Y",strtotime($item->tanggal_akhir))}}</h4></th>
               <th><h4>{{$item->tempat}}</h4></th>
               <th><h4>{{$item->keterangan}}</h4></th>
               <th><h4>
@@ -167,7 +167,7 @@
                             </div>
                             <div class="form-group">
                                 <h4><label for="keterangan">Keterangan</label></h4>
-                                <textarea class="form-control" rows="3"  id="Keterangan"></textarea>
+                                <textarea class="form-control" rows="3"  id="keterangan"></textarea>
                             </div>
                       </div>
                     </div>

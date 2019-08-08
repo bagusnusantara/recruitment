@@ -75,26 +75,33 @@ class JobseekerController extends Controller
       return view ('jobseeker.dashboard.showpublic',compact('lowongan'));
     }
     //insert Data diri
-    public function insertDataDiri()
-    {
-      //st_support data
-      $st_data = [];
-      $st_data['Idcard'] = st_Idcard::all();
-      $st_data['TingkatPendidikan'] = st_Tingkatpendidikan::all();
-      $st_data['Bahasa'] = st_Bahasa::all();
-      $st_data['Kemampuan'] = st_Kemampuan::all();
-      $st_data['BisnisPerusahaan'] = st_Bisnisperusahaan::all();
-      $st_data['kategoriPekerjaan'] = st_Kategoripekerjaan::all();
-      $st_data['SpesialisasiPekerjaan']=st_Spesialisasipekerjaan::all();
-      $st_data['LingkunganKerja']= st_Lingkungankerja::all();
-      $st_data['LevelJabatan']= st_Leveljabatan::all();
-      $st_data['PosisiKerja']= st_Posisikerja::all();
-      $st_data['Negara'] = st_Negara::all();
-      $st_data['Provinsi'] = st_Provinsi::all();
-      $st_data['Kabkota'] = st_Kabkota::all();
-      $st_data['Kecamatan'] = st_Kecamatan::all();
-      return view('jobseeker.datadiri.insertdatadiri',compact('st_data'));
-    }
+    // public function insertDataDiri()
+    // {
+    //   //st_support data
+    //   $st_data = [];
+    //   $st_data['Idcard'] = st_Idcard::all();
+    //   $st_data['TingkatPendidikan'] = st_Tingkatpendidikan::all();
+    //   $st_data['Bahasa'] = st_Bahasa::all();
+    //   $st_data['Kemampuan'] = st_Kemampuan::all();
+    //   $st_data['BisnisPerusahaan'] = st_Bisnisperusahaan::all();
+    //   $st_data['kategoriPekerjaan'] = st_Kategoripekerjaan::all();
+    //   $st_data['SpesialisasiPekerjaan']=st_Spesialisasipekerjaan::all();
+    //   $st_data['LingkunganKerja']= st_Lingkungankerja::all();
+    //   $st_data['LevelJabatan']= st_Leveljabatan::all();
+    //   $st_data['PosisiKerja']= st_Posisikerja::all();
+    //   //support data
+    //   $st_data['Negaraktp'] = st_Negara::all();
+    //   $st_data['Provinsiktp'] = st_Provinsi::where('id',)
+    //   $st_data['Kabkotaktp'] = st_Kabkota::where('id')
+    //   $st_data['Kecamatanktp'] = st_Kecamatan::where('id')
+
+    //   $st_data['Negaradomisili'] = $st_data['Negaraktp'];
+    //   $st_data['Provinsidomisili'] = st_Provinsi::where('id')
+    //   $st_data['Kabkotadomisili'] = st_Kabkota::where('id')
+    //   $st_data['Kecamatandomisili'] = st_Kecamatan::where('id')
+
+    //   return view('jobseeker.datadiri.insertdatadiri',compact('st_data'));
+    // }
     //Lamaran Section
     public function showDataDiri(){
       $user_id = \Auth::user()->id;
@@ -131,18 +138,39 @@ class JobseekerController extends Controller
       $st_data['LevelJabatan']= st_Leveljabatan::all();
       $st_data['PosisiKerja']= st_Posisikerja::all();
       $st_data['Negara'] = st_Negara::all();
-      $st_data['Provinsi'] = st_Provinsi::where('country_id',$dataUser->negara)->get();
-      $st_data['Kabkota'] = st_Kabkota::where('province_id',$dataUser->provinsi)->get();
-      $st_data['Kecamatan'] = st_Kecamatan::where('regency_id',$dataUser->kabkota)->get();
+      $st_data['Provinsiktp'] = st_Provinsi::where('country_id',$dataUser->negara_ktp)->get();
+      $st_data['Kabkotaktp'] = st_Kabkota::where('province_id',$dataUser->provinsi_ktp)->get();
+      dump($dataUser->all());
+      dump($dataUser->provinsi_ktp);
+      dump($st_data['Kabkotaktp']);
+      $st_data['Kecamatanktp'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_ktp)->get();
+      $st_data['Provinsidomisili'] = st_Provinsi::where('country_id',$dataUser->negara_domisili)->get();
+      $st_data['Kabkotadomisili'] = st_Kabkota::where('province_id',$dataUser->provinsi_domisili)->get();
+      $st_data['Kecamatandomisili'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_domisili)->get();
+      dump($dataUser->kabkota_domisili);
       return view('jobseeker.datadiri.index',compact('st_data','dataUser','dataUserSt'));
     }
 
     public function storeDataDiri(Request $request){
       $dataUser = md_jobseeker::find(\Auth::user())->first();
+      dump($request->all());
+      if($request->is_domisiliktp){
+        $request['alamat_domisili']       = $request['alamat_ktp'];    
+        $request['negara_domisili']       = $request['negara_ktp'];    
+        $request['provinsi_domisili']     = $request['provinsi_ktp'];  
+        $request['kabkota_domisili']      = $request['kabkota_ktp'];   
+        $request['kecamatan_domisili']    = $request['kecamatan_ktp']; 
+        $request['kode_pos_domisili']     = $request['kode_pos_ktp'];  
+      }
+      $request->request->remove('is_domisiliktp');
+      dump($request->all());
+
       try {
         $dataUser->update($request->all());
+        dump('sukese');
         return response()->json(["success"=>true]);
       } catch (\Throwable $th) {
+        dump($th);
         return response()->json(["success"=>false]);
       }
     }

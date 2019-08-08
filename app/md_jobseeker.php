@@ -10,9 +10,7 @@ class md_jobseeker extends Model
   protected $primaryKey = 'users_id';
   public $timestamps = false;
   public $incrementing = false;
-  protected $fillable = [
-      'NIK','nama_lengkap','nama_panggilan','tempat_lahir','tanggal_lahir','jenis_kelamin','alamat','agama','negara','provinsi','kabkota','kecamatan','kode_pos','email','notelp','nohp','kategori_idcard','nomor_idcard','status_keluarga','tanggal_keluarga','olahraga','hobi','referensi_dari'
-    ];
+  protected $guarded = ['users_id'];
 
   public function md_lowongan_pekerjaan(){
       return $this->hasMany('App\md_lowongan_pekerjaan');

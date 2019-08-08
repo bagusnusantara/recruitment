@@ -173,8 +173,6 @@ $('#deletemodal').on("hidden.bs.modal",function(e){
     $("#delete-caution").parent("div").hide();
 });
 
-identitasValidate();
-
 $("#submitPendidikanFormal").click(function(e){
     e.preventDefault();
     let sendProsses = $(this);
@@ -298,8 +296,8 @@ $("#submitPendidikanInformal").click(function(e){
                         <th><h4>${$("#pendidikaninformal #tempat").val()}</h4></th>
                         <th><h4>${$("#pendidikaninformal #keterangan").val()}</h4></th>
                         <th><h4>
-                        <button data-id="${result.id}" id="submitPendidikanInformal" class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
-                        <button data-target="#deletemodal" data-id="${result.id}" data-href="datadiri/deletependidikaninformal/" class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>  
+                        <button data-toggle="modal" data-target=".pendidikaninformal-modal" data-id="${result.id}"  class="btn-outline-primary rounded"><i class="fa fa-edit fa-1x"></i></button>
+                        <button data-toggle="modal" data-target="#deletemodal" data-id="${result.id}" data-href="datadiri/deletependidikaninformal/"  class="btn-outline-danger rounded"><i class="fa fa-trash fa-1x"></i></button>
                         </h4></th>
                         </tr>`
                     );
@@ -442,7 +440,7 @@ $("#submitLampiran").click(function(e){
 });
 $("button#submitIdentitas").each(function(){
         $(this).click(function(e){
-            
+            identitasValidate();
             e.preventDefault();
             let sendProsses = $(this);
             if($(this).data('run'))return;
@@ -457,30 +455,36 @@ $("button#submitIdentitas").each(function(){
                 url:"/jobseeker/datadiri/submitdatadiri",
                 method:"post",
                 data :{
-                    NIK              : $("#NIK").val(),
-                    nama_lengkap     : $("#NamaLengkap").val(),
-                    nama_panggilan   : $("#NamaPanggilan").val(),
-                    tempat_lahir     : $("#TempatLahir").val(),
-                    tanggal_lahir    : $("#TanggalLahir").val(),
-                    jenis_kelamin    : $("#JenisKelamin").val(),
-                    alamat           : $("#Alamat").val(),
-                    agama            : $("#Agama").val(),
-                    negara           : $("#Negara").val(),
-                    provinsi         : $("#Provinsi").val(),
-                    kabkota          : $("#Kota").val(),
-                    kecamatan        : $("#Kecamatan").val(),
-                    kode_pos         : $("#KodePos").val(),
-                    email            : $("#Email").val(),
-                    notelp           : $("#NoTelp").val(),
-                    nohp             : $("#NoHP").val(),
-                    kategori_idcard  : $("#IDCard").val(),
-                    nomor_idcard     : $("#NoIDCard").val(),
-                    nomor_idcard     : $("#NoIDCard").val(),
-                    status_keluarga  : $("#StatusKeluarga").val(),
-                    tanggal_keluarga : $("#TanggalKeluarga").val(),
-                    olahraga         : $("#Olahraga").val(),
-                    hobi             : $("#Hobi").val(),
-                    referensi_dari   : $("#SurveyReferensi").val(),
+                    NIK                : $("#NIK").val(),
+                    nama_lengkap       : $("#NamaLengkap").val(),
+                    nama_panggilan     : $("#NamaPanggilan").val(),
+                    tempat_lahir       : $("#TempatLahir").val(),
+                    tanggal_lahir      : $("#TanggalLahir").val(),
+                    jenis_kelamin      : $("#JenisKelamin").val(),
+                    agama              : $("#Agama").val(),
+                    is_domisiliktp     : ($("#domisiliduplicate").prop("checked")).toString(),
+                    alamat_ktp         : $("#Alamatktp").val(),
+                    alamat_domisili    : $("#Alamatdomisili").val(),
+                    negara_ktp         : $("#Negaraktp").val(),
+                    provinsi_ktp       : $("#Provinsiktp").val(),
+                    kabkota_ktp        : $("#Kotaktp").val(),
+                    kecamatan_ktp      : $("#Kecamatanktp").val(),
+                    kode_pos_ktp       : $("#KodePosktp").val(),
+                    negara_domisili    : $("#Negaradomisili").val(),
+                    provinsi_domisili  : $("#Provinsidomisili").val(),
+                    kabkota_domisili   : $("#Kotadomisili").val(),
+                    kecamatan_domisili : $("#Kecamatandomisili").val(),
+                    kode_pos_domisili  : $("#KodePosdomisili").val(),
+                    email              : $("#Email").val(),
+                    notelp             : $("#NoTelp").val(),
+                    nohp               : $("#NoHP").val(),
+                    kategori_idcard    : $("#IDCard").val(),
+                    nomor_idcard       : $("#NoIDCard").val(),
+                    status_keluarga    : $("#StatusKeluarga").val(),
+                    tanggal_keluarga   : $("#TanggalKeluarga").val(),
+                    olahraga           : $("#Olahraga").val(),
+                    hobi               : $("#Hobi").val(),
+                    referensi_dari     : $("#SurveyReferensi").val(),
                 },
                 success:function(result){                    
                     console.log(result.success);
@@ -802,6 +806,14 @@ $("#submitRiwayatPekerjaan").click(function(e){
         }
     });
 });
+$('#domisiliduplicate').prop("checked",false);
+$('#domisiliduplicate').click(function (){
+	if($(this).prop("checked")){
+        $('#domisili').slideUp();
+	}else{
+		$('#domisili').slideDown();
+	}
+});
 
 $('#RiwayatKerjaModal  #_GajiTerakhir').keyup(function(){
     let val = $(this).val();
@@ -820,6 +832,7 @@ $('#MinatKerjaModal  #_GajiBulan').keyup(function(){
 
 $('input.typeTahun').datepicker(inputDateYear);
 $('input.typeBulan').datepicker(inputDateMonth);
+$('#TanggalLahir').datepicker(inputBirth);
 
 //end document ready
 });
@@ -856,121 +869,125 @@ function getst(id,param,selectedTarget){
 };
 
 //Callback Alamat
-$("#identitas #Negara").click(function(){
-    $("#identitas #Provinsi").find('option').remove().end();
-    $("#identitas #Provinsi").append($('<option>',{
-        value : "0",
+$("#identitas #Negaraktp").change(function(){
+    $("#identitas #Provinsiktp option").remove().end();
+    $("#identitas #Provinsiktp").append($('<option>',{
+        value : "",
         text  : "Pilih . . ."
     }));
+    $("#identitas #Kotaktp option").remove().end();
+    $("#identitas #Kotaktp").append($('<option>',{
+        value : "",
+        text  : "Pilih . . ."
+    }));
+    $("#identitas #Kecamatanktp option").remove().end();
+    $("#identitas #Kecamatanktp").append($('<option>',{
+        value : "",
+        text  : "Pilih . . ."
+    }));
+
     if(this.value==0){
-        $("#identitas #Provinsi").prop("disabled",true);
-        $("#identitas #Kota").prop("disabled",true);
-        $("#identitas #Kecamatan").prop("disabled",true);
+        $("#identitas #Provinsiktp").prop("disabled",true);
+        $("#identitas #Kotaktp").prop("disabled",true);
+        $("#identitas #Kecamatanktp").prop("disabled",true);
     }
    else
-        getst("Negara",$("#identitas #Negara > option:selected").val(),$("#identitas #Provinsi"));
+        getst("Negara",$("#identitas #Negaraktp > option:selected").val(),$("#identitas #Provinsiktp"));
 });
 
-$("#identitas #Provinsi").click(function(){
+$("#identitas #Provinsiktp").change(function(){
     
-    $("#identitas #Kota").find('option').remove().end();
-    $("#identitas #Kota").append($('<option>',{
+    $("#identitas #Kotaktp option").remove().end();
+    $("#identitas #Kotaktp").append($('<option>',{
         value : "0",
+        text  : "Pilih . . ."
+    }));
+    $("#identitas #Kecamatanktp option").remove().end();
+    $("#identitas #Kecamatanktp").append($('<option>',{
+        value : "",
         text  : "Pilih . . ."
     }));
 
     if(this.value==0){
-        $("#identitas #Kota").prop("disabled",true);
-        $("#identitas #Kecamatan").prop("disabled",true);
+        $("#identitas #Kotaktp").prop("disabled",true);
+        $("#identitas #Kecamatanktp").prop("disabled",true);
     }
     else
-         getst("Provinsi",$("#identitas #Provinsi > option:selected").val(),$("#identitas #Kota"));
+         getst("Provinsi",$("#identitas #Provinsiktp > option:selected").val(),$("#identitas #Kotaktp"));
  });
 
- $("#identitas #Kota").click(function(){
-    $("#identitas #Kecamatan").find('option').remove().end();
-    $("#identitas #Kecamatan").append($('<option>',{
+ $("#identitas #Kotaktp").change(function(){
+    $("#identitas #Kecamatanktp option").remove().end();
+    $("#identitas #Kecamatanktp").append($('<option>',{
         value : "0",
         text  : "Pilih . . ."
     }));
 
     if(this.value==0)
-        $("#identitas #Kecamatan").prop("disabled",true);
+        $("#identitas #Kecamatanktp").prop("disabled",true);
     else
-        getst("Kota",$("#identitas #Kota > option:selected").val(),$("#identitas #Kecamatan"));
+        getst("Kota",$("#identitas #Kotaktp > option:selected").val(),$("#identitas #Kecamatanktp"));
  });
 
- // minat
- $("#minat #Negara").click(function(){
-    $("#minat #Provinsi").find('option').remove().end();
-    $("#minat #Provinsi").append($('<option>',{
-        value : "0",
+ $("#identitas #Negaradomisili").change(function(){
+    $("#identitas #Provinsidomisili").find('option').remove().end();
+    $("#identitas #Provinsidomisili").append($('<option>',{
+        value : "",
+        text  : "Pilih . . ."
+    }));
+    $("#identitas #Kotadomisili").find('option').remove().end();
+    $("#identitas #Kotadomisili").append($('<option>',{
+        value : "",
+        text  : "Pilih . . ."
+    }));
+    $("#identitas #Kecamatandomisili").find('option').remove().end();
+    $("#identitas #Kecamatandomisili").append($('<option>',{
+        value : "",
         text  : "Pilih . . ."
     }));
     if(this.value==0){
-        $("#minat #Provinsi").prop("disabled",true);
-        $("#minat #Kota").prop("disabled",true);
-        $("#minat #Kecamatan").prop("disabled",true);
+        $("#identitas #Provinsidomisili").prop("disabled",true);
+        $("#identitas #Kotakdomisili").prop("disabled",true);
+        $("#identitas #Kecamatandomisili").prop("disabled",true);
     }
    else
-        getst("Negara",$("#minat #Negara > option:selected").val(),$("#minat #Provinsi"));
+        getst("Negara",$("#identitas #Negaradomisili > option:selected").val(),$("#identitas #Provinsidomisili"));
 });
 
-$("#minat #Provinsi").click(function(){
-    if($("#minat #Negara").val()>0 && $("#minat #Provinsi option").length <= 1){
-        $("#minat #Negara").trigger("click");
-        console.log('run');
-        return ;
-    }
-
-    $("#minat #Kota").find('option').remove().end();
-    $("#minat #Kota").append($('<option>',{
+$("#identitas #Provinsidomisili").change(function(){
+    
+    $("#identitas #Kotadomisili").find('option').remove().end();
+    $("#identitas #Kotadomisili").append($('<option>',{
         value : "0",
+        text  : "Pilih . . ."
+    }));
+    $("#identitas #Kecamatandomisili").find('option').remove().end();
+    $("#identitas #Kecamatandomisili").append($('<option>',{
+        value : "",
         text  : "Pilih . . ."
     }));
 
     if(this.value==0){
-        $("#minat #Kota").prop("disabled",true);
-        $("#minat #Kecamatan").prop("disabled",true);
+        $("#identitas #Kotadomisili").prop("disabled",true);
+        $("#identitas #Kecamatandomisili").prop("disabled",true);
     }
     else
-         getst("Provinsi",$("#minat #Provinsi > option:selected").val(),$("#minat #Kota"));
+         getst("Provinsi",$("#identitas #Provinsidomisili > option:selected").val(),$("#identitas #Kotadomisili"));
  });
 
- $("#minat #Kota").click(function(){
-    $("#minat #Kecamatan").find('option').remove().end();
-    $("#minat #Kecamatan").append($('<option>',{
+ $("#identitas #Kotadomisili").change(function(){
+    $("#identitas #Kecamatandomisili").find('option').remove().end();
+    $("#identitas #Kecamatandomisili").append($('<option>',{
         value : "0",
         text  : "Pilih . . ."
     }));
+
     if(this.value==0)
-        $("#minat #Kecamatan").prop("disabled",true);
+        $("#identitas #Kecamatandomisili").prop("disabled",true);
     else
-        getst("Kota",$("#minat #Kota > option:selected").val(),$("#minat #Kecamatan"));
+        getst("Kota",$("#identitas #Kotadomisili > option:selected").val(),$("#identitas #Kecamatandomisili"));
  });
 
- function setInvalid(param){
-     $(param).addClass( "is-invalid" );
- }
-
- function remInvalid(param){
-    $(param).removeClass( "is-invalid" );
-}
-
-function addvalidnotif(parent,textNotif){
-    let htmlstring = "<div class=\"valid-feedback\">"+textNotif+"</div>";
-    $(parent).html(htmlstring);
-}
-
-function addinvalidnotif(parent,textNotif){
-    let htmlstring = "<div class=\"invalid-feedback\">"+textNotif+"</div>";
-    $(parent).html(htmlstring);
-}
-
-function remnotif(parent){
-    $(parent+".valid-feedback").remove();
-    $(parent+".invalid-feedback").remove();
-}
 
 $('.modal').on('shown.bs.modal', function () {
     $('html,body').animate({ scrollTop: 0 }, '500');
