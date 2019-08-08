@@ -3,13 +3,13 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Dashboard</h2>
+            <h2>Manajemen User</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/dashboard')}}">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Dashboard</strong>
+                    <strong>Manajemen User</strong>
                 </li>
             </ol>
 
@@ -52,19 +52,14 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>NIK</th>
-                                <th data-hide="phone,tablet">Nama</th>
-                                <th data-hide="phone,tablet">Alamat</th>
-                                <th data-hide="phone,tablet">Jenis Kelamin</th>
-                                <th data-hide="phone,tablet">Keahlian</th>
-                                <th data-hide="phone,tablet">Pendidikan Terakhir</th>
-                                <th data-hide="phone,tablet">Status</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($user as $u)
-                            @endforeach
                             <tr class="gradeX">
                                 <td>1</td>
                                 <td>9812131414</td>
@@ -76,40 +71,8 @@
                                 <td class="center">Bekerja di PT. Semangat Baru</td>
                                 <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
                             </tr>
-                            <tr class="gradeX">
-                                <td>2</td>
-                                <td>991213112</td>
-                                <td>Puji Sumaryani</td>
-                                <td class="center">Jalan Pemuda 12 Surabaya</td>
-                                <td class="center">Perempuan</td>
-                                <td class="center">Accounting</td>
-                                <td class="center">D3 Akuntansi</td>
-                                <td class="center"><button type="button" class="btn btn-primary btn-xs">Free</button></td>
-                                <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
-                            </tr>
-                            <tr class="gradeX">
-                                <td>3</td>
-                                <td>9812135413</td>
-                                <td>Isyana Mega</td>
-                                <td class="center">Jalan Sitinggil 12 Sidoarjo</td>
-                                <td class="center">Perempuan</td>
-                                <td class="center">Menjahit</td>
-                                <td class="center">SMK</td>
-                                <td class="center"><button type="button" class="btn btn-primary btn-xs">Free</button></td>
-                                <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
-                            </tr>
-                            <tr class="gradeX">
-                                <td>4</td>
-                                <td>98121398712</td>
-                                <td>Dwi Sasongko</td>
-                                <td class="center">Jalan Pelayaran 23 Gresik</td>
-                                <td class="center">Laki-laki</td>
-                                <td class="center">Programming</td>
-                                <td class="center">S1 Teknik Informatika</td>
-                                <td class="center">Bekerja di PT. Kita Jaya</td>
-                                <td><button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></td>
-                            </tr>
-
+                            @endforeach
+                           
                                 <td colspan="5">
                                     <ul class="pagination pull-right"></ul>
                                 </td>

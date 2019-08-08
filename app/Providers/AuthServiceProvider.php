@@ -37,5 +37,8 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define('isHRD', function($user){
           return $user->roles == 'hrd';
         });
+        $gate->define('isAccessor', function($user){
+          return $user->roles == 'accessor';
+        });
     }
 }

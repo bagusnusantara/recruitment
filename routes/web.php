@@ -4,6 +4,7 @@ Auth::routes();
 include ('hrd.php');
 include ('admin.php');
 include ('client.php');
+include ('accessor.php');
 
 Route::get('/joblist', function () {
     return view('job_list');
