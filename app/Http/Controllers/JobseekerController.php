@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
 use Gate;
 use Alert;
 //---=main data
@@ -121,7 +123,7 @@ class JobseekerController extends Controller
         "keluarga"=>$dataUser->status_data_keluarga,
         "pendidikan"=>$dataUser->status_data_pendidikan,
         "pengalamankerja"=>$dataUser->status_data_pengalamankerja,
-        "minatkerja"=>$dataUser->status_data_minatkerja,
+        "minatkerja"=>$dataUser->status_data_minat,
         "aktivitas"=>$dataUser->status_data_aktivitas,
         "riwayatpenyakit"=>$dataUser->status_data_riwayatpenyakit,
         "lampiran"=>$dataUser->status_data_lampiran,
@@ -168,10 +170,8 @@ class JobseekerController extends Controller
       try {
         $dataUser->update($request->all());
         $status = $dataUser->setStatusIdentitas();
-        dump('sukkses');
-        return response()->json(["success"=>true,"fill"=>$status]);
+        return response()->json(["success"=>true,"statusform"=> $status]);
       } catch (\Throwable $th) {
-        dump($th);
         return response()->json(["success"=>false]);
       }
     }
@@ -188,20 +188,17 @@ class JobseekerController extends Controller
         $request->request->remove('id');
         try {
           $newdata = st_jobseeker_pendidikanformal::create($request->all());
-          $user = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
-          dump($user);
-          return response()->json(['success'=>true,"id"=>$newdata->id]);
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(['success'=>true,"id"=>$newdata->id,"statusform"=>$status]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(['success'=>false]);
         }}
       else {
         try {
           $pendidikanFormal->update($request->all());
-          $user = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
-          return response()->json(['success'=>true]);
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(['success'=>true,"statusform"=>$status]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(['success'=>false]);
         }}
     }
@@ -219,7 +216,6 @@ class JobseekerController extends Controller
           $data = st_jobseeker_pendidikaninformal::create($request->all());
           return response()->json(['success'=>true,"id"=>$data->id]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(['success'=>false]);
         }}
       else{
@@ -227,7 +223,6 @@ class JobseekerController extends Controller
           $pendidikanInformal->update($request->all());
           return response()->json(['success'=>true]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(['success'=>false]);
         }}
     }
@@ -240,11 +235,9 @@ class JobseekerController extends Controller
       if($pendidikanBahasa==null){
         $request->request->remove('id');
         try {
-          dump('succss');
           $dataUser = st_jobseeker_pendidikanbahasa::create($request->all());
           return response()->json(['success'=>true,'id'=> $dataUser->id]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(['success'=>false]);
         }
       }
@@ -269,17 +262,19 @@ class JobseekerController extends Controller
         try {
           dump("success");
           $dataUser = st_jobseeker_pengalamankerja::create($request->all());
-          return response()->json(["success"=>true,"id"=>$dataUser->id]);
+          $status = md_jobseeker::find(\Auth::id())->setStatusPekerjaan();
+          return response()->json(["success"=>true,"id"=>$dataUser->id,"statusform"=>$status]);
         } catch (\Throwable $th) {
           dump($th);
           return response()->json(["success"=>false]);
         }}
       else{
         try {
-          dump("update");
           $riwayatKerja->update($request->all());
-          return response()->json(["success"=>true]);
+          $status = md_jobseeker::find(\Auth::id())->setStatusPekerjaan();
+          return response()->json(["success"=>true,"statusform"=>$status]);
         } catch (\Throwable $th) {
+          dump($th);
           return response()->json(["success"=>false]);
         }}
     }
@@ -293,18 +288,18 @@ class JobseekerController extends Controller
       if($pengalamanOrganisasi==null){
         try {
           $request->request->remove('id');
-          $dataUser = st_jobseeker_pengalamanorganisasi::create($request->all()); 
-          return response()->json(['success'=>true,"id"=>$dataUser->id]);
+          $dataUser = st_jobseeker_pengalamanorganisasi::create($request->all());
+          $status = md_jobseeker::find(\Auth::id())->setStatusAktivitas();
+          return response()->json(['success'=>true,"id"=>$dataUser->id,"statusform"=>$status]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(['success'=>false]);
         }}
         else{
           try {
             $pengalamanOrganisasi->update($request->all());
-            return response()->json(['success'=>true]);
+            $status = md_jobseeker::find(\Auth::id())->setStatusAktivitas();
+            return response()->json(['success'=>true,"statusform"=>$status]);
           } catch (\Throwable $th) {
-            dump($th);
             return response()->json(['success'=>false]);
           }
         }
@@ -322,20 +317,17 @@ class JobseekerController extends Controller
         $request->request->remove('id');
         try{
           $dataUser = st_jobseeker_riwayatpenyakit::create($request->all());
-          dump($request->aLL());
-          dump('success');
-          return response()->json(["success"=>true,"id"=>$dataUser->id]);
+          $status = md_jobseeker::find(\Auth::id())->setStatusRiwayatPenyakit();
+          return response()->json(["success"=>true,"id"=>$dataUser->id,"statusform"=>$status]);
         }catch(\Throwable $th){
-          dump($th);
           return response()->json(["success"=>false]);
         }}
         else{
           try {
-            dump($request->all());
             $riwayatPenyakit->update($request->all());
-            return response()->json(["success"=>true]);
+            $status = md_jobseeker::find(\Auth::id())->setStatusRiwayatPenyakit();
+            return response()->json(["success"=>true,"statusform"=>$status]);
           } catch (\Throwable $th) {
-            dump($th);
             return response()->json(["success"=>false]);
           }}
     }
@@ -348,14 +340,17 @@ class JobseekerController extends Controller
         $request->request->remove('id');
         try {
           $dataUser = st_jobseeker_minatkerja::create($request->all());
-          return response()->json(["success"=>true,"id"=>$dataUser->id]); 
+          $status = md_jobseeker::find(\Auth::id())->setStatusMinat();
+          return response()->json(["success"=>true,"id"=>$dataUser->id,"statusform"=>$status]); 
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]); 
         }}
         else{
           try {
             $dataMinat->update($request->all());
-            return response()->json(["success"=>true]); 
+            $status = md_jobseeker::find(\Auth::id())->setStatusMinat();
+            dump($status);
+            return response()->json(["success"=>true,"statusform"=>$status]); 
           } catch (\Throwable $th) {
             return response()->json(["success"=>false]); 
           }}
@@ -483,9 +478,23 @@ class JobseekerController extends Controller
           return response()->json(["success"=>false]);
         }}
   
+
       public function storeDataLampiran(Request $request){
+        
+        $pathFoto = "foto_pelamar/";
+        $pathIjazah = "scan_ijazah/";
+        $pathTranskrip ="scan_transkrip/";
+        $pathReferensi = "scan_referensi/";
+
+        $userId = \Auth::id();
+        dump('1');
         try {
-          dump($request->all);
+          
+          if($request->hasFile('foto')){
+           $file =Input::file('foto');
+           $extension = $file->getClientOriginalExtension();
+           Storage::disk('jobseeker')->putFileAs($pathFoto,$file,'uda'+"."+$extension);
+          }
         } catch (\Throwable $th) {
           dump($th);
         }

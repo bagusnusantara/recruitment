@@ -31,41 +31,60 @@ class md_jobseeker extends Model
     foreach ($this->identitas as $key) {
       $count += is_null($data[$key])?0:1;
     }
-    if($count){
-      $this->update(["status_data_identitas"=>$count]);
-      return true;
-    }else{
-      $this->update(["status_data_identitas"=>0]);
-      return false;
-    }
+    dump($count);
+    $count = ($count<23)?0:1;
+    dump($count);
+    $this->update(["status_data_identitas"=>$count]);
+    return $count;
   }
 
   public function setStatusKeluarga(){
-    if($this->attributs["status_keluarga"]){
-      $this->update(["status_data_keluarga"=>1]);
-      return true;
-    }else{
-      $this->update(["status_data_keluarga"=>0]);
-      return false;
-    }
+    $keluarga = $this->attributes["status_keluarga"]? 1 : 0 ;
+    dump($keluarga);
+    $this->update(["status_data_keluarga"=>$keluarga]);
+    return $keluarga;
   }
 
   public function setStatusPendidikan(){
-    try {
       $formal   = st_jobseeker_pendidikanformal::where("user_id",$this->attributes['users_id'])->count();
       $informal = st_jobseeker_pendidikaninformal::where("user_id",$this->attributes['users_id'])->count();
       $bahasa   = st_jobseeker_pendidikanbahasa::where("user_id",$this->attributes['users_id'])->count();
-      dump('udah');
-      if($formal>=1){
-        $this->update(["status_data_pendidikan"=>1]);
-        return true;
-      }else{
-        return false;
-      }
-    } catch (\Throwable $th) {
-      dump($th);
-    }
+      
+      $this->update(["status_data_pendidikan"=>$formal]);
+      
+      return $formal;
+  }
+
+  public function setStatusPekerjaan(){
+    $pengalamankerja = st_jobseeker_pengalamankerja::where("user_id",$this->attributes['users_id'])->count();
+
+    $this->update(["status_data_pekerjaan"=>$pengalamankerja]);
+
+    return $pengalamankerja;
+  }
+
+  public function setStatusAktivitas(){
+    $aktivitas = st_jobseeker_pengalamanorganisasi::where("user_id",$this->attributes['users_id'])->count();
+    $aktivitas = ($this->attributes["olahraga"] && $this->attributes["hobi"])?$aktivitas:0;
+    $this->update(["status_data_aktivitas"=>$aktivitas]);
+
+    return $aktivitas;
+  }
+
+  public function setStatusRiwayatPenyakit(){
+    $riwayatpenyakit = st_jobseeker_riwayatpenyakit::where("user_id",$this->attributes['users_id'])->count();
+    $riwayatpenyakit = $this->attributes["referensi_dari"]?$riwayatpenyakit:0;
+    $this->update(["status_data_riwayatpenyakit"=>$riwayatpenyakit]);
     
+    return $riwayatpenyakit;
+  }
+
+  public function setStatusMinat(){
+    $minat = st_jobseeker_minatkerja::where("user_id",$this->attributes['users_id'])->count();
+    
+    $this->update(["status_data_minat"=>$minat]);
+
+    return $minat;
   }
 
   public function md_lowongan_pekerjaan(){

@@ -399,9 +399,7 @@ $("#submitLampiran").click(function(e){
     }});
     
     let sendData = new FormData();
-    sendData.append('id',11);
     sendData.append('foto',$('#fotopelamar')[0].files[0]);
-
     $.ajax({
         url:"/jobseeker/datadiri/submitlampiran",
         method:"post",

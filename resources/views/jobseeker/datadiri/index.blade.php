@@ -64,48 +64,56 @@
               <li class="active">
                 <a class="list-group-item-action" href="#identitas">Identitas</a>
                 @if($dataUserSt['Status']['identitas']==0)
+                <br>
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
               </li>
               <li>
                 <a  class="tab-active list-group-item-action" href="#pendidikan">Pendidikan&nbsp;&nbsp;</a>
                 @if($dataUserSt['Status']['pendidikan']==0)
+                <br>
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
               </li>
               <li>
                 <a  class="list-group-item-action" href="#keluarga">Keluarga</a>
                 @if($dataUserSt['Status']['keluarga']==0)
+                <br>
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
               </li>
               <li>
                 <a  class="list-group-item-action" href="#pekerjaan">Pekerjaan</a>
                 @if($dataUserSt['Status']['pengalamankerja']==0)
+                <br>
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
               </li>
               <li>
                 <a  class="list-group-item-action" href="#minat">Minat</a>
                 @if($dataUserSt['Status']['minatkerja']==0)
+                <br>
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
               </li>
               <li>
                 <a  class="list-group-item-action" href="#aktivitas">Aktivitas</a>
                 @if($dataUserSt['Status']['aktivitas']==0)
+                <br>
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
               </li>
               <li>
                 <a  class="list-group-item-action" href="#lainnya">Lainnya</a>
                 @if($dataUserSt['Status']['riwayatpenyakit']==0)
+                <br>
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
               </li>
               <li>
                 <a  class="list-group-item-action" href="#lampiran">Lampiran</a>
                 @if($dataUserSt['Status']['lampiran']==0)
+                <br>
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
               </li>
