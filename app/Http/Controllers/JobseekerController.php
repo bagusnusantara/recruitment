@@ -117,12 +117,14 @@ class JobseekerController extends Controller
       $dataUserSt['RiwayatKerja'] = st_jobseeker_pengalamankerja::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
       $dataUserSt['Status'] = 
       [
-        "identitas"=>$dataUser->status_identitas,
-        "pendidikan"=>$dataUser->status_pendidikan,
-        "pengalamankerja"=>$dataUser->status_pengalamankerja,
-        "minatkerja"=>$dataUser->status_minatkerja,
-        "aktivitas"=>$dataUser->aktivitas,
-        "riwayatpenyakit"=>$dataUser->riwayatpenyakit,
+        "identitas"=>$dataUser->status_data_identitas,
+        "keluarga"=>$dataUser->status_data_keluarga,
+        "pendidikan"=>$dataUser->status_data_pendidikan,
+        "pengalamankerja"=>$dataUser->status_data_pengalamankerja,
+        "minatkerja"=>$dataUser->status_data_minatkerja,
+        "aktivitas"=>$dataUser->status_data_aktivitas,
+        "riwayatpenyakit"=>$dataUser->status_data_riwayatpenyakit,
+        "lampiran"=>$dataUser->status_data_lampiran,
       ];
 
       //st_support data
@@ -138,22 +140,21 @@ class JobseekerController extends Controller
       $st_data['LevelJabatan']= st_Leveljabatan::all();
       $st_data['PosisiKerja']= st_Posisikerja::all();
       $st_data['Negara'] = st_Negara::all();
+
       $st_data['Provinsiktp'] = st_Provinsi::where('country_id',$dataUser->negara_ktp)->get();
       $st_data['Kabkotaktp'] = st_Kabkota::where('province_id',$dataUser->provinsi_ktp)->get();
-      dump($dataUser->all());
-      dump($dataUser->provinsi_ktp);
-      dump($st_data['Kabkotaktp']);
       $st_data['Kecamatanktp'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_ktp)->get();
       $st_data['Provinsidomisili'] = st_Provinsi::where('country_id',$dataUser->negara_domisili)->get();
       $st_data['Kabkotadomisili'] = st_Kabkota::where('province_id',$dataUser->provinsi_domisili)->get();
       $st_data['Kecamatandomisili'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_domisili)->get();
-      dump($dataUser->kabkota_domisili);
+
       return view('jobseeker.datadiri.index',compact('st_data','dataUser','dataUserSt'));
     }
 
     public function storeDataDiri(Request $request){
       $dataUser = md_jobseeker::find(\Auth::user())->first();
-      dump($request->all());
+      $request['tanggal_lahir'] = date('Y-m-d',strtotime($request->tanggal_lahir));
+
       if($request->is_domisiliktp){
         $request['alamat_domisili']       = $request['alamat_ktp'];    
         $request['negara_domisili']       = $request['negara_ktp'];    
@@ -163,12 +164,12 @@ class JobseekerController extends Controller
         $request['kode_pos_domisili']     = $request['kode_pos_ktp'];  
       }
       $request->request->remove('is_domisiliktp');
-      dump($request->all());
 
       try {
         $dataUser->update($request->all());
-        dump('sukese');
-        return response()->json(["success"=>true]);
+        $status = $dataUser->setStatusIdentitas();
+        dump('sukkses');
+        return response()->json(["success"=>true,"fill"=>$status]);
       } catch (\Throwable $th) {
         dump($th);
         return response()->json(["success"=>false]);
@@ -184,19 +185,23 @@ class JobseekerController extends Controller
       $request['tanggal_akhir'] = $request->tahun_akhir."-12"."-31";
       dump($request->all());
       if($pendidikanFormal==null){
-
         $request->request->remove('id');
         try {
           $newdata = st_jobseeker_pendidikanformal::create($request->all());
+          $user = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          dump($user);
           return response()->json(['success'=>true,"id"=>$newdata->id]);
         } catch (\Throwable $th) {
+          dump($th);
           return response()->json(['success'=>false]);
         }}
       else {
         try {
           $pendidikanFormal->update($request->all());
+          $user = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
           return response()->json(['success'=>true]);
         } catch (\Throwable $th) {
+          dump($th);
           return response()->json(['success'=>false]);
         }}
     }

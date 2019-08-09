@@ -93,7 +93,13 @@ function identitasValidate(){
             Agama:"*Wajib untuk diisi",
             IDCard:"*Wajib untuk diisi",
             NoIDCard:"*Wajib untuk diisi",
-        }
+        },
+        errorPlacement: function(label, element) {
+            label.addClass('arrow');
+            label.insertAfter(element);
+        },
+        wrapper: 'span'
+
     });
 
     console.log('udah dipanggil');

@@ -75,7 +75,7 @@
               </li>
               <li>
                 <a  class="list-group-item-action" href="#keluarga">Keluarga</a>
-                @if(!$dataUser->exists('status_keluarga') && !$dataUser->exists('tanggal_keluarga'))
+                @if($dataUserSt['Status']['keluarga']==0)
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
               </li>
@@ -93,19 +93,21 @@
               </li>
               <li>
                 <a  class="list-group-item-action" href="#aktivitas">Aktivitas</a>
-                @if($dataUserSt['Status']['aktivitas']==0 && !$dataUser->exists('olahraga') && !$dataUser->exists('hobi'))
+                @if($dataUserSt['Status']['aktivitas']==0)
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
               </li>
               <li>
                 <a  class="list-group-item-action" href="#lainnya">Lainnya</a>
-                @if($dataUserSt['Status']['riwayatpenyakit']==0 && !$dataUser->exists('referensi_dari') && !$dataUser->exists('hobi'))
+                @if($dataUserSt['Status']['riwayatpenyakit']==0)
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
                 @endif
               </li>
               <li>
                 <a  class="list-group-item-action" href="#lampiran">Lampiran</a>
+                @if($dataUserSt['Status']['lampiran']==0)
                 <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
+                @endif
               </li>
             </ul>
         </div>

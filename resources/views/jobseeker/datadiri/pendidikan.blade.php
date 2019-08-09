@@ -58,7 +58,7 @@
                           <div class="form-group">
                                 <h4><label class="my-1 mr-2" for="TingkatPendidikan">Tingkat Pendidikan</label></h4>
                                 <select class="custom-select my-1 mr-sm-2" id="TingkatPendidikan">
-                                  <option selected value="0">Pilih . . .</option>
+                                  <option selected value="">Pilih . . .</option>
                                   @foreach ($st_data["TingkatPendidikan"] as $item)
                                     <option value="{{$item->id}}">{{$item->strata}}</option>    
                                   @endforeach
@@ -230,7 +230,7 @@
                               <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="bahasa">Bahasa</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="bahasa">
-                                    <option selected value="0">Pilih . . .</option>
+                                    <option selected value="">Pilih . . .</option>
                                     @foreach ($st_data["Bahasa"] as $item)
                                       <option value="{{$item->id}}">{{$item->deskripsi}}</option>    
                                     @endforeach
@@ -239,7 +239,7 @@
                             <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="kemampuanlisan">Kemampuan Lisan</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="kemampuanlisan">
-                                    <option selected value="0">Pilih . . .</option>
+                                    <option selected value="">Pilih . . .</option>
                                     @foreach ($st_data["Kemampuan"] as $item)
                                       <option value="{{$item->id}}">{{$item->tingkat}}</option>    
                                     @endforeach
@@ -248,7 +248,7 @@
                             <div class="form-group">
                                 <h4><label class="my-1 mr-2" for="kemampuantertulis">Kemampuan Tertulis</label></h4>
                                 <select class="custom-select my-1 mr-sm-2" id="kemampuantertulis">
-                                    <option selected value="0">Pilih . . . </option>
+                                    <option selected value="">Pilih . . . </option>
                                     @foreach ($st_data["Kemampuan"] as $item)
                                       <option value="{{$item->id}}">{{$item->tingkat}}</option>    
                                     @endforeach

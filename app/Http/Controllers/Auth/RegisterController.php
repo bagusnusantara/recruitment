@@ -29,11 +29,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected function redirectTo(){
-<<<<<<<
-        return route('jobseekerDatadiri');
-=======
         return route('JobseekerDatadiri');
->>>>>>>
     }
 
     /**

@@ -6,7 +6,7 @@ $(".pendidikanformal-modal").on('shown.bs.modal', function (e) {
     $(this).data("tr",tabledata);
 
     $("#pendidikanformal #TingkatPendidikan").val($(e.relatedTarget).data("id")|| "");
-    $("#pendidikanformal #TingkatPendidikan").val(tabledata.eq(0).data('value')|| 0);
+    $("#pendidikanformal #TingkatPendidikan").val(tabledata.eq(0).data('value')|| "");
     $("#pendidikanformal #tahunmulai").val(tabledata.eq(1).data('tanggalmulai')|| "");
     $("#pendidikanformal #tahunakhir").val(tabledata.eq(1).data('tanggalakhir')|| "");
     $("#pendidikanformal #institusi").val(tabledata.eq(2).text()|| "");
@@ -54,13 +54,13 @@ $(".minat-modal").on('shown.bs.modal', function (e) {
     $(this).data("tr",tabledata);
     
     $("#minat #id").val($(e.relatedTarget).data("id") || "");
-    $("#minat #BidangBisnis").val(tabledata.eq(0).data('value') || '0' );
-    $('#minat #LingkunganKerja').val(tabledata.eq(1).data('value') || '0');
-    $('#minat #Spesialisasi').val(tabledata.eq(2).data('value') || '0');
-    $('#minat #PosisiKerja').val(tabledata.eq(3).data('value') || '0');
-    $('#minat #LevelJabatan').val(tabledata.eq(4).data('value')|| '0' );
-    $("#minat #_GajiBulan").val(formatRp(tabledata.eq(5).text())|| '0');
-    $("#minat #GajiBulan").val(parseInt(getAngka(tabledata.eq(5).text())) || '0');
+    $("#minat #BidangBisnis").val(tabledata.eq(0).data('value') || '' );
+    $('#minat #LingkunganKerja').val(tabledata.eq(1).data('value') || '');
+    $('#minat #Spesialisasi').val(tabledata.eq(2).data('value') || '');
+    $('#minat #PosisiKerja').val(tabledata.eq(3).data('value') || '');
+    $('#minat #LevelJabatan').val(tabledata.eq(4).data('value')|| '' );
+    $("#minat #_GajiBulan").val(formatRp(tabledata.eq(5).text())|| '');
+    $("#minat #GajiBulan").val(parseInt(getAngka(tabledata.eq(5).text())) || '');
 });
 $(".riwayatpenyakit-modal").on('shown.bs.modal', function (e) {
     let tabledata = $(e.relatedTarget).parents('tr').find('th');
@@ -79,7 +79,7 @@ $('.pengalamankerja-modal').on('shown.bs.modal', function (e) {
     
     $("#pekerjaan #id").val($(e.relatedTarget).data("id")|| "");
     $("#pekerjaan #NamaPerusahaan").val(tabledata.eq(0).text() || "");
-    $("#pekerjaan #BisnisPerusahaan").val(tabledata.eq(1).data('value') || "0");
+    $("#pekerjaan #BisnisPerusahaan").val(tabledata.eq(1).data('value') || "");
     $("#pekerjaan #TahunMulai").val(tabledata.eq(2).data('tanggalmulai')|| "");
     $("#pekerjaan #TahunAkhir").val(tabledata.eq(2).data('tanggalakhir')|| "");
     $("#pekerjaan #TempatKerja").val(tabledata.eq(3).text() || "");
@@ -98,25 +98,25 @@ $('#deletemodal').on('shown.bs.modal', function (e) {
 });
 //----------------on hide modal
 $(".pendidikanformal-modal").on('hide.bs.modal', function (e) {
-    $(this).removeData("id");
+    $(this).find("#id").val('');
 });
 $(".pendidikaninformal-modal").on('hide.bs.modal', function (e) {
-    $(this).removeData("id");
+    $(this).find("#id").val('');
 });
 $(".pendidikanbahasa-modal").on('hide.bs.modal', function (e) {
-    $(this).removeData("id");
+    $(this).find("#id").val('');
 });
 $(".aktivitas-modal").on('hide.bs.modal', function (e) {
-    $(this).removeData("id");
+    $(this).find("#id").val('');
 });
 $(".minat-modal").on('hide.bs.modal', function (e) {
-    $(this).removeData("id");
+    $(this).find("#id").val('');
 });
 $(".riwayatpenyakit-modal").on('hide.bs.modal', function (e) {
-    $(this).removeData("id");
+    $(this).find("#id").val('');
 });
 $('.pengalamankerja-modal').on('hide.bs.modal', function (e) {
-    $(this).removeData("id");
+    $(this).find("#id").val('');
 });
 
 
@@ -440,7 +440,6 @@ $("#submitLampiran").click(function(e){
 });
 $("button#submitIdentitas").each(function(){
         $(this).click(function(e){
-            identitasValidate();
             e.preventDefault();
             let sendProsses = $(this);
             if($(this).data('run'))return;
@@ -834,6 +833,8 @@ $('input.typeTahun').datepicker(inputDateYear);
 $('input.typeBulan').datepicker(inputDateMonth);
 $('#TanggalLahir').datepicker(inputBirth);
 
+identitasValidate();
+
 //end document ready
 });
 
@@ -866,6 +867,7 @@ function getst(id,param,selectedTarget){
           }
         
     });
+    
 };
 
 //Callback Alamat
