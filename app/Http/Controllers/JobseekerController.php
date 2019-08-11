@@ -486,15 +486,39 @@ class JobseekerController extends Controller
         $pathTranskrip ="scan_transkrip/";
         $pathReferensi = "scan_referensi/";
 
-        $userId = \Auth::id();
-        dump('1');
+        $userId = \Auth::id();        
         try {
           
-          if($request->hasFile('foto')){
-           $file =Input::file('foto');
+          if($request->hasFile('fotopelamar')){
+           $file =Input::file('fotopelamar');
            $extension = $file->getClientOriginalExtension();
-           Storage::disk('jobseeker')->putFileAs($pathFoto,$file,'uda'+"."+$extension);
+           Storage::disk('jobseeker')->putFileAs($pathFoto,$file,$userId.".".$extension);
+           dump('1');
           }
+
+          if($request->hasFile('scanijazah')){
+            $file =Input::file('scanijazah');
+            $extension = $file->getClientOriginalExtension();
+            Storage::disk('jobseeker')->putFileAs($pathIjazah,$file,$userId.".".$extension);
+            dump('2');
+           }
+
+           if($request->hasFile('scantranskrip')){
+            $file =Input::file('scantranskrip');
+            dump($file);
+            $extension = $file->getClientOriginalExtension();
+            Storage::disk('jobseeker')->putFileAs($pathTranskrip,$file,$userId.".".$extension);
+            dump('3');
+           }
+
+           
+           if($request->hasFile('scanreferensi')){
+            $file =Input::file('scanreferensi');
+            $extension = $file->getClientOriginalExtension();
+            Storage::disk('jobseeker')->putFileAs($pathReferensi,$file,$userId.".".$extension);
+            dump('4');
+           }
+          
         } catch (\Throwable $th) {
           dump($th);
         }

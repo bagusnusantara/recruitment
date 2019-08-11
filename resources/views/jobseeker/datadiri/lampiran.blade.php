@@ -17,6 +17,14 @@
                           </div>
                         </div>
                       </div>
+                      <div class="card" id="cardfotopelamar">
+                        <div class="card-body">
+                          <label>...</label>
+                          <button class="btn-m btn-primary">Preview</button>
+                          <button class="btn-m btn-danger"><i class="fa fa-trash"></i></button>
+                        </div>
+                      </div>
+
                       <br>
                       <div class="form-group">
                           <h4>Scan Ijazah</h4>
