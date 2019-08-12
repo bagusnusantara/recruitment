@@ -101,6 +101,7 @@ $('#deletemodal_lampiran').on('shown.bs.modal', function (e) {
     let form = $(e.relatedTarget).parents('form');
     let sendid = form.attr("id");
     $(this).data("id",sendid);
+    $(this).data("form",form);
 });
 
 //----------------on hide modal
@@ -192,7 +193,7 @@ $('#delete_lampiran').click(function(e){
     sendProsses.data('run',true);
 
     let dataId = $("#deletemodal_lampiran").data("id");
-    
+    let formLampiran =  $("#deletemodal_lampiran").data("form");
     $.ajaxSetup({
         headers:{
         'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
@@ -206,9 +207,9 @@ $('#delete_lampiran').click(function(e){
         success:function(result){
             console.log(result.success);
             if(result.success){
-                $("#deletemodal_lampiran").modal("hide");
-            }else{
-                $("#delete-caution-lampiran").parent("div").show();
+                let sectLampiran = formLampiran.children();
+                sectLampiran.eq(0).slideDown();
+                sectLampiran.eq(1).slideUp();
             }
         },
         fail:function(){
@@ -841,8 +842,9 @@ $('#TanggalLahir').datepicker(inputBirth);
 
 $(".preview-file").click(function(e){
     e.preventDefault();
-    let form = $("this").parents("form");
+    let form = $(this).parents("form");
     let url = "";
+
     if(form.find("input[type='file']").val()){
         url = window.URL.createObjectURL($('input[type="file"]')[0].files[0]);
     }
@@ -879,8 +881,10 @@ $(".submit-file").click(function(e){
         processData: false,
         contentType: false,
         success:function(result){
-            
-            },
+            if(result.success){
+                
+            }
+        },
         beforeSend: function(){
             // Show image container
             sendProsses.find('a').text('Unggah Data');
@@ -895,8 +899,24 @@ $(".submit-file").click(function(e){
     });
 });
 
+$('#lampiran form input[type="file"]').change(function(){
+    
+    let sectLampiran = $(this).parents("form").children();
+    sectLampiran.eq(0).slideUp();
 
+    sectLampiran.eq(1).find(".submit-file").show();
+    sectLampiran.eq(1).find(".close-file").show();
+    sectLampiran.eq(1).find("h3.title").text($(this)[0].files[0].name);
+    sectLampiran.eq(1).find(".del-file").hide();
+    sectLampiran.eq(1).slideDown();
+});
 
+$(".close-file").click(function(e){
+    e.preventDefault();
+    let sectLampiran = $(this).parents("form").children();
+    sectLampiran.eq(0).slideDown();
+    sectLampiran.eq(1).slideUp();
+});
 //end document ready
 });
 

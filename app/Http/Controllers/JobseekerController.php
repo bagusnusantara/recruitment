@@ -482,79 +482,51 @@ class JobseekerController extends Controller
   
 
       public function storeDataLampiran(Request $request){
-        
+
         $pathFoto = "foto_pelamar/";
         $pathIjazah = "scan_ijazah/";
         $pathTranskrip ="scan_transkrip/";
         $pathReferensi = "scan_referensi/";
-
+        $pathChoosen = "";
+        $columnName ="";
+        $file = "";
         try {
           if($request->file('fotopelamar')){
-
             $file =Input::file('fotopelamar');
-            $extension = $file->getClientOriginalExtension();
-
-            $datafile = md_jobseeker::find(\Auth::id());
-            $datafile_name = pathinfo($datafile->lampiran_foto, PATHINFO_FILENAME);
-
-            $nameWill = ($datafile_name) ? $datafile_name : Uuid::uuid4()->toString();
-            $nameWill = $nameWill.".".$extension;
-            dump($datafile->lampiran_foto);
-            Storage::disk('jobseeker')->delete($pathFoto.$datafile->lampiran_foto);
-            Storage::disk('jobseeker')->putFileAs($pathFoto,$file,$nameWill);
-            $datafile->lampiran_foto = $nameWill;
-            $datafile->save();
-
+            $pathChoosen = $pathFoto;
+            $columnName = "lampiran_foto";
           }elseif($request->file('scanijazah')){
-
             $file =Input::file('scanijazah');
-            $extension = $file->getClientOriginalExtension();
+            $pathChoosen = $pathIjazah;
+            $columnName = "lampiran_ijazah";
 
-            $datafile = md_jobseeker::find(\Auth::id());
-            $datafile_name = pathinfo($datafile->lampiran_scanijazah, PATHINFO_FILENAME);
-
-            $nameWill = ($datafile_name) ? $datafile_name : Uuid::uuid4()->toString();
-            $nameWill = $nameWill.".".$extension;
-            
-            Storage::disk('jobseeker')->delete($pathIjazah.$datafile->lampiran_ijazah);
-            Storage::disk('jobseeker')->putFileAs($pathIjazah,$file,$nameWill);
-            $datafile->lampiran_ijazah = $nameWill;
-            $datafile->save();
-            
            }elseif($request->file('scantranskrip')){
-
             $file =Input::file('scantranskrip');
-            $extension = $file->getClientOriginalExtension();
+            $pathChoosen = $pathTranskrip;
+            $columnName = "lampiran_transkripnilai";
 
-            $datafile = md_jobseeker::find(\Auth::id());
-            $datafile_name = pathinfo($datafile->lampiran_scantranskrip, PATHINFO_FILENAME);
-
-            $nameWill = ($datafile_name) ? $datafile_name : Uuid::uuid4()->toString();
-            $nameWill = $nameWill.".".$extension;
-            
-            dump($datafile->lampiran_foto);
-            Storage::disk('jobseeker')->delete($pathTranskrip.$datafile->lampiran_transkrip);
-            Storage::disk('jobseeker')->putFileAs($pathTranskrip,$file,$nameWill);
-            $datafile->lampiran_transkrip = $nameWill;
-            $datafile->save();
-            
            }elseif($request->file('scanreferensi')){
-
             $file =Input::file('scanreferensi');
-            $extension = $file->getClientOriginalExtension();
+            $pathChoosen = $pathReferensi;
+            $columnName = "lampiran_referensikerja";
+           }
 
+
+          if($request->file()){
+            dump('here');
             $datafile = md_jobseeker::find(\Auth::id());
-            $datafile_name = pathinfo($datafile->lampiran_referensikerja, PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $datafile_name = pathinfo($datafile['columnName'], PATHINFO_FILENAME);
 
             $nameWill = ($datafile_name) ? $datafile_name : Uuid::uuid4()->toString();
             $nameWill = $nameWill.".".$extension;
-            
-            Storage::disk('jobseeker')->delete($pathReferensi.$datafile->lampiran_referensikerja);
-            Storage::disk('jobseeker')->putFileAs($pathReferensi,$file,$nameWill);
-            $datafile->lampiran_referensikerja = $nameWill;
+
+            Storage::disk('jobseeker')->delete($pathFoto.$datafile[$columnName]);
+            Storage::disk('jobseeker')->putFileAs($pathFoto,$file,$nameWill);
+            $datafile[$columnName] = $nameWill;
             $datafile->save();
-            
-           }
+            return response()->json(["success"=>1]);
+          }
           
         } catch (\Throwable $th) {
           dump($th);
@@ -569,32 +541,28 @@ class JobseekerController extends Controller
         $pathReferensi = "scan_referensi/";
 
         $datafile = md_jobseeker::find(\Auth::id());
-        if($request->id=="fotopelamar"){
+        $columnName = "";
+        try {
+          if($request->id=="fotopelamar"){
+            $columnName = "lampiran_foto";
+          }elseif($request->id=="scanijazah"){
+            $columnName = "lampiran_ijazah";
+          }elseif($request->id=="scantranskrip"){
+            $columnName = "lampiran_transkripnilai";
+          }elseif($request->id=="scanreferensi"){
+            $columnName = "lampiran_referensikerja";
+          }
+
+          Storage::disk("jobseeker")->delete($pathReferensi.$datafile[$columnName]);
+          $datafile[$columnName]=null;
+          $datafile->save();
+          return response()->json(["success"=>1]);
+
           
-          Storage::disk("jobseeker")->delete($pathFoto.$datafile->lampiran_foto);
-          $datafile->lampiran_foto = null;
-          $datafile->save();
-          dump('1');
-          return response()->json(["success"=>1]);
-        }elseif($request->id=="scanijazah"){
-          Storage::disk("jobseeker")->delete($pathIjazah.$datafile->lampiran_ijazah);
-          $datafile->lampiran_ijazah=null;
-          $datafile->save();
-          dump('2');
-          return response()->json(["success"=>1]);
-        }elseif($request->id=="scantranskrip"){
-          Storage::disk("jobseeker")->delete($pathTranskrip.$datafile->lampiran_transkripnilai);
-          $datafile->lampiran_transkripnilai = null;
-          $datafile->save();
-          dump('3');
-          return response()->json(["success"=>1]);
-        }elseif($request->id=="scanreferensi"){
-          Storage::disk("jobseeker")->delete($pathReferensi.$datafile->lampiran_referensikerja);
-          $datafile->lampiran_referensikerja=null;
-          $datafile->save();
-          dump('4');
-          return response()->json(["success"=>1]);
+        } catch (\Throwable $th) {
+          dump($th);
         }
+
       }
 
       public function getLampiran($kategori){
@@ -603,37 +571,27 @@ class JobseekerController extends Controller
         $pathIjazah = "scan_ijazah/";
         $pathTranskrip ="scan_transkrip/";
         $pathReferensi = "scan_referensi/";
-
-        if($kategori=="foto"){
-          $namefile = DB::select('select lampiran_foto from md_jobseeker where users_id=:id',['id'=>\Auth::id()]);
-          $namefile = $pathFoto.$namefile[0]->lampiran_foto;
-          $file = Storage::disk('jobseeker')->get($namefile);
-          $path = Storage::disk('jobseeker')->path($namefile);
-           return response()->file($path);
-
-        }elseif($kategori=="scanijazah"){
-          $namefile = DB::select('select lampiran_ijazah from md_jobseeker where users_id=:id',['id'=>\Auth::id()]);
-          $namefile = $pathFoto.$namefile[0]->lampiran_ijazah;
-
-          $file = Storage::disk('jobseeker')->get($namefile);
-          $path = Storage::disk('jobseeker')->path($namefile);
-          return response()->file($path);
-
-        }elseif($kategori=="scantranskrip"){
-          $namefile = DB::select('select lampiran_transkripnilai from md_jobseeker where users_id=:id',['id'=>\Auth::id()]);
-          $namefile = $pathFoto.$namefile[0]->lampiran_transkripnilai;
-
+        $columnName = "";
+        try {
+          if($kategori=="foto"){
+            $columnName = "lampiran_foto";
+  
+          }elseif($kategori=="scanijazah"){
+            $columnName = "lampiran_ijazah";
+  
+          }elseif($kategori=="scantranskrip"){
+            $columnName = "lampiran_transkripnilai";
+          }
+          elseif($kategori=="scanreferensi"){
+            $columnName="lampiran_referensikerja";
+          }
+          $namefile = DB::select('select '.$columnName.' from md_jobseeker where users_id=:id',['id'=>\Auth::id()]);
+          $namefile = $pathFoto.$namefile[0]->get($columnName);
           $file = Storage::disk('jobseeker')->get($namefile);
           $path = Storage::disk('jobseeker')->path($namefile);
           return response()->file($path);
         }
-        elseif($kategori=="scanreferensi"){
-          $namefile = DB::select('select lampiran_referensikerja from md_jobseeker where users_id=:id',['id'=>\Auth::id()]);
-          $namefile = $pathFoto.$namefile[0]->lampiran_referensikerja;
-
-          $file = Storage::disk('jobseeker')->get($namefile);
-          $path = Storage::disk('jobseeker')->path($namefile);
-          return response()->file($path);
+        } catch (\Throwable $th) {
+          dump($th);
         }
-      }
 }
