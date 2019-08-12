@@ -11,7 +11,8 @@ Route::prefix('admin')->group(function(){
     Route::get('manajemenuser', 'AdminController@getManajemenuser');
     Route::get('lowongan/show/{id}', 'AdminController@showLowongan')->name('showAdminLowongan');
     Route::get('lowongan/penilaian/{jobid}/users/{userid}', 'AdminController@showPenilaian')->name('penilaian');
-
+    Route::get('profile', 'AdminController@profile');
+    Route::post('profile', 'AdminController@update_avatar');
     //-x Create Method
     Route::get('dashboard/create', 'AdminController@createDashboard');
     Route::get('notifikasi/create', 'AdminController@createNotifikasi');

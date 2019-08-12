@@ -17,6 +17,9 @@
                             @csrf
                           </form>
                         </li>
+                        <li>
+                            <a href="/profile">Ganti Profil</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="logo-element">
