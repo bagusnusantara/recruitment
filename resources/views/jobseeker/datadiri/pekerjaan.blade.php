@@ -63,7 +63,7 @@
                                   <div class="form-group">
                                       <h4><label class="my-1 mr-2" for="BisnisPerusahaan">Bisnis Perusahaan</label></h4>
                                       <select class="custom-select my-1 mr-sm-2" id="BisnisPerusahaan">
-                                        <option selected value="0">Pilih . . .</option>
+                                        <option selected value="">Pilih . . .</option>
                                         @foreach ($st_data["BisnisPerusahaan"] as $item)
                                           <option value="{{$item->id}}">{{$item->name}}</option>    
                                         @endforeach

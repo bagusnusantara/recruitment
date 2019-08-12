@@ -96,6 +96,13 @@ $('#deletemodal').on('shown.bs.modal', function (e) {
     $(this).data("href",$(e.relatedTarget).data("href"));
     $(this).data("tr",$(e.relatedTarget).parents('tr'));
 });
+
+$('#deletemodal_lampiran').on('shown.bs.modal', function (e) {
+    let form = $(e.relatedTarget).parents('form');
+    let sendid = form.attr("id");
+    $(this).data("id",sendid);
+});
+
 //----------------on hide modal
 $(".pendidikanformal-modal").on('hide.bs.modal', function (e) {
     $(this).find("#id").val('');
@@ -117,6 +124,16 @@ $(".riwayatpenyakit-modal").on('hide.bs.modal', function (e) {
 });
 $('.pengalamankerja-modal').on('hide.bs.modal', function (e) {
     $(this).find("#id").val('');
+});
+
+$('#deletemodal').on("hidden.bs.modal",function(e){
+    e.preventDefault();
+    $("#delete-caution").parent("div").hide();
+});
+
+$('#deletemodal_lampiran').on("hidden.bs.modal",function(e){
+    e.preventDefault();
+    $("#delete-caution").parent("div").hide();
 });
 
 
@@ -168,10 +185,50 @@ $('#delete_supreme').click(function(e){
     });
 });
 
-$('#deletemodal').on("hidden.bs.modal",function(e){
+$('#delete_lampiran').click(function(e){
     e.preventDefault();
-    $("#delete-caution").parent("div").hide();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+
+    let dataId = $("#deletemodal_lampiran").data("id");
+    
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/deletelampiran/",
+        method:"delete",
+        data :{
+            id: dataId,
+        },
+        success:function(result){
+            console.log(result.success);
+            if(result.success){
+                $("#deletemodal_lampiran").modal("hide");
+            }else{
+                $("#delete-caution-lampiran").parent("div").show();
+            }
+        },
+        fail:function(){
+            $("#delete-caution-lampiran").parent("div").show();
+        },
+        beforeSend: function(){
+
+            $("#delete_lampiran a").text('Hapus...');
+            $("#delete_lampiran #loader").show();
+        },
+        complete:function(data){
+            
+            sendProsses.data('run',false);
+            $("#delete_lampiran a").text('Hapus');
+            $("#delete_lampiran #loader").hide();
+        }
+    });
 });
+
+
 
 $("#submitPendidikanFormal").click(function(e){
     e.preventDefault();
@@ -387,58 +444,6 @@ $("#submitPendidikanBahasa").click(function(e){
     });
 });
 
-$("#submitLampiran").click(function(e){
-    e.preventDefault();
-    let sendProsses = $(this);
-    if($(this).data('run'))return;
-    sendProsses.data('run',true);
-
-    $.ajaxSetup({
-        headers:{
-        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
-    }});
-    
-    let sendData = new FormData();
-    sendData.append('fotopelamar',$('#fotopelamar')[0].files[0]);
-    sendData.append('scanijazah',$('#scanijazah')[0].files[0]);
-    sendData.append('scantranskrip',$('#scantranskrip')[0].files[0]);
-    sendData.append('scanreferensi',$('#scantranskrip')[0].files[0]);
-    $.ajax({
-        url:"/jobseeker/datadiri/submitlampiran",
-        method:"post",
-        data :sendData,
-        processData: false,
-        contentType: false,
-        success:function(result){                    
-            console.log(result);
-        },
-        fail:function(error){
-            console.log(error);
-        },
-        beforeSend: function(){
-            // Show image container
-            $("#submitLampiran a").each(function(){
-                $(this).text('Unggah Data');
-            });
-            $("#submitLampiran #loader").each(function(){
-                $(this).show();
-            });
-        },
-        complete:function(data){
-            // Hide image container
-            console.log(data);
-            sendProsses.data('run',false);
-            $("#submitLampiran a").each(function(){
-                $(this).text('Simpan');
-            });
-            $("#submitLampiran #loader").each(function(){
-                $(this).hide();
-            });
-        }
-    });
-
-
-});
 $("button#submitIdentitas").each(function(){
         $(this).click(function(e){
             e.preventDefault();
@@ -834,7 +839,63 @@ $('input.typeTahun').datepicker(inputDateYear);
 $('input.typeBulan').datepicker(inputDateMonth);
 $('#TanggalLahir').datepicker(inputBirth);
 
-identitasValidate();
+$(".preview-file").click(function(e){
+    e.preventDefault();
+    let form = $("this").parents("form");
+    let url = "";
+    if(form.find("input[type='file']").val()){
+        url = window.URL.createObjectURL($('input[type="file"]')[0].files[0]);
+    }
+    else{
+        url = $(this).data("href");
+    }
+    
+    window.open(url,"_blank",widget=500,height=500);
+});
+
+
+$(".submit-file").click(function(e){
+    e.preventDefault();
+
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+    
+
+    let form = $(this).parents('form');
+    let file=form.find('input[type="file"]')[0].files[0];
+    let sendData = new FormData();
+
+    sendData.append(form.attr('id'),file);
+    
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/submitlampiran",
+        method:"post",
+        data :sendData,
+        processData: false,
+        contentType: false,
+        success:function(result){
+            
+            },
+        beforeSend: function(){
+            // Show image container
+            sendProsses.find('a').text('Unggah Data');
+            sendProsses.find('#loader').show();
+        },
+        complete:function(data){
+            // Hide image container
+            sendProsses.data('run',false);
+            sendProsses.find('a').text('Unggah');
+            sendProsses.find('#loader').hide();
+        }
+    });
+});
+
+
 
 //end document ready
 });

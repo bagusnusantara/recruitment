@@ -70,4 +70,7 @@ Route::prefix('jobseeker')->group(function(){
 
     //-x support ajax
     Route::post('support/getst/', 'SupportController@getSt');
+
+
+    Route::get('lampiran/{kategori}','JobSeekerController@getLampiran');
 });

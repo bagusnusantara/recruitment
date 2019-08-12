@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
+use Ramsey\Uuid\Uuid;
 use Gate;
 use Alert;
 //---=main data
@@ -40,15 +41,16 @@ use App\st_jobseeker_minatkerja;
 //temporary
 use Illuminate\Support\Facades\DB;
 
+
 class JobseekerController extends Controller
 {
     public function getDashboard(){
       if(!Gate::allows('isJobseeker')){
           return redirect()->route("PublicLowongan");
       }
-      $statusUser  = DB::table('md_jobseeker')->select('status_identitas','status_pendidikan','status_pengalamankerja','status_aktivitas','status_riwayatpenyakit','status_minatkerja')
+      $statusUser  = DB::table('md_jobseeker')->select('status_data_identitas','status_data_pendidikan','status_data_pekerjaan','status_data_aktivitas','status_data_riwayatpenyakit','status_data_minat')
                     ->where('users_id',\Auth::user()->id)->first();
-      if($statusUser->status_identitas==0 ||  $statusUser->status_pendidikan==0 || $statusUser->status_minatkerja==0)
+      if($statusUser->status_data_identitas==0 ||  $statusUser->status_data_pendidikan==0 || $statusUser->status_data_minat==0)
       return redirect()->route('JobseekerDatadiri')->with('alert','Anda belum dapat melihat lowongan !!');
 
       $lowongan_pekerjaan=md_lowongan_pekerjaan::paginate(10);
@@ -122,7 +124,7 @@ class JobseekerController extends Controller
         "identitas"=>$dataUser->status_data_identitas,
         "keluarga"=>$dataUser->status_data_keluarga,
         "pendidikan"=>$dataUser->status_data_pendidikan,
-        "pengalamankerja"=>$dataUser->status_data_pengalamankerja,
+        "pengalamankerja"=>$dataUser->status_data_pekerjaan,
         "minatkerja"=>$dataUser->status_data_minat,
         "aktivitas"=>$dataUser->status_data_aktivitas,
         "riwayatpenyakit"=>$dataUser->status_data_riwayatpenyakit,
@@ -486,37 +488,72 @@ class JobseekerController extends Controller
         $pathTranskrip ="scan_transkrip/";
         $pathReferensi = "scan_referensi/";
 
-        $userId = \Auth::id();        
         try {
-          
-          if($request->hasFile('fotopelamar')){
-           $file =Input::file('fotopelamar');
-           $extension = $file->getClientOriginalExtension();
-           Storage::disk('jobseeker')->putFileAs($pathFoto,$file,$userId.".".$extension);
-           dump('1');
-          }
+          if($request->file('fotopelamar')){
 
-          if($request->hasFile('scanijazah')){
+            $file =Input::file('fotopelamar');
+            $extension = $file->getClientOriginalExtension();
+
+            $datafile = md_jobseeker::find(\Auth::id());
+            $datafile_name = pathinfo($datafile->lampiran_foto, PATHINFO_FILENAME);
+
+            $nameWill = ($datafile_name) ? $datafile_name : Uuid::uuid4()->toString();
+            $nameWill = $nameWill.".".$extension;
+            dump($datafile->lampiran_foto);
+            Storage::disk('jobseeker')->delete($pathFoto.$datafile->lampiran_foto);
+            Storage::disk('jobseeker')->putFileAs($pathFoto,$file,$nameWill);
+            $datafile->lampiran_foto = $nameWill;
+            $datafile->save();
+
+          }elseif($request->file('scanijazah')){
+
             $file =Input::file('scanijazah');
             $extension = $file->getClientOriginalExtension();
-            Storage::disk('jobseeker')->putFileAs($pathIjazah,$file,$userId.".".$extension);
-            dump('2');
-           }
 
-           if($request->hasFile('scantranskrip')){
+            $datafile = md_jobseeker::find(\Auth::id());
+            $datafile_name = pathinfo($datafile->lampiran_scanijazah, PATHINFO_FILENAME);
+
+            $nameWill = ($datafile_name) ? $datafile_name : Uuid::uuid4()->toString();
+            $nameWill = $nameWill.".".$extension;
+            
+            Storage::disk('jobseeker')->delete($pathIjazah.$datafile->lampiran_ijazah);
+            Storage::disk('jobseeker')->putFileAs($pathIjazah,$file,$nameWill);
+            $datafile->lampiran_ijazah = $nameWill;
+            $datafile->save();
+            
+           }elseif($request->file('scantranskrip')){
+
             $file =Input::file('scantranskrip');
-            dump($file);
             $extension = $file->getClientOriginalExtension();
-            Storage::disk('jobseeker')->putFileAs($pathTranskrip,$file,$userId.".".$extension);
-            dump('3');
-           }
 
-           
-           if($request->hasFile('scanreferensi')){
+            $datafile = md_jobseeker::find(\Auth::id());
+            $datafile_name = pathinfo($datafile->lampiran_scantranskrip, PATHINFO_FILENAME);
+
+            $nameWill = ($datafile_name) ? $datafile_name : Uuid::uuid4()->toString();
+            $nameWill = $nameWill.".".$extension;
+            
+            dump($datafile->lampiran_foto);
+            Storage::disk('jobseeker')->delete($pathTranskrip.$datafile->lampiran_transkrip);
+            Storage::disk('jobseeker')->putFileAs($pathTranskrip,$file,$nameWill);
+            $datafile->lampiran_transkrip = $nameWill;
+            $datafile->save();
+            
+           }elseif($request->file('scanreferensi')){
+
             $file =Input::file('scanreferensi');
             $extension = $file->getClientOriginalExtension();
-            Storage::disk('jobseeker')->putFileAs($pathReferensi,$file,$userId.".".$extension);
-            dump('4');
+
+            $datafile = md_jobseeker::find(\Auth::id());
+            $datafile_name = pathinfo($datafile->lampiran_referensikerja, PATHINFO_FILENAME);
+
+            $nameWill = ($datafile_name) ? $datafile_name : Uuid::uuid4()->toString();
+            $nameWill = $nameWill.".".$extension;
+            
+            Storage::disk('jobseeker')->delete($pathReferensi.$datafile->lampiran_referensikerja);
+            Storage::disk('jobseeker')->putFileAs($pathReferensi,$file,$nameWill);
+            $datafile->lampiran_referensikerja = $nameWill;
+            $datafile->save();
+            
            }
           
         } catch (\Throwable $th) {
@@ -526,6 +563,77 @@ class JobseekerController extends Controller
       }
 
       public function destroyDataLampiran(Request $request){
-      dump($request->all());
+        $pathFoto = "foto_pelamar/";
+        $pathIjazah = "scan_ijazah/";
+        $pathTranskrip ="scan_transkrip/";
+        $pathReferensi = "scan_referensi/";
+
+        $datafile = md_jobseeker::find(\Auth::id());
+        if($request->id=="fotopelamar"){
+          
+          Storage::disk("jobseeker")->delete($pathFoto.$datafile->lampiran_foto);
+          $datafile->lampiran_foto = null;
+          $datafile->save();
+          dump('1');
+          return response()->json(["success"=>1]);
+        }elseif($request->id=="scanijazah"){
+          Storage::disk("jobseeker")->delete($pathIjazah.$datafile->lampiran_ijazah);
+          $datafile->lampiran_ijazah=null;
+          $datafile->save();
+          dump('2');
+          return response()->json(["success"=>1]);
+        }elseif($request->id=="scantranskrip"){
+          Storage::disk("jobseeker")->delete($pathTranskrip.$datafile->lampiran_transkripnilai);
+          $datafile->lampiran_transkripnilai = null;
+          $datafile->save();
+          dump('3');
+          return response()->json(["success"=>1]);
+        }elseif($request->id=="scanreferensi"){
+          Storage::disk("jobseeker")->delete($pathReferensi.$datafile->lampiran_referensikerja);
+          $datafile->lampiran_referensikerja=null;
+          $datafile->save();
+          dump('4');
+          return response()->json(["success"=>1]);
+        }
+      }
+
+      public function getLampiran($kategori){
+        
+        $pathFoto = "foto_pelamar/";
+        $pathIjazah = "scan_ijazah/";
+        $pathTranskrip ="scan_transkrip/";
+        $pathReferensi = "scan_referensi/";
+
+        if($kategori=="foto"){
+          $namefile = DB::select('select lampiran_foto from md_jobseeker where users_id=:id',['id'=>\Auth::id()]);
+          $namefile = $pathFoto.$namefile[0]->lampiran_foto;
+          $file = Storage::disk('jobseeker')->get($namefile);
+          $path = Storage::disk('jobseeker')->path($namefile);
+           return response()->file($path);
+
+        }elseif($kategori=="scanijazah"){
+          $namefile = DB::select('select lampiran_ijazah from md_jobseeker where users_id=:id',['id'=>\Auth::id()]);
+          $namefile = $pathFoto.$namefile[0]->lampiran_ijazah;
+
+          $file = Storage::disk('jobseeker')->get($namefile);
+          $path = Storage::disk('jobseeker')->path($namefile);
+          return response()->file($path);
+
+        }elseif($kategori=="scantranskrip"){
+          $namefile = DB::select('select lampiran_transkripnilai from md_jobseeker where users_id=:id',['id'=>\Auth::id()]);
+          $namefile = $pathFoto.$namefile[0]->lampiran_transkripnilai;
+
+          $file = Storage::disk('jobseeker')->get($namefile);
+          $path = Storage::disk('jobseeker')->path($namefile);
+          return response()->file($path);
+        }
+        elseif($kategori=="scanreferensi"){
+          $namefile = DB::select('select lampiran_referensikerja from md_jobseeker where users_id=:id',['id'=>\Auth::id()]);
+          $namefile = $pathFoto.$namefile[0]->lampiran_referensikerja;
+
+          $file = Storage::disk('jobseeker')->get($namefile);
+          $path = Storage::disk('jobseeker')->path($namefile);
+          return response()->file($path);
+        }
       }
 }
