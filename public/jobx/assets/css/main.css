@@ -4511,3 +4511,7 @@ span.arrow {
 label.error{
   color:#ff0000;
 }
+
+.hidden-block{
+  display:none;
+}

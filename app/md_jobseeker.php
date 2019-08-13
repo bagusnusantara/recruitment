@@ -31,16 +31,13 @@ class md_jobseeker extends Model
     foreach ($this->identitas as $key) {
       $count += is_null($data[$key])?0:1;
     }
-    dump($count);
     $count = ($count<23)?0:1;
-    dump($count);
     $this->update(["status_data_identitas"=>$count]);
     return $count;
   }
 
   public function setStatusKeluarga(){
     $keluarga = $this->attributes["status_keluarga"]? 1 : 0 ;
-    dump($keluarga);
     $this->update(["status_data_keluarga"=>$keluarga]);
     return $keluarga;
   }
@@ -49,7 +46,6 @@ class md_jobseeker extends Model
       $formal   = st_jobseeker_pendidikanformal::where("user_id",$this->attributes['users_id'])->count();
       $informal = st_jobseeker_pendidikaninformal::where("user_id",$this->attributes['users_id'])->count();
       $bahasa   = st_jobseeker_pendidikanbahasa::where("user_id",$this->attributes['users_id'])->count();
-      
       $this->update(["status_data_pendidikan"=>$formal]);
       
       return $formal;
@@ -85,6 +81,13 @@ class md_jobseeker extends Model
     $this->update(["status_data_minat"=>$minat]);
 
     return $minat;
+  }
+
+  public function setStatusLampiran(){
+    $lampiran = ($this->attributes["lampiran_foto"] && $this->attributes["lampiran_ijazah"] && $this->attributes["lampiran_transkripnilai"] && $this->attributes["lampiran_referensikerja"])? 1 : 0 ;
+    
+    $this->update(["status_data_lampiran"=>$lampiran]);
+    return $lampiran;
   }
 
   public function md_lowongan_pekerjaan(){

@@ -96,6 +96,14 @@ $('#deletemodal').on('shown.bs.modal', function (e) {
     $(this).data("href",$(e.relatedTarget).data("href"));
     $(this).data("tr",$(e.relatedTarget).parents('tr'));
 });
+
+$('#deletemodal_lampiran').on('shown.bs.modal', function (e) {
+    let form = $(e.relatedTarget).parents('form');
+    let sendid = form.attr("id");
+    $(this).data("id",sendid);
+    $(this).data("form",form);
+});
+
 //----------------on hide modal
 $(".pendidikanformal-modal").on('hide.bs.modal', function (e) {
     $(this).find("#id").val('');
@@ -117,6 +125,16 @@ $(".riwayatpenyakit-modal").on('hide.bs.modal', function (e) {
 });
 $('.pengalamankerja-modal').on('hide.bs.modal', function (e) {
     $(this).find("#id").val('');
+});
+
+$('#deletemodal').on("hidden.bs.modal",function(e){
+    e.preventDefault();
+    $("#delete-caution").parent("div").hide();
+});
+
+$('#deletemodal_lampiran').on("hidden.bs.modal",function(e){
+    e.preventDefault();
+    $("#delete-caution").parent("div").hide();
 });
 
 
@@ -147,6 +165,12 @@ $('#delete_supreme').click(function(e){
             if(result.success){
                 tr_delete.remove();
                 $("#deletemodal").modal("hide");
+
+                if(result.statusform)
+                    $("#"+result.statussection).hide();
+                else
+                    $("#"+result.statussection).show();
+                    
             }else{
                 $("#delete-caution").parent("div").show();
             }
@@ -168,10 +192,59 @@ $('#delete_supreme').click(function(e){
     });
 });
 
-$('#deletemodal').on("hidden.bs.modal",function(e){
+$('#delete_lampiran').click(function(e){
     e.preventDefault();
-    $("#delete-caution").parent("div").hide();
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+
+    let dataId = $("#deletemodal_lampiran").data("id");
+    let formLampiran =  $("#deletemodal_lampiran").data("form");
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/deletelampiran/",
+        method:"delete",
+        data :{
+            id: dataId,
+        },
+        success:function(result){
+            console.log(result.success);
+            if(result.success){
+                let sectLampiran = formLampiran.children();
+                sectLampiran.eq(0).slideDown(); //form upload
+                sectLampiran.eq(1).slideUp(); //block-action 
+                sectLampiran.eq(1).removeClass("isUploaded");
+                $("#deletemodal_lampiran").modal('hide');
+                
+                if(result.statusform)
+                    $("#status_data_lampiran").hide();
+                else
+                    $("#status_data_lampiran").show(); 
+            }else{
+                $("#delete-caution-lampiran").parent("div").show();
+            }
+        },
+        fail:function(){
+            $("#delete-caution-lampiran").parent("div").show();
+        },
+        beforeSend: function(){
+
+            $("#delete_lampiran a").text('Hapus...');
+            $("#delete_lampiran #loader").show();
+        },
+        complete:function(data){
+            
+            sendProsses.data('run',false);
+            $("#delete_lampiran a").text('Hapus');
+            $("#delete_lampiran #loader").hide();
+        }
+    });
 });
+
+
 
 $("#submitPendidikanFormal").click(function(e){
     e.preventDefault();
@@ -200,8 +273,13 @@ $("#submitPendidikanFormal").click(function(e){
             keterangan                     :$("#pendidikanformal #keterangan").val(),
         },
         success:function(result){
-
+            console.log(result);
             if(result.success){
+                if(result.statusform)
+                    $("#status_data_pendidikan").hide();
+                else
+                    $("#status_data_pendidikan").show(); 
+
                 if($("#pendidikanformal #id").val()){
 
                     tabledata.eq(0).text($("#pendidikanformal #TingkatPendidikan option:selected").text());
@@ -278,6 +356,11 @@ $("#submitPendidikanInformal").click(function(e){
         },
         success:function(result){
             if(result.success){
+                if(result.statusform)
+                    $("#status_data_pendidikan").hide();
+                else
+                    $("#status_data_pendidikan").show(); 
+
                 if($("#pendidikaninformal #id").val()){
 
                     tabledata.eq(0).text($("#pendidikaninformal #jenispelatihan").val());
@@ -340,6 +423,11 @@ $("#submitPendidikanBahasa").click(function(e){
         success:function(result){
             
             if(result.success){
+                if(result.statusform)
+                    $("#status_data_pendidikan").hide();
+                else
+                    $("#status_data_pendidikan").show(); 
+                    
                 if($("#pendidikanbahasa #id").val()){
                     console.log(result.success,$("#pendidikanbahasa #id").val());
                     tabledata.eq(0).text($('#pendidikanbahasa #bahasa option:selected').text());
@@ -387,58 +475,6 @@ $("#submitPendidikanBahasa").click(function(e){
     });
 });
 
-$("#submitLampiran").click(function(e){
-    e.preventDefault();
-    let sendProsses = $(this);
-    if($(this).data('run'))return;
-    sendProsses.data('run',true);
-
-    $.ajaxSetup({
-        headers:{
-        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
-    }});
-    
-    let sendData = new FormData();
-    sendData.append('fotopelamar',$('#fotopelamar')[0].files[0]);
-    sendData.append('scanijazah',$('#scanijazah')[0].files[0]);
-    sendData.append('scantranskrip',$('#scantranskrip')[0].files[0]);
-    sendData.append('scanreferensi',$('#scantranskrip')[0].files[0]);
-    $.ajax({
-        url:"/jobseeker/datadiri/submitlampiran",
-        method:"post",
-        data :sendData,
-        processData: false,
-        contentType: false,
-        success:function(result){                    
-            console.log(result);
-        },
-        fail:function(error){
-            console.log(error);
-        },
-        beforeSend: function(){
-            // Show image container
-            $("#submitLampiran a").each(function(){
-                $(this).text('Unggah Data');
-            });
-            $("#submitLampiran #loader").each(function(){
-                $(this).show();
-            });
-        },
-        complete:function(data){
-            // Hide image container
-            console.log(data);
-            sendProsses.data('run',false);
-            $("#submitLampiran a").each(function(){
-                $(this).text('Simpan');
-            });
-            $("#submitLampiran #loader").each(function(){
-                $(this).hide();
-            });
-        }
-    });
-
-
-});
 $("button#submitIdentitas").each(function(){
         $(this).click(function(e){
             e.preventDefault();
@@ -486,8 +522,13 @@ $("button#submitIdentitas").each(function(){
                     hobi               : $("#Hobi").val(),
                     referensi_dari     : $("#SurveyReferensi").val(),
                 },
-                success:function(result){                    
-                    console.log(result.success);
+                success:function(result){
+                    if(result.statusform)
+                        $("#status_data_identitas").hide();
+                    else
+                        $("#status_data_identitas").show(); 
+                    
+                        console.log(result.success);
                 },
                 beforeSend: function(){
                     // Show image container
@@ -538,6 +579,11 @@ $("#submitRiwayatPenyakit").click(function(e){
                     console.log(result.success);
                     if(result.success)
                     {
+                        if(result.statusform)
+                            $("#status_data_lainnya").hide();
+                        else
+                            $("#status_data_lainnya").show(); 
+
                         if($("#lainnya #id").val()){
                             tabledata.eq(0).text($("#lainnya #NamaPenyakit").val());
                             tabledata.eq(1).text($("#lainnya #TahunMulai").val()+" - "+$("#lainnya #TahunAkhir").val());
@@ -612,8 +658,12 @@ $("#submitPengalamanOrganisasi").click(function(e){
         success:function(result){
             console.log(result.success);
             if(result.success){
+            if(result.statusform)
+                $("#status_data_aktivitas").hide();
+            else
+                $("#status_data_aktivitas").show(); 
 
-             if($('#aktivitas #id').val()){
+            if($('#aktivitas #id').val()){
                 tabledata.eq(0).text($("#aktivitas #Organisasi").val());
                 tabledata.eq(1).text($("#aktivitas #TahunMulai").val()+" - "+$("#aktivitas #TahunAkhir").val());
                 tabledata.eq(1).data("tanggalmulai",$("#aktivitas #TahunMulai").val());
@@ -679,6 +729,11 @@ $("#submitMinat").click(function(e){
         success:function(result){
             console.log(result.success);
             if(result.success){
+                if(result.statusform)
+                    $("#status_data_minat").hide();
+                else
+                    $("#status_data_minat").show(); 
+
                 if($("#minat #id").val()){
                     tabledata.eq(0).text($("#minat #BidangBisnis  option:selected").text());
                     tabledata.eq(1).text($('#minat #LingkunganKerja  option:selected').text());
@@ -745,7 +800,7 @@ $("#submitRiwayatPekerjaan").click(function(e){
             lokasi_perusahaan: $("#pekerjaan #TempatKerja").val(),
             tanggal_mulai    : $("#pekerjaan #TahunMulai").val(),
             tanggal_akhir    : $("#pekerjaan #TahunAkhir").val(),
-            lokasikerja      : $("#pekerjaan #TempatKerja").val(),
+            lokasi_kerja      : $("#pekerjaan #TempatKerja").val(),
             posisi           : $("#pekerjaan #Posisi").val(),
             bawahan          : $('#pekerjaan #Bawahan').val(),
             gaji_terakhir    : $('#pekerjaan #GajiTerakhir').val(),
@@ -755,6 +810,11 @@ $("#submitRiwayatPekerjaan").click(function(e){
         success:function(result){
             console.log(result.success);
             if(result.success){
+                if(result.statusform)
+                    $("#status_data_pekerjaan").hide();
+                else
+                    $("#status_data_pekerjaan").show(); 
+
                 if($('#pekerjaan #id').val()){
                     console.log('overwrite');
                     tabledata.eq(0).text($("#pekerjaan #NamaPerusahaan").val());
@@ -834,8 +894,88 @@ $('input.typeTahun').datepicker(inputDateYear);
 $('input.typeBulan').datepicker(inputDateMonth);
 $('#TanggalLahir').datepicker(inputBirth);
 
-identitasValidate();
+$(".preview-file").click(function(e){
+    e.preventDefault();
+    let url = "";
+    let isUploaded = $(this).parents(".block-action").hasClass("isUploaded");
+    let previewFile = $(this).parents("form").find('input[type="file"]')[0].files[0];
+    if(isUploaded){
+        url = $(this).data("href");
+    }
+    else{
+        url = window.URL.createObjectURL(previewFile);
+    }
+    
+    window.open(url,"_blank",widget=500,height=500);
+});
 
+
+$(".submit-file").click(function(e){
+    e.preventDefault();
+
+    let sendProsses = $(this);
+    if($(this).data('run'))return;
+    sendProsses.data('run',true);
+    
+
+    let form = $(this).parents('form');
+    let file=form.find('input[type="file"]')[0].files[0];
+    let sendData = new FormData();
+
+    sendData.append(form.attr('id'),file);
+    
+    $.ajaxSetup({
+        headers:{
+        'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+        } });
+    $.ajax({
+        url:"/jobseeker/datadiri/submitlampiran",
+        method:"post",
+        data :sendData,
+        processData: false,
+        contentType: false,
+        success:function(result){
+            console.log('success');
+            if(result.success){
+                sendProsses.slideUp();
+                let blockAction = form.children().eq(1);
+                blockAction.addClass("isUploaded");
+                blockAction.find(".close-file").slideUp();
+                blockAction.find(".del-file").slideDown();
+            }
+        },
+        beforeSend: function(){
+            // Show image container
+            sendProsses.find('a').text('Unggah Data');
+            sendProsses.find('#loader').show();
+        },
+        complete:function(data){
+            // Hide image container
+            sendProsses.data('run',false);
+            sendProsses.find('a').text('Unggah');
+            sendProsses.find('#loader').hide();
+        }
+    });
+});
+
+$('#lampiran form input[type="file"]').change(function(){
+    
+    let sectLampiran = $(this).parents("form").children();
+    sectLampiran.eq(0).slideUp();
+
+    sectLampiran.eq(1).find(".submit-file").show();
+    sectLampiran.eq(1).find(".close-file").show();
+    sectLampiran.eq(1).find("h3.title").text($(this)[0].files[0].name);
+    sectLampiran.eq(1).find(".del-file").hide();
+    sectLampiran.eq(1).slideDown();
+});
+
+$(".close-file").click(function(e){
+    e.preventDefault();
+    let sectLampiran = $(this).parents("form").children();
+    sectLampiran.eq(0).slideDown();
+    sectLampiran.eq(1).slideUp();
+});
 //end document ready
 });
 

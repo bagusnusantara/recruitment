@@ -18,4 +18,3 @@
 <script src="{{asset('js/jquery/jquery.datatables/datatables.min.js')}}"></script>
 
 <!-- our script-->
-

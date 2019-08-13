@@ -1,27 +1,9 @@
 @extends('public.template.index')
 
 @section('content')
- <!-- Mitra Section Start -->
- <section class="category section bg-gray">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Kategori</h2>
-      <p>Lowongan Yang Dibuka</p>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-        <a href="browse-jobs.html">
-          <div class="icon bg-color-1">
-            <i class="lni-home"></i>
-          </div>
-          <h3>Finance</h3>
-          <p>(4286 jobs)</p>
-        </a>
-      </div>
-</section>
-<!-- Mitra Section End -->
 
-<!-- download Section Start -->
+
+<!-- download Section start -->
 <section id="download" class="section bg-gray">
   <div class="container">
     <div class="row">
@@ -47,13 +29,55 @@
     </div>
   </div>
 </section>
-<!-- download Section Start -->
+<!-- download Section end -->
+
+<!-- KategoriSection Start -->
+<div class="container">
+<section class="section-carousel owl-carousel" >
+<section class="item category section bg-gray" style="width:100%;">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Kategori</h2>
+      <p>Lowongan Yang Dibuka</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-xs-12 f-category">
+        <a href="browse-jobs.html">
+          <div class="icon bg-color-1">
+            <i class="lni-home"></i>
+          </div>
+          <h3>Finance</h3>
+          <p>(4286 jobs)</p>
+        </a>
+      </div>
+</section>
+
+<section class="item category section bg-gray" style="width:100%;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Kategori</h2>
+        <p>Lowongan Yang Dibuka</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-xs-12 f-category">
+          <a href="browse-jobs.html">
+            <div class="icon bg-color-1">
+              <i class="lni-home"></i>
+            </div>
+            <h3>Finance</h3>
+            <p>(4286 jobs)</p>
+          </a>
+        </div>
+</section>
+</section>
+</div>
+<!-- Mitra Section End -->
 
  <!-- Latest Section Start -->
  <section id="latest-jobs" class="section bg-gray">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Latest Jobs</h2>
+      <h2 class="section-title">Lowongan Terakhir</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ellentesque dignissim quam et <br> metus effici turac fringilla lorem facilisis.</p>
     </div>
     <div class="row">
@@ -166,5 +190,24 @@
   </div>
 </section>
 <!-- Latest Section End -->
+@endsection
+@section('script')
+<script>
+  $(".section-carousel").owlCarousel({
+    loop:true,
+    autoplay:true,
+    autoplayTimeout:2000,
+    autoplayHoverPause:true,
+    dots:true,
+    responsive:{
+        0:{
+          items:1
+        },
+      991:{
+            items:1
+          }
+      }
 
+  });
+</script>
 @endsection

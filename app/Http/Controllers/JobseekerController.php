@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
+use Ramsey\Uuid\Uuid;
 use Gate;
 use Alert;
 //---=main data
@@ -37,7 +38,6 @@ use App\st_jobseeker_pendidikaninformal;
 use App\st_jobseeker_pendidikanbahasa;
 use App\st_jobseeker_minatkerja;
 
-//temporary
 use Illuminate\Support\Facades\DB;
 
 class JobseekerController extends Controller
@@ -46,9 +46,9 @@ class JobseekerController extends Controller
       if(!Gate::allows('isJobseeker')){
           return redirect()->route("PublicLowongan");
       }
-      $statusUser  = DB::table('md_jobseeker')->select('status_identitas','status_pendidikan','status_pengalamankerja','status_aktivitas','status_riwayatpenyakit','status_minatkerja')
+      $statusUser  = DB::table('md_jobseeker')->select('status_data_identitas','status_data_pendidikan','status_data_pekerjaan','status_data_aktivitas','status_data_riwayatpenyakit','status_data_minat')
                     ->where('users_id',\Auth::user()->id)->first();
-      if($statusUser->status_identitas==0 ||  $statusUser->status_pendidikan==0 || $statusUser->status_minatkerja==0)
+      if($statusUser->status_data_identitas==0 ||  $statusUser->status_data_pendidikan==0 || $statusUser->status_data_minat==0)
       return redirect()->route('JobseekerDatadiri')->with('alert','Anda belum dapat melihat lowongan !!');
 
       $lowongan_pekerjaan=md_lowongan_pekerjaan::paginate(10);
@@ -107,22 +107,22 @@ class JobseekerController extends Controller
     //Lamaran Section
     public function showDataDiri(){
       $user_id = \Auth::user()->id;
-      $dataUser = md_jobseeker::where('users_id',$user_id)->first();
       
+      $dataUser = md_jobseeker::where('users_id',$user_id)->first();
       //st_jobseeker
-      $dataUserSt['PendidikanFormal'] = st_jobseeker_pendidikanformal::where('user_id',$user_id)->get();
-      $dataUserSt['PendidikanInformal'] = st_jobseeker_pendidikaninformal::where('user_id',$user_id)->get();
-      $dataUserSt['PendidikanBahasa'] = st_jobseeker_pendidikanbahasa::where('user_id',$user_id)->get();
-      $dataUserSt['RiwayatPenyakit'] = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
+      $dataUserSt['PendidikanFormal']     = st_jobseeker_pendidikanformal::where('user_id',$user_id)->get();
+      $dataUserSt['PendidikanInformal']   = st_jobseeker_pendidikaninformal::where('user_id',$user_id)->get();
+      $dataUserSt['PendidikanBahasa']     = st_jobseeker_pendidikanbahasa::where('user_id',$user_id)->get();
+      $dataUserSt['RiwayatPenyakit']      = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
       $dataUserSt['PengalamanOrganisasi'] = st_jobseeker_pengalamanorganisasi::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
-      $dataUserSt['MinatKerja']   = st_jobseeker_minatkerja::where('user_id',$user_id)->get();
-      $dataUserSt['RiwayatKerja'] = st_jobseeker_pengalamankerja::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
+      $dataUserSt['MinatKerja']           = st_jobseeker_minatkerja::where('user_id',$user_id)->get();
+      $dataUserSt['RiwayatKerja']         = st_jobseeker_pengalamankerja::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
       $dataUserSt['Status'] = 
       [
         "identitas"=>$dataUser->status_data_identitas,
         "keluarga"=>$dataUser->status_data_keluarga,
         "pendidikan"=>$dataUser->status_data_pendidikan,
-        "pengalamankerja"=>$dataUser->status_data_pengalamankerja,
+        "pengalamankerja"=>$dataUser->status_data_pekerjaan,
         "minatkerja"=>$dataUser->status_data_minat,
         "aktivitas"=>$dataUser->status_data_aktivitas,
         "riwayatpenyakit"=>$dataUser->status_data_riwayatpenyakit,
@@ -142,13 +142,13 @@ class JobseekerController extends Controller
       $st_data['LevelJabatan']= st_Leveljabatan::all();
       $st_data['PosisiKerja']= st_Posisikerja::all();
       $st_data['Negara'] = st_Negara::all();
-
-      $st_data['Provinsiktp'] = st_Provinsi::where('country_id',$dataUser->negara_ktp)->get();
-      $st_data['Kabkotaktp'] = st_Kabkota::where('province_id',$dataUser->provinsi_ktp)->get();
-      $st_data['Kecamatanktp'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_ktp)->get();
-      $st_data['Provinsidomisili'] = st_Provinsi::where('country_id',$dataUser->negara_domisili)->get();
-      $st_data['Kabkotadomisili'] = st_Kabkota::where('province_id',$dataUser->provinsi_domisili)->get();
-      $st_data['Kecamatandomisili'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_domisili)->get();
+        //->support data with user carry
+        $st_data['Provinsiktp'] = st_Provinsi::where('country_id',$dataUser->negara_ktp)->get();
+        $st_data['Kabkotaktp'] = st_Kabkota::where('province_id',$dataUser->provinsi_ktp)->get();
+        $st_data['Kecamatanktp'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_ktp)->get();
+        $st_data['Provinsidomisili'] = st_Provinsi::where('country_id',$dataUser->negara_domisili)->get();
+        $st_data['Kabkotadomisili'] = st_Kabkota::where('province_id',$dataUser->provinsi_domisili)->get();
+        $st_data['Kecamatandomisili'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_domisili)->get();
 
       return view('jobseeker.datadiri.index',compact('st_data','dataUser','dataUserSt'));
     }
@@ -183,7 +183,7 @@ class JobseekerController extends Controller
       $request->request->add(['user_id'=>\Auth::user()->id]);
       $request['tanggal_mulai'] = $request->tahun_mulai."-01"."-01";
       $request['tanggal_akhir'] = $request->tahun_akhir."-12"."-31";
-      dump($request->all());
+
       if($pendidikanFormal==null){
         $request->request->remove('id');
         try {
@@ -213,8 +213,9 @@ class JobseekerController extends Controller
       if($pendidikanInformal==null){
         $request->request->remove('id');        
         try {
-          $data = st_jobseeker_pendidikaninformal::create($request->all());
-          return response()->json(['success'=>true,"id"=>$data->id]);
+          $newdata = st_jobseeker_pendidikaninformal::create($request->all());
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(['success'=>true,"id"=>$newdata->id,"statusform"=>$status]);
         } catch (\Throwable $th) {
           return response()->json(['success'=>false]);
         }}
@@ -235,8 +236,9 @@ class JobseekerController extends Controller
       if($pendidikanBahasa==null){
         $request->request->remove('id');
         try {
-          $dataUser = st_jobseeker_pendidikanbahasa::create($request->all());
-          return response()->json(['success'=>true,'id'=> $dataUser->id]);
+          $newdata = st_jobseeker_pendidikanbahasa::create($request->all());
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(['success'=>true,"id"=>$newdata->id,"statusform"=>$status]);
         } catch (\Throwable $th) {
           return response()->json(['success'=>false]);
         }
@@ -250,7 +252,6 @@ class JobseekerController extends Controller
         }}
     }
 
-
     public function storeDataPengalamanKerja(Request $request){
       $riwayatKerja = st_jobseeker_pengalamankerja::where('user_id',\Auth::user()->id)
                                                     ->where('id',$request->id)->first();
@@ -260,12 +261,10 @@ class JobseekerController extends Controller
       if($riwayatKerja==null){
         $request->request->remove('id');
         try {
-          dump("success");
           $dataUser = st_jobseeker_pengalamankerja::create($request->all());
           $status = md_jobseeker::find(\Auth::id())->setStatusPekerjaan();
           return response()->json(["success"=>true,"id"=>$dataUser->id,"statusform"=>$status]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(["success"=>false]);
         }}
       else{
@@ -274,7 +273,6 @@ class JobseekerController extends Controller
           $status = md_jobseeker::find(\Auth::id())->setStatusPekerjaan();
           return response()->json(["success"=>true,"statusform"=>$status]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(["success"=>false]);
         }}
     }
@@ -307,7 +305,6 @@ class JobseekerController extends Controller
     }
 
     public function storeDataRiwayatPenyakit(Request $request){
-
       $riwayatPenyakit = st_jobseeker_riwayatpenyakit:: where('user_id',\Auth::user()->id)
                                                         ->where('id',$request->id)->first();
       $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
@@ -349,13 +346,207 @@ class JobseekerController extends Controller
           try {
             $dataMinat->update($request->all());
             $status = md_jobseeker::find(\Auth::id())->setStatusMinat();
-            dump($status);
             return response()->json(["success"=>true,"statusform"=>$status]); 
           } catch (\Throwable $th) {
             return response()->json(["success"=>false]); 
           }}
     }
-    //Pelamaran Lowongan
+
+      public function destroyDataPendidikanFormal(Request $request){
+        try {
+          $pendidikanFormal = st_jobseeker_pendidikanformal::where('user_id',\Auth::user()->id)
+                                                         ->where('id',$request->id)->first();
+          $pendidikanFormal->delete();
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_pendidikan"]);
+        } catch (\Throwable $th) {
+          return response()->json(["success"=>false]);
+        }}
+
+      public function destroyDataPendidikanInformal(Request $request){
+        try {
+          $pendidikanInformal = st_jobseeker_pendidikaninformal::where('user_id',\Auth::user()->id)
+                                                         ->where('id',$request->id)->first();
+          $pendidikanInformal->delete();
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_pendidikan"]);
+        } catch (\Throwable $th) {
+          return response()->json(["success"=>false]);
+        }}
+      
+      public function destroyDataPendidikanBahasa(Request $request){
+        try {
+          $pendidikanBahasa = st_jobseeker_pendidikanbahasa::where('user_id',\Auth::user()->id)
+                                                          ->where('id',$request->id)->first();
+          $pendidikanBahasa->delete();
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_pendidikan"]);
+        } catch (\Throwable $th) {
+          return response()->json(["success"=>false]);
+        }}
+
+      public function destroyDataPengalamanKerja(Request $request){
+       try {
+            $riwayatKerja = st_jobseeker_pengalamankerja::where('user_id',\Auth::user()->id)
+                                                          ->where('id',$request->id)->first();
+            $riwayatKerja->delete();
+            $status = md_jobseeker::find(\Auth::id())->setStatusPekerjaan();
+            return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_pekerjaan"]);
+       } catch (\Throwable $th) {
+            return response()->json(["success"=>false]);
+       } }
+
+      public function destroyDataPengalamanOrganisasi(Request $request){
+        try {
+          $pengalamanOrganisasi = st_jobseeker_pengalamanorganisasi:: where('user_id',\Auth::user()->id)
+                                                                  ->where('id',$request->id)->first();
+          $pengalamanOrganisasi->delete();
+          $status = md_jobseeker::find(\Auth::id())->setStatusAktivitas();
+          return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_aktivitas"]);
+        } catch (\Throwable $th) {
+          return response()->json(["success"=>false]);
+        }}
+
+      public function destroyDataRiwayatPenyakit(Request $request){
+        try {
+          $riwayatPenyakit = st_jobseeker_riwayatpenyakit:: where('user_id',\Auth::user()->id)
+                                                          ->where('id',$request->id)->first();
+          $riwayatPenyakit->delete();
+          $status = md_jobseeker::find(\Auth::id())->setStatusRiwayatPenyakit();
+          return response()->json(["success"=>true,'statusform'=>$status,"statussection"=>"status_data_lainnya"]);
+        } catch (\Throwable $th) {
+          return response()->json(["success"=>false]);
+        }}
+
+      public function destroyDataMinat(Request $request){
+        try {
+          $dataMinat = st_jobseeker_minatkerja::where('user_id',\Auth::user()->id)
+                                            ->where('id',$request->id)->first();
+          $dataMinat->delete();
+          $status = md_jobseeker::find(\Auth::id())->setStatusMinat();
+          return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_minat"]);
+        } catch (\Throwable $th) {
+          return response()->json(["success"=>false]);
+        }}
+
+      public function storeDataLampiran(Request $request){
+        $pathFoto = "foto_pelamar/";
+        $pathIjazah = "scan_ijazah/";
+        $pathTranskrip ="scan_transkrip/";
+        $pathReferensi = "scan_referensi/";
+        $pathChoosen = "";
+        $columnName ="";
+        $file = "";
+        try {
+          if($request->file()){
+            if($request->file('fotopelamar')){
+              $file =Input::file('fotopelamar');
+              $pathChoosen = $pathFoto;
+              $columnName = "lampiran_foto";
+            }elseif($request->file('scanijazah')){
+              $file =Input::file('scanijazah');
+              $pathChoosen = $pathIjazah;
+              $columnName = "lampiran_ijazah";
+
+            }elseif($request->file('scantranskrip')){
+              $file =Input::file('scantranskrip');
+              $pathChoosen = $pathTranskrip;
+              $columnName = "lampiran_transkripnilai";
+
+            }elseif($request->file('scanreferensi')){
+              $file =Input::file('scanreferensi');
+              $pathChoosen = $pathReferensi;
+              $columnName = "lampiran_referensikerja";
+            }
+              $datafile = md_jobseeker::find(\Auth::id());
+              $extension = $file->getClientOriginalExtension();
+              $datafile_name = pathinfo($datafile['columnName'], PATHINFO_FILENAME);
+
+              $nameWill = ($datafile_name) ? $datafile_name : Uuid::uuid4()->toString();
+              $nameWill = $nameWill.".".$extension;
+
+              Storage::disk('jobseeker')->delete($pathChoosen.$datafile[$columnName]);
+              Storage::disk('jobseeker')->putFileAs($pathChoosen,$file,$nameWill);
+              $datafile[$columnName] = $nameWill;
+              $datafile->save();
+
+              $status = md_jobseeker::find(\Auth::id())->setStatusLampiran();
+              return response()->json(["success"=>1,"statusform"=>$status]);
+          }
+          
+        } catch (\Throwable $th) {
+        }
+        
+      }
+
+      public function destroyDataLampiran(Request $request){
+        $pathFoto = "foto_pelamar/";
+        $pathIjazah = "scan_ijazah/";
+        $pathTranskrip ="scan_transkrip/";
+        $pathReferensi = "scan_referensi/";
+
+        $datafile = md_jobseeker::find(\Auth::id());
+        $columnName = "";
+        $pathChoosen = "";
+        try {
+          if($request->id=="fotopelamar"){
+            $columnName = "lampiran_foto";
+            $pathChoosen = $pathFoto;
+          }elseif($request->id=="scanijazah"){
+            $columnName = "lampiran_ijazah";
+            $pathChoosen = $pathIjazah;
+          }elseif($request->id=="scantranskrip"){
+            $columnName = "lampiran_transkripnilai";
+            $pathChoosen = $pathTranskrip;
+          }elseif($request->id=="scanreferensi"){
+            $columnName = "lampiran_referensikerja";
+            $pathChoosen = $pathReferensi;
+          }
+
+          Storage::disk("jobseeker")->delete($pathChoosen.$datafile[$columnName]);
+          $datafile[$columnName]=null;
+          $datafile->save();
+          $status = md_jobseeker::find(\Auth::id())->setStatusLampiran();
+          return response()->json(["success"=>1,"statusform"=>$status]);
+        } catch (\Throwable $th) {
+          return response()->json(["success"=>0]);
+        }
+
+      }
+
+      public function getLampiran($kategori){
+        $pathFoto = "foto_pelamar/";
+        $pathIjazah = "scan_ijazah/";
+        $pathTranskrip ="scan_transkrip/";
+        $pathReferensi = "scan_referensi/";
+
+        $columnName = "";
+        $pathChoosen = "";
+
+        try {
+          if($kategori=="foto"){
+            $columnName = "lampiran_foto";
+            $pathChoosen = $pathFoto;
+          }elseif($kategori=="scanijazah"){
+            $columnName = "lampiran_ijazah";
+            $pathChoosen = $pathIjazah;
+          }elseif($kategori=="scantranskrip"){
+            $columnName = "lampiran_transkripnilai";
+            $pathChoosen = $pathTranskrip;
+          }
+          elseif($kategori=="scanreferensi"){
+            $columnName="lampiran_referensikerja";
+            $pathChoosen = $pathReferensi;
+          }
+          $namefile = DB::select('select '.$columnName.' from md_jobseeker where users_id=:id',['id'=>\Auth::id()]);
+          $namefile = $pathChoosen.$namefile[0]->$columnName;
+          $path = Storage::disk('jobseeker')->path($namefile);
+          return response()->file($path,["Cache-Control: no-store, no-cache, must-revalidate, max-age=0","Pragma: no-cache"]);
+        } catch (\Throwable $th) {
+        }
+      }
+
+//---------------------------------------------------Pelamaran Lowongan----------------------------------------------//
     public function showLowongan($id){
       if(!Gate::allows('isJobseeker')){
           abort(404,"Maaf Anda tidak memiliki akses");
@@ -392,140 +583,4 @@ class JobseekerController extends Controller
 
       return redirect()->back()->with(compact('status'));
     }
-
-    // public function storeLamaran(Request $request){
-    //   $this->validate($request,[
-    //         // 'nama_alat' => 'required',
-    //         // 'jenis_alat' => 'required',
-    //         // 'jumlah' => 'required',
-    //         // 'status_kepemilikan' => 'required',
-    //         // 'status_kelaikan' => 'required'
-    //     ]);
-    //     $lowongan = trans_lowongan_pekerjaan::create($request->all());
-    //     $lowongan->save();
-    //     Alert::success('Lowongan Pekerjaan berhasil terkirim');
-    //     return redirect()->back()->with('successMsg','Slider Successfully Saved');
-    //   }
-      public function destroyDataPendidikanFormal(Request $request){
-        try {
-          $pendidikanFormal = st_jobseeker_pendidikanformal::where('user_id',\Auth::user()->id)
-                                                         ->where('id',$request->id)->first();
-          $pendidikanFormal->delete();
-          dump('success');
-          return response()->json(["success"=>true]);
-        } catch (\Throwable $th) {
-          return response()->json(["success"=>false]);
-        }}
-
-      public function destroyDataPendidikanInformal(Request $request){
-        try {
-          $pendidikanInformal = st_jobseeker_pendidikaninformal::where('user_id',\Auth::user()->id)
-                                                         ->where('id',$request->id)->first();
-          $pendidikanInformal->delete();
-          return response()->json(["success"=>true]);
-        } catch (\Throwable $th) {
-          return response()->json(["success"=>false]);
-        }}
-      
-      public function destroyDataPendidikanBahasa(Request $request){
-        try {
-          $pendidikanBahasa = st_jobseeker_pendidikanbahasa::where('user_id',\Auth::user()->id)
-                                                          ->where('id',$request->id)->first();
-          $pendidikanBahasa->delete();
-          return response()->json(["success"=>true]);
-        } catch (\Throwable $th) {
-          return response()->json(["success"=>false]);
-        }}
-
-      public function destroyDataPengalamanKerja(Request $request){
-       try {
-            $riwayatKerja = st_jobseeker_pengalamankerja::where('user_id',\Auth::user()->id)
-                                                          ->where('id',$request->id)->first();
-            $riwayatKerja->delete();
-            return response()->json(["success"=>true]);
-       } catch (\Throwable $th) {
-            return response()->json(["success"=>false]);
-       } }
-
-      public function destroyDataPengalamanOrganisasi(Request $request){
-        try {
-          $pengalamanOrganisasi = st_jobseeker_pengalamanorganisasi:: where('user_id',\Auth::user()->id)
-                                                                  ->where('id',$request->id)->first();
-          $pengalamanOrganisasi->delete();
-          return response()->json(["success"=>true]);
-        } catch (\Throwable $th) {
-          return response()->json(["success"=>false]);
-        }}
-
-      public function destroyDataRiwayatPenyakit(Request $request){
-        try {
-          $riwayatPenyakit = st_jobseeker_riwayatpenyakit:: where('user_id',\Auth::user()->id)
-                                                          ->where('id',$request->id)->first();
-          $riwayatPenyakit->delete();
-          return response()->json(["success"=>true]);
-        } catch (\Throwable $th) {
-          return response()->json(["success"=>false]);
-        }}
-
-      public function destroyDataMinat(Request $request){
-        try {
-          $dataMinat = st_jobseeker_minatkerja::where('user_id',\Auth::user()->id)
-                                            ->where('id',$request->id)->first();
-          $dataMinat->delete();
-          return response()->json(["success"=>true]);
-        } catch (\Throwable $th) {
-          dump($th);
-          return response()->json(["success"=>false]);
-        }}
-  
-
-      public function storeDataLampiran(Request $request){
-        
-        $pathFoto = "foto_pelamar/";
-        $pathIjazah = "scan_ijazah/";
-        $pathTranskrip ="scan_transkrip/";
-        $pathReferensi = "scan_referensi/";
-
-        $userId = \Auth::id();        
-        try {
-          
-          if($request->hasFile('fotopelamar')){
-           $file =Input::file('fotopelamar');
-           $extension = $file->getClientOriginalExtension();
-           Storage::disk('jobseeker')->putFileAs($pathFoto,$file,$userId.".".$extension);
-           dump('1');
-          }
-
-          if($request->hasFile('scanijazah')){
-            $file =Input::file('scanijazah');
-            $extension = $file->getClientOriginalExtension();
-            Storage::disk('jobseeker')->putFileAs($pathIjazah,$file,$userId.".".$extension);
-            dump('2');
-           }
-
-           if($request->hasFile('scantranskrip')){
-            $file =Input::file('scantranskrip');
-            dump($file);
-            $extension = $file->getClientOriginalExtension();
-            Storage::disk('jobseeker')->putFileAs($pathTranskrip,$file,$userId.".".$extension);
-            dump('3');
-           }
-
-           
-           if($request->hasFile('scanreferensi')){
-            $file =Input::file('scanreferensi');
-            $extension = $file->getClientOriginalExtension();
-            Storage::disk('jobseeker')->putFileAs($pathReferensi,$file,$userId.".".$extension);
-            dump('4');
-           }
-          
-        } catch (\Throwable $th) {
-          dump($th);
-        }
-        
-      }
-
-      public function destroyDataLampiran(Request $request){
-      dump($request->all());
-      }
 }

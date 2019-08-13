@@ -63,59 +63,43 @@
           <ul id="tab" class="list-item">
               <li class="active">
                 <a class="list-group-item-action" href="#identitas">Identitas</a>
-                @if($dataUserSt['Status']['identitas']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+                <span id="status_data_identitas" class="menu-badge badge badge-pill badge-danger mt-0 {{ $dataUserSt['Status']['identitas']?"hidden-block":"" }}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="tab-active list-group-item-action" href="#pendidikan">Pendidikan&nbsp;&nbsp;</a>
-                @if($dataUserSt['Status']['pendidikan']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+                <span id="status_data_pendidikan"class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['pendidikan'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#keluarga">Keluarga</a>
-                @if($dataUserSt['Status']['keluarga']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_keluarga" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['keluarga'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#pekerjaan">Pekerjaan</a>
-                @if($dataUserSt['Status']['pengalamankerja']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_pekerjaan" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['pengalamankerja'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#minat">Minat</a>
-                @if($dataUserSt['Status']['minatkerja']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_minat" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['minatkerja'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#aktivitas">Aktivitas</a>
-                @if($dataUserSt['Status']['aktivitas']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_aktivitas" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['aktivitas'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#lainnya">Lainnya</a>
-                @if($dataUserSt['Status']['riwayatpenyakit']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_lainnya" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['riwayatpenyakit'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#lampiran">Lampiran</a>
-                @if($dataUserSt['Status']['lampiran']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_lampiran" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['lampiran'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
             </ul>
         </div>
@@ -147,7 +131,7 @@
             @include('jobseeker.datadiri.lampiran')
             <!--Lampiran end-->
         </div>
-        <!-- Button trigger modal -->
+
         <!-- Modal delete end -->
         <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -172,6 +156,32 @@
           </div>
         </div>
         <!-- Modal delete end -->
+
+         <!-- Modal delete lampiran start -->
+         <div class="modal fade" id="deletemodal_lampiran" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h5 class="delete-title align-middle">
+                      <i class="text-danger fa fa-exclamation-circle fa-2x">&nbsp;</i>Yakin Untuk Menghapus File?
+                    </h5>
+                </div>
+                <div class="modal-body justify-content-center" style="display:none">
+                    <h6 id="delete-caution-lampiran" class="text-danger delete-caution align-middle">
+                        <i class="text-danger fa fa-info-circle">&nbsp;</i>Penghapusan gagal !!
+                    </h6>
+                </div>
+                <div class="d-flex modal-footer justify-content-around">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                  <button  id="delete_lampiran" href="" type="button" class="btn btn-danger ">Hapus
+                      <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- Modal delete lampiran end-->
+
     </div>
   </div>
 </div>
