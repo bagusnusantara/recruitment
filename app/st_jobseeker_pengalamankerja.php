@@ -21,7 +21,7 @@ class st_jobseeker_pengalamankerja extends Model
     }
 
     public function st_bisnisperusahaan(){
-      return $this->hasOne('App\st_Bisnisperusahaan','id','bisnisperusahaan');
+      return $this->hasOne('App\st_Bisnisperusahaan','id','bisnis_perusahaan');
     }
 
     protected static function boot(){

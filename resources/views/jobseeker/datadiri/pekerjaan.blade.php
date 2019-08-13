@@ -26,7 +26,7 @@
                   @foreach ($dataUserSt['RiwayatKerja'] as $key=>$item)
                   <tr>
                     <th>{{$item->nama_perusahaan}}</th>
-                    <th data-value="{{$item->bisnisperusahaan}}">{{$item->st_bisnisperusahaan['name']}}</th>
+                    <th data-value="{{$item->bisnis_perusahaan}}">{{$item->st_bisnisperusahaan['name']}}</th>
                     <th data-tanggalmulai="{{date("M-Y",strtotime($item->tanggal_mulai))}}" data-tanggalakhir="{{date("M-Y",strtotime($item->tanggal_akhir))}}">{{date("M-Y",strtotime($item->tanggal_mulai)) }} - {{date("M-Y",strtotime($item->tanggal_akhir))}}</th>
                     <th>{{$item->lokasi_kerja}}</th>
                     <th>{{$item->posisi}}</th>
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="form-group">
                                       <h4><label for="Posisi">Posisi</label></h4>
-                                      <input type="text" class="form-control" id="Posisi" placeholder="Masukan Posisi">
+                                      <input type="text" class="form-control" id="Posisi" placeholder="Masukan Posisi/Jabatan ">
                                  </div>
                                  <div class="form-group">
                                       <h4><label for="Bawahan">Jumlah Anggota yang Dibawahi</label></h4>

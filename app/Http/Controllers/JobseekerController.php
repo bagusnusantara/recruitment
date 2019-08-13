@@ -185,7 +185,6 @@ class JobseekerController extends Controller
       $request->request->add(['user_id'=>\Auth::user()->id]);
       $request['tanggal_mulai'] = $request->tahun_mulai."-01"."-01";
       $request['tanggal_akhir'] = $request->tahun_akhir."-12"."-31";
-      dump($request->all());
       if($pendidikanFormal==null){
         $request->request->remove('id');
         try {
@@ -262,12 +261,10 @@ class JobseekerController extends Controller
       if($riwayatKerja==null){
         $request->request->remove('id');
         try {
-          dump("success");
           $dataUser = st_jobseeker_pengalamankerja::create($request->all());
           $status = md_jobseeker::find(\Auth::id())->setStatusPekerjaan();
           return response()->json(["success"=>true,"id"=>$dataUser->id,"statusform"=>$status]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(["success"=>false]);
         }}
       else{
@@ -276,7 +273,6 @@ class JobseekerController extends Controller
           $status = md_jobseeker::find(\Auth::id())->setStatusPekerjaan();
           return response()->json(["success"=>true,"statusform"=>$status]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(["success"=>false]);
         }}
     }
@@ -351,7 +347,6 @@ class JobseekerController extends Controller
           try {
             $dataMinat->update($request->all());
             $status = md_jobseeker::find(\Auth::id())->setStatusMinat();
-            dump($status);
             return response()->json(["success"=>true,"statusform"=>$status]); 
           } catch (\Throwable $th) {
             return response()->json(["success"=>false]); 
@@ -395,26 +390,13 @@ class JobseekerController extends Controller
       return redirect()->back()->with(compact('status'));
     }
 
-    // public function storeLamaran(Request $request){
-    //   $this->validate($request,[
-    //         // 'nama_alat' => 'required',
-    //         // 'jenis_alat' => 'required',
-    //         // 'jumlah' => 'required',
-    //         // 'status_kepemilikan' => 'required',
-    //         // 'status_kelaikan' => 'required'
-    //     ]);
-    //     $lowongan = trans_lowongan_pekerjaan::create($request->all());
-    //     $lowongan->save();
-    //     Alert::success('Lowongan Pekerjaan berhasil terkirim');
-    //     return redirect()->back()->with('successMsg','Slider Successfully Saved');
-    //   }
       public function destroyDataPendidikanFormal(Request $request){
         try {
           $pendidikanFormal = st_jobseeker_pendidikanformal::where('user_id',\Auth::user()->id)
                                                          ->where('id',$request->id)->first();
           $pendidikanFormal->delete();
-          dump('success');
-          return response()->json(["success"=>true]);
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(["success"=>true,"statusform"=>$status]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
         }}
@@ -444,7 +426,8 @@ class JobseekerController extends Controller
             $riwayatKerja = st_jobseeker_pengalamankerja::where('user_id',\Auth::user()->id)
                                                           ->where('id',$request->id)->first();
             $riwayatKerja->delete();
-            return response()->json(["success"=>true]);
+            $status = md_jobseeker::find(\Auth::id())->setStatusPekerjaan();
+            return response()->json(["success"=>true,"statusform"=>$status]);
        } catch (\Throwable $th) {
             return response()->json(["success"=>false]);
        } }
@@ -454,7 +437,8 @@ class JobseekerController extends Controller
           $pengalamanOrganisasi = st_jobseeker_pengalamanorganisasi:: where('user_id',\Auth::user()->id)
                                                                   ->where('id',$request->id)->first();
           $pengalamanOrganisasi->delete();
-          return response()->json(["success"=>true]);
+          $status = md_jobseeker::find(\Auth::id())->setStatusAktivitas();
+          return response()->json(["success"=>true,"statusform"=>$status]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
         }}
@@ -464,7 +448,8 @@ class JobseekerController extends Controller
           $riwayatPenyakit = st_jobseeker_riwayatpenyakit:: where('user_id',\Auth::user()->id)
                                                           ->where('id',$request->id)->first();
           $riwayatPenyakit->delete();
-          return response()->json(["success"=>true]);
+          $status = md_jobseeker::find(\Auth::id())->setStatusRiwayatPenyakit();
+          return response()->json(["success"=>true,'statusform'=>$status]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
         }}
@@ -474,9 +459,9 @@ class JobseekerController extends Controller
           $dataMinat = st_jobseeker_minatkerja::where('user_id',\Auth::user()->id)
                                             ->where('id',$request->id)->first();
           $dataMinat->delete();
-          return response()->json(["success"=>true]);
+          $status = md_jobseeker::find(\Auth::id())->setStatusMinat();
+          return response()->json(["success"=>true,"statusform"=>$status]);
         } catch (\Throwable $th) {
-          dump($th);
           return response()->json(["success"=>false]);
         }}
   
@@ -491,45 +476,43 @@ class JobseekerController extends Controller
         $columnName ="";
         $file = "";
         try {
-          if($request->file('fotopelamar')){
-            $file =Input::file('fotopelamar');
-            $pathChoosen = $pathFoto;
-            $columnName = "lampiran_foto";
-          }elseif($request->file('scanijazah')){
-            $file =Input::file('scanijazah');
-            $pathChoosen = $pathIjazah;
-            $columnName = "lampiran_ijazah";
-
-           }elseif($request->file('scantranskrip')){
-            $file =Input::file('scantranskrip');
-            $pathChoosen = $pathTranskrip;
-            $columnName = "lampiran_transkripnilai";
-
-           }elseif($request->file('scanreferensi')){
-            $file =Input::file('scanreferensi');
-            $pathChoosen = $pathReferensi;
-            $columnName = "lampiran_referensikerja";
-           }
-
-
           if($request->file()){
-            dump('here');
-            $datafile = md_jobseeker::find(\Auth::id());
-            $extension = $file->getClientOriginalExtension();
-            $datafile_name = pathinfo($datafile['columnName'], PATHINFO_FILENAME);
+            if($request->file('fotopelamar')){
+              $file =Input::file('fotopelamar');
+              $pathChoosen = $pathFoto;
+              $columnName = "lampiran_foto";
+            }elseif($request->file('scanijazah')){
+              $file =Input::file('scanijazah');
+              $pathChoosen = $pathIjazah;
+              $columnName = "lampiran_ijazah";
 
-            $nameWill = ($datafile_name) ? $datafile_name : Uuid::uuid4()->toString();
-            $nameWill = $nameWill.".".$extension;
+            }elseif($request->file('scantranskrip')){
+              $file =Input::file('scantranskrip');
+              $pathChoosen = $pathTranskrip;
+              $columnName = "lampiran_transkripnilai";
 
-            Storage::disk('jobseeker')->delete($pathFoto.$datafile[$columnName]);
-            Storage::disk('jobseeker')->putFileAs($pathFoto,$file,$nameWill);
-            $datafile[$columnName] = $nameWill;
-            $datafile->save();
-            return response()->json(["success"=>1]);
+            }elseif($request->file('scanreferensi')){
+              $file =Input::file('scanreferensi');
+              $pathChoosen = $pathReferensi;
+              $columnName = "lampiran_referensikerja";
+            }
+              $datafile = md_jobseeker::find(\Auth::id());
+              $extension = $file->getClientOriginalExtension();
+              $datafile_name = pathinfo($datafile['columnName'], PATHINFO_FILENAME);
+
+              $nameWill = ($datafile_name) ? $datafile_name : Uuid::uuid4()->toString();
+              $nameWill = $nameWill.".".$extension;
+
+              Storage::disk('jobseeker')->delete($pathChoosen.$datafile[$columnName]);
+              Storage::disk('jobseeker')->putFileAs($pathChoosen,$file,$nameWill);
+              $datafile[$columnName] = $nameWill;
+              $datafile->save();
+
+              $status = md_jobseeker::find(\Auth::id())->setStatusLampiran();
+              return response()->json(["success"=>1,"statusform"=>$status]);
           }
           
         } catch (\Throwable $th) {
-          dump($th);
         }
         
       }
@@ -542,56 +525,62 @@ class JobseekerController extends Controller
 
         $datafile = md_jobseeker::find(\Auth::id());
         $columnName = "";
+        $pathChoosen = "";
         try {
           if($request->id=="fotopelamar"){
             $columnName = "lampiran_foto";
+            $pathChoosen = $pathFoto;
           }elseif($request->id=="scanijazah"){
             $columnName = "lampiran_ijazah";
+            $pathChoosen = $pathIjazah;
           }elseif($request->id=="scantranskrip"){
             $columnName = "lampiran_transkripnilai";
+            $pathChoosen = $pathTranskrip;
           }elseif($request->id=="scanreferensi"){
             $columnName = "lampiran_referensikerja";
+            $pathChoosen = $pathReferensi;
           }
 
-          Storage::disk("jobseeker")->delete($pathReferensi.$datafile[$columnName]);
+          Storage::disk("jobseeker")->delete($pathChoosen.$datafile[$columnName]);
           $datafile[$columnName]=null;
           $datafile->save();
-          return response()->json(["success"=>1]);
-
-          
+          $status = md_jobseeker::find(\Auth::id())->setStatusLampiran();
+          return response()->json(["success"=>1,"statusform"=>$status]);
         } catch (\Throwable $th) {
-          dump($th);
+          return response()->json(["success"=>0]);
         }
 
       }
 
       public function getLampiran($kategori){
-        
         $pathFoto = "foto_pelamar/";
         $pathIjazah = "scan_ijazah/";
         $pathTranskrip ="scan_transkrip/";
         $pathReferensi = "scan_referensi/";
+
         $columnName = "";
+        $pathChoosen = "";
+
         try {
           if($kategori=="foto"){
             $columnName = "lampiran_foto";
-  
+            $pathChoosen = $pathFoto;
           }elseif($kategori=="scanijazah"){
             $columnName = "lampiran_ijazah";
-  
+            $pathChoosen = $pathIjazah;
           }elseif($kategori=="scantranskrip"){
             $columnName = "lampiran_transkripnilai";
+            $pathChoosen = $pathTranskrip;
           }
           elseif($kategori=="scanreferensi"){
             $columnName="lampiran_referensikerja";
+            $pathChoosen = $pathReferensi;
           }
           $namefile = DB::select('select '.$columnName.' from md_jobseeker where users_id=:id',['id'=>\Auth::id()]);
-          $namefile = $pathFoto.$namefile[0]->get($columnName);
-          $file = Storage::disk('jobseeker')->get($namefile);
+          $namefile = $pathChoosen.$namefile[0]->$columnName;
           $path = Storage::disk('jobseeker')->path($namefile);
-          return response()->file($path);
-        }
+          return response()->file($path,["Cache-Control: no-store, no-cache, must-revalidate, max-age=0","Pragma: no-cache"]);
         } catch (\Throwable $th) {
-          dump($th);
         }
+      }
 }

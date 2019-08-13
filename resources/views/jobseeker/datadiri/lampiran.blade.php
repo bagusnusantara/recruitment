@@ -3,7 +3,7 @@
         <div class="item">
             <h3>Lampiran</h3>
         </div>
-        <div class="inner-box" style="overflow:auto; height:60vh;">
+        <div class="inner-box">
             <div class="item">
                 <!--keluarga-->
                 
@@ -18,18 +18,18 @@
                         </div>
                       </div>
                       
-                      <div class="job-listings-featured {{(!$dataUser->lampiran_foto)?"hidden-block":""}}" id="fotopelamar-show">
+                      <div class="job-listings-featured block-action {{(!$dataUser->lampiran_foto)?"hidden-block":"isUploaded"}}" id="fotopelamar-show">
                         <div class="row">
                           <div class="col-lg-5 col-md-5 col-xs-12">
                             <div class="job-details ml-5 mt-4">
-                              <h3 class="title"></h3>
+                            <h3 class="title">Foto.{{pathinfo($dataUser->lampiran_foto,PATHINFO_EXTENSION)}}</h3>
                               <small>Foto Pelamar</small>
                             </div>
                           </div>
                           <div class="col-lg-7 col-md-7 col-xs-12 text-right">
                             <div class="tag-type mt-4">
                               <button data-href="lampiran/foto" type="button" class="btn btn-common preview-file"><i class="fa fa-eye">&nbsp;</i>Preview</button>
-                              <button type="button" class="btn btn-common submit-file hidden-block"><i class="fa fa-upload">&nbsp;</i>Unggah
+                              <button type="button" class="btn btn-primary submit-file hidden-block"><i class="fa fa-upload">&nbsp;</i>Unggah
                                 <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
                               </button>
                               <button type="button"  data-toggle="modal" data-target="#deletemodal_lampiran" class="btn btn-danger del-file"><i class="fa fa-trash"></i></button>
@@ -52,18 +52,18 @@
                           </div>
                         </div>
                       
-                        <div class="job-listings-featured {{(!$dataUser->lampiran_ijazah)?"hidden-block":""}}" id="ijazah-show">
+                        <div class="job-listings-featured block-action {{(!$dataUser->lampiran_ijazah)?"hidden-block":"isUploaded"}}" id="ijazah-show">
                           <div class="row">
                             <div class="col-lg-5 col-md-5 col-xs-12">
                               <div class="job-details ml-5 mt-4">
-                                <h3 class="title"></h3>
+                                <h3 class="title">ScanIjazah.{{pathinfo($dataUser->lampiran_ijazah,PATHINFO_EXTENSION)}}</h3>
                                 <small>Scan Ijazah</small>
                               </div>
                             </div>
                             <div class="col-lg-7 col-md-7 col-xs-12 text-right">
                               <div class="tag-type mt-4">
                                 <button data-href="lampiran/scanijazah" type="button" class="btn btn-common preview-file"><i class="fa fa-eye">&nbsp;</i>Preview</button>
-                                <button type="button" class="btn btn-common submit-file hidden-block"><i class="fa fa-upload">&nbsp;</i>Unggah
+                                <button type="button" class="btn btn-primary submit-file hidden-block"><i class="fa fa-upload">&nbsp;</i>Unggah
                                   <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
                                 </button>
                                 <button type="button" type="button"  data-toggle="modal" data-target="#deletemodal_lampiran" class="btn btn-danger del-file"><i class="fa fa-trash"></i></button>
@@ -87,18 +87,18 @@
                               </div>
                           </div>
                         
-                          <div class="job-listings-featured {{(!$dataUser->lampiran_transkripnilai)?"hidden-block":""}}" id="transkrip-show">
+                          <div class="job-listings-featured block-action {{(!$dataUser->lampiran_transkripnilai)?"hidden-block":"isUploaded"}}" id="transkrip-show">
                             <div class="row">
                               <div class="col-lg-5 col-md-5 col-xs-12">
                                 <div class="job-details ml-5 mt-4">
-                                  <h3 class="title"></h3>
+                                  <h3 class="title">ScanTranskrip.{{pathinfo($dataUser->lampiran_transkripnilai,PATHINFO_EXTENSION)}}</h3>
                                   <small>Scan Transkrip Nilai</small>
                                 </div>
                               </div>
                               <div class="col-lg-7 col-md-7 col-xs-12 text-right">
                                 <div class="tag-type mt-4">
                                   <button data-href="lampiran/scantranskrip" type="button" class="btn btn-common preview-file"><i class="fa fa-eye">&nbsp;</i>Preview</button>
-                                  <button type="button" class="btn btn-common submit-file hidden-block"><i class="fa fa-upload">&nbsp;</i>Unggah
+                                  <button type="button" class="btn btn-primary submit-file hidden-block"><i class="fa fa-upload">&nbsp;</i>Unggah
                                     <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
                                   </button>
                                   <button type="button"  data-toggle="modal" data-target="#deletemodal_lampiran" class="btn btn-danger del-file"><i class="fa fa-trash"></i></button>
@@ -120,18 +120,18 @@
                                 </div>
                             </div>
                             
-                            <div class="job-listings-featured {{(!$dataUser->lampiran_referensikerja)?"hidden-block":""}}" id="referensikerja-show">
+                            <div class="job-listings-featured block-action {{(!$dataUser->lampiran_referensikerja)?"hidden-block":"isUploaded"}}" id="referensikerja-show">
                               <div class="row">
                                 <div class="col-lg-5 col-md-5 col-xs-12">
                                   <div class="job-details ml-5 mt-4">
-                                    <h3 class="title"></h3>
+                                    <h3 class="title">ScanReferensi.{{pathinfo($dataUser->lampiran_referensikerja,PATHINFO_EXTENSION)}}</h3>
                                     <small>Scan Referensi Kerja</small>
                                   </div>
                                 </div>
                                 <div class="col-lg-7 col-md-7 col-xs-12 text-right">
                                   <div class="tag-type mt-4">
                                     <button data-href="lampiran/scanreferensi" type="button" class="btn btn-common preview-file"><i class="fa fa-eye">&nbsp;</i>Preview</button>
-                                    <button type="button" class="btn btn-common submit-file hidden-block"><i class="fa fa-upload">&nbsp;</i>Unggah
+                                    <button type="button" class="btn btn-primary submit-file hidden-block"><i class="fa fa-upload">&nbsp;</i>Unggah
                                       <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
                                     </button>
                                     <button type="button" data-toggle="modal" data-target="#deletemodal_lampiran" class="btn btn-danger del-file"><i class="fa fa-trash"></i></button>

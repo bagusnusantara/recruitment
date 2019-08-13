@@ -208,8 +208,12 @@ $('#delete_lampiran').click(function(e){
             console.log(result.success);
             if(result.success){
                 let sectLampiran = formLampiran.children();
-                sectLampiran.eq(0).slideDown();
-                sectLampiran.eq(1).slideUp();
+                sectLampiran.eq(0).slideDown(); //form upload
+                sectLampiran.eq(1).slideUp(); //block-action 
+                sectLampiran.eq(1).removeClass("isUploaded");
+                $("#deletemodal_lampiran").modal('hide');
+            }else{
+                $("#delete-caution-lampiran").parent("div").show();
             }
         },
         fail:function(){
@@ -751,7 +755,7 @@ $("#submitRiwayatPekerjaan").click(function(e){
             lokasi_perusahaan: $("#pekerjaan #TempatKerja").val(),
             tanggal_mulai    : $("#pekerjaan #TahunMulai").val(),
             tanggal_akhir    : $("#pekerjaan #TahunAkhir").val(),
-            lokasikerja      : $("#pekerjaan #TempatKerja").val(),
+            lokasi_kerja      : $("#pekerjaan #TempatKerja").val(),
             posisi           : $("#pekerjaan #Posisi").val(),
             bawahan          : $('#pekerjaan #Bawahan').val(),
             gaji_terakhir    : $('#pekerjaan #GajiTerakhir').val(),
@@ -842,14 +846,14 @@ $('#TanggalLahir').datepicker(inputBirth);
 
 $(".preview-file").click(function(e){
     e.preventDefault();
-    let form = $(this).parents("form");
     let url = "";
-
-    if(form.find("input[type='file']").val()){
-        url = window.URL.createObjectURL($('input[type="file"]')[0].files[0]);
+    let isUploaded = $(this).parents(".block-action").hasClass("isUploaded");
+    let previewFile = $(this).parents("form").find('input[type="file"]')[0].files[0];
+    if(isUploaded){
+        url = $(this).data("href");
     }
     else{
-        url = $(this).data("href");
+        url = window.URL.createObjectURL(previewFile);
     }
     
     window.open(url,"_blank",widget=500,height=500);
@@ -881,8 +885,13 @@ $(".submit-file").click(function(e){
         processData: false,
         contentType: false,
         success:function(result){
+            console.log('success');
             if(result.success){
-                
+                sendProsses.slideUp();
+                let blockAction = form.children().eq(1);
+                blockAction.addClass("isUploaded");
+                blockAction.find(".close-file").slideUp();
+                blockAction.find(".del-file").slideDown();
             }
         },
         beforeSend: function(){
