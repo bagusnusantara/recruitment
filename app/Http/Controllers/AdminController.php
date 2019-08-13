@@ -219,7 +219,7 @@ class AdminController extends Controller
     }
     public function profile()
     {
-        $user = Auth::user();
+        $user = \Auth::user();
         return view('profile',compact('user',$user));
     }
 
@@ -229,7 +229,7 @@ class AdminController extends Controller
           'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
       ]);
 
-      $user = Auth::user();
+      $user = \Auth::user();
 
       $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
 
@@ -239,7 +239,7 @@ class AdminController extends Controller
       $user->save();
 
       return back()
-          ->with('success','You have successfully upload image.');
+         ->with('success','You have successfully upload image.');
 
   }
 
