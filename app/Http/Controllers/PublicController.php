@@ -8,6 +8,8 @@ use App\st_Negara;
 use App\st_Provinsi;
 use App\st_Kabkota;
 
+use Illuminate\Support\Facades\DB;
+
 class PublicController extends Controller
 {
     public function getLowonganpublic($id){
@@ -17,8 +19,7 @@ class PublicController extends Controller
     }
 
     public function showhome(Request $r){
-    
-    return view('welcome');
+      return view('public.welcome');
     }
 
     public function showLowonganpublic(){

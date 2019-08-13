@@ -38,9 +38,7 @@ use App\st_jobseeker_pendidikaninformal;
 use App\st_jobseeker_pendidikanbahasa;
 use App\st_jobseeker_minatkerja;
 
-//temporary
 use Illuminate\Support\Facades\DB;
-
 
 class JobseekerController extends Controller
 {
@@ -109,16 +107,16 @@ class JobseekerController extends Controller
     //Lamaran Section
     public function showDataDiri(){
       $user_id = \Auth::user()->id;
-      $dataUser = md_jobseeker::where('users_id',$user_id)->first();
       
+      $dataUser = md_jobseeker::where('users_id',$user_id)->first();
       //st_jobseeker
-      $dataUserSt['PendidikanFormal'] = st_jobseeker_pendidikanformal::where('user_id',$user_id)->get();
-      $dataUserSt['PendidikanInformal'] = st_jobseeker_pendidikaninformal::where('user_id',$user_id)->get();
-      $dataUserSt['PendidikanBahasa'] = st_jobseeker_pendidikanbahasa::where('user_id',$user_id)->get();
-      $dataUserSt['RiwayatPenyakit'] = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
+      $dataUserSt['PendidikanFormal']     = st_jobseeker_pendidikanformal::where('user_id',$user_id)->get();
+      $dataUserSt['PendidikanInformal']   = st_jobseeker_pendidikaninformal::where('user_id',$user_id)->get();
+      $dataUserSt['PendidikanBahasa']     = st_jobseeker_pendidikanbahasa::where('user_id',$user_id)->get();
+      $dataUserSt['RiwayatPenyakit']      = st_jobseeker_riwayatpenyakit::where('user_id',$user_id)->get();
       $dataUserSt['PengalamanOrganisasi'] = st_jobseeker_pengalamanorganisasi::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
-      $dataUserSt['MinatKerja']   = st_jobseeker_minatkerja::where('user_id',$user_id)->get();
-      $dataUserSt['RiwayatKerja'] = st_jobseeker_pengalamankerja::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
+      $dataUserSt['MinatKerja']           = st_jobseeker_minatkerja::where('user_id',$user_id)->get();
+      $dataUserSt['RiwayatKerja']         = st_jobseeker_pengalamankerja::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
       $dataUserSt['Status'] = 
       [
         "identitas"=>$dataUser->status_data_identitas,
@@ -144,13 +142,13 @@ class JobseekerController extends Controller
       $st_data['LevelJabatan']= st_Leveljabatan::all();
       $st_data['PosisiKerja']= st_Posisikerja::all();
       $st_data['Negara'] = st_Negara::all();
-
-      $st_data['Provinsiktp'] = st_Provinsi::where('country_id',$dataUser->negara_ktp)->get();
-      $st_data['Kabkotaktp'] = st_Kabkota::where('province_id',$dataUser->provinsi_ktp)->get();
-      $st_data['Kecamatanktp'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_ktp)->get();
-      $st_data['Provinsidomisili'] = st_Provinsi::where('country_id',$dataUser->negara_domisili)->get();
-      $st_data['Kabkotadomisili'] = st_Kabkota::where('province_id',$dataUser->provinsi_domisili)->get();
-      $st_data['Kecamatandomisili'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_domisili)->get();
+        //->support data with user carry
+        $st_data['Provinsiktp'] = st_Provinsi::where('country_id',$dataUser->negara_ktp)->get();
+        $st_data['Kabkotaktp'] = st_Kabkota::where('province_id',$dataUser->provinsi_ktp)->get();
+        $st_data['Kecamatanktp'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_ktp)->get();
+        $st_data['Provinsidomisili'] = st_Provinsi::where('country_id',$dataUser->negara_domisili)->get();
+        $st_data['Kabkotadomisili'] = st_Kabkota::where('province_id',$dataUser->provinsi_domisili)->get();
+        $st_data['Kecamatandomisili'] = st_Kecamatan::where('regency_id',$dataUser->kabkota_domisili)->get();
 
       return view('jobseeker.datadiri.index',compact('st_data','dataUser','dataUserSt'));
     }
@@ -185,6 +183,7 @@ class JobseekerController extends Controller
       $request->request->add(['user_id'=>\Auth::user()->id]);
       $request['tanggal_mulai'] = $request->tahun_mulai."-01"."-01";
       $request['tanggal_akhir'] = $request->tahun_akhir."-12"."-31";
+
       if($pendidikanFormal==null){
         $request->request->remove('id');
         try {
@@ -253,7 +252,6 @@ class JobseekerController extends Controller
         }}
     }
 
-
     public function storeDataPengalamanKerja(Request $request){
       $riwayatKerja = st_jobseeker_pengalamankerja::where('user_id',\Auth::user()->id)
                                                     ->where('id',$request->id)->first();
@@ -307,7 +305,6 @@ class JobseekerController extends Controller
     }
 
     public function storeDataRiwayatPenyakit(Request $request){
-
       $riwayatPenyakit = st_jobseeker_riwayatpenyakit:: where('user_id',\Auth::user()->id)
                                                         ->where('id',$request->id)->first();
       $request['tanggal_mulai'] = date('Y-m-01',strtotime($request->tanggal_mulai));
@@ -353,43 +350,6 @@ class JobseekerController extends Controller
           } catch (\Throwable $th) {
             return response()->json(["success"=>false]); 
           }}
-    }
-    //Pelamaran Lowongan
-    public function showLowongan($id){
-      if(!Gate::allows('isJobseeker')){
-          abort(404,"Maaf Anda tidak memiliki akses");
-      }
-      $lowongan = md_lowongan_pekerjaan::find($id);
-      $transLowongan = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$id)
-                      ->where('users_id',\Auth::user()->id)
-                      ->first();
-      $status = ($transLowongan==null)?false:true;
-      
-      //$trans_lowongan = trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan->id);
-      return view ('jobseeker.dashboard.show',compact('lowongan','id','status'));
-    }
-
-    public function subscribeLamaran(Request $request){
-      $userId = \Auth::user()->id;
-      $status = false;
-      $transLowongan = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$request->jobid)
-                      ->where('users_id',$userId)
-                      ->first();
-
-      if($transLowongan!=null){
-        $transLowongan->delete();
-        $transLowongan->md_lowongan_pekerjaan = $request->jobid;
-        $transLowongan->users_id = $userId;
-      }
-      else{
-        $account = new trans_lowongan_pekerjaan;
-        $account->users_id = $userId;
-        $account->md_lowongan_pekerjaan_id = $request->jobid;
-        $account->save();
-        $status = true;
-      }
-
-      return redirect()->back()->with(compact('status'));
     }
 
       public function destroyDataPendidikanFormal(Request $request){
@@ -468,10 +428,8 @@ class JobseekerController extends Controller
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
         }}
-  
 
       public function storeDataLampiran(Request $request){
-
         $pathFoto = "foto_pelamar/";
         $pathIjazah = "scan_ijazah/";
         $pathTranskrip ="scan_transkrip/";
@@ -587,4 +545,42 @@ class JobseekerController extends Controller
         } catch (\Throwable $th) {
         }
       }
+
+//---------------------------------------------------Pelamaran Lowongan----------------------------------------------//
+    public function showLowongan($id){
+      if(!Gate::allows('isJobseeker')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $lowongan = md_lowongan_pekerjaan::find($id);
+      $transLowongan = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$id)
+                      ->where('users_id',\Auth::user()->id)
+                      ->first();
+      $status = ($transLowongan==null)?false:true;
+      
+      //$trans_lowongan = trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan->id);
+      return view ('jobseeker.dashboard.show',compact('lowongan','id','status'));
+    }
+
+    public function subscribeLamaran(Request $request){
+      $userId = \Auth::user()->id;
+      $status = false;
+      $transLowongan = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$request->jobid)
+                      ->where('users_id',$userId)
+                      ->first();
+
+      if($transLowongan!=null){
+        $transLowongan->delete();
+        $transLowongan->md_lowongan_pekerjaan = $request->jobid;
+        $transLowongan->users_id = $userId;
+      }
+      else{
+        $account = new trans_lowongan_pekerjaan;
+        $account->users_id = $userId;
+        $account->md_lowongan_pekerjaan_id = $request->jobid;
+        $account->save();
+        $status = true;
+      }
+
+      return redirect()->back()->with(compact('status'));
+    }
 }

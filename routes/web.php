@@ -17,6 +17,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'PublicController@showhome')->name('PublicHome');
 Route::get('lowongan/', 'PublicController@showLowonganpublic')->name('PublicLowongan');
 Route::get('lowongan/{id}', 'PublicController@getLowonganpublic')->name('PublicLowonganById');
+
 //-> Jobseeker
 Route::prefix('jobseeker')->group(function(){
     //-x regular
