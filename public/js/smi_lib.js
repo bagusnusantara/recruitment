@@ -165,6 +165,12 @@ $('#delete_supreme').click(function(e){
             if(result.success){
                 tr_delete.remove();
                 $("#deletemodal").modal("hide");
+
+                if(result.statusform)
+                    $("#"+result.statussection).hide();
+                else
+                    $("#"+result.statussection).show();
+                    
             }else{
                 $("#delete-caution").parent("div").show();
             }
@@ -212,6 +218,11 @@ $('#delete_lampiran').click(function(e){
                 sectLampiran.eq(1).slideUp(); //block-action 
                 sectLampiran.eq(1).removeClass("isUploaded");
                 $("#deletemodal_lampiran").modal('hide');
+                
+                if(result.statusform)
+                    $("#status_data_lampiran").hide();
+                else
+                    $("#status_data_lampiran").show(); 
             }else{
                 $("#delete-caution-lampiran").parent("div").show();
             }
@@ -262,8 +273,13 @@ $("#submitPendidikanFormal").click(function(e){
             keterangan                     :$("#pendidikanformal #keterangan").val(),
         },
         success:function(result){
-
+            console.log(result);
             if(result.success){
+                if(result.statusform)
+                    $("#status_data_pendidikan").hide();
+                else
+                    $("#status_data_pendidikan").show(); 
+
                 if($("#pendidikanformal #id").val()){
 
                     tabledata.eq(0).text($("#pendidikanformal #TingkatPendidikan option:selected").text());
@@ -340,6 +356,11 @@ $("#submitPendidikanInformal").click(function(e){
         },
         success:function(result){
             if(result.success){
+                if(result.statusform)
+                    $("#status_data_pendidikan").hide();
+                else
+                    $("#status_data_pendidikan").show(); 
+
                 if($("#pendidikaninformal #id").val()){
 
                     tabledata.eq(0).text($("#pendidikaninformal #jenispelatihan").val());
@@ -402,6 +423,11 @@ $("#submitPendidikanBahasa").click(function(e){
         success:function(result){
             
             if(result.success){
+                if(result.statusform)
+                    $("#status_data_pendidikan").hide();
+                else
+                    $("#status_data_pendidikan").show(); 
+                    
                 if($("#pendidikanbahasa #id").val()){
                     console.log(result.success,$("#pendidikanbahasa #id").val());
                     tabledata.eq(0).text($('#pendidikanbahasa #bahasa option:selected').text());
@@ -496,8 +522,13 @@ $("button#submitIdentitas").each(function(){
                     hobi               : $("#Hobi").val(),
                     referensi_dari     : $("#SurveyReferensi").val(),
                 },
-                success:function(result){                    
-                    console.log(result.success);
+                success:function(result){
+                    if(result.statusform)
+                        $("#status_data_identitas").hide();
+                    else
+                        $("#status_data_identitas").show(); 
+                    
+                        console.log(result.success);
                 },
                 beforeSend: function(){
                     // Show image container
@@ -548,6 +579,11 @@ $("#submitRiwayatPenyakit").click(function(e){
                     console.log(result.success);
                     if(result.success)
                     {
+                        if(result.statusform)
+                            $("#status_data_lainnya").hide();
+                        else
+                            $("#status_data_lainnya").show(); 
+
                         if($("#lainnya #id").val()){
                             tabledata.eq(0).text($("#lainnya #NamaPenyakit").val());
                             tabledata.eq(1).text($("#lainnya #TahunMulai").val()+" - "+$("#lainnya #TahunAkhir").val());
@@ -622,8 +658,12 @@ $("#submitPengalamanOrganisasi").click(function(e){
         success:function(result){
             console.log(result.success);
             if(result.success){
+            if(result.statusform)
+                $("#status_data_aktivitas").hide();
+            else
+                $("#status_data_aktivitas").show(); 
 
-             if($('#aktivitas #id').val()){
+            if($('#aktivitas #id').val()){
                 tabledata.eq(0).text($("#aktivitas #Organisasi").val());
                 tabledata.eq(1).text($("#aktivitas #TahunMulai").val()+" - "+$("#aktivitas #TahunAkhir").val());
                 tabledata.eq(1).data("tanggalmulai",$("#aktivitas #TahunMulai").val());
@@ -689,6 +729,11 @@ $("#submitMinat").click(function(e){
         success:function(result){
             console.log(result.success);
             if(result.success){
+                if(result.statusform)
+                    $("#status_data_minat").hide();
+                else
+                    $("#status_data_minat").show(); 
+
                 if($("#minat #id").val()){
                     tabledata.eq(0).text($("#minat #BidangBisnis  option:selected").text());
                     tabledata.eq(1).text($('#minat #LingkunganKerja  option:selected').text());
@@ -765,6 +810,11 @@ $("#submitRiwayatPekerjaan").click(function(e){
         success:function(result){
             console.log(result.success);
             if(result.success){
+                if(result.statusform)
+                    $("#status_data_pekerjaan").hide();
+                else
+                    $("#status_data_pekerjaan").show(); 
+
                 if($('#pekerjaan #id').val()){
                     console.log('overwrite');
                     tabledata.eq(0).text($("#pekerjaan #NamaPerusahaan").val());

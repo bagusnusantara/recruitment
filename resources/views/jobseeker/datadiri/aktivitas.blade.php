@@ -71,7 +71,7 @@
                                         <input type="text" class="form-control" id="Tempat" placeholder="Masukan tempat">
                                     </div>
                                     <div class="form-group">
-                                        <h4><label for="Posisi">posisi</label></h4>
+                                        <h4><label for="Posisi">Posisi</label></h4>
                                         <input type="text" class="form-control" id="Posisi" placeholder="Masukan posisi">
                                     </div>
                                     <div class="form-group">

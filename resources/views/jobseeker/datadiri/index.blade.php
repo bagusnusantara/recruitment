@@ -63,59 +63,43 @@
           <ul id="tab" class="list-item">
               <li class="active">
                 <a class="list-group-item-action" href="#identitas">Identitas</a>
-                @if($dataUserSt['Status']['identitas']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+                <span id="status_data_identitas" class="menu-badge badge badge-pill badge-danger mt-0 {{ $dataUserSt['Status']['identitas']?"hidden-block":"" }}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="tab-active list-group-item-action" href="#pendidikan">Pendidikan&nbsp;&nbsp;</a>
-                @if($dataUserSt['Status']['pendidikan']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+                <span id="status_data_pendidikan"class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['pendidikan'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#keluarga">Keluarga</a>
-                @if($dataUserSt['Status']['keluarga']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_keluarga" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['keluarga'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#pekerjaan">Pekerjaan</a>
-                @if($dataUserSt['Status']['pengalamankerja']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_pekerjaan" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['pengalamankerja'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#minat">Minat</a>
-                @if($dataUserSt['Status']['minatkerja']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_minat" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['minatkerja'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#aktivitas">Aktivitas</a>
-                @if($dataUserSt['Status']['aktivitas']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_aktivitas" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['aktivitas'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#lainnya">Lainnya</a>
-                @if($dataUserSt['Status']['riwayatpenyakit']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_lainnya" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['riwayatpenyakit'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#lampiran">Lampiran</a>
-                @if($dataUserSt['Status']['lampiran']==0)
                 <br>
-                <span class="menu-badge badge badge-pill badge-danger mt-0">Belum Lengkap</span>
-                @endif
+              <span id="status_data_lampiran" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['lampiran'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
             </ul>
         </div>

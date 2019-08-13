@@ -87,7 +87,7 @@
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                   <button type="button" class="btn btn-primary btn-lg" id="submitRiwayatPenyakit">
                                       <a>Simpan</a>
-                                      <img id="loader" src='{{asset(' img/loader.gif ') }}' width='20px' height='20px' style="display:none;">
+                                      <img id="loader" src='{{asset('img/loader.gif') }}' width='20px' height='20px' style="display:none;">
                                   </button>
                               </div>
 

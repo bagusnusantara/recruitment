@@ -214,8 +214,9 @@ class JobseekerController extends Controller
       if($pendidikanInformal==null){
         $request->request->remove('id');        
         try {
-          $data = st_jobseeker_pendidikaninformal::create($request->all());
-          return response()->json(['success'=>true,"id"=>$data->id]);
+          $newdata = st_jobseeker_pendidikaninformal::create($request->all());
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(['success'=>true,"id"=>$newdata->id,"statusform"=>$status]);
         } catch (\Throwable $th) {
           return response()->json(['success'=>false]);
         }}
@@ -236,8 +237,9 @@ class JobseekerController extends Controller
       if($pendidikanBahasa==null){
         $request->request->remove('id');
         try {
-          $dataUser = st_jobseeker_pendidikanbahasa::create($request->all());
-          return response()->json(['success'=>true,'id'=> $dataUser->id]);
+          $newdata = st_jobseeker_pendidikanbahasa::create($request->all());
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(['success'=>true,"id"=>$newdata->id,"statusform"=>$status]);
         } catch (\Throwable $th) {
           return response()->json(['success'=>false]);
         }
@@ -396,7 +398,7 @@ class JobseekerController extends Controller
                                                          ->where('id',$request->id)->first();
           $pendidikanFormal->delete();
           $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
-          return response()->json(["success"=>true,"statusform"=>$status]);
+          return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_pendidikan"]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
         }}
@@ -406,7 +408,8 @@ class JobseekerController extends Controller
           $pendidikanInformal = st_jobseeker_pendidikaninformal::where('user_id',\Auth::user()->id)
                                                          ->where('id',$request->id)->first();
           $pendidikanInformal->delete();
-          return response()->json(["success"=>true]);
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_pendidikan"]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
         }}
@@ -416,7 +419,8 @@ class JobseekerController extends Controller
           $pendidikanBahasa = st_jobseeker_pendidikanbahasa::where('user_id',\Auth::user()->id)
                                                           ->where('id',$request->id)->first();
           $pendidikanBahasa->delete();
-          return response()->json(["success"=>true]);
+          $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
+          return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_pendidikan"]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
         }}
@@ -427,7 +431,7 @@ class JobseekerController extends Controller
                                                           ->where('id',$request->id)->first();
             $riwayatKerja->delete();
             $status = md_jobseeker::find(\Auth::id())->setStatusPekerjaan();
-            return response()->json(["success"=>true,"statusform"=>$status]);
+            return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_pekerjaan"]);
        } catch (\Throwable $th) {
             return response()->json(["success"=>false]);
        } }
@@ -438,7 +442,7 @@ class JobseekerController extends Controller
                                                                   ->where('id',$request->id)->first();
           $pengalamanOrganisasi->delete();
           $status = md_jobseeker::find(\Auth::id())->setStatusAktivitas();
-          return response()->json(["success"=>true,"statusform"=>$status]);
+          return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_aktivitas"]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
         }}
@@ -449,7 +453,7 @@ class JobseekerController extends Controller
                                                           ->where('id',$request->id)->first();
           $riwayatPenyakit->delete();
           $status = md_jobseeker::find(\Auth::id())->setStatusRiwayatPenyakit();
-          return response()->json(["success"=>true,'statusform'=>$status]);
+          return response()->json(["success"=>true,'statusform'=>$status,"statussection"=>"status_data_lainnya"]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
         }}
@@ -460,7 +464,7 @@ class JobseekerController extends Controller
                                             ->where('id',$request->id)->first();
           $dataMinat->delete();
           $status = md_jobseeker::find(\Auth::id())->setStatusMinat();
-          return response()->json(["success"=>true,"statusform"=>$status]);
+          return response()->json(["success"=>true,"statusform"=>$status,"statussection"=>"status_data_minat"]);
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
         }}
