@@ -165,11 +165,11 @@ $('#delete_supreme').click(function(e){
             if(result.success){
                 tr_delete.remove();
                 $("#deletemodal").modal("hide");
-
+                let selector = `[id^=${result.statussection}],[class^=${result.statussection}]`;
                 if(result.statusform)
-                    $("#"+result.statussection).hide();
+                    $(selector).hide();
                 else
-                    $("#"+result.statussection).show();
+                    $(selector).show();
                     
             }else{
                 $("#delete-caution").parent("div").show();
@@ -276,9 +276,9 @@ $("#submitPendidikanFormal").click(function(e){
             console.log(result);
             if(result.success){
                 if(result.statusform)
-                    $("#status_data_pendidikan").hide();
+                    $(".status_data_pendidikan").hide();
                 else
-                    $("#status_data_pendidikan").show(); 
+                    $(".status_data_pendidikan").show(); 
 
                 if($("#pendidikanformal #id").val()){
 
@@ -357,9 +357,9 @@ $("#submitPendidikanInformal").click(function(e){
         success:function(result){
             if(result.success){
                 if(result.statusform)
-                    $("#status_data_pendidikan").hide();
+                    $(".status_data_pendidikan").hide();
                 else
-                    $("#status_data_pendidikan").show(); 
+                    $(".status_data_pendidikan").show(); 
 
                 if($("#pendidikaninformal #id").val()){
 
@@ -424,9 +424,9 @@ $("#submitPendidikanBahasa").click(function(e){
             
             if(result.success){
                 if(result.statusform)
-                    $("#status_data_pendidikan").hide();
+                    $(".status_data_pendidikan").hide();
                 else
-                    $("#status_data_pendidikan").show(); 
+                    $(".status_data_pendidikan").show(); 
                     
                 if($("#pendidikanbahasa #id").val()){
                     console.log(result.success,$("#pendidikanbahasa #id").val());
@@ -523,10 +523,25 @@ $("button#submitIdentitas").each(function(){
                     referensi_dari     : $("#SurveyReferensi").val(),
                 },
                 success:function(result){
-                    if(result.statusform)
-                        $("#status_data_identitas").hide();
+                    if(result.statusIdentitas)
+                        $(".status_data_identitas").hide();
                     else
-                        $("#status_data_identitas").show(); 
+                        $(".status_data_identitas").show();
+
+                    if(result.statusKeluarga)
+                        $("#status_data_keluarga").hide();
+                    else
+                        $("#status_data_keluarga").show(); 
+
+                    if(result.statusAktivitas)
+                        $("#status_data_aktivitas").hide();
+                    else
+                        $("#status_data_aktivitas").show();
+                    
+                    if(result.statusLainnya)
+                        $("#status_data_lainnya").hide();
+                    else
+                        $("#status_data_lainnya").show(); 
                     
                         console.log(result.success);
                 },
@@ -730,9 +745,9 @@ $("#submitMinat").click(function(e){
             console.log(result.success);
             if(result.success){
                 if(result.statusform)
-                    $("#status_data_minat").hide();
+                    $(".status_data_minat").hide();
                 else
-                    $("#status_data_minat").show(); 
+                    $(".status_data_minat").show(); 
 
                 if($("#minat #id").val()){
                     tabledata.eq(0).text($("#minat #BidangBisnis  option:selected").text());
@@ -811,9 +826,9 @@ $("#submitRiwayatPekerjaan").click(function(e){
             console.log(result.success);
             if(result.success){
                 if(result.statusform)
-                    $("#status_data_pekerjaan").hide();
+                    $(".status_data_pekerjaan").hide();
                 else
-                    $("#status_data_pekerjaan").show(); 
+                    $(".status_data_pekerjaan").show(); 
 
                 if($('#pekerjaan #id').val()){
                     console.log('overwrite');

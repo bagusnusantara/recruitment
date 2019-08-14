@@ -169,8 +169,11 @@ class JobseekerController extends Controller
 
       try {
         $dataUser->update($request->all());
-        $status = $dataUser->setStatusIdentitas();
-        return response()->json(["success"=>true,"statusform"=> $status]);
+        $statusIdentitas = $dataUser->setStatusIdentitas();
+        $statusKeluarga  = $dataUser->setStatusKeluarga();
+        $statusLainnya   = $dataUser->setStatusRiwayatPenyakit();
+        $statusAktivitas = $dataUser->setStatusAktivitas();
+        return response()->json(["success"=>true,"statusIdentitas"=> $statusIdentitas,"statusKeluarga"=>$statusKeluarga,"statusLainnya"=>$statusLainnya,"statusAktivitas"=>$statusAktivitas]);
       } catch (\Throwable $th) {
         return response()->json(["success"=>false]);
       }
