@@ -952,6 +952,11 @@ $(".submit-file").click(function(e){
         success:function(result){
             console.log('success');
             if(result.success){
+                if(result.statusform)
+                    $("#status_data_lampiran").hide();
+                else
+                    $("#status_data_lampiran").show(); 
+
                 sendProsses.slideUp();
                 let blockAction = form.children().eq(1);
                 blockAction.addClass("isUploaded");
