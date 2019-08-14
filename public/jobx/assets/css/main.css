@@ -2358,6 +2358,16 @@ button:focus {
   box-shadow: 0px 0px 14px rgba(191, 191, 191, 0.24);
 }
 
+@media only screen and (max-width: 768px) {
+  .inner-box {
+    padding-top:5px;
+    padding-left:5px;
+    padding-right:3px;
+    padding-bottom:20px;
+    box-shadow: 0px 0px 14px rgba(191, 191, 191, 0.24);
+  }
+}
+
 .full-time,
 .part-time {
   font-size: 11px;
