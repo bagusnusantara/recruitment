@@ -11,8 +11,8 @@
         <div class="download-wrapper">
           <div>
             <div class="download-text">
-              <h4>PT. Selaras Mitra Integra</h4>
-              <p class="text-dark">PT Selaras Mitra Integra atau biasa disebut SMI merupakan perusahaan human resources management system atau human resources solution. SMI adalah konsultan yang fokus pada pengembangan human capital dan organisasi. SMI menggunakan pendekatan yang humanis dan metode-metode yang reliabel untuk membantu setiap human capital dan organisasi untuk berkembang. SMI mengkombinasikan teori dan praktik human resource sebagai pendekatan yang diterapkan. Spesialiasi SMI di area rekrutmen, assessment center, training & development, coaching & counseling, labour supply dan layanan terkait lainnya. SMI percaya bahwa manusia merupakan aset yang paling penting bagi organisasi. Paradigma ini memberi SMI perspektif yang unik dalam mencari solusi yang holistik akan masalah human capital dan organisasi.</p>
+              <h4><strong>PT. Selaras Mitra Integra</strong></h4>
+              <p class="text-dark" style="text-indent:100px; font-size:17px;text-align: justify;"><strong>PT Selaras Mitra Integra </strong> atau biasa disebut <strong>SMI</strong> merupakan perusahaan human resources management system atau human resources solution. SMI adalah konsultan yang fokus pada pengembangan human capital dan organisasi. SMI menggunakan pendekatan yang humanis dan metode-metode yang reliabel untuk membantu setiap human capital dan organisasi untuk berkembang. SMI mengkombinasikan teori dan praktik human resource sebagai pendekatan yang diterapkan. Spesialiasi SMI di area rekrutmen, assessment center, training & development, coaching & counseling, labour supply dan layanan terkait lainnya. SMI percaya bahwa manusia merupakan aset yang paling penting bagi organisasi. Paradigma ini memberi SMI perspektif yang unik dalam mencari solusi yang holistik akan masalah human capital dan organisasi.</p>
             </div>
             <div class="app-button">
             <!-- <a href="#" class="btn btn-border"><i class="lni-apple"></i>Download <br> <span>From App Store</span></a>
@@ -31,46 +31,69 @@
 </section>
 <!-- download Section end -->
 
-<!-- KategoriSection Start -->
-<div class="container">
-<section class="section-carousel owl-carousel" >
-<section class="item category section bg-gray" style="width:100%;">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Kategori</h2>
-      <p>Lowongan Yang Dibuka</p>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-        <a href="browse-jobs.html">
-          <div class="icon bg-color-1">
-            <i class="lni-home"></i>
-          </div>
-          <h3>Finance</h3>
-          <p>(4286 jobs)</p>
-        </a>
-      </div>
-</section>
-
-<section class="item category section bg-gray" style="width:100%;">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Kategori</h2>
-        <p>Lowongan Yang Dibuka</p>
-      </div>
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-          <a href="browse-jobs.html">
-            <div class="icon bg-color-1">
-              <i class="lni-home"></i>
+<!-- corruusel Start -->
+<section class="public section-carousel section bg-cyan owl-carousel" >
+  <!-- KategoriSection Start -->
+  <div>
+      <div class="container">
+        <div class="row">         
+          <div class="col-lg-12">
+            <div class="section-header">
+              <h3 class="section-title">Kategori Pekerjaan</h3>
+              <p>Kategori Dengan Ketersedian Terbanyak</p>
             </div>
-            <h3>Finance</h3>
-            <p>(4286 jobs)</p>
-          </a>
+          </div>
         </div>
+      </div>    
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+       @foreach ($Kategori as $item)
+        <div class="col-lg-3 col-md-4 col-xs-4 f-category f-category-color-blue">
+            <a href="browse-jobs.html">
+              <div class="icon bg-color-1">
+                <i class="lni-home"></i>
+              </div>
+              <h2 class="text-dark">{{$item->deskripsi}}</h2>
+              <p>({{$item->length}} Lowongan)</p>
+            </a>
+          </div>
+      @endforeach
+      </div>
+      <button class="btn btn-common d-flex justify-content-center mx-auto mt-5 mb-5 rounded"><a class="section-title"><strong>Temukan Lebih Banyak</strong></a></button>
+    </div>
+  </div>
+<!-- KategoriSection end -->
+<!-- SpesialSection Start -->
+  <div>
+        <div class="container">
+          <div class="row">         
+            <div class="col-lg-12">
+              <div class="section-header">
+                <h3 class="section-title">Spesialiasi Pekerjaan</h3>
+                <p>Spesialisasi Dengan Ketersedian Terbanyak</p>
+              </div>
+            </div>
+          </div>
+          </div>
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          @foreach ($Spesialisasi as $item)
+          <div class="col-lg-3 col-md-4 col-xs-4 f-category f-category-color-blue">
+              <a href="browse-jobs.html">
+                <div class="icon bg-color-1">
+                  <i class="lni-home"></i>
+                </div>
+                <h2 class="text-dark">{{$item->spesial}}</h2>
+                <p>({{$item->length}} Lowongan)</p>
+              </a>
+            </div>
+          @endforeach
+        </div>
+        <button class="btn btn-common d-flex justify-content-center mx-auto mt-2 mb-2 rounded"><a class="section-title"><strong>Temukan Lebih Banyak</strong></a></button>
+      </div>
+    </div>
+<!-- SpesialSection end -->
 </section>
-</section>
-</div>
 <!-- Mitra Section End -->
 
  <!-- Latest Section Start -->
@@ -78,115 +101,34 @@
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Lowongan Terakhir</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ellentesque dignissim quam et <br> metus effici turac fringilla lorem facilisis.</p>
+      <p>Lowongan Terakhir Yang Tersedia</p>
     </div>
+
     <div class="row">
-      <div class="col-lg-6 col-md-12 col-xs-12">
-        <div class="jobs-latest">
-          <div class="img-thumb">
-            <img src="assets/img/features/img-1.jpg" alt="">
-          </div>
-          <div class="content">
-            <h3><a href="job-details.html">UX Designer</a></h3>
-            <p class="brand">MagNews</p>
-            <div class="tags">
-              <span><i class="lni-map-marker"></i> New York</span>
-              <span><i class="lni-user"></i>  John Smith</span>
+      @foreach ($lowongan as $item)
+        <div class="col-lg-6 col-md-12 col-xs-12">
+          <div class="jobs-latest">
+            <div class="img-thumb">
+              <img src="assets/img/features/img-1.jpg" alt="">
             </div>
-            <div class="tag mb-3"><i class="lni-tag"></i> #Html #Css #PHP</div>
-            <span class="full-time">Full Time</span>
+            <div class="content">
+              <h3><a href="job-details.html">{{$item->job_tittle}}</a></h3>
+              <p class="brand">MagNews</p>
+              <div class="tags">
+                <span><i class="lni-map-marker"></i> New York</span>
+                <span><i class="lni-user"></i>{{$item->spesial}}</span>
+              </div>
+              <div class="tag mb-3"><i class="lni-tag"></i> #{{$item->deskripsi}}</div>
+              
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-6 col-md-12 col-xs-12">
-        <div class="jobs-latest">
-          <div class="img-thumb">
-            <img src="assets/img/features/img-2.jpg" alt="">
-          </div>
-          <div class="content">
-            <h3><a href="job-details.html">UI Designer</a></h3>
-            <p class="brand">Hunter Inc.</p>
-            <div class="tags">
-              <span><i class="lni-map-marker"></i> New York</span>
-              <span><i class="lni-user"></i>  John Smith</span>
-            </div>
-            <div class="tag mb-3"><i class="lni-tag"></i> #Html #Css #PHP</div>
-            <span class="part-time">Part Time</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-12 col-xs-12">
-        <div class="jobs-latest">
-          <div class="img-thumb">
-            <img src="assets/img/features/img-3.jpg" alt="">
-          </div>
-          <div class="content">
-            <h3><a href="job-details.html">Web Developer</a></h3>
-            <p class="brand">MagNews</p>
-            <div class="tags">
-              <span><i class="lni-map-marker"></i> New York</span>
-              <span><i class="lni-user"></i>  John Smith</span>
-            </div>
-            <div class="tag mb-3"><i class="lni-tag"></i> #Html #Css #PHP</div>
-            <span class="full-time">Full Time</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-12 col-xs-12">
-        <div class="jobs-latest">
-          <div class="img-thumb">
-            <img src="assets/img/features/img-4.jpg" alt="">
-          </div>
-          <div class="content">
-            <h3><a href="job-details.html">UX Designer</a></h3>
-            <p class="brand">AmazeSoft</p>
-            <div class="tags">
-              <span><i class="lni-map-marker"></i> New York</span>
-              <span><i class="lni-user"></i>  John Smith</span>
-            </div>
-            <div class="tag mb-3"><i class="lni-tag"></i> #Html #Css #PHP</div>
-            <span class="full-time">Full Time</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-12 col-xs-12">
-        <div class="jobs-latest">
-          <div class="img-thumb">
-            <img src="assets/img/features/img-2.jpg" alt="">
-          </div>
-          <div class="content">
-            <h3><a href="job-details.html">Digital Marketer</a></h3>
-            <p class="brand">Bingo</p>
-            <div class="tags">
-              <span><i class="lni-map-marker"></i> New York</span>
-              <span><i class="lni-user"></i>  John Smith</span>
-            </div>
-            <div class="tag mb-3"><i class="lni-tag"></i> #Html #Css #PHP</div>
-            <span class="part-time">Part Time</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-12 col-xs-12">
-        <div class="jobs-latest">
-          <div class="img-thumb">
-            <img src="assets/img/features/img-1.jpg" alt="">
-          </div>
-          <div class="content">
-            <h3><a href="job-details.html">Web Developer</a></h3>
-            <p class="brand">MagNews</p>
-            <div class="tags">
-              <span><i class="lni-map-marker"></i> New York</span>
-              <span><i class="lni-user"></i>  John Smith</span>
-            </div>
-            <div class="tag mb-3"><i class="lni-tag"></i> #Html #Css #PHP</div>
-            <span class="full-time">Full Time</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 text-center mt-4">
+      @endforeach
+    </div>
+    
+    <div class="col-12 text-center mt-4">
         <a href="job-page.html" class="btn btn-common"><i class="fa fa-search">&nbsp;</i>Cari Lowogan Lain</a>
       </div>
-    </div>
   </div>
 </section>
 <!-- Latest Section End -->
@@ -196,9 +138,11 @@
   $(".section-carousel").owlCarousel({
     loop:true,
     autoplay:true,
-    autoplayTimeout:2000,
+    autoplayTimeout:3000,
+    autoplaySpeed:2000,
     autoplayHoverPause:true,
     dots:true,
+    URLhashListener:false,
     responsive:{
         0:{
           items:1

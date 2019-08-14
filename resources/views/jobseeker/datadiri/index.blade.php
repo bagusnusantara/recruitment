@@ -21,15 +21,15 @@
     </div>
     @endif
 
-    <div  class="status_data_identitas alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['identitas'])?"hidden-block":""}} " role="alert">
+    <div  class="status_data_identitas alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['identitas']==1)?"hidden-block":""}} " role="alert">
         <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
         <strong>Data Identitas Belum Lengkap</strong>
         <span class="menu-badge badge badge-pill badge-danger" id="btn-identitas" href="#">
           <i class="fa fa-edit fa-1x">&nbsp;</i>Selsaikan 
          </span>
       </div>
-      
-      <div class="status_data_pendidikan alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['pendidikan'])?"hidden-block":""}}" role="alert">
+
+      <div class="status_data_pendidikan alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['pendidikan']==1)?"hidden-block":""}}" role="alert">
           <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
           <strong>Data Pendidikan Belum Lengkap !</strong>
           <span class="menu-badge badge badge-pill badge-danger" id="btn-pendidikan" href="#">
@@ -37,7 +37,7 @@
             </span>
       </div>
 
-      <div class="status_data_minat alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['minatkerja'])?"hidden-block":""}}" role="alert">
+      <div class="status_data_minat alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['minatkerja']==1)?"hidden-block":""}}" role="alert">
           <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
           <strong>Data Minat Belum Lengkap !</strong>
           <span class="menu-badge badge badge-pill badge-danger" id="btn-minat" href="#">
@@ -52,7 +52,7 @@
 <div class="section">
   <div class="mr-auto">
     <div class="row">
-      <div class="ml-md-5 mr-md-5 mr-xs-0 mrl-xs-0 col-lg-2 col-md-3 col-xs-12">
+      <div class="ml-5 mr-5 col-lg-2 col-md-3 col-xs-12">
         <div class="right-sideabr">
           <h4>Data Diri</h4>
           <ul id="tab" class="list-item">
@@ -100,7 +100,7 @@
         </div>
       </div>
           <script src="{{asset('js/smi_onevents.js')}}"></script>
-          <div class="tabs-stage col-lg-9 col-md-8 col-xs-12  ml-xs-0 mr-xs-0">
+          <div class="col-lg-9 col-md-8 col-xs-12 tabs-stage">
             <!--Detail Identitas-->
              @include('jobseeker.datadiri.identitas')
             <!--Identitas end-->

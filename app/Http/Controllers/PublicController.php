@@ -18,8 +18,32 @@ class PublicController extends Controller
         return view ('public.dashboard.showpublic',compact('lowongan'));
     }
 
-    public function showhome(Request $r){
-      return view('public.welcome');
+    public function showhome(){
+      $tableLowongan = "md_lowongan_pekerjaan";
+      $tableKategori = "st_kategoripekerjaan";
+      $tableSpesialisasi ="st_spesialisasipekerjaan";
+      
+      $Kategori     =     DB::table($tableKategori)
+                              ->leftjoin($tableLowongan, $tableLowongan.".st_kategori_pekerjaan_id",$tableKategori.".id")
+                              ->select(DB::raw("count($tableLowongan.id) as length, deskripsi"))
+                              ->groupBy($tableKategori.".id")->orderBy('length','desc')
+                              ->take(7)
+                              ->get();
+
+      $Spesialisasi = DB::table($tableSpesialisasi)->leftjoin($tableLowongan, $tableLowongan.".st_spesialisasi_pekerjaan_id",$tableSpesialisasi.".id")
+                          ->select(DB::raw("count($tableLowongan.id) as length, spesial"))
+                          ->groupBy($tableSpesialisasi.".id")->orderBy('length','desc')
+                          ->take(7)
+                          ->get();
+      
+      $lowongan = DB::table($tableLowongan)
+                      ->orderBy('end_date','desc')
+                      ->join($tableKategori, $tableKategori.".id",$tableLowongan.".st_spesialisasi_pekerjaan_id")
+                      ->join($tableSpesialisasi, $tableSpesialisasi.".id",$tableLowongan.".st_kategori_pekerjaan_id")
+                      ->take(4)
+                      ->get();
+      //dump($lowongan);
+      return view('public.welcome',compact("Kategori","Spesialisasi","lowongan"));
     }
 
     public function showLowonganpublic(){

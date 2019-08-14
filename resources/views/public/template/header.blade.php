@@ -17,17 +17,17 @@
         <div class="collapse navbar-collapse" id="main-navbar">
           <ul class="navbar-nav mr-auto w-100 justify-content-end">
             <li class="nav-item active">
-              <a class="nav-link" href="{{url('/')}}">
+              <a class="nav-link" href="{{route('home')}}">
                 Home
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url('jobseeker/public')}}">
+              <a class="nav-link" href="{{route('PublicLowongan')}}">
                 Lowongan Pekerjaan
               </a>
             </li>
             <li class="button-group">
-              <a href="{{url('login')}}" class="button btn btn-common">Sign in</a>
+              <a href="{{url('login')}}" class="button btn btn-lg btn-common">Sign in</a>
             </li>
           </ul>
         </div>
