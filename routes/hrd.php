@@ -4,6 +4,7 @@
 Route::prefix('hrd')->group(function(){
     //-x get method
     Route::get('dashboard', 'HRDController@getDashboard');
+	Route::get('presensi', 'HRDController@getPresensi');
     Route::get('payroll', 'HRDController@getPayroll');
     Route::get('payroll/slipgaji', 'HRDController@getSlipgaji');
 

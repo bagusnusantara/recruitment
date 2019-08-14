@@ -1,23 +1,23 @@
 @extends('template.index')
 
 @section('main')
-    <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-lg-12">
-            <h2>Dashboard</h2>
-            <ol class="breadcrumb">
-                <li>
-                    <a href="{{url('/dashboard')}}">Home</a>
-                </li>
-                <li class="active">
-                    <strong>Dashboard</strong>
-                </li>
-            </ol>
 
-        </div>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Data Absensi Pegawai</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="{{ url('home')}}">Dashboard</a>
+            </li>
+            <li>
+                <a>Data Absensi Pegawai</a>
+            </li>
+        </ol>
     </div>
+</div>
 
-    <div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
         <div class="col-lg-3">
             <div class="widget style1 navy-bg">
                 <div class="row">
@@ -123,17 +123,37 @@
     </div>
 
 
-
-
-            </div>
-        </div>
-    </div>
-
-
-
-    </div>
-</div>
-
 @include('template.footer')
+
+<!-- Page-Level Scripts -->
+<script>
+    $(document).ready(function(){
+        $('.dataTables-example').DataTable({
+            pageLength: 25,
+            responsive: true,
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+            { extend: 'copy'},
+            {extend: 'csv'},
+            {extend: 'excel', title: 'ExampleFile'},
+            {extend: 'pdf', title: 'ExampleFile'},
+
+            {extend: 'print',
+            customize: function (win){
+                $(win.document.body).addClass('white-bg');
+                $(win.document.body).css('font-size', '10px');
+
+                $(win.document.body).find('table')
+                .addClass('compact')
+                .css('font-size', 'inherit');
+            }
+        }
+        ]
+
+    });
+
+    });
+
+</script>
 
 @endsection

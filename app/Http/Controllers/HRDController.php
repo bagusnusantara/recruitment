@@ -39,6 +39,17 @@ class HRDController extends Controller
       $client=md_client::all();
       return view ('hrd.payroll.index',compact('client'));
     }
+	public function getPresensi(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $client=md_client::all();
+	  $presensi=DB::table('absensi_online')
+	  ->join('users', 'absensi_online.karyawan_id', '=', 'users.id')
+      ->select('absensi_online.*','users.name','users.avatar')
+      ->get();
+      return view ('hrd.presensi.index',compact('client','presensi'));
+    }
     public function getSlipgaji(){
       if(!Gate::allows('isHRD')){
           abort(404,"Maaf Anda tidak memiliki akses");
