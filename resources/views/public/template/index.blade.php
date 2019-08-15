@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    @include('public/template/header')
+    @include('public/template/header') 
     @yield('content')
     <!-- Go To Top Link -->
     <a href="#" class="back-to-top">
