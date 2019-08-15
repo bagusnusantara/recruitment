@@ -4543,3 +4543,9 @@ label.error{
 .lowongan-title-section{
   font-size: 30px;
 }
+
+.title-temukan-btn{
+  font-size:15px;
+  font-variant: normal;
+  font-weight:200;
+}

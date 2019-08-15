@@ -49,7 +49,7 @@
     <div class="container">
       <div class="row d-flex justify-content-center">
        @foreach ($Kategori as $item)
-        <div class="col-lg-3 col-md-4 col-xs-4 f-category f-category-color-blue">
+        <div class="col-lg-4 col-md-4 col-xs-4 f-category f-category-color-blue">
             <a href="{{route('PublicLowongan')."?kategori=".$item->id}}">
               <div class="icon bg-color-1">
                 <i class="lni-home"></i>
@@ -60,7 +60,9 @@
           </div>
       @endforeach
       </div>
-      <button class="btn btn-common d-flex justify-content-center mx-auto mt-5 mb-5 rounded"><a class="section-title"><strong>Temukan Lebih Banyak</strong></a></button>
+      <a href="{{route('PublicLowongan')}}">
+        <button class="btn btn-common d-flex justify-content-center mx-auto mt-5 mb-3 rounded btn-temukan"><i class="title-temukan-btn text-white">Lebih Banyak Kategori Lainnya <i class="fa fa-angle-double-right fa-1x">&nbsp;</i></i></button>
+      </a>
     </div>
   </div>
 <!-- KategoriSection end -->
@@ -79,7 +81,7 @@
       <div class="container">
         <div class="row d-flex justify-content-center">
           @foreach ($Spesialisasi as $item)
-          <div class="col-lg-3 col-md-4 col-xs-4 f-category f-category-color-blue">
+          <div class="col-lg-4 col-md-4 col-xs-4 f-category f-category-color-blue">
             <a href="{{route('PublicLowongan')."?spesial=".$item->id}}">
                 <div class="icon bg-color-1">
                   <i class="lni-home"></i>
@@ -90,7 +92,9 @@
             </div>
           @endforeach
         </div>
-        <button class="btn btn-common d-flex justify-content-center mx-auto mt-2 mb-2 rounded"><a class="section-title"><strong>Temukan Lebih Banyak</strong></a></button>
+        <a href="{{route('PublicLowongan')}}">
+            <button class="btn btn-common d-flex justify-content-center mx-auto mt-5 mb-3 rounded btn-temukan"><i class="title-temukan-btn text-white">Lebih Banyak Spesialiasi Lainnya <i class="fa fa-angle-double-right fa-1x">&nbsp;</i></i></button>
+          </a>
       </div>
     </div>
 <!-- SpesialSection end -->
@@ -131,8 +135,10 @@
     </div>
     
     <div class="col-12 text-center mt-4">
-        <a href="job-page.html" class="btn btn-common"><i class="fa fa-search">&nbsp;</i>Cari Lowogan Lain</a>
-      </div>
+        <a href="{{route('PublicLowongan')}}">
+            <button class="btn btn-common d-flex justify-content-center mx-auto mt-5 mb-3 rounded btn-temukan"><i class="title-temukan-btn text-white">Lebih Banyak Lowongan lagi <i class="fa fa-angle-double-right fa-1x">&nbsp;</i></i></button>
+        </a>
+    </div>
   </div>
 </section>
 <!-- Latest Section End -->

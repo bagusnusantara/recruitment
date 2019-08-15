@@ -27,17 +27,17 @@ class PublicController extends Controller
                               ->leftjoin($tableLowongan, $tableLowongan.".st_kategori_pekerjaan_id",$tableKategori.".id")
                               ->select(DB::raw("count($tableLowongan.id) as length, deskripsi,$tableKategori.id"))
                               ->groupBy($tableKategori.".id")->orderBy('length','desc')
-                              ->take(7)
+                              ->take(5)
                               ->get();
 
       $Spesialisasi = DB::table($tableSpesialisasi)->leftjoin($tableLowongan, $tableLowongan.".st_spesialisasi_pekerjaan_id",$tableSpesialisasi.".id")
                           ->select(DB::raw("count($tableLowongan.id) as length, spesial,$tableSpesialisasi.id"))
                           ->groupBy($tableSpesialisasi.".id")->orderBy('length','desc')
-                          ->take(7)
+                          ->take(5)
                           ->get();
       
       $lowongan = md_lowongan_pekerjaan::orderBy('end_date', 'desc')
-                                        ->take(4)
+                                        ->take(6)
                                         ->get();
       //dump($lowongan);
       
