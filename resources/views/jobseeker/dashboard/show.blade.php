@@ -13,7 +13,7 @@
           <h5>Persyaratan</h5>
           {!!$lowongan->persyaratan!!}
           <br><br>
-          <form method="POST" id="postForm" action="{{route('subscribe')}}" class="form-horizontal" enctype="multipart/form-data" onsubmit="return postForm()">
+          <form method="POST" id="postForm" action="{{route('JobseekerLowonganSubscribe')}}" class="form-horizontal" enctype="multipart/form-data" onsubmit="return postForm()">
               @csrf
                   <div class="form-group">
                   <input type='number' name="jobid" value="{{$id}}" readonly hidden></input>

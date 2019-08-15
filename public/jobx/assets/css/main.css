@@ -4535,3 +4535,11 @@ label.error{
 .public  a{
   color: grey;
 }
+
+.lowongan-title{
+  font-size: 18px;
+}
+
+.lowongan-title-section{
+  font-size: 30px;
+}

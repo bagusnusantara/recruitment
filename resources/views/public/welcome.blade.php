@@ -11,8 +11,9 @@
         <div class="download-wrapper">
           <div>
             <div class="download-text">
-              <h4><strong>PT. Selaras Mitra Integra</strong></h4>
-              <p class="text-dark" style="text-indent:100px; font-size:17px;text-align: justify;"><strong>PT Selaras Mitra Integra </strong> atau biasa disebut <strong>SMI</strong> merupakan perusahaan human resources management system atau human resources solution. SMI adalah konsultan yang fokus pada pengembangan human capital dan organisasi. SMI menggunakan pendekatan yang humanis dan metode-metode yang reliabel untuk membantu setiap human capital dan organisasi untuk berkembang. SMI mengkombinasikan teori dan praktik human resource sebagai pendekatan yang diterapkan. Spesialiasi SMI di area rekrutmen, assessment center, training & development, coaching & counseling, labour supply dan layanan terkait lainnya. SMI percaya bahwa manusia merupakan aset yang paling penting bagi organisasi. Paradigma ini memberi SMI perspektif yang unik dalam mencari solusi yang holistik akan masalah human capital dan organisasi.</p>
+              <h3><strong>PT. Selaras Mitra Integra</strong></h3>
+              <br>
+              <p class="text-dark" style="text-indent:100px; font-size:17px;text-align: justify;"><strong>PT. Selaras Mitra Integra </strong> atau biasa disebut <strong>SMI</strong> merupakan perusahaan human resources management system atau human resources solution. SMI adalah konsultan yang fokus pada pengembangan human capital dan organisasi. SMI menggunakan pendekatan yang humanis dan metode-metode yang reliabel untuk membantu setiap human capital dan organisasi untuk berkembang. SMI mengkombinasikan teori dan praktik human resource sebagai pendekatan yang diterapkan. Spesialiasi SMI di area rekrutmen, assessment center, training & development, coaching & counseling, labour supply dan layanan terkait lainnya. SMI percaya bahwa manusia merupakan aset yang paling penting bagi organisasi. Paradigma ini memberi SMI perspektif yang unik dalam mencari solusi yang holistik akan masalah human capital dan organisasi.</p>
             </div>
             <div class="app-button">
             <!-- <a href="#" class="btn btn-border"><i class="lni-apple"></i>Download <br> <span>From App Store</span></a>
@@ -39,7 +40,7 @@
         <div class="row">         
           <div class="col-lg-12">
             <div class="section-header">
-              <h3 class="section-title">Kategori Pekerjaan</h3>
+              <h3 class="section-title lowongan-title-section">Kategori Pekerjaan</h3>
               <p>Kategori Dengan Ketersedian Terbanyak</p>
             </div>
           </div>
@@ -49,11 +50,11 @@
       <div class="row d-flex justify-content-center">
        @foreach ($Kategori as $item)
         <div class="col-lg-3 col-md-4 col-xs-4 f-category f-category-color-blue">
-            <a href="browse-jobs.html">
+            <a href="{{route('PublicLowongan')."?kategori=".$item->id}}">
               <div class="icon bg-color-1">
                 <i class="lni-home"></i>
               </div>
-              <h2 class="text-dark">{{$item->deskripsi}}</h2>
+              <h4 class="text-dark lowongan-title">{{$item->deskripsi}}</h4>
               <p>({{$item->length}} Lowongan)</p>
             </a>
           </div>
@@ -69,7 +70,7 @@
           <div class="row">         
             <div class="col-lg-12">
               <div class="section-header">
-                <h3 class="section-title">Spesialiasi Pekerjaan</h3>
+                <h3 class="section-title lowongan-title-section">Spesialiasi Pekerjaan</h3>
                 <p>Spesialisasi Dengan Ketersedian Terbanyak</p>
               </div>
             </div>
@@ -79,11 +80,11 @@
         <div class="row d-flex justify-content-center">
           @foreach ($Spesialisasi as $item)
           <div class="col-lg-3 col-md-4 col-xs-4 f-category f-category-color-blue">
-              <a href="browse-jobs.html">
+            <a href="{{route('PublicLowongan')."?spesial=".$item->id}}">
                 <div class="icon bg-color-1">
                   <i class="lni-home"></i>
                 </div>
-                <h2 class="text-dark">{{$item->spesial}}</h2>
+                <h4 class="text-dark lowongan-title" >{{$item->spesial}}</h4>
                 <p>({{$item->length}} Lowongan)</p>
               </a>
             </div>
@@ -107,21 +108,24 @@
     <div class="row">
       @foreach ($lowongan as $item)
         <div class="col-lg-6 col-md-12 col-xs-12">
+         <a href="{{route('PublicLowonganById',["id"=>$item->id])}}">
           <div class="jobs-latest">
             <div class="img-thumb">
               <img src="assets/img/features/img-1.jpg" alt="">
             </div>
             <div class="content">
-              <h3><a href="job-details.html">{{$item->job_tittle}}</a></h3>
+
+              <h3>{{$item->job_tittle}}</h3>
               <p class="brand">MagNews</p>
               <div class="tags">
                 <span><i class="lni-map-marker"></i> New York</span>
-                <span><i class="lni-user"></i>{{$item->spesial}}</span>
+                <span><i class="lni-user"></i>{{$item->st_spesialisasipekerjaan->spesial}}</span>
               </div>
-              <div class="tag mb-3"><i class="lni-tag"></i> #{{$item->deskripsi}}</div>
+              <div class="tag mb-3"><i class="lni-tag"></i> #{{$item->st_kategoripekerjaan->deskripsi}}</div>
               
             </div>
           </div>
+        </a>
         </div>
       @endforeach
     </div>
