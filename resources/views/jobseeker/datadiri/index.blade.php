@@ -74,7 +74,7 @@
               <li>
                 <a  class="list-group-item-action" href="#pekerjaan">Pekerjaan</a>
                 <br>
-              <span id="status_data_pekerjaan" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['pengalamankerja'])?"hidden-block":""}}">Belum Lengkap</span>
+              <span class="status_data_pekerjaan menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['pengalamankerja'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#minat">Minat</a>
