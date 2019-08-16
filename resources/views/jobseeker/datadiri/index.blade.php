@@ -52,7 +52,7 @@
 <div class="section">
   <div class="mr-auto">
     <div class="row">
-      <div class="ml-5 mr-5 col-lg-2 col-md-3 col-xs-12">
+      <div class="ml-5 mr-2 col-lg-2 col-md-4 col-xs-12">
         <div class="right-sideabr">
           <h4>Data Diri</h4>
           <ul id="tab" class="list-item">
@@ -100,9 +100,9 @@
         </div>
       </div>
           <script src="{{asset('js/smi_onevents.js')}}"></script>
-          <div class="col-lg-9 col-md-8 col-xs-12 tabs-stage">
+          <div class="col-lg-9 col-md-7 col-xs-12 tabs-stage">
             <!--Detail Identitas-->
-             @include('jobseeker.datadiri.identitas')
+            @include('jobseeker.datadiri.identitas')
             <!--Identitas end-->
             <!--Detail Pendidikan-->
             @include('jobseeker.datadiri.pendidikan')

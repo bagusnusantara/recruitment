@@ -64,17 +64,23 @@
                               <div class="modal-body">
                                   <div class="inner-box">
                                       <div class="item">
-                                          <input type="hidden" class="form-control typeTahun" id="id">
+                                          <input type="hidden" class="form-control" id="id">
                                           <div class="form-group">
                                               <h4><label for="NamaPenyakit">Nama Penyakit</label></h4>
                                               <input type="text" class="form-control" id="NamaPenyakit" placeholder="Masukan nama penyakit">
+                                              <div id="DatePenyakit">
+                                                </div>
                                           </div>
                                           <div class="form-group">
                                               <h4>Lama</h4>
                                               <label for="TahunMulai">Mulai</label>
                                               <input type="text" class="form-control typeBulan" id="TahunMulai" placeholder="Masukan tahun mulai">
+                                              <div id="DatePenyakitMulai">
+                                              </div>
                                               <label for="TahunAkhir">Akhir</label>
                                               <input type="text" class="form-control typeBulan" id="TahunAkhir" placeholder="Masukan tahun akhirs">
+                                              <div id="DatePenyakitAkhir">
+                                              </div>
                                           </div>
                                           <div class="form-group">
                                               <h4><label for="Pengaruh">Pengaruh</label></h4>
