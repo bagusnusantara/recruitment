@@ -21,7 +21,7 @@
     </div>
     @endif
 
-    <div  class="status_data_identitas alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['identitas']==1)?"hidden-block":""}} " role="alert">
+    <div  class="status_data_identitas alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['identitas'])?"hidden-block":""}} " role="alert">
         <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
         <strong>Data Identitas Belum Lengkap</strong>
         <span class="menu-badge badge badge-pill badge-danger" id="btn-identitas" href="#">
@@ -29,7 +29,7 @@
          </span>
       </div>
 
-      <div class="status_data_pendidikan alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['pendidikan']==1)?"hidden-block":""}}" role="alert">
+      <div class="status_data_pendidikan alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['pendidikan'])?"hidden-block":""}}" role="alert">
           <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
           <strong>Data Pendidikan Belum Lengkap !</strong>
           <span class="menu-badge badge badge-pill badge-danger" id="btn-pendidikan" href="#">
@@ -37,7 +37,7 @@
             </span>
       </div>
 
-      <div class="status_data_minat alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['minatkerja']==1)?"hidden-block":""}}" role="alert">
+      <div class="status_data_minat alert alert-danger col-md-11 col-lg-11 ml-auto mr-auto {{($dataUserSt['Status']['minatkerja'])?"hidden-block":""}}" role="alert">
           <i class="fa fa-exclamation-circle fa-2x">&nbsp;</i>
           <strong>Data Minat Belum Lengkap !</strong>
           <span class="menu-badge badge badge-pill badge-danger" id="btn-minat" href="#">
@@ -74,7 +74,7 @@
               <li>
                 <a  class="list-group-item-action" href="#pekerjaan">Pekerjaan</a>
                 <br>
-              <span id="status_data_pekerjaan" class="menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['pengalamankerja'])?"hidden-block":""}}">Belum Lengkap</span>
+              <span class="status_data_pekerjaan menu-badge badge badge-pill badge-danger mt-0 {{($dataUserSt['Status']['pengalamankerja'])?"hidden-block":""}}">Belum Lengkap</span>
               </li>
               <li>
                 <a  class="list-group-item-action" href="#minat">Minat</a>

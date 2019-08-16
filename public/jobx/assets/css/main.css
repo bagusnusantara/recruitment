@@ -4535,3 +4535,17 @@ label.error{
 .public  a{
   color: grey;
 }
+
+.lowongan-title{
+  font-size: 18px;
+}
+
+.lowongan-title-section{
+  font-size: 30px;
+}
+
+.title-temukan-btn{
+  font-size:15px;
+  font-variant: normal;
+  font-weight:200;
+}
