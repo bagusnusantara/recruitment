@@ -117,6 +117,23 @@ class AdminController extends Controller
       }
     }
 
+    public function showDatapelamar($jobid,$userid){
+      $status = [1,0,0,0,1];
+      // $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
+      //                                   ->where('users_id',$userid)->count();
+      $lowongan=DB::table('md_jobseeker')->where('users_id',$userid)->get();
+      $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
+                                        ->where('users_id',$userid)->count();
+      if($check){
+        //dd($jobid);
+
+        return view ('admin.lowongan.show_data_pelamar',compact('status','lowongan'));
+      }else {
+        Alert::warning('Data Tidak Tersedia !');
+        return redirect()->route('showAdminLowongan',['id'=>$jobid]);
+      }
+    }
+
     public function createLowongan(){
       if(!Gate::allows('isAdmin')){
           abort(404,"Maaf Anda tidak memiliki akses");
