@@ -1,6 +1,6 @@
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
-        <ul class="nav metismenu" id="side-menu">				
+        <ul class="nav metismenu" id="side-menu">
 				<li class="nav-header">
                     <div class="dropdown profile-element">
                         <img alt="image" class="img-circle" src="/storage/avatars/{{ Auth::user()->avatar }}" style="width: 75px; height: 75px"/>
@@ -35,7 +35,7 @@
                 <a href="{{ url('hrd/dashboard')}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Dashboard</span></a>
             </li>
 
-			
+
 			<li class="@if(url('/hrd/sdm/smi') == request()->url()
             or url('/hrd/sdm/worker') == request()->url()
             or url('/hrd/sdm/resign') == request()->url()) active @else '' @endif treeview">
@@ -44,12 +44,12 @@
 						<li class="@if(url('hrd/sdm/smi') == request()->url()) active @else '' @endif"><a href="{{ url('/hrd/sdm/smi') }}">Data Karyawan SMI</a></li>
 						<li class="@if(url('hrd/sdm/smi') == request()->url()) active @else '' @endif"><a href="{{ url('/hrd/sdm/worker') }}">Data Worker</a></li>
 						<li class="@if(url('hrd/sdm/smi') == request()->url()) active @else '' @endif"><a href="{{ url('/hrd/sdm/resign') }}">Data Karyawan Resign</a></li>
-						
-						
+
+
 				</ul>
 			</li>
-            
-            
+
+
             <li class="@if(url('/hrd/presensi') == request()->url()
                ) active @else '' @endif  treeview">
                 <a href="{{ url('hrd/presensi')}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Presensi</span></a>
@@ -95,7 +95,7 @@
                           <li class="@if(url('hrd/setup/potonganterlambat') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/potonganterlambat')}}">Potongan Terlambat</a>
                           </li>
-                          
+
 
                       </ul>
                   </li>
@@ -108,7 +108,7 @@
 
             <li class="@if(url('/admin/dashboard') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('admin/dashboard')}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Dashboard</span></a>
+                <a href="{{ url('admin/dashboard')}}"><i class="fa fa-chart-line"></i> <span class="nav-label">Dashboard</span></a>
             </li>
 
             <!-- <li class="@if(url('admin/notifikasi') == request()->url()
@@ -123,12 +123,12 @@
 
             <li class="@if(url('admin/klien') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('admin/klien')}}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Klien</span></a>
+                <a href="{{ url('admin/klien')}}"><i class="fa fa-handshake"></i> <span class="nav-label">Klien</span></a>
             </li>
 
             <li class="@if(url('admin/lowongan') == request()->url()
                ) active @else '' @endif  treeview">
-                <a href="{{ url('admin/lowongan')}}"><i class="fa fa-paper-plane-o"></i> <span class="nav-label">Lowongan Pekerjaan</span></a>
+                <a href="{{ url('admin/lowongan')}}"><i class="fa fa-newspaper"></i> <span class="nav-label">Lowongan Pekerjaan</span></a>
             </li>
 
             <li class="@if(url('admin/manajemenuser') == request()->url()
@@ -159,7 +159,7 @@
             </li>
 
             @endcan
-        
+
     </ul>
 </div>
 </nav>

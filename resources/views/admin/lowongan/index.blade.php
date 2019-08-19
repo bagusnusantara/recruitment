@@ -53,11 +53,11 @@
                         <table class="table table-striped table-bordered table-hover dataTables-client" style="width: 100%">
                             <thead>
                             <tr>
-                              <th class="center">No</th>
-                              <th class="center">Job Tittle</th>
-                              <th class="center">Klien</th>
-                              <th class="center">Masa Berlaku</th>
-                              <th class="center">Action</th>
+                              <th><center>No</center></th>
+                              <th><center>Job Tittle</center></th>
+                              <th><center>Klien</center></th>
+                              <th><center>Masa Berlaku</center></th>
+                              <th><center>Action</center></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -67,16 +67,15 @@
                               @foreach($lowongan_pekerjaan as $lowongan)
 
                               <tr>
-                                  <td>{{$i}}</td>
-                                  <td>{{$lowongan->job_tittle}}</td>
+                                  <td><center>{{$i}}</center></td>
+                                  <td><center>{{$lowongan->job_tittle}}</center></td>
                                   <td>{{$lowongan->nama_client}}</td>
-                                  <td class="center">{{date('d-m-Y', strtotime($lowongan->start_date))}} sampai {{$lowongan->end_date}}</td>
-                                  <td class="center">
+                                  <td><center>{{date('d-m-Y', strtotime($lowongan->start_date))}} sampai {{date('d-m-Y', strtotime($lowongan->end_date))}}</center></td>
+                                  <td><center>
                                     <a type="button" class="btn btn-default btn-circle" href="lowongan/show/{{$lowongan->id}}" type="button"><i class="fa fa-eye"></i></a>
-                                    <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
-                                    <!-- <button class="btn btn-default btn-circle" type="button"><i class="fa fa-trash"></i> -->
+                                    <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pen-square"></i>
+                                    </center>
                                   </td>
-
                               @php
                 								$i++;
                 							@endphp

@@ -3,13 +3,13 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Penerimaan Karyawan</h2>
+            <h2>Data Pelamar</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/dashboard')}}">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Dashboard</strong>
+                    <strong>Data Pelamar</strong>
                 </li>
             </ol>
 
@@ -22,61 +22,56 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="m-b-md">
-                            <a href="#" class="btn btn-white btn-xs pull-right">Edit project</a>
-                            <h2>Contract with Zender Company</h2>
+                            @foreach($pelamar as $p)
+                            <h2>Data {{$p->nama_lengkap}}</h2>
+                            @endforeach
                         </div>
-                        <dl class="dl-horizontal">
-                            <dt>Status:</dt> <dd><span class="label label-primary">Active</span></dd>
-                        </dl>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-5">
                         <dl class="dl-horizontal">
-
-                            <dt>Created by:</dt> <dd>Alex Smith</dd>
-                            <dt>Messages:</dt> <dd>  162</dd>
-                            <dt>Client:</dt> <dd><a href="#" class="text-navy"> Zender Company</a> </dd>
-                            <dt>Version:</dt> <dd> 	v1.4.2 </dd>
+                            @foreach($pelamar as $p)
+                            <div class="m-b-sm"><center>
+                                    <img alt="image" class="img-circle" src="/storage/avatars/{{ $p->lampiran_foto }}" style="width: 75px; height: 75px">
+                            </center>
+                            </div>
+                            <dt>Nama Lengkap :</dt> <dd>{{$p->nama_lengkap}}</dd>
+                            <dt>Nama Panggilan :</dt> <dd>{{$p->nama_panggilan}}</dd>
+                            <dt>TTL :</dt> <dd><a href="#" class="text-navy"> {{$p->tempat_lahir}}, {{$p->tanggal_lahir}}</a> </dd>
+                            <dt>Jenis Kelamin :</dt> <dd>{{$p->jenis_kelamin}} </dd>
+                            @endforeach
                         </dl>
                     </div>
                     <div class="col-lg-7" id="cluster_info">
                         <dl class="dl-horizontal" >
+                            @foreach($pelamar as $p)
+                            <dt>Agama :</dt> <dd>{{$p->agama}}</dd>
+                            <dt>Alamat KTP :</dt> <dd> 	{{$p->alamat_ktp}} </dd>
+                            <dt>Alamat Domisili:</dt> <dd> 	{{$p->alamat_domisili}} </dd>
+                            <dt>Email :</dt> <dd> 	{{$p->email}} </dd>
+                            <dt>Nomor Telepon :</dt> <dd> 	{{$p->notelp}} </dd>
+                            <dt>Nomor HP :</dt> <dd> 	{{$p->nohp}} </dd>
+                            <dt>Nomor KTP :</dt> <dd> 	{{$p->nomor_idcard}} </dd>
+                            <dt>Status :</dt> <dd> 	{{$p->status_keluarga}} </dd>
+                            @endforeach
+                        </dl>
+                    </div>
+                </div>
 
-                            <dt>Last Updated:</dt> <dd>16.08.2014 12:15:57</dd>
-                            <dt>Created:</dt> <dd> 	10.07.2014 23:36:57 </dd>
-                            <dt>Participants:</dt>
-                            <dd class="project-people">
-                            <a href=""><img alt="image" class="img-circle" src="img/a3.jpg"></a>
-                            <a href=""><img alt="image" class="img-circle" src="img/a1.jpg"></a>
-                            <a href=""><img alt="image" class="img-circle" src="img/a2.jpg"></a>
-                            <a href=""><img alt="image" class="img-circle" src="img/a4.jpg"></a>
-                            <a href=""><img alt="image" class="img-circle" src="img/a5.jpg"></a>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <dl class="dl-horizontal">
-                            <dt>Completed:</dt>
-                            <dd>
-                                <div class="progress progress-striped active m-b-sm">
-                                    <div style="width: 60%;" class="progress-bar"></div>
-                                </div>
-                                <small>Project completed in <strong>60%</strong>. Remaining close the project, sign a contract and invoice.</small>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
                 <div class="row m-t-sm">
                     <div class="col-lg-12">
                     <div class="panel blank-panel">
                     <div class="panel-heading">
                         <div class="panel-options">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab-1" data-toggle="tab">Users messages</a></li>
-                                <li class=""><a href="#tab-2" data-toggle="tab">Last activity</a></li>
+                                <li class="active"><a href="#tab-1" data-toggle="tab">Riwayat Pendidikan</a></li>
+                                <li class=""><a href="#tab-2" data-toggle="tab">Keluarga</a></li>
+                                <li class=""><a href="#tab-3" data-toggle="tab">Riwayat Pekerjaan</a></li>
+                                <li class=""><a href="#tab-4" data-toggle="tab">Minat</a></li>
+                                <li class=""><a href="#tab-5" data-toggle="tab">Aktivitas</a></li>
+                                <li class=""><a href="#tab-6" data-toggle="tab">Lainnya</a></li>
+                                <li class=""><a href="#tab-7" data-toggle="tab">Lampiran</a></li>
                             </ul>
                         </div>
                     </div>
@@ -85,80 +80,28 @@
 
                     <div class="tab-content">
                     <div class="tab-pane active" id="tab-1">
-                        <div class="feed-activity-list">
-                            <div class="feed-element">
-                                <a href="#" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a2.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right">2h ago</small>
-                                    <strong>Mark Johnson</strong> posted message on <strong>Monica Smith</strong> site. <br>
-                                    <small class="text-muted">Today 2:10 pm - 12.06.2014</small>
-                                    <div class="well">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                                        Over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feed-element">
-                                <a href="#" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a3.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right">2h ago</small>
-                                    <strong>Janet Rosowski</strong> add 1 photo on <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">2 days ago at 8:30am</small>
-                                </div>
-                            </div>
-                            <div class="feed-element">
-                                <a href="#" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a4.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right text-navy">5h ago</small>
-                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
-                                    <div class="actions">
-                                        <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                                        <a class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Love</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feed-element">
-                                <a href="#" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a5.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right">2h ago</small>
-                                    <strong>Kim Smith</strong> posted message on <strong>Monica Smith</strong> site. <br>
-                                    <small class="text-muted">Yesterday 5:20 pm - 12.06.2014</small>
-                                    <div class="well">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                                        Over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feed-element">
-                                <a href="#" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/profile.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right">23h ago</small>
-                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                                    <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
-                                </div>
-                            </div>
-                            <div class="feed-element">
-                                <a href="#" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a7.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right">46h ago</small>
-                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
-                                </div>
-                            </div>
-                        </div>
+                      <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Jenjang Pendidikan</th>
+                                    <th>Institusi</th>
+                                    <th>Tanggal Mulai</th>
+                                    <th>Tanggal Berakhir</th>
+                                    <th>Jurusan</th>
+                                    <th>IPK</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                </tbody>
+                            </table>
 
                     </div>
                     <div class="tab-pane" id="tab-2">
