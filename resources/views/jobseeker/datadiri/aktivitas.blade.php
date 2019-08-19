@@ -54,17 +54,23 @@
                           <div class="modal-body">
                             <div class="inner-box">
                                 <div class="item">
-                                    <input type="hidden" class="form-control typeTahun" id="id">
+                                    <input type="hidden" class="form-control" id="id">
                                     <div class="form-group">
                                         <h4><label for="Organisasi">Organisasi</label></h4>
                                         <input type="text" class="form-control" id="Organisasi" placeholder="Masukan nama organisasi">
+                                        <div id="DateOrganisasi">
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <h4>Periode</h4>
                                         <label for="tahunmulai">Mulai</label>
                                         <input type="text" class="form-control typeBulan" id="TahunMulai" placeholder="Masukan tahun mulai">
+                                        <div id="DateOrganisasiMulai">
+                                        </div>
                                         <label for="tahunakhir">Akhir</label>
                                         <input type="text" class="form-control typeBulan" id="TahunAkhir" placeholder="Masukan tahun akhir">
+                                        <div id="DateOrganisasiAkhir">
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <h4><label for="Tempat">Tempat</label></h4>

@@ -898,16 +898,30 @@ $('#RiwayatKerjaModal  #_GajiTerakhir').keyup(function(){
 });
 
 $('#MinatKerjaModal  #_GajiBulan').keyup(function(){
-
     let val = $(this).val();
     let valInt = parseInt(val.replace(/[^0-9]+/g,""));
     $('#MinatKerjaModal  #_GajiBulan').val(formatRp(val));
     $('#MinatKerjaModal  #GajiBulan').val(valInt);
 });
 
-$('input.typeTahun').datepicker(inputDateYear);
-$('input.typeBulan').datepicker(inputDateMonth);
+$(".typeTahun").each( function(){$(this).datepicker({
+    format : "yyyy",
+    minViewMode : "years",
+    maxViewMode : "years",
+    container:"#"+$(this).next(1).attr("id")
+});
+});
+
+$(".typeBulan").each( function(){$(this).datepicker({
+    format : "yyyy",
+    minViewMode : "months",
+    maxViewMode : "years",
+    container:"#"+$(this).next(1).attr("id")
+});
+});
+
 $('#TanggalLahir').datepicker(inputBirth);
+$(".datepicker:focus").parent()
 
 $(".preview-file").click(function(e){
     e.preventDefault();

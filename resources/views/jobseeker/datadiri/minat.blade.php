@@ -49,7 +49,7 @@
                       <div class="modal-body">
                         <div class="inner-box">
                             <div class="item">
-                              <input type="hidden" class="form-control typeTahun" id="id">
+                              <input type="hidden" class="form-control" id="id">
                               <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="BidangBisnis">Bidang Bisnis</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="BidangBisnis">

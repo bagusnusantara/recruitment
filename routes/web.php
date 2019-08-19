@@ -15,8 +15,9 @@ Route::get('/jobsingle', function () {
 //->Public
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'PublicController@showhome')->name('PublicHome');
-Route::get('lowongan/', 'PublicController@showLowonganpublic')->name('PublicLowongan');
-Route::get('lowongan/{id}', 'PublicController@getLowonganpublic')->name('PublicLowonganById');
+Route::get('lowongan', 'PublicController@showLowonganpublic')->name('PublicLowongan');
+Route::get('lowongan/show/{id}', 'PublicController@getLowonganpublic')->name('PublicLowonganById');
+Route::post('lamaran/subscribe','JobSeekerController@subscribeLamaran')->name('PublicLowonganSubscribe');
 
 //-> Jobseeker
 Route::prefix('jobseeker')->group(function(){
@@ -34,7 +35,7 @@ Route::prefix('jobseeker')->group(function(){
     //-x Hubungan jobseeker dengan lowongan
     Route::get('dashboard', 'JobSeekerController@getDashboard')->name('JobseekerDashboard');
     Route::get('dashboard/show/{id}', 'JobSeekerController@showLowongan');
-    Route::post('lamaran/subscribe','JobSeekerController@subscribeLamaran')->name('subscribeJob');
+    Route::post('lamaran/subscribe','JobSeekerController@subscribeLamaran')->name('JobseekerLowonganSubscribe');
 
     //-x create method
     Route::get('profil/riwayatpekerjaan/create', 'JobSeekerController@createRiwayatpekerjaan');

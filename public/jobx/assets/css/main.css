@@ -4535,3 +4535,42 @@ label.error{
 .public  a{
   color: grey;
 }
+
+.lowongan-title{
+  font-size: 18px;
+}
+
+.lowongan-title-section{
+  font-size: 30px;
+}
+
+.title-temukan-btn{
+  font-size:15px;
+  font-variant: normal;
+  font-weight:200;
+}
+
+.dropdown-menu-datepicker {
+  margin: 0;
+  padding: 0;
+  display: none;
+  position: absolute;
+  width:0px;
+  z-index: 99;
+  min-width: 190px;
+  border: none;
+  background-color: #fff;
+  border-top: 1px solid #00BCD4;
+  white-space: nowrap;
+  border-radius: 0px;
+  -webkit-box-shadow: 0px 5px 20px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0px 5px 20px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 5px 20px 0 rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.4s;
+  -webkit-animation: fadeIn 0.4s;
+  -moz-animation: fadeIn 0.4s;
+  -o-animation: fadeIn 0.4s;
+  -ms-animation: fadeIn 0.4s;
+  margin-left:20px;
+  margin-top:100px;
+}
