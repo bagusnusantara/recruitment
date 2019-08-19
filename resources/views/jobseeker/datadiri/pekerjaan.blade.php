@@ -55,7 +55,7 @@
                           <div class="modal-body">
                             <div class="inner-box" >
                                 <div class="item">
-                                  <input type="hidden" class="form-control typeTahun" id="id">
+                                  <input type="hidden" class="form-control" id="id">
                                   <div class="form-group">
                                     <h4><label for="NamaPerusahaan">Nama Perusahaan</label></h4>
                                         <input type="text" class="form-control" id="NamaPerusahaan" placeholder="Masukan Nama Perusahaan">
@@ -77,8 +77,12 @@
                                       <h4>Periode</h4>
                                       <label for="TahunMulai">Mulai</label>
                                       <input type="text" class="form-control typeBulan" id="TahunMulai" placeholder="Masukan Tahun Mulai">
+                                      <div id="DatePekerjaanlMulai">
+                                      </div>
                                       <label for="TahunAkhir">Akhir</label>
                                       <input type="text" class="form-control typeBulan" id="TahunAkhir" placeholder="Masukan Tahun Akhirs">
+                                      <div id="DatePekerjaanAkhir">
+                                      </div>
                                 </div>
                                 <div class="form-group">
                                       <h4><label for="Posisi">Posisi</label></h4>
