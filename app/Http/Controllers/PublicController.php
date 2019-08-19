@@ -21,7 +21,7 @@ class PublicController extends Controller
     public function showhome(){
       $tableLowongan = "md_lowongan_pekerjaan";
       $tableKategori = "st_kategoripekerjaan";
-      $tableSpesialisasi ="st_Spesialisasipekerjaan";
+      $tableSpesialisasi ="st_spesialisasipekerjaan";
 
       $Kategori     =     DB::table($tableKategori)
                               ->leftjoin($tableLowongan, $tableLowongan.".st_kategori_pekerjaan_id",$tableKategori.".id")
