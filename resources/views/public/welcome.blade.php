@@ -37,7 +37,7 @@
   <!-- KategoriSection Start -->
   <div>
       <div class="container">
-        <div class="row">         
+        <div class="row">
           <div class="col-lg-12">
             <div class="section-header">
               <h3 class="section-title lowongan-title-section">Kategori Pekerjaan</h3>
@@ -45,7 +45,7 @@
             </div>
           </div>
         </div>
-      </div>    
+      </div>
     <div class="container">
       <div class="row d-flex justify-content-center">
        @foreach ($Kategori as $item)
@@ -69,7 +69,7 @@
 <!-- SpesialSection Start -->
   <div>
         <div class="container">
-          <div class="row">         
+          <div class="row">
             <div class="col-lg-12">
               <div class="section-header">
                 <h3 class="section-title lowongan-title-section">Spesialiasi Pekerjaan</h3>
@@ -123,17 +123,17 @@
               <p class="brand">MagNews</p>
               <div class="tags">
                 <span><i class="lni-map-marker"></i> New York</span>
-                <span><i class="lni-user"></i>{{$item->st_spesialisasipekerjaan->spesial}}</span>
+                <span><i class="lni-user"></i>{{$item->st_Spesialisasipekerjaan->spesial}}</span>
               </div>
-              <div class="tag mb-3"><i class="lni-tag"></i> #{{$item->st_kategoripekerjaan->deskripsi}}</div>
-              
+              <div class="tag mb-3"><i class="lni-tag"></i> #{{$item->st_Kategoripekerjaan->deskripsi}}</div>
+
             </div>
           </div>
         </a>
         </div>
       @endforeach
     </div>
-    
+
     <div class="col-12 text-center mt-4">
         <a href="{{route('PublicLowongan')}}">
             <button class="btn btn-common d-flex justify-content-center mx-auto mt-5 mb-3 rounded btn-temukan"><i class="title-temukan-btn text-white">Lebih Banyak Lowongan lagi <i class="fa fa-angle-double-right fa-1x">&nbsp;</i></i></button>
