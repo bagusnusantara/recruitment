@@ -22,16 +22,16 @@ class md_lowongan_pekerjaan extends Model
       {
         return $this->belongsTo('App\md_client', 'id');
       }
-      
+
     public function st_kategoripekerjaan()
     {
-      return $this->belongsTo('App\st_kategoripekerjaan', 'st_kategori_pekerjaan_id');
+      return $this->belongsTo('App\st_Kategoripekerjaan', 'st_kategori_pekerjaan_id');
     }
 
     public function st_spesialisasipekerjaan()
     {
-      return $this->belongsTo('App\st_spesialisasipekerjaan', 'st_spesialisasi_pekerjaan_id');
+      return $this->belongsTo('App\st_Spesialisasipekerjaan', 'st_spesialisasi_pekerjaan_id');
     }
-    
+
 
 }
