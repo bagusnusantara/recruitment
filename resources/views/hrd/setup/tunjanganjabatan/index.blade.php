@@ -46,19 +46,19 @@
                     </div>
                     <div class="ibox-content">
                         <div class="text-right">
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Komponen Gaji</button>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Tunjangan Jabatan</button>
                         </div>
                         <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
                               <div class="modal-dialog modal-lg">
                                   <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title">Tambah UMK</h4>
+                                        <h4 class="modal-title">Tunjangan Jabatan</h4>
                                     </div>
                                     <div class="modal-body">
-                                      <form method="POST" action="{{url('/hrd/setup/komponengaji/store')}}" class="form-horizontal" enctype="multipart/form-data">
+                                      <form method="POST" action="{{url('/hrd/setup/tunjanganjabatan/store')}}" class="form-horizontal" enctype="multipart/form-data">
                                             @csrf
-                                            {{--@include('hrd.setup.komponengaji.form')--}}
+                                            @include('hrd.setup.tunjanganjabatan.form')
                                     </div>
 
                                     <div class="modal-footer">
@@ -69,12 +69,15 @@
                                 </div>
                             </div>
                         </div>
+                      </div>
+                    </div>
 
                         <table class="table table-striped table-bordered table-hover dataTables-client" style="width: 100%">
                             <thead>
                             <tr>
                               <th class="text-center">No</th>
                               <th class="text-center">Jabatan</th>
+                              <th class="text-center">Kode Site</th>
                               <th class="text-center">Tunjangan Jabatan</th>
                               <th class="text-center">Tanggal Mulai Berlaku</th>
                               <th class="text-center">Action</th>
@@ -82,28 +85,45 @@
                             </thead>
                             <tbody>
                               @php
-                								$i=1;
-                							@endphp
+                				$i=1;
+                				@endphp
                               @foreach($st_tunj_jabatan as $u)
 
                               <tr>
                                   <td class="text-center">{{$i}}</td>
                                   <td class="text-center">{{$u->kode_jabatan}}</td>
+                                  <td class="text-center">{{$u->kode_site}}</td>
                                   <td><center>{{$u->tunj_jabatan}}</center></td>
                                   <td><center>{{$u->tgl_berlaku}}</center></td>
                                   <td class="text-center">
                                     <button class="btn btn-default btn-circle"
+                                          data-kodejabatan="{{$u->kode_jabatan}}"
+                                          data-kodesite="{{$u->kode_site}}"
+                                          data-tunjanganjabatan="{{$u->tunj_jabatan}}"
+                                          data-tanggalberlaku="{{$u->tgl_berlaku}}"
                                           data-toggle="modal" data-target="#show"><i class="fa fa-eye"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
+                                          data-kodejabatan="{{$u->kode_jabatan}}"
+                                          data-kodesite="{{$u->kode_site}}"
+                                          data-tunjanganjabatan="{{$u->tunj_jabatan}}"
+                                          data-tanggalberlaku="{{$u->tgl_berlaku}}"
                                           data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                    <button class="btn btn-default btn-circle"                                         
+                                          data-id ="{{$u->kode_jabatan}}"
+                                          data-kodejabatan="{{$u->kode_jabatan}}"
+                                          data-kodesite="{{$u->kode_site}}"
+                                          data-tunjanganjabatan="{{$u->tunj_jabatan}}"
+                                          data-tanggalberlaku="{{$u->tgl_berlaku}}"
+                                          data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i>
                                     </button>
                                   </td>
 
                                   
                               @php
-                								$i++;
-                							@endphp
+                				$i++;
+                			  @endphp
                               @endforeach
                                 </tr>
                           </tbody>
@@ -124,29 +144,23 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Show Komponen Gaji</h4>
+                    <h4 class="modal-title">Show Tunjangan Jabatan</h4>
                 </div>
                 <div class="modal-body">
                 <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
-                  <div class="form-group"><label class="col-sm-2 control-label">Kode</label>
-                      <div class="col-sm-10"><input type="text" class="form-control" name="kode_komponen_gaji" id="kode_komponen_gaji" disabled></div>
-                  </div>
-                  <div class="form-group"><label class="col-sm-2 control-label">Deskripsi</label>
-                      <div class="col-sm-10"><input type="text" class="form-control" name="desc_komponen_gaji" id="desc_komponen_gaji" disabled></div>
-                  </div>
-                  <div class="form-group"><label class="col-sm-2 control-label">Label Slip Gaji</label>
-                      <div class="col-sm-10"><input type="text" class="form-control" name="label_slip_gaji" id="label_slip_gaji" disabled></div>
-                  </div>
-                  <div class="form-group"><label class="col-sm-2 control-label">Kelompok Pendapatan</label>
-                      <div class="col-sm-10">
-                        <select class="form-control m-b" name="id_pendapatan" id="id_pendapatan" disabled>
-                          <option value="">--- Pilih Kategori Kelompok Pendapatan ---</option>
-                          <option value="0">Potongan</option>
-                          <option value="1">Pendapatan</option>
-                        </select>
-                      </div>
-                  </div>
-
+                <input type="hidden" name="id" id="id" value="" />
+                <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_jabatan" id="kode_jabatan" disabled></div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Kode Site</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_site" id="kode_site" disabled></div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Tunjangan Jabatan</label>
+                    <div class="col-sm-8"><input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="tunjangan_jabatan" id="tunjangan_jabatan" disabled></div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" name="tanggal_berlaku" id="tanggal_berlaku" readonly disabled></div>
+                </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
@@ -155,18 +169,19 @@
         </div>
     </div>
 </div>
+</div>
 {{-- Update data --}}
 <div class="modal inmodal fade" id="edit" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Edit Komponen Gaji</h4>
+                    <h4 class="modal-title">Edit Tunjangan Jabatan</h4>
                 </div>
                 <div class="modal-body">
-                <form method="POST" action="{{ url('/hrd/setup/komponengaji/update/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('/hrd/setup/tunjanganjabatan/update/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
                         @csrf
-                            @include('hrd.setup.komponengaji.form')
+                        @include('hrd.setup.tunjanganjabatan.form')
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
@@ -176,19 +191,67 @@
         </div>
     </div>
 </div>
-
-
-
-
 </div>
+{{-- Delete Data --}}
+<div class="modal inmodal fade" id="delete" tabindex="-1" role="dialog"  aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">Delete Confirmation</h4>
+              </div>
+              <div class="modal-body">
+              <form method="POST" action="{{ url('/hrd/setup/tunjanganjabatan/delete/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
+                @csrf
+                @method('DELETE')
+                <h4 class="text-center">Apakah Anda yakin untuk menghapus data?</h4>
+                <input type="hidden" name="id" id="id" value="" />
+                <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_jabatan" id="kode_jabatan" disabled></div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Kode Site</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_site" id="kode_site" disabled></div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Tunjangan Jabatan</label>
+                    <div class="col-sm-8"><input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="tunjangan_jabatan" id="tunjangan_jabatan" disabled></div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" name="tanggal_berlaku" id="tanggal_berlaku" readonly disabled></div>
+                </div>
+             </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-white" data-dismiss="modal">Tidak</button>
+                  <button type="submit" class="btn btn-primary">Ya</button>
+              </div>
+              </form>
+      </div>
+  </div>
 </div>
+{{-- end Delete Data --}}
+
 
 
 @include('template.footer')
 
 <!-- Page-Level Scripts -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
 <script>
     $(document).ready(function(){
+
+      //-x set datepicker
+      var date_input=$('input[name="tanggal_berlaku"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'yyyy-mm-dd',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+      //-------------
+
         $('.dataTables-client').DataTable({
             pageLength: 25,
             responsive: true,
@@ -218,45 +281,47 @@
     $('#show').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var kode = button.data('mykode')
-                        var desc = button.data('mydesc')
-                        var label = button.data('mylabel')
-                        var id_pendapatan = button.data('myid_pendapatan')
+                        var kodejabatan = button.data('kodejabatan')
+                        var kodesite = button.data('kodesite')
+                        var tunjanganjabatan = button.data('tunjanganjabatan')
+                        var tanggalberlaku = button.data('tanggalberlaku')
 
                         var modal = $(this)
-                        modal.find('.modal-body #kode_komponen_gaji').val(kode);
-                        modal.find('.modal-body #desc_komponen_gaji').val(desc);
-                        modal.find('.modal-body #label_slip_gaji').val(label);
-                        modal.find('.modal-body #id_pendapatan').val(id_pendapatan);
+                        modal.find('.modal-body #kode_jabatan').val(kodejabatan);
+                        modal.find('.modal-body #kode_site').val(kodesite);
+                        modal.find('.modal-body #tunjangan_jabatan').val(tunjanganjabatan);
+                        modal.find('.modal-body #tanggal_berlaku').val(tanggalberlaku);
                     })
     $('#edit').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var kode = button.data('mykode')
-                        var desc = button.data('mydesc')
-                        var label = button.data('mylabel')
-                        var id_pendapatan = button.data('myid_pendapatan')
+                        var kodejabatan = button.data('kodejabatan')
+                        var kodesite = button.data('kodesite')
+                        var tunjanganjabatan = button.data('tunjanganjabatan')
+                        var tanggalberlaku = button.data('tanggalberlaku')
 
                         var modal = $(this)
-                        modal.find('.modal-body #kode_komponen_gaji').val(kode);
-                        modal.find('.modal-body #desc_komponen_gaji').val(desc);
-                        modal.find('.modal-body #label_slip_gaji').val(label);
-                        modal.find('.modal-body #id_pendapatan').val(id_pendapatan);
+                        modal.find('.modal-body #kode_jabatan').val(kodejabatan);
+                        modal.find('.modal-body #kode_site').val(kodesite);
+                        modal.find('.modal-body #tunjangan_jabatan').val(tunjanganjabatan);
+                        modal.find('.modal-body #tanggal_berlaku').val(tanggalberlaku);
                     })
     $('#delete').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var kode = button.data('mykode')
-                        var desc = button.data('mydesc')
-                        var label = button.data('mylabel')
-                        var id_pendapatan = button.data('myid_pendapatan')
+                        var id = button.data('kodejabatan')
+                        var kodejabatan = button.data('kodejabatan')
+                        var kodesite = button.data('kodesite')
+                        var tunjanganjabatan = button.data('tunjanganjabatan')
+                        var tanggalberlaku = button.data('tanggalberlaku')
 
                         var modal = $(this)
-                        modal.find('.modal-body #kode_komponen_gaji').val(kode);
-                        modal.find('.modal-body #desc_komponen_gaji').val(desc);
-                        modal.find('.modal-body #label_slip_gaji').val(label);
-                        modal.find('.modal-body #id_pendapatan').val(id_pendapatan);
-                                    })
+                        modal.find('.modal-body #id').val(id);
+                        modal.find('.modal-body #kode_jabatan').val(kodejabatan);
+                        modal.find('.modal-body #kode_site').val(kodesite);
+                        modal.find('.modal-body #tunjangan_jabatan').val(tunjanganjabatan);
+                        modal.find('.modal-body #tanggal_berlaku').val(tanggalberlaku);
+                    })
 
 
 </script>

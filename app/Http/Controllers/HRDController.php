@@ -14,8 +14,15 @@ use App\st_lowongan_gaji;
 use App\trans_lowongan_pekerjaan;
 use App\st_komponen_gaji;
 use App\md_karyawan;
+use App\st_Umk;
+use App\st_Tunjanganjabatan;
+use App\st_Tunjangantransport;
+use App\st_Tunjanganmakan;
 use Alert;
 use DB;
+use App\User;
+use Carbon\Carbon;
+use Auth;
 class HRDController extends Controller
 {
     public function getDashboard(){
@@ -85,11 +92,10 @@ class HRDController extends Controller
       Alert::success('Komponen Gaji Berhasil diupdate');
       return redirect()->back();
     }
-    public function destroyKomponengaji($id)
+    public function destroyKomponengaji(Request $request)
     {
-    	//$st_komponen_gaji = st_komponen_gaji::findOrfail($request->kode_komponen_gaji);
-      $st_komponen_gaji = st_komponen_gaji::find($id);
-      $st_komponen_gaji->delete();
+    	$id = $request->kode_komponen_gaji;
+      $komponengaji = DB::select(DB::raw(" DELETE FROM st_komponen_gaji WHERE kode_komponen_gaji = '$id'"));
       Alert::success('Komponen Gaji Berhasil dihapus');
     	return redirect()->back();
     }
@@ -99,11 +105,58 @@ class HRDController extends Controller
       if(!Gate::allows('isHRD')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
+      $st_md_client = md_client::all();
       $umk=DB::table('st_umk')
       ->join('md_client', 'st_umk.md_client_id', '=', 'md_client.id')
       ->select('st_umk.*', 'md_client.nama_client')
       ->get();
-      return view ('hrd.setup.umk.index',compact('umk'));
+      return view ('hrd.setup.umk.index',compact('umk','st_md_client'));
+    }
+
+    public function storeUMK(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $umk = new st_Umk;
+      $id = st_Umk::max('id') + 1;
+
+      $user = Auth::user()->id;
+
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $umk->id = $id;
+      $umk->tanggal = $request->input('tanggal_umk');
+      $umk->md_client_id = $request->input('md_client_id_umk');
+      $umk->umk = $request->input('umk_umk');
+      $umk->umk_bpjs_sehat = $request->input('umk_bpjs_sehat');
+      $umk->entry_user = $user;
+      $umk->entry_date = $date_time;
+      $umk->save();
+
+      Alert::success('UMK Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function destroyUmk(Request $request)
+    {
+      $id = $request->id_umk;
+      $umk = DB::select(DB::raw(" DELETE FROM st_umk WHERE id = '$id'"));
+      Alert::success('Komponen Gaji Berhasil dihapus');
+      return redirect()->back();
+    }
+
+    public function updateUmk(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_umk')->where('id',$request->id_umk)->update([
+        'tanggal' => $request->tanggal_umk,
+        'md_client_id' => $request->md_client_id_umk,
+        'umk' => $request->umk_umk,
+        'umk_bpjs_sehat' => $request->umk_bpjs_sehat
+      ]);
+      Alert::success('UMK Berhasil diupdate');
+      return redirect()->back();
     }
 
     public function getTunjanganjabatan(){
@@ -116,26 +169,137 @@ class HRDController extends Controller
       return view ('hrd.setup.tunjanganjabatan.index',compact('st_tunj_jabatan'));
     }
 
+    public function storeTunjanganjabatan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $user = Auth::user()->id;
+
+      $tunj = new st_Tunjanganjabatan;
+
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->kode_jabatan = $request->kode_jabatan;
+      $tunj->kode_site = $request->kode_site;
+      $tunj->tunj_jabatan = $request->tunjangan_jabatan;
+      $tunj->entry_user = $user;
+      $tunj->entry_date = $date_time;
+      $tunj->tgl_berlaku = $request->tanggal_berlaku;
+      $tunj->save();
+
+      Alert::success('UMK Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function destroyTunjanganjabatan(Request $request)
+    {
+      $id = $request->id;
+      $tunj = DB::select(DB::raw(" DELETE FROM st_tunj_jabatan WHERE kode_jabatan = '$id'"));
+      Alert::success('Tunjangan Jabatan Berhasil dihapus');
+      return redirect()->back();
+    }
+
+    public function updateTunjanganjabatan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_tunj_jabatan')
+        ->where('kode_jabatan',$request->kode_jabatan)
+        ->update([
+        'kode_jabatan' => $request->kode_jabatan,
+        'kode_site' => $request->kode_site,
+        'tunj_jabatan' => $request->tunjangan_jabatan,
+        'tgl_berlaku' => $request->tanggal_berlaku
+      ]);
+      Alert::success('Tunjangan Jabatan Berhasil diupdate');
+      return redirect()->back();
+    }
+
     public function getTunjangantransport(){
       if(!Gate::allows('isHRD')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
+      $st_md_client = md_client::all();
       $st_tunjtransport=DB::table('st_tunjtransport')
       ->join('md_client', 'st_tunjtransport.md_client_id', '=', 'md_client.id')
       ->select('st_tunjtransport.*', 'md_client.nama_client')
       ->get();
-      return view ('hrd.setup.tunjangantransport.index',compact('st_tunjtransport'));
+      return view ('hrd.setup.tunjangantransport.index',compact('st_tunjtransport','st_md_client'));
     }
+
+    public function storeTunjangantransport(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $user = Auth::user()->id;
+
+      $tunj = new st_Tunjangantransport;
+
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->md_client_id = $request->nama_client;
+      $tunj->tunj_transport = $request->tunj_transport;
+      $tunj->entry_user = $user;
+      $tunj->entry_date = $date_time;
+      $tunj->save();
+
+      Alert::success('Tunjangan Transport Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateTunjangantransport(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_tunjtransport')
+        ->where('md_client_id', $request->nama_client)
+        ->update([
+        'md_client_id' => $request->nama_client,
+        'tunj_transport' => $request->tunj_transport,
+      ]);
+      Alert::success('Tunjangan Transport Berhasil diupdate');
+      return redirect()->back();
+    }
+
+     public function destroyTunjangantransport(Request $request)
+      {
+        $id = $request->id;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_tunjtransport WHERE md_client_id = '$id'"));
+        Alert::success('Tunjangan Transport Berhasil dihapus');
+        return redirect()->back();
+      }
+
 
     public function getTunjanganmakan(){
       if(!Gate::allows('isHRD')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
+      $st_md_client = md_client::all();
       $st_tunjmakan=DB::table('st_tunjmakan')
       ->join('md_client', 'st_tunjmakan.md_client_id', '=', 'md_client.id')
       ->select('st_tunjmakan.*', 'md_client.nama_client')
       ->get();
-      return view ('hrd.setup.tunjanganmakan.index',compact('st_tunjmakan'));
+      return view ('hrd.setup.tunjanganmakan.index',compact('st_tunjmakan','st_md_client'));
+    }
+
+    public function storeTunjanganmakan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $user = Auth::user()->id;
+
+      $tunj = new st_Tunjanganmakan;
+
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->md_client_id = $request->nama_client;
+      $tunj->tunj_transport = $request->tunj_transport;
+      $tunj->entry_user = $user;
+      $tunj->entry_date = $date_time;
+      $tunj->save();
+
+      Alert::success('Tunjangan Makan Berhasil ditambahkan');
+      return redirect()->back();
     }
 
     public function getPeriodecutoff(){

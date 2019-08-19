@@ -46,19 +46,19 @@
                     </div>
                     <div class="ibox-content">
                         <div class="text-right">
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Komponen Gaji</button>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Tunjangan Makan</button>
                         </div>
                         <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
                               <div class="modal-dialog modal-lg">
                                   <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title">Tambah UMK</h4>
+                                        <h4 class="modal-title">Tambah Tunjangan Makan</h4>
                                     </div>
                                     <div class="modal-body">
-                                      <form method="POST" action="{{url('/hrd/setup/komponengaji/store')}}" class="form-horizontal" enctype="multipart/form-data">
+                                      <form method="POST" action="{{url('/hrd/setup/tunjanganmakan/store')}}" class="form-horizontal" enctype="multipart/form-data">
                                             @csrf
-                                            {{--@include('hrd.setup.komponengaji.form')--}}
+                                            @include('hrd.setup.tunjanganmakan.form')
                                     </div>
 
                                     <div class="modal-footer">

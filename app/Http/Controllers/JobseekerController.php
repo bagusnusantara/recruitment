@@ -129,6 +129,7 @@ class JobseekerController extends Controller
         "lampiran"=>$dataUser->status_data_lampiran,
       ];
 
+
       //st_support data
       $st_data = [];
       $st_data['Idcard'] = st_Idcard::all();

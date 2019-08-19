@@ -18,6 +18,21 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/potonganterlambat', 'HRDController@getPotonganterlambat');
     Route::get('setup/uanghadir', 'HRDController@getUanghadir');
 
+    //-x Post Method
+    Route::post('setup/umk/store', 'HRDController@storeumk');
+    Route::post('setup/umk/update/{id}','HRDController@updateUmk');
+    Route::post('setup/tunjanganjabatan/store', 'HRDController@storeTunjanganjabatan');
+    Route::post('setup/tunjanganjabatan/update/{id}','HRDController@updateTunjanganjabatan');
+    Route::post('setup/tunjangantransport/store', 'HRDController@storeTunjangantransport');
+    Route::post('setup/tunjangantransport/update/{id}','HRDController@updateTunjangantransport');
+
+    //-x Delete Method
+    Route::delete('setup/umk/delete/{id}', 'HRDController@destroyUmk')->name('post-umk-delete');
+    Route::delete('setup/tunjanganjabatan/delete/{id}', 'HRDController@destroyTunjanganjabatan')->name('post-tunj-jabatan-delete');
+    Route::delete('setup/tunjangantransport/delete/{id}', 'HRDController@destroyTunjangantransport');
+
+
+    //-x
     Route::post('setup/komponengaji/store', 'HRDController@storeKomponengaji');
     Route::post('setup/komponengaji/update/{id}', 'HRDController@updateKomponengaji');
     Route::delete('setup/komponengaji/delete/{id}', 'HRDController@destroyKomponengaji')->name('post-delete');
