@@ -20,6 +20,8 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/tunjanganprestasi', 'HRDController@getTunjanganprestasi');
     Route::get('setup/gpjabatansite', 'HRDController@getGpjabatansite');
     Route::get('setup/penandatanganangaji', 'HRDController@getPenandatanganangaji');
+    Route::get('setup/jkslain', 'HRDController@getJkslain');
+    Route::get('setup/bpjs', 'HRDController@getBpjs');
 
     //-x Post Method
     Route::post('setup/umk/store', 'HRDController@storeumk');
@@ -38,6 +40,10 @@ Route::prefix('hrd')->group(function(){
     Route::post('setup/gpjabatansite/update/{id}', 'HRDController@updateGpjabatansite');
     Route::post('setup/penandatanganangaji/store', 'HRDController@storePenandatanganangaji');
     Route::post('setup/penandatanganangaji/update/{id}', 'HRDController@updatePenandatanganangaji');
+    Route::post('setup/jkslain/store', 'HRDController@storeJkslain');
+    Route::post('setup/jkslain/update/{id}', 'HRDController@updateJkslain');
+    Route::post('setup/bpjs/store', 'HRDController@storeBpjs');
+    Route::post('setup/bpjs/update/{id}', 'HRDController@updateBpjs');
 
 
     //-x Delete Method
@@ -49,6 +55,8 @@ Route::prefix('hrd')->group(function(){
     Route::delete('setup/tunjanganprestasi/delete/{id}', 'HRDController@destroyTunjanganprestasi');
     Route::delete('setup/gpjabatansite/delete/{id}', 'HRDController@destroyGpjabatansite');
     Route::delete('setup/penandatanganangaji/delete/{id}', 'HRDController@destroyPenandatanganangaji');
+    Route::delete('setup/jkslain/delete/{id}', 'HRDController@destroyJkslain');
+    Route::delete('setup/bpjs/delete/{id}', 'HRDController@destroyBpjs');
 
 
     //-x

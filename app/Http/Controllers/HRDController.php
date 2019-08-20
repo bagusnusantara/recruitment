@@ -22,6 +22,8 @@ use App\st_Periodecutoffgaji;
 use App\st_Tunjanganprestasi;
 use App\st_gp_jabatan_site;
 use App\st_tt_payroll;
+use App\st_asuransi;
+use App\st_pot_bpjs;
 use Alert;
 use DB;
 use App\User;
@@ -536,6 +538,127 @@ class HRDController extends Controller
         Alert::success('Penandatanganan Gaji Berhasil dihapus');
         return redirect()->back();
       }
+
+    public function getJkslain(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_asuransi=DB::table('st_asuransi')
+      ->select('st_asuransi.*')
+      ->get();
+      return view ('hrd.setup.jkslain.index',compact('st_asuransi'));
+    }
+
+    public function storeJkslain(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $user = Auth::user()->id;
+      $tunj = new  st_asuransi;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->kode = $request->kode;
+      $tunj->deskripsi= $request->deskripsi;
+      $tunj->nilai_premi = $request->nilai_premi;
+      $tunj->entry_user = $user;
+      $tunj->entry_date = $date_time;
+      $tunj->save();
+
+      Alert::success('JKS Lain Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateJkslain(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_asuransi')
+        ->where('kode', $request->hkode)
+        ->update([
+         'deskripsi' => $request->deskripsi,
+         'nilai_premi' => $request->nilai_premi,
+      ]);
+      Alert::success('JKS Lain Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyJkslain(Request $request)
+    {
+        $kode = $request->hkode;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_asuransi 
+                                      WHERE kode = '$kode'"));
+        Alert::success('JKS Lain Berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function getBpjs(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_pot_bpjs=DB::table('st_pot_bpjs')
+      ->select('st_pot_bpjs.*')
+      ->get();
+      return view ('hrd.setup.bpjs.index',compact('st_pot_bpjs'));
+    }
+
+    public function storeBpjs(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $tunj = new  st_pot_bpjs;
+      $tunj->kode_bpjs = $request->kode_bpjs;
+      $tunj->deskripsi= $request->deskripsi;
+      $tunj->prosen_potongan= $request->prosen_potongan;
+      $tunj->prosen_pend_pph= $request->prosen_pend_pph;
+      $tunj->id_jht= $request->id_jht;
+      $tunj->id_jkk= $request->id_jkk;
+      $tunj->id_jkm= $request->id_jkm;
+      $tunj->id_jp= $request->id_jp;
+      $tunj->id_bpjs_kes= $request->id_bpjs_kes;
+      $tunj->id_jht_prshn= $request->id_jht_prshn;
+      $tunj->id_jkk_prshn= $request->id_jkk_prshn;
+      $tunj->id_jkm_prshn= $request->id_jkm_prshn;
+      $tunj->id_jp_prshn= $request->id_jp_prshn;
+      $tunj->id_bpjs_kes_prshn= $request->id_bpjs_kes_prshn;
+      $tunj->save();
+
+      Alert::success('BPJS Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateBpjs(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_pot_bpjs')
+        ->where('kode_bpjs', $request->hkode_bpjs)
+        ->update([
+         'deskripsi' => $request->deskripsi,
+         'prosen_potongan' => $request->prosen_potongan,
+         'prosen_pend_pph' => $request->prosen_pend_pph,
+         'id_jht' => $request->id_jht,
+         'id_jkk' => $request->id_jkk,
+         'id_jkm' => $request->id_jkm,
+         'id_jp' => $request->id_jp,
+         'id_bpjs_kes' => $request->id_bpjs_kes,
+         'id_jht_prshn' => $request->id_jht_prshn,
+         'id_jkk_prshn' => $request->id_jkk_prshn,
+         'id_jkm_prshn' => $request->id_jkm_prshn,
+         'id_jp_prshn' => $request->id_jp_prshn,
+         'id_bpjs_kes_prshn' => $request->id_bpjs_kes_prshn,
+      ]);
+      Alert::success('BPJS Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyBpjs(Request $request)
+    {
+        $kode_bpjs = $request->hkode_bpjs;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_pot_bpjs 
+                                      WHERE kode_bpjs = '$kode_bpjs'"));
+        Alert::success('JKS Lain Berhasil dihapus');
+        return redirect()->back();
+    }
 
 
 

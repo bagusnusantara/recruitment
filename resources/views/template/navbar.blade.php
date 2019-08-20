@@ -95,6 +95,12 @@
                           <li class="@if(url('hrd/setup/gpjabatansite') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/gpjabatansite')}}">Gaji Pokok Per Jabatan (Site)</a>
                           </li>
+                          <li class="@if(url('hrd/setup/jkslain') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/jkslain')}}">JKS Lain</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/bpjs') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/bpjs')}}">BPJS</a>
+                          </li>
                           <li class="@if(url('hrd/setup/jamsostekdanbpjs') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/jamsostekdanbpjs')}}">Jamsostek dan BPJS</a>
                           </li>
