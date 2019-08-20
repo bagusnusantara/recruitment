@@ -19,6 +19,9 @@ use App\st_Tunjanganjabatan;
 use App\st_Tunjangantransport;
 use App\st_Tunjanganmakan;
 use App\st_Periodecutoffgaji;
+use App\st_Tunjanganprestasi;
+use App\st_gp_jabatan_site;
+use App\st_tt_payroll;
 use Alert;
 use DB;
 use App\User;
@@ -209,8 +212,8 @@ class HRDController extends Controller
         ->where('kode_jabatan',$request->uukode_jabatan)
         ->where('kode_site',$request->uukode_site)
         ->update([
-        'tunj_jabatan' => $request->utunjangan_jabatan,
-        'tgl_berlaku' => $request->utanggal_berlaku
+        'tunj_jabatan' => $request->tunjangan_jabatan,
+        'tgl_berlaku' => $request->tanggal_berlaku
       ]);
       Alert::success('Tunjangan Jabatan Berhasil diupdate');
       return redirect()->back();
@@ -344,8 +347,8 @@ class HRDController extends Controller
       $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
       $tunj->bln = $request->bulan;
       $tunj->thn= $request->tahun;
-      $tunj->sd_prd = $request->start_date;
-      $tunj->ed_prd= $request->end_date;
+      $tunj->sd_prd = $request->sdate;
+      $tunj->ed_prd= $request->edate;
       $tunj->entry_user = $user;
       $tunj->entry_date = $date_time;
       $tunj->save();
@@ -362,8 +365,8 @@ class HRDController extends Controller
         ->where('bln', $request->uubulan)
         ->where('thn', $request->uutahun)
         ->update([
-        'sd_prd' => $request->upstart_date,
-        'ed_prd' => $request->upend_date,
+        'sd_prd' => $request->sdate,
+        'ed_prd' => $request->edate,
       ]);
       Alert::success('Periode cut off gaji Berhasil diupdate');
       return redirect()->back();
@@ -377,5 +380,163 @@ class HRDController extends Controller
         Alert::success('periode cut off gaji Berhasil dihapus');
         return redirect()->back();
       }
+
+    public function getTunjanganprestasi(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_tunj_prestasi=DB::table('st_tunj_prestasi')
+      ->select('st_tunj_prestasi.*')
+      ->get();
+      return view ('hrd.setup.tunjanganprestasi.index',compact('st_tunj_prestasi'));
+    }
+
+    public function storeTunjanganprestasi(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $user = Auth::user()->id;
+      $tunj = new  st_Tunjanganprestasi;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->kode = $request->kode;
+      $tunj->deskripsi= $request->deskripsi;
+      $tunj->tunj_prestasi = $request->tunj_prestasi;
+      $tunj->entry_user = $user;
+      $tunj->entry_date = $date_time;
+      $tunj->save();
+
+      Alert::success('Tunjangan Prestasi Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateTunjanganprestasi(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_tunj_prestasi')
+        ->where('kode', $request->hkode)
+        ->update([
+        'deskripsi' => $request->deskripsi,
+        'tunj_prestasi' => $request->tunj_prestasi,
+      ]);
+      Alert::success('Tunjangan Prestasi Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyTunjanganprestasi(Request $request)
+      {
+        $kode = $request->hkode;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_tunj_prestasi WHERE kode = '$kode'"));
+        Alert::success('Tunjangan Prestasi Berhasil dihapus');
+        return redirect()->back();
+      }
+
+    public function getGpjabatansite(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_gp_jabatan_site=DB::table('st_gp_jabatan_site')
+      ->select('st_gp_jabatan_site.*')
+      ->get();
+      return view ('hrd.setup.gpjabatansite.index',compact('st_gp_jabatan_site'));
+    }
+
+    public function storeGpjabatansite(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $user = Auth::user()->id;
+      $tunj = new  st_gp_jabatan_site;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->tgl_berlaku = $request->tgl_berlaku;
+      $tunj->kode_lokasi= $request->kode_lokasi;
+      $tunj->kode_jabatan = $request->kode_jabatan;
+      $tunj->nilai = $request->nilai;
+      $tunj->entry_user = $user;
+      $tunj->entry_date = $date_time;
+      $tunj->save();
+
+      Alert::success('Gaji Pokok per jabatan (site) Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateGpjabatansite(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_gp_jabatan_site')
+        ->where('tgl_berlaku', $request->htgl_berlaku)
+        ->where('kode_lokasi', $request->hkode_lokasi)
+        ->where('kode_jabatan', $request->hkode_jabatan)
+        ->update([
+         'nilai' => $request->nilai,
+      ]);
+      Alert::success('Gaji poko per Jabatan (site) Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyGpjabatansite(Request $request)
+      {
+        $tgl_berlaku = $request->htgl_berlaku;
+        $kode_lokasi = $request->hkode_lokasi;
+        $kode_jabatan = $request->hkode_jabatan;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_gp_jabatan_site 
+                                      WHERE tgl_berlaku = '$tgl_berlaku' 
+                                      AND kode_lokasi = '$kode_lokasi' 
+                                      AND kode_jabatan = '$kode_jabatan'"));
+        Alert::success('Gaji Pokok per Jabatan (site) Berhasil dihapus');
+        return redirect()->back();
+      }
+
+    public function getPenandatanganangaji(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_tt_payroll=DB::table('st_tt_payroll')
+      ->select('st_tt_payroll.*')
+      ->get();
+      return view ('hrd.setup.penandatanganangaji.index',compact('st_tt_payroll'));
+    }
+
+    public function storePenandatanganangaji(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $tunj = new  st_tt_payroll;
+      $tunj->seq = $request->seq;
+      $tunj->nama= $request->nama;
+      $tunj->jabatan = $request->jabatan;
+      $tunj->save();
+
+      Alert::success('Penandatanganan Gaji Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updatePenandatanganangaji(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_tt_payroll')
+        ->where('seq', $request->hseq)
+        ->update([
+         'nama' => $request->nama,
+         'jabatan' => $request->jabatan,
+      ]);
+      Alert::success('Penandatanganan Gaji Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyPenandatanganangaji(Request $request)
+      {
+        $seq = $request->hseq;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_tt_payroll 
+                                      WHERE seq = '$seq'"));
+        Alert::success('Penandatanganan Gaji Berhasil dihapus');
+        return redirect()->back();
+      }
+
+
 
 }

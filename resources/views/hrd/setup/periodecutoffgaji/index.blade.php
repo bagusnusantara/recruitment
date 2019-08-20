@@ -147,8 +147,6 @@
                 @csrf
                 @method('DELETE')
                 <h4 class="text-center">Apakah Anda yakin untuk menghapus data?</h4>
-                <input type="hidden" name="ustart_date" id="ustart_date" value="" />
-                <input type="hidden" name="uend_date" id="uend_date" value="" />
                 <input type="hidden" name="uubulan" id="uubulan" value="" />
                 <input type="hidden" name="uutahun" id="uutahun" value="" />
                 <div class="form-group"><label class="col-sm-4 control-label">Bulan</label>
@@ -177,9 +175,14 @@
                   </select>
                   </div>
                 </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Start Date - End Date</label>
+                <div class="form-group"><label class="col-sm-4 control-label">Start Date</label>
                   <div class="col-sm-8">
-                     <input type="text" id="dconfig-demo" class="form-control" disabled>
+                     <input type="text" id="sdate" name="sdate" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">End Date</label>
+                  <div class="col-sm-8">
+                     <input type="text" id="edate" name="edate" class="form-control">
                   </div>
                 </div>
              </div>
@@ -202,8 +205,6 @@
                 <div class="modal-body">
                 <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
                 <input type="hidden" name="id" id="id" value="" />
-                <input type="hidden" name="start_date" id="start_date" value="" />
-                <input type="hidden" name="end_date" id="end_date" value="" />
                 <div class="form-group"><label class="col-sm-4 control-label">Bulan</label>
                   <div class="col-sm-8">
                   <select class="form-control chosen-select-width" name="bulan" id="bulan" disabled>
@@ -230,9 +231,14 @@
                   </select>
                   </div>
                 </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Start Date - End Date</label>
+                <div class="form-group"><label class="col-sm-4 control-label">Start Date</label>
                   <div class="col-sm-8">
-                     <input type="text" id="config-demo" class="form-control" disabled>
+                     <input type="text" id="sdate" name="sdate" class="form-control" disabled>
+                  </div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">End Date</label>
+                  <div class="col-sm-8">
+                     <input type="text" id="edate" name="edate" class="form-control" disabled>
                   </div>
                 </div>
                 </div>
@@ -286,9 +292,14 @@
                   </select>
                   </div>
                 </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Start Date - End Date</label>
+                <div class="form-group"><label class="col-sm-4 control-label">Start Date</label>
                   <div class="col-sm-8">
-                     <input type="text" id="upconfig-demo" class="form-control">
+                     <input type="text" id="sdate" name="sdate" class="form-control sdate">
+                  </div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">End Date</label>
+                  <div class="col-sm-8">
+                     <input type="text" id="edate" name="edate" class="form-control edate">
                   </div>
                 </div>
                 </div>
@@ -311,27 +322,42 @@
 @include('template.footer')
 
 <!-- Page-Level Scripts -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 <script>
     $(document).ready(function(){
 
-        $('#config-demo').daterangepicker({
-            "startDate": new Date(),
-            "endDate": new Date(),
-        }, function(start, end, label) {
-          console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-          $("#start_date").attr("value", start.format('YYYY-MM-DD'));      
-          $("#end_date").attr("value", end.format('YYYY-MM-DD'));
+        // $('#config-demo').daterangepicker({
+        //     "startDate": new Date(),
+        //     "endDate": new Date(),
+        // }, function(start, end, label) {
+        //   console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+        //   $("#start_date").attr("value", start.format('YYYY-MM-DD'));      
+        //   $("#end_date").attr("value", end.format('YYYY-MM-DD'));
+        // });
+
+        // $('#upconfig-demo').daterangepicker({
+        //     "startDate": new Date(),
+        //     "endDate": new Date(),
+        // }, function(start, end, label) {
+        //   console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+        //   $("#upstart_date").attr("value", start.format('YYYY-MM-DD'));      
+        //   $("#upend_date").attr("value", end.format('YYYY-MM-DD'));
+        // });
+        $('#sdate').datepicker({
+          autoclose: true,
+          todayHighlight: true,
+          format: 'yyyy-mm-dd'
         });
 
-        $('#upconfig-demo').daterangepicker({
-            "startDate": new Date(),
-            "endDate": new Date(),
-        }, function(start, end, label) {
-          console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-          $("#upstart_date").attr("value", start.format('YYYY-MM-DD'));      
-          $("#upend_date").attr("value", end.format('YYYY-MM-DD'));
+        $('#edate').datepicker({
+          autoclose: true,
+          todayHighlight: true,
+          format: 'yyyy-mm-dd'
         });
+
+
 
 
         $('.dataTables-client').DataTable({
@@ -367,7 +393,6 @@
                         var tahun = button.data('tahun')
                         var sdprd = button.data('sdprd')
                         var edprd = button.data('edprd')
-                        var range = sdprd + " - "+ edprd;
 
                         var xbulan;
                         if (bulan >=1 && bulan <=9){
@@ -381,7 +406,9 @@
                         modal.find('.modal-body #tahun').val(tahun);
                         modal.find('.modal-body #start_date').val(sdprd);
                         modal.find('.modal-body #end_date').val(edprd);
-                        modal.find('.modal-body #config-demo').val(range);
+                        modal.find('.modal-body #sdate').val(sdprd);
+                        modal.find('.modal-body #edate').val(edprd);
+
 
                     })
     $('#edit').on('show.bs.modal', function (event) {
@@ -391,32 +418,6 @@
                         var tahun = button.data('tahun')
                         var sdprd = button.data('sdprd')
                         var edprd = button.data('edprd')
-                        var range = sdprd + " - "+ edprd;
-
-                        var xbulan;
-                        if (bulan >=1 && bulan <=9){
-                            xbulan="0";
-                        }else{
-                            xbulan="";
-                        }
-
-                        var modal = $(this)
-                        modal.find('.modal-body #ubulan').val(xbulan+""+bulan);
-                        modal.find('.modal-body #utahun').val(tahun);
-                        modal.find('.modal-body #uubulan').val(xbulan+""+bulan);
-                        modal.find('.modal-body #uutahun').val(tahun);
-                        modal.find('.modal-body #ustart_date').val(sdprd);
-                        modal.find('.modal-body #uend_date').val(edprd);
-                        modal.find('.modal-body #upconfig-demo').val(range);
-                    })
-    $('#delete').on('show.bs.modal', function (event) {
-                        var button = $(event.relatedTarget) // Button that triggered the modal
-
-                        var bulan = button.data('bulan')
-                        var tahun = button.data('tahun')
-                        var sdprd = button.data('sdprd')
-                        var edprd = button.data('edprd')
-                        var range = sdprd + " - "+ edprd;
 
                         var xbulan;
                         if (bulan >=1 && bulan <=9){
@@ -427,12 +428,38 @@
 
                         var modal = $(this)
                         modal.find('.modal-body #bulan').val(xbulan+""+bulan);
-                        modal.find('.modal-body #tahun').val(tahun);                     
+                        modal.find('.modal-body #tahun').val(tahun);
                         modal.find('.modal-body #uubulan').val(xbulan+""+bulan);
                         modal.find('.modal-body #uutahun').val(tahun);
                         modal.find('.modal-body #start_date').val(sdprd);
                         modal.find('.modal-body #end_date').val(edprd);
-                        modal.find('.modal-body #dconfig-demo').val(range);
+                        modal.find('.modal-body #sdate').val(sdprd);
+                        modal.find('.modal-body #edate').val(edprd);
+                    })
+    $('#delete').on('show.bs.modal', function (event) {
+                        var button = $(event.relatedTarget) // Button that triggered the modal
+
+                        var bulan = button.data('bulan')
+                        var tahun = button.data('tahun')
+                        var sdprd = button.data('sdprd')
+                        var edprd = button.data('edprd')
+
+                        var xbulan;
+                        if (bulan >=1 && bulan <=9){
+                            xbulan="0";
+                        }else{
+                            xbulan="";
+                        }
+
+                        var modal = $(this)
+                        modal.find('.modal-body #bulan').val(xbulan+""+bulan);
+                        modal.find('.modal-body #tahun').val(tahun);                   
+                        modal.find('.modal-body #uubulan').val(xbulan+""+bulan);
+                        modal.find('.modal-body #uutahun').val(tahun);
+                        modal.find('.modal-body #start_date').val(sdprd);
+                        modal.find('.modal-body #end_date').val(edprd);
+                        modal.find('.modal-body #sdate').val(sdprd);
+                        modal.find('.modal-body #edate').val(edprd);
                                     })
 
 

@@ -37,7 +37,7 @@ use App\st_jobseeker_pendidikanformal;
 use App\st_jobseeker_pendidikaninformal;
 use App\st_jobseeker_pendidikanbahasa;
 use App\st_jobseeker_minatkerja;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class JobseekerController extends Controller
@@ -51,12 +51,16 @@ class JobseekerController extends Controller
       if($statusUser->status_data_identitas==0 ||  $statusUser->status_data_pendidikan==0 || $statusUser->status_data_minat==0)
       return redirect()->route('JobseekerDatadiri')->with('alert','Anda belum dapat melihat lowongan !!');
 
-      $lowongan_pekerjaan=md_lowongan_pekerjaan::paginate(10);
+      //$lowongan_pekerjaan=md_lowongan_pekerjaan::paginate(10);
+      $lowongan_pekerjaan=DB::table('md_lowongan_pekerjaan')
+                     ->join('md_client', 'md_lowongan_pekerjaan.md_client_id', '=', 'md_client.id')
+                     ->select('md_lowongan_pekerjaan.*', 'md_client.nama_client')
+                     ->paginate(10);
       $provinsi=st_Provinsi::all();
       $kota_all=st_Kabkota::all();
       return view ('jobseeker.dashboard.index',compact('lowongan_pekerjaan','provinsi','kota_all'));
     }
-    
+
     public function getProfil(){
       if(!Gate::allows('isJobseeker')){
           abort(404,"Maaf Anda tidak memiliki akses");
@@ -107,7 +111,7 @@ class JobseekerController extends Controller
     //Lamaran Section
     public function showDataDiri(){
       $user_id = \Auth::user()->id;
-      
+
       $dataUser = md_jobseeker::where('users_id',$user_id)->first();
       //st_jobseeker
       $dataUserSt['PendidikanFormal']     = st_jobseeker_pendidikanformal::where('user_id',$user_id)->get();
@@ -117,7 +121,7 @@ class JobseekerController extends Controller
       $dataUserSt['PengalamanOrganisasi'] = st_jobseeker_pengalamanorganisasi::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
       $dataUserSt['MinatKerja']           = st_jobseeker_minatkerja::where('user_id',$user_id)->get();
       $dataUserSt['RiwayatKerja']         = st_jobseeker_pengalamankerja::where('user_id',$user_id)->orderBy('tanggal_akhir','asc')->get();
-      $dataUserSt['Status'] = 
+      $dataUserSt['Status'] =
       [
         "identitas"=>$dataUser->status_data_identitas,
         "keluarga"=>$dataUser->status_data_keluarga,
@@ -159,12 +163,12 @@ class JobseekerController extends Controller
       $request['tanggal_lahir'] = date('Y-m-d',strtotime($request->tanggal_lahir));
 
       if($request->is_domisiliktp){
-        $request['alamat_domisili']       = $request['alamat_ktp'];    
-        $request['negara_domisili']       = $request['negara_ktp'];    
-        $request['provinsi_domisili']     = $request['provinsi_ktp'];  
-        $request['kabkota_domisili']      = $request['kabkota_ktp'];   
-        $request['kecamatan_domisili']    = $request['kecamatan_ktp']; 
-        $request['kode_pos_domisili']     = $request['kode_pos_ktp'];  
+        $request['alamat_domisili']       = $request['alamat_ktp'];
+        $request['negara_domisili']       = $request['negara_ktp'];
+        $request['provinsi_domisili']     = $request['provinsi_ktp'];
+        $request['kabkota_domisili']      = $request['kabkota_ktp'];
+        $request['kecamatan_domisili']    = $request['kecamatan_ktp'];
+        $request['kode_pos_domisili']     = $request['kode_pos_ktp'];
       }
       $request->request->remove('is_domisiliktp');
 
@@ -210,12 +214,12 @@ class JobseekerController extends Controller
     public function storeDataPendidikanInformal(Request $request){
       $pendidikanInformal = st_jobseeker_pendidikaninformal::where('user_id',\Auth::user()->id)
                                                          ->where('id',$request->id)->first();
-      
+
       $request->request->add(['user_id'=>\Auth::user()->id]);
       $request['tanggal_mulai'] = $request->tanggal_mulai."-01"."-01";
       $request['tanggal_akhir'] = $request->tanggal_akhir."-12"."-31";
       if($pendidikanInformal==null){
-        $request->request->remove('id');        
+        $request->request->remove('id');
         try {
           $newdata = st_jobseeker_pendidikaninformal::create($request->all());
           $status = md_jobseeker::find(\Auth::id())->setStatusPendidikan();
@@ -342,17 +346,17 @@ class JobseekerController extends Controller
         try {
           $dataUser = st_jobseeker_minatkerja::create($request->all());
           $status = md_jobseeker::find(\Auth::id())->setStatusMinat();
-          return response()->json(["success"=>true,"id"=>$dataUser->id,"statusform"=>$status]); 
+          return response()->json(["success"=>true,"id"=>$dataUser->id,"statusform"=>$status]);
         } catch (\Throwable $th) {
-          return response()->json(["success"=>false]); 
+          return response()->json(["success"=>false]);
         }}
         else{
           try {
             $dataMinat->update($request->all());
             $status = md_jobseeker::find(\Auth::id())->setStatusMinat();
-            return response()->json(["success"=>true,"statusform"=>$status]); 
+            return response()->json(["success"=>true,"statusform"=>$status]);
           } catch (\Throwable $th) {
-            return response()->json(["success"=>false]); 
+            return response()->json(["success"=>false]);
           }}
     }
 
@@ -377,7 +381,7 @@ class JobseekerController extends Controller
         } catch (\Throwable $th) {
           return response()->json(["success"=>false]);
         }}
-      
+
       public function destroyDataPendidikanBahasa(Request $request){
         try {
           $pendidikanBahasa = st_jobseeker_pendidikanbahasa::where('user_id',\Auth::user()->id)
@@ -477,10 +481,10 @@ class JobseekerController extends Controller
               $status = md_jobseeker::find(\Auth::id())->setStatusLampiran();
               return response()->json(["success"=>1,"statusform"=>$status]);
           }
-          
+
         } catch (\Throwable $th) {
         }
-        
+
       }
 
       public function destroyDataLampiran(Request $request){
@@ -560,7 +564,7 @@ class JobseekerController extends Controller
                       ->where('users_id',\Auth::user()->id)
                       ->first();
       $status = ($transLowongan==null)?false:true;
-      
+
       //$trans_lowongan = trans_lowongan_pekerjaan::all()->where('md_lowongan_pekerjaan_id',$lowongan->id);
       return view ('jobseeker.dashboard.show',compact('lowongan','id','status'));
     }
@@ -581,6 +585,7 @@ class JobseekerController extends Controller
         $account = new trans_lowongan_pekerjaan;
         $account->users_id = $userId;
         $account->md_lowongan_pekerjaan_id = $request->jobid;
+        $account->entry_date = Carbon::today()->format('Y-m-d');
         $account->save();
         $status = true;
       }

@@ -69,7 +69,6 @@
                                 </div>
                             </div>
                         </div>
-                      </div>
 
 
                         <table class="table table-striped table-bordered table-hover dataTables-client" style="width: 100%">
@@ -232,8 +231,6 @@
                 <form method="POST" action="{{url('/hrd/setup/umk/update/{id}')}}" class="form-horizontal" enctype="multipart/form-data">
                       @csrf
                       @include('hrd.setup.umk.form')
-              </div>
-
               <div class="modal-footer">
                   <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save changes</button>
@@ -269,8 +266,6 @@
           todayHighlight: true,
           format: 'yyyy-mm-dd'
       });
-
-
 
         $('.dataTables-client').DataTable({
             pageLength: 25,

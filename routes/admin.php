@@ -11,6 +11,7 @@ Route::prefix('admin')->group(function(){
     Route::get('manajemenuser', 'AdminController@getManajemenuser');
     Route::get('lowongan/show/{id}', 'AdminController@showLowongan')->name('showAdminLowongan');
     Route::get('lowongan/penilaian/{jobid}/users/{userid}', 'AdminController@showPenilaian')->name('penilaian');
+    Route::get('lowongan/datapelamar/{jobid}/users/{userid}', 'AdminController@showDatapelamar')->name('datapelamar');
     Route::get('profile', 'AdminController@profile');
     Route::post('profile', 'AdminController@update_avatar');
     //-x Create Method

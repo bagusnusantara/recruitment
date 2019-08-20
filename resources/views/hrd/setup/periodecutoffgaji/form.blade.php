@@ -1,6 +1,4 @@
 <input type="hidden" name="id" id="id" value="" />
-<input type="hidden" name="start_date" id="start_date" value="" />
-<input type="hidden" name="end_date" id="end_date" value="" />
 <div class="form-group"><label class="col-sm-4 control-label">Bulan</label>
   <div class="col-sm-8">
   <select class="form-control chosen-select-width" name="bulan" id="bulan">
@@ -27,8 +25,13 @@
   </select>
   </div>
 </div>
-<div class="form-group"><label class="col-sm-4 control-label">Start Date - End Date</label>
+<div class="form-group"><label class="col-sm-4 control-label">Start Date</label>
   <div class="col-sm-8">
-     <input type="text" id="config-demo" class="form-control">
+     <input type="text" id="sdate" name="sdate" class="form-control date">
+  </div>
+</div>
+<div class="form-group"><label class="col-sm-4 control-label">End Date</label>
+  <div class="col-sm-8">
+     <input type="text" id="edate" name="edate" class="form-control date">
   </div>
 </div>

@@ -22,11 +22,11 @@
             <div class="widget style1 navy-bg">
                 <div class="row">
                     <div class="col-xs-4">
-                        <i class="fa fa-pied-piper-alt fa-5x"></i>
+                        <i class="fa fa-newspaper fa-5x"></i>
                     </div>
                     <div class="col-xs-8 text-right">
                         <span> Lowongan Pekerjaan Aktif </span>
-                        <h2 class="font-bold">62</h2>
+                        <h2 class="font-bold">{{$loker_aktif}}</h2>
                     </div>
                 </div>
             </div>
@@ -35,10 +35,10 @@
             <div class="widget style1 lazur-bg">
                 <div class="row">
                     <div class="col-xs-4">
-                        <i class="fa fa-envelope-o fa-5x"></i>
+                        <i class="fa fa-users fa-5x"></i>
                     </div>
                     <div class="col-xs-8 text-right">
-                        <span> Pesan Baru </span>
+                        <span> Total User </span>
                         <h2 class="font-bold">1</h2>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <i class="fa fa-briefcase fa-5x"></i>
                     </div>
                     <div class="col-xs-8 text-right">
-                        <span> Pekerjaan Sekarang </span>
+                        <span> Total Klien </span>
                         <h5 class="font-bold">PT. Sosialta Solusindo</h5>
                     </div>
                 </div>
@@ -76,11 +76,11 @@
     <div class="row">
         <div class="col-md-6">
             <div class="ibox-content text-center">
-                <h1>Welcome Admin !!!</h1>
+                <h1>Welcome {{ Auth::user()->name }} !!!</h1>
                 <div class="m-b-sm">
-                        <img alt="image" class="img-circle" src="{{asset('inspinia/img/a1.jpg') }}">
+                        <img alt="image" class="img-circle" src="/storage/avatars/{{ Auth::user()->avatar }}" style="width: 75px; height: 75px">
                 </div>
-                        <p class="font-bold">Jack Separo</p>
+                        <p class="font-bold">{{ Auth::user()->name }}</p>
             </div>
         </div>
         <div class="col-md-6">

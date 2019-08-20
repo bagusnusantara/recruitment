@@ -3,13 +3,13 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Setup UMK</h2>
+            <h2>Setup Penandatanganan Gaji</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/dashboard')}}">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Setup Tunjangan Transport</strong>
+                    <strong>Setup Penandatanganan Gaji</strong>
                 </li>
             </ol>
 
@@ -24,7 +24,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Tunjangan Transport</h5>
+                        <h5>Penandatanganan Gaji</h5>
 
                         <div class="ibox-tools">
                             <a class="collapse-link">
@@ -46,19 +46,19 @@
                     </div>
                     <div class="ibox-content">
                         <div class="text-right">
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Tunjangan Transport</button>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Penandatanganan Gaji</button>
                         </div>
                         <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
                               <div class="modal-dialog modal-lg">
                                   <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title">Tambah Tunjangan Transport</h4>
+                                        <h4 class="modal-title">Tambah Penandatanganan Gaji</h4>
                                     </div>
                                     <div class="modal-body">
-                                      <form method="POST" action="{{url('/hrd/setup/tunjangantransport/store')}}" class="form-horizontal" enctype="multipart/form-data">
+                                      <form method="POST" action="{{url('/hrd/setup/penandatanganangaji/store')}}" class="form-horizontal" enctype="multipart/form-data">
                                             @csrf
-                                            @include('hrd.setup.tunjangantransport.form')
+                                            @include('hrd.setup.penandatanganangaji.form')
                                     </div>
 
                                     <div class="modal-footer">
@@ -74,46 +74,48 @@
                             <thead>
                             <tr>
                               <th class="text-center">No</th>
-                              <th class="text-center">Klien</th>
-                              <th class="text-center">Tunjangan Transport</th>
+                              <th class="text-center">seq</th>
+                              <th class="text-center">Nama</th>
+                              <th class="text-center">Jabatan</th>
                               <th class="text-center">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                               @php
-    								$i=1;
-    							@endphp
-                              @foreach($st_tunjtransport as $u)
+              								$i=1;
+              							@endphp
+                              @foreach($st_tt_payroll as $u)
 
                               <tr>
-                              <td class="text-center">{{$i}}</td>
-                              <td>{{$u->nama_client}}</td>
-                              <td><center>{{$u->tunj_transport}}</center></td>
-                              <td class="text-center">
+                                  <td class="text-center">{{$i}}</td>
+                                  <td>{{$u->seq}}</td>
+                                  <td><center>{{$u->nama}}</center></td>
+                                  <td><center>{{$u->jabatan}}</center></td>
+                                  <td class="text-center">
                                     <button class="btn btn-default btn-circle"
-                                          data-id="{{$u->md_client_id}}"
-                                          data-namaclient="{{$u->md_client_id}}"
-                                          data-tunjtransport="{{$u->tunj_transport}}"
+                                          data-seq="{{$u->seq}}"
+                                          data-nama="{{$u->nama}}"
+                                          data-jabatan="{{$u->jabatan}}"
                                           data-toggle="modal" data-target="#show"><i class="fa fa-eye"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
-                                          data-id="{{$u->md_client_id}}"
-                                          data-namaclient="{{$u->md_client_id}}"
-                                          data-tunjtransport="{{$u->tunj_transport}}"
+                                          data-seq="{{$u->seq}}"
+                                          data-nama="{{$u->nama}}"
+                                          data-jabatan="{{$u->jabatan}}"
                                           data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
-                                          data-id="{{$u->md_client_id}}"
-                                          data-namaclient="{{$u->md_client_id}}"
-                                          data-tunjtransport="{{$u->tunj_transport}}"
+                                          data-seq="{{$u->seq}}"
+                                          data-nama="{{$u->nama}}"
+                                          data-jabatan="{{$u->jabatan}}"
                                           data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i>
                                     </button>
                                   </td>
 
                                   
                               @php
-								$i++;
-							@endphp
+                								$i++;
+                							@endphp
                               @endforeach
                                 </tr>
                           </tbody>
@@ -127,6 +129,7 @@
 
 </div>
 </div>
+
 {{-- Delete Data --}}
 <div class="modal inmodal fade" id="delete" tabindex="-1" role="dialog"  aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -136,25 +139,26 @@
                   <h4 class="modal-title">Delete Confirmation</h4>
               </div>
               <div class="modal-body">
-              <form method="POST" action="{{ url('/hrd/setup/tunjangantransport/delete/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
+              <form method="POST" action="{{ url('/hrd/setup/tunjanganmakan/delete/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
                 @method('DELETE')
                 <h4 class="text-center">Apakah Anda yakin untuk menghapus data?</h4>
-                
-             <input type="hidden" name="id" id="id" value="" />
+                <input type="hidden" name="id" id="id" value="" />
                 <div class="form-group"><label class="col-sm-4 control-label">Nama Client</label>
                   <div class="col-sm-8">
                      <select class="form-control chosen-select-width" name="nama_client" id="nama_client" disabled>
                             <option value="null" selected disabled>--Nama Client--</option>
-                             @foreach($st_tunjtransport as $data)
-                            <option value="{{ $data->md_client_id }}">  {{ $data->nama_client }}</option>
+                             @foreach($st_md_client as $data)
+                            <option value="{{ $data->id }}">  {{ $data->nama_client }}</option>
                              @endforeach
                       </select>
                   </div>
                 </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Tunjangan Transport</label>
-                    <div class="col-sm-8"><input type="number" disabled onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="tunj_transport" id="tunj_transport"></div>
+                <div class="form-group"><label class="col-sm-4 control-label">Tunjangan Makan</label>
+                    <div class="col-sm-8"><input type="number" disabled onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="tunj_makan" id="tunj_makan"></div>
                 </div>
+
+             </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-white" data-dismiss="modal">Tidak</button>
                   <button type="submit" class="btn btn-primary">Ya</button>
@@ -163,30 +167,29 @@
       </div>
   </div>
 </div>
-</div>
 {{-- Show Data --}}
 <div class="modal inmodal fade" id="show" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Show Tunjangan Transport</h4>
+                    <h4 class="modal-title">Show Penandatanganan Gaji</h4>
                 </div>
                 <div class="modal-body">
                 <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
-               <input type="hidden" name="id" id="id" value="" />
-                <div class="form-group"><label class="col-sm-4 control-label">Nama Client</label>
-                  <div class="col-sm-8">
-                     <select class="form-control chosen-select-width" name="nama_client" id="nama_client" disabled>
-                            <option value="null" selected disabled>--Nama Client--</option>
-                             @foreach($st_tunjtransport as $data)
-                            <option value="{{ $data->md_client_id }}">  {{ $data->nama_client }}</option>
-                             @endforeach
-                      </select>
+                  <input type="hidden" name="hseq" id="hseq" value="" />
+                  <div class="form-group"><label class="col-sm-4 control-label">Seq</label>
+                      <div class="col-sm-8"><input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="seq" id="seq" disabled></div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Nama</label>
+                      <div class="col-sm-8"><input type="text" class="form-control" name="nama" id="nama" disabled></div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Jabatan</label>
+                      <div class="col-sm-8"><input type="text" class="form-control" name="jabatan" id="jabatan" disabled></div>
                   </div>
                 </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Tunjangan Transport</label>
-                    <div class="col-sm-8"><input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="tunj_transport" id="tunj_transport" disabled></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                 </div>
                 </form>
         </div>
@@ -199,12 +202,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Edit Komponen Gaji</h4>
+                    <h4 class="modal-title">Edit Tunjangan Makan</h4>
                 </div>
                 <div class="modal-body">
-                <form method="POST" action="{{ url('/hrd/setup/tunjangantransport/update/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('/hrd/setup/tunjanganmakan/update/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
                         @csrf
-                        @include('hrd.setup.tunjangantransport.form')
+                            @include('hrd.setup.tunjanganmakan.form')
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
@@ -214,7 +217,13 @@
         </div>
     </div>
 </div>
+
+
+
+
 </div>
+</div>
+
 
 @include('template.footer')
 
@@ -250,39 +259,42 @@
     $('#show').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var id = button.data('id')
-                        var namaclient = button.data('namaclient')
-                        var tunjtransport = button.data('tunjtransport')
+                        var seq = button.data('seq')
+                        var nama = button.data('nama')
+                        var jabatan = button.data('jabtan')
 
                         var modal = $(this)
-                        modal.find('.modal-body #id').val(id);
-                        modal.find('.modal-body #nama_client').val(namaclient);
-                        modal.find('.modal-body #tunj_transport').val(tunjtransport);
+                        modal.find('.modal-body #seq').val(seq);
+                        modal.find('.modal-body #hseq').val(seq);
+                        modal.find('.modal-body #nama').val(nama);
+                        modal.find('.modal-body #jabatan').val(jabatan);
                     })
     $('#edit').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var id = button.data('id')
-                        var namaclient = button.data('namaclient')
-                        var tunjtransport = button.data('tunjtransport')
+                        var seq = button.data('seq')
+                        var nama = button.data('nama')
+                        var jabatan = button.data('jabtan')
 
                         var modal = $(this)
-                        modal.find('.modal-body #id').val(id);
-                        modal.find('.modal-body #nama_client').val(namaclient);
-                        modal.find('.modal-body #tunj_transport').val(tunjtransport);
+                        modal.find('.modal-body #seq').val(seq);
+                        modal.find('.modal-body #hseq').val(seq);
+                        modal.find('.modal-body #nama').val(nama);
+                        modal.find('.modal-body #jabatan').val(jabatan);
                     })
     $('#delete').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var id = button.data('id')
-                        var namaclient = button.data('namaclient')
-                        var tunjtransport = button.data('tunjtransport')
+                        var seq = button.data('seq')
+                        var nama = button.data('nama')
+                        var jabatan = button.data('jabtan')
 
                         var modal = $(this)
-                        modal.find('.modal-body #id').val(id);
-                        modal.find('.modal-body #nama_client').val(namaclient);
-                        modal.find('.modal-body #tunj_transport').val(tunjtransport);
-            })
+                        modal.find('.modal-body #seq').val(seq);
+                        modal.find('.modal-body #hseq').val(seq);
+                        modal.find('.modal-body #nama').val(nama);
+                        modal.find('.modal-body #jabatan').val(jabatan);
+                    })
 
 
 </script>

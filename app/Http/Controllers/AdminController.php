@@ -28,8 +28,10 @@ class AdminController extends Controller
       if(!Gate::allows('isAdmin')){
           abort(404,"Maaf Anda tidak memiliki akses");
       }
+      $loker_aktif = DB::table('md_lowongan_pekerjaan')->where('status','on')->count();
+      //dd($loker_aktif);
       Alert::success('Selamat Datang di Sistem Recruitment SMI', 'Halo Admin SMI!!!');
-      return view ('admin.dashboard.index');
+      return view ('admin.dashboard.index',compact('loker_aktif'));
     }
 
     public function getNotifikasi(){
@@ -63,7 +65,7 @@ class AdminController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       $lowongan_pekerjaan=md_lowongan_pekerjaan::find($id);
-      
+
       $pendaftar=DB::table('trans_lowongan_pekerjaan')
                      ->join('md_jobseeker', 'trans_lowongan_pekerjaan.users_id', '=', 'md_jobseeker.users_id')
                      ->select('trans_lowongan_pekerjaan.*', 'md_jobseeker.nama_lengkap','md_jobseeker.nik')
@@ -74,7 +76,7 @@ class AdminController extends Controller
                   ->select('st_lowongan_gaji.deskripsi')
                   ->where('md_lowongan_pekerjaan.id',$lowongan_pekerjaan->id)
                   ->get();
-      
+
       return view ('admin.lowongan.show',compact('lowongan_pekerjaan','pendaftar','detail','id'));
     }
 
@@ -101,12 +103,36 @@ class AdminController extends Controller
 
     public function showPenilaian($jobid,$userid){
       $status = [1,0,0,0,1];
+      // $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
+      //                                   ->where('users_id',$userid)->count();
+      $lowongan=DB::table('md_lowongan_pekerjaan')->where('id',$jobid)->get();
       $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
                                         ->where('users_id',$userid)->count();
       if($check){
-        return view ('admin.lowongan.show_penilaian',compact('status')); 
+        //dd($jobid);
+
+        //dd($lowongan);
+        return view ('admin.lowongan.show_penilaian',compact('status','lowongan'));
       }else {
         Alert::warning('Penilaian Tidak Tersedia !');
+        return redirect()->route('showAdminLowongan',['id'=>$jobid]);
+      }
+    }
+
+    public function showDatapelamar($jobid,$userid){
+      $status = [1,0,0,0,1];
+      // $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
+      //                                   ->where('users_id',$userid)->count();
+      $pelamar=DB::table('md_jobseeker')->where('users_id',$userid)->get();
+      $pendidikan=DB::table('st_jobseeker_pendidikanformal')->where('user_id',$userid)->get();
+      $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
+                                        ->where('users_id',$userid)->count();
+      if($check){
+        //dd($pelamar);
+
+        return view ('admin.lowongan.show_data_pelamar',compact('status','pelamar','pendidikan'));
+      }else {
+        Alert::warning('Data Tidak Tersedia !');
         return redirect()->route('showAdminLowongan',['id'=>$jobid]);
       }
     }
@@ -204,7 +230,7 @@ class AdminController extends Controller
         $lowongan->st_kabkota_id = $request->st_kabkota_id;
         $lowongan->st_lowongan_gaji_id = $request->st_lowongan_gaji_id;
         $lowongan->status = $request->status;
-        $lowongan->st_pengalaman_id = $request->st_pengalaman_id; 
+        $lowongan->st_pengalaman_id = $request->st_pengalaman_id;
         $lowongan->st_nilai_administrasi = $request->st_nilai_administrasi;
         $lowongan->st_nilai_interview_walk = $request->st_nilai_interview_walk;
         $lowongan->st_nilai_psikotes = $request->st_nilai_psikotes;
@@ -243,5 +269,5 @@ class AdminController extends Controller
 
   }
 
-    
+
 }

@@ -17,6 +17,9 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/jamsostekdanbpjs', 'HRDController@getJamsostekdanbpjs');
     Route::get('setup/potonganterlambat', 'HRDController@getPotonganterlambat');
     Route::get('setup/uanghadir', 'HRDController@getUanghadir');
+    Route::get('setup/tunjanganprestasi', 'HRDController@getTunjanganprestasi');
+    Route::get('setup/gpjabatansite', 'HRDController@getGpjabatansite');
+    Route::get('setup/penandatanganangaji', 'HRDController@getPenandatanganangaji');
 
     //-x Post Method
     Route::post('setup/umk/store', 'HRDController@storeumk');
@@ -29,6 +32,12 @@ Route::prefix('hrd')->group(function(){
     Route::post('setup/tunjanganmakan/update/{id}','HRDController@updateTunjanganmakan');
     Route::post('setup/periodecutoffgaji/store', 'HRDController@storePeriodecutoffgaji');
     Route::post('setup/periodecutoffgaji/update', 'HRDController@updatePeriodecutoffgaji');
+    Route::post('setup/tunjanganprestasi/store', 'HRDController@storeTunjanganPrestasi');
+    Route::post('setup/tunjanganprestasi/update/{id}', 'HRDController@updateTunjanganprestasi');
+    Route::post('setup/gpjabatansite/store', 'HRDController@storeGpjabatansite');
+    Route::post('setup/gpjabatansite/update/{id}', 'HRDController@updateGpjabatansite');
+    Route::post('setup/penandatanganangaji/store', 'HRDController@storePenandatanganangaji');
+    Route::post('setup/penandatanganangaji/update/{id}', 'HRDController@updatePenandatanganangaji');
 
 
     //-x Delete Method
@@ -37,6 +46,9 @@ Route::prefix('hrd')->group(function(){
     Route::delete('setup/tunjangantransport/delete/{id}', 'HRDController@destroyTunjangantransport');
     Route::delete('setup/tunjanganmakan/delete/{id}', 'HRDController@destroyTunjanganmakan');
     Route::delete('setup/periodecutoffgaji/delete/{id}', 'HRDController@destroyPeriodecutoffgaji');
+    Route::delete('setup/tunjanganprestasi/delete/{id}', 'HRDController@destroyTunjanganprestasi');
+    Route::delete('setup/gpjabatansite/delete/{id}', 'HRDController@destroyGpjabatansite');
+    Route::delete('setup/penandatanganangaji/delete/{id}', 'HRDController@destroyPenandatanganangaji');
 
 
     //-x

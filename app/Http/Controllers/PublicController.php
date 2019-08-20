@@ -12,12 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class PublicController extends Controller
 {
-    public function getLowonganpublic($id){
-      
-        $lowongan = md_lowongan_pekerjaan::find($id);
-        return view ('public.dashboard.showpublic',compact('lowongan'));
-    }
-    //jhihi
+
     public function showhome(){
       $tableLowongan = "md_lowongan_pekerjaan";
       $tableKategori = "st_kategoripekerjaan";
@@ -46,8 +41,36 @@ class PublicController extends Controller
       return view('public.welcome',compact("Kategori","Spesialisasi","lowongan"));
     }
 
-    public function showLowonganpublic(){
-      $lowongan_pekerjaan=md_lowongan_pekerjaan::paginate(10);
+    public function showLowonganpublic(Request $request){
+      $kategori = $request->kategori;
+      $spesial = $request->spesial;
+      //dump($kategori,$spesial);
+      // if($kategori && $spesial)
+      // $lowongan_pekerjaan = md_lowongan_pekerjaan::where("st_kategori_pekerjaan_id",$kategori)->where("st_spesialisasi_pekerjaan_id",$spesial)->paginate(10);
+
+      if($kategori)
+      //$lowongan_pekerjaan = md_lowongan_pekerjaan::where("st_kategori_pekerjaan_id",$kategori)->paginate(10);
+      $lowongan_pekerjaan=DB::table('md_lowongan_pekerjaan')
+                     ->where("st_kategori_pekerjaan_id",$kategori)
+                     ->join('md_client', 'md_lowongan_pekerjaan.md_client_id', '=', 'md_client.id')
+                     ->select('md_lowongan_pekerjaan.*', 'md_client.nama_client')
+                     ->paginate(10);
+
+      elseif($spesial)
+      //$lowongan_pekerjaan = md_lowongan_pekerjaan::where("st_spesialisasi_pekerjaan_id",$spesial)->paginate(10);
+      $lowongan_pekerjaan=DB::table('md_lowongan_pekerjaan')
+                     ->where("st_spesialisasi_pekerjaan_id",$spesial)
+                     ->join('md_client', 'md_lowongan_pekerjaan.md_client_id', '=', 'md_client.id')
+                     ->select('md_lowongan_pekerjaan.*', 'md_client.nama_client')
+                     ->paginate(10);
+      else
+      //$lowongan_pekerjaan = md_lowongan_pekerjaan::paginate(10);
+      $lowongan_pekerjaan=DB::table('md_lowongan_pekerjaan')
+                     ->join('md_client', 'md_lowongan_pekerjaan.md_client_id', '=', 'md_client.id')
+                     ->select('md_lowongan_pekerjaan.*', 'md_client.nama_client')
+                     ->paginate(10);
+      //dd($lowongan_pekerjaan);
+
       $provinsi=st_Provinsi::all();
       $kota_all=st_Kabkota::all();
       return view ('public.dashboard.index',compact('lowongan_pekerjaan','provinsi','kota_all'));

@@ -47,7 +47,8 @@
 
                         <div class="row">
                         <form id="form" action="#" class="wizard-big">
-                            @if($status[0])
+                            @foreach($lowongan as $l)
+                            @if($l->st_nilai_administrasi == 1)
                             <h1 class='col'>Administrasi</h1>
                             <fieldset>
                                 <h2>Seleksi Administrasi</h2>
@@ -75,6 +76,7 @@
                                 </div>
                             </fieldset>
                             @endif
+                            @if($l->st_nilai_interview_walk == 1)
                             <h1 class="col">Walk in Interview</h1>
                             <fieldset>
                                 <h2>Seleksi Walk in Interview</h2>
@@ -101,7 +103,8 @@
                                     </div>
                                 </div>
                             </fieldset>
-
+                            @endif
+                            @if($l->st_nilai_psikotes == 1)
                             <h1 class='col'>TKD</h1>
                             <fieldset>
                               <div class="row">
@@ -158,7 +161,8 @@
 
                               </div>
                             </fieldset>
-
+                            @endif
+                            @if($l->st_nilai_psikotes == 1)
                             <h1 class='col'>Psikotes</h1>
                             <fieldset>
                                 <h2>Hasil Seleksi Psikotes</h2>
@@ -213,9 +217,14 @@
                                             <input id="address" name="address" type="text" class="form-control">
                                         </div>
                                     </div>
-
                                 </div>
                             </fieldset>
+                            @endif
+                            @if($l->st_nilai_interview_regular==1)
+                            @endif
+                            @if($l->st_nilai_interview_user==1)
+                            @endif
+                          @endforeach
                         </form>
                         </div>
                     </div>
