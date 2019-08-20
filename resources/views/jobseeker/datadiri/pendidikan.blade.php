@@ -54,7 +54,7 @@
                   <div class="modal-body">
                     <div class="inner-box" >
                         <div class="item">
-                          <input type="hidden" class="form-control typeTahun" id="id" placeholder="Masukan Tahun Mulai">
+                          <input type="hidden" class="form-control" id="id" placeholder="Masukan Tahun Mulai">
                           <div class="form-group">
                                 <h4><label class="my-1 mr-2" for="TingkatPendidikan">Tingkat Pendidikan</label></h4>
                                 <select class="custom-select my-1 mr-sm-2" id="TingkatPendidikan">
@@ -68,8 +68,12 @@
                             <h4>Tahun</h4>
                             <label for="tahunmulai">Mulai</label>
                             <input type="text" class="form-control typeTahun" id="tahunmulai" placeholder="Masukan Tahun Mulai">
+                            <div id="DatePendidikanFormalMulai">
+                            </div>
                             <label for="tahunakhir">Akhir</label>
                             <input type="text" class="form-control typeTahun" id="tahunakhir" placeholder="Masukan Tahun Akhir">
+                            <div id="DatePendidikanFormalAkhir">
+                              </div>
                         </div>
                         <div class="form-group">
                               <h4><label for="institusi">Institusi</label></h4>
@@ -149,7 +153,7 @@
                     <div class="modal-body">
                       <div class="inner-box">
                           <div class="item">
-                          <input type="hidden" class="form-control typeTahun" id="id">
+                          <input type="hidden" class="form-control" id="id">
                           <div class="form-group">
                               <h4><label for="tempat">Jenis Pelatihan</label></h4>
                               <input type="text" class="form-control" id="jenispelatihan" placeholder="Masukan jenis pelatihan">
@@ -158,8 +162,12 @@
                               <h4>Periode</h4>
                               <label for="tahunmulai">Mulai</label>
                               <input type="text"  class="form-control typeTahun" id="tahunmulai" placeholder="Masukan Tahun Mulai">
+                              <div id="DatePendidikanInformalMulai">
+                              </div>
                               <label for="tahunakhir">Akhir</label>
                               <input type="text"  class="form-control typeTahun" id="tahunakhir" placeholder="Masukan Tahun Akhir">
+                              <div id="DatePendidikanInformalAkhir">
+                              </div>
                           </div>
                             <div class="form-group">
                                 <h4><label for="tempat">Tempat</label></h4>
@@ -226,7 +234,7 @@
                     <div class="modal-body">
                       <div class="inner-box">
                           <div class="item">
-                              <input type="hidden" class="form-control typeTahun" id="id">
+                              <input type="hidden" class="form-control" id="id">
                               <div class="form-group">
                                   <h4><label class="my-1 mr-2" for="bahasa">Bahasa</label></h4>
                                   <select class="custom-select my-1 mr-sm-2" id="bahasa">

@@ -53,11 +53,11 @@
                         <table class="table table-striped table-bordered table-hover dataTables-client" style="width: 100%">
                             <thead>
                             <tr>
-                              <th>No</th>
-                              <th>Klien</th>
-                              <th data-hide="phone,tablet">Alamat</th>
-                              <th data-hide="phone,tablet">Jenis Usaha</th>
-                              <th>Action</th>
+                              <th><center>No</center></th>
+                              <th><center>Klien</center></th>
+                              <th><center>Alamat</center></th>
+                              <th><center>Jenis Usaha</center></th>
+                              <th><center>Action</center></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -67,14 +67,15 @@
                               @foreach($md_client as $client)
 
                               <tr>
-                                  <td>{{$i}}</td>
+                                  <td><center>{{$i}}</center></td>
                                   <td>{{$client->nama_client}}</td>
-                                  <td>{{$client->alamat}}</td>
-                                  <td class="center">Retail Alat Berat</td>
-                                  <td>
+                                  <td><center>{{$client->alamat}}</center></td>
+                                  <td><center>-</center></td>
+                                  <td><center>
                                     <button class="btn btn-default btn-circle" type="button"><i class="fa fa-eye"></i>
-                                    <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
+                                    <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pen-square"></i>
                                     <button class="btn btn-default btn-circle" type="button"><i class="fa fa-trash"></i>
+                                    </center>
                                   </td>
 
                               @php

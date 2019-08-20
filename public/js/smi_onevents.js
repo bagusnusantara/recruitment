@@ -1,7 +1,7 @@
 const inputDateYear ={
     format : "yyyy",
     minViewMode : "years",
-    maxViewMode : "years"
+    maxViewMode : "years",
 }
 
 const inputDateMonth ={
@@ -12,6 +12,7 @@ const inputDateMonth ={
 
 const inputBirth ={
     format : "dd-M-yyyy",
+    container:"#DateTanggalLahir",
 }
 
 function identitasValidate(){

@@ -6,8 +6,6 @@
   </head>
 
   <body>
-
-
     @include('public/template/header_content')
     @include('public/template/script')
     @yield('content')

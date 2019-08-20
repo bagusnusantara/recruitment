@@ -29,7 +29,7 @@
               </div>
               <div class="job-details">
                 <h3><b>{{$lowongan->job_tittle}}</b><br></h3>
-                <span class="company-neme">{{$lowongan->md_client->nama_client}}</span>
+                <span class="company-neme">{{$lowongan->nama_client}}</span>
                 <div class="tags">
                   <span><i class="lni-map-marker"></i> Surabaya</span>
                 </div>

@@ -45,27 +45,28 @@
                             </div>
                             <div class="col-md-7">
 
-                                <h2 class="font-bold m-b-xs">
+                                <h1 class="font-bold m-b-xs">
                                     {{$lowongan_pekerjaan->job_tittle}} -  {{$lowongan_pekerjaan->md_client->nama_client}}
-                                </h2>
+                                </h1>
                                 <div class="m-t-md">
                                     @foreach($detail as $d)
                                     <h2 class="product-main-price">{{$d->deskripsi}} </h2>
                                     @endforeach
                                 </div>
                                 <hr>
+                                <h2><b>Deskripsi Pekerjaan</b></h2>
 
-                                <h4>Persyaratan</h4>
+                                <div class="small text-muted">
+                                    {!!$lowongan_pekerjaan->deskripsi_pekerjaan!!}
+                                </div>
+                                <br>
+                                <h2><b>Persyaratan</b></h2>
 
                                 <div class="small text-muted">
                                     {!!$lowongan_pekerjaan->persyaratan!!}
                                 </div>
                                 <hr>
-                                <h4>Deskripsi Pekerjaan</h4>
 
-                                <div class="small text-muted">
-                                    {!!$lowongan_pekerjaan->deskripsi_pekerjaan!!}
-                                </div>
 
 
                             </div>
@@ -135,9 +136,9 @@
                                 </td>
                                 <td>
                                   <center>
-                                  <a type="button" class="btn btn-default btn-circle" href="#" type="button"><i class="fa fa-eye"></i></a>
+                                  <a type="button" class="btn btn-default btn-circle" href="{{route('datapelamar',['jobid'=>$id,'usersid'=>$p->users_id])}}" type="button"><i class="fa fa-eye"></i></a>
                                   <!-- <a type="button" class="btn btn-default btn-circle" href="{{$lowongan_pekerjaan->id}}/showpenilaian" type="button"><i class="fa fa-eye"></i></a> -->
-                                  <a type="button" class="btn btn-default btn-circle" href="{{route('penilaian',['jobid'=>$id,'usersid'=>$p->users_id])}}" type="button"><i class="fa fa-pencil-square-o"></i></a>
+                                  <a type="button" class="btn btn-default btn-circle" href="{{route('penilaian',['jobid'=>$id,'usersid'=>$p->users_id])}}" type="button"><i class="fa fa-pen-square"></i></a>
 
                                   <!-- <button class="btn btn-default btn-circle" type="button"><i class="fa fa-trash"></i> -->
                                   </center>
