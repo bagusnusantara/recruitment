@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-xs-8 text-right">
                         <span> Total User </span>
-                        <h2 class="font-bold">1</h2>
+                        <h2 class="font-bold">{{$users}}</h2>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-xs-8 text-right">
                         <span> Total Klien </span>
-                        <h5 class="font-bold">PT. Sosialta Solusindo</h5>
+                        <h2 class="font-bold">{{$client}}</h2>
                     </div>
                 </div>
             </div>
