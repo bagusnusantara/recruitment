@@ -224,23 +224,24 @@
 <div class="modal inmodal fade" id="edit" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Edit Komponen Gaji</h4>
-                </div>
-                <div class="modal-body">
-                <form method="POST" action="{{ url('/hrd/setup/umk/update/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
-                        @csrf
-                            @include('hrd.setup.umk.form')
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Update Data</button>
-                </div>
-                </form>
-        </div>
-    </div>
-</div>
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">Edit UMK</h4>
+              </div>
+              <div class="modal-body">
+                <form method="POST" action="{{url('/hrd/setup/umk/update/{id}')}}" class="form-horizontal" enctype="multipart/form-data">
+                      @csrf
+                      @include('hrd.setup.umk.form')
+              </div>
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+              </form>
+          </div>
+      </div>
+  </div>
 </div>
 
 
@@ -249,7 +250,6 @@
 <!-- Page-Level Scripts -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
 <script>
     $(document).ready(function(){
 

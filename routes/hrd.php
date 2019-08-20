@@ -25,11 +25,18 @@ Route::prefix('hrd')->group(function(){
     Route::post('setup/tunjanganjabatan/update/{id}','HRDController@updateTunjanganjabatan');
     Route::post('setup/tunjangantransport/store', 'HRDController@storeTunjangantransport');
     Route::post('setup/tunjangantransport/update/{id}','HRDController@updateTunjangantransport');
+    Route::post('setup/tunjanganmakan/store', 'HRDController@storeTunjanganmakan');
+    Route::post('setup/tunjanganmakan/update/{id}','HRDController@updateTunjanganmakan');
+    Route::post('setup/periodecutoffgaji/store', 'HRDController@storePeriodecutoffgaji');
+    Route::post('setup/periodecutoffgaji/update', 'HRDController@updatePeriodecutoffgaji');
+
 
     //-x Delete Method
     Route::delete('setup/umk/delete/{id}', 'HRDController@destroyUmk')->name('post-umk-delete');
     Route::delete('setup/tunjanganjabatan/delete/{id}', 'HRDController@destroyTunjanganjabatan')->name('post-tunj-jabatan-delete');
     Route::delete('setup/tunjangantransport/delete/{id}', 'HRDController@destroyTunjangantransport');
+    Route::delete('setup/tunjanganmakan/delete/{id}', 'HRDController@destroyTunjanganmakan');
+    Route::delete('setup/periodecutoffgaji/delete/{id}', 'HRDController@destroyPeriodecutoffgaji');
 
 
     //-x

@@ -10,7 +10,6 @@
     <link href="{{ asset('inspinia/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('inspinia/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('inspinia/css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
-    <link href="{{ asset('inspinia/css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
 {{--    <link href="{{ asset('inspinia/css/plugins/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet">--}}
   	<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
   	<!-- <link href="{{ asset('inspinia/font-awesome/css/font-awesome.css') }}" rel="stylesheet"> -->
@@ -49,6 +48,9 @@
     <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- Data picker -->
     <script src="{{asset('inspinia/js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
 

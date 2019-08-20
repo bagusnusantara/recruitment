@@ -18,6 +18,7 @@ use App\st_Umk;
 use App\st_Tunjanganjabatan;
 use App\st_Tunjangantransport;
 use App\st_Tunjanganmakan;
+use App\st_Periodecutoffgaji;
 use Alert;
 use DB;
 use App\User;
@@ -193,8 +194,9 @@ class HRDController extends Controller
 
     public function destroyTunjanganjabatan(Request $request)
     {
-      $id = $request->id;
-      $tunj = DB::select(DB::raw(" DELETE FROM st_tunj_jabatan WHERE kode_jabatan = '$id'"));
+      $kode_jabatan = $request->uukode_jabatan;
+      $kode_site = $request->uukode_site;
+      $tunj = DB::select(DB::raw(" DELETE FROM st_tunj_jabatan WHERE kode_jabatan = '$kode_jabatan' AND kode_site = '$kode_site'"));
       Alert::success('Tunjangan Jabatan Berhasil dihapus');
       return redirect()->back();
     }
@@ -204,12 +206,11 @@ class HRDController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       DB::table('st_tunj_jabatan')
-        ->where('kode_jabatan',$request->kode_jabatan)
+        ->where('kode_jabatan',$request->uukode_jabatan)
+        ->where('kode_site',$request->uukode_site)
         ->update([
-        'kode_jabatan' => $request->kode_jabatan,
-        'kode_site' => $request->kode_site,
-        'tunj_jabatan' => $request->tunjangan_jabatan,
-        'tgl_berlaku' => $request->tanggal_berlaku
+        'tunj_jabatan' => $request->utunjangan_jabatan,
+        'tgl_berlaku' => $request->utanggal_berlaku
       ]);
       Alert::success('Tunjangan Jabatan Berhasil diupdate');
       return redirect()->back();
@@ -287,13 +288,11 @@ class HRDController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       $user = Auth::user()->id;
-
-      $tunj = new st_Tunjanganmakan;
-
+      $tunj = new  st_Tunjanganmakan;
       $date_time = Carbon::now()->toDateTimeString();
       $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
       $tunj->md_client_id = $request->nama_client;
-      $tunj->tunj_transport = $request->tunj_transport;
+      $tunj->tunj_makan = $request->tunj_makan;
       $tunj->entry_user = $user;
       $tunj->entry_date = $date_time;
       $tunj->save();
@@ -301,6 +300,29 @@ class HRDController extends Controller
       Alert::success('Tunjangan Makan Berhasil ditambahkan');
       return redirect()->back();
     }
+
+    public function updateTunjanganmakan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_tunjmakan')
+        ->where('md_client_id', $request->nama_client)
+        ->update([
+        'md_client_id' => $request->nama_client,
+        'tunj_makan' => $request->tunj_makan,
+      ]);
+      Alert::success('Tunjangan Makan Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyTunjanganmakan(Request $request)
+      {
+        $id = $request->id;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_tunjmakan WHERE md_client_id = '$id'"));
+        Alert::success('Tunjangan Transport Berhasil dihapus');
+        return redirect()->back();
+      }
+
 
     public function getPeriodecutoff(){
       if(!Gate::allows('isHRD')){
@@ -311,5 +333,49 @@ class HRDController extends Controller
       ->get();
       return view ('hrd.setup.periodecutoffgaji.index',compact('st_cutoff_gaji'));
     }
+
+    public function storePeriodecutoffgaji(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $user = Auth::user()->id;
+      $tunj = new  st_Periodecutoffgaji;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->bln = $request->bulan;
+      $tunj->thn= $request->tahun;
+      $tunj->sd_prd = $request->start_date;
+      $tunj->ed_prd= $request->end_date;
+      $tunj->entry_user = $user;
+      $tunj->entry_date = $date_time;
+      $tunj->save();
+
+      Alert::success('Periode cut off gaji Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updatePeriodecutoffgaji(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_cutoff_gaji')
+        ->where('bln', $request->uubulan)
+        ->where('thn', $request->uutahun)
+        ->update([
+        'sd_prd' => $request->upstart_date,
+        'ed_prd' => $request->upend_date,
+      ]);
+      Alert::success('Periode cut off gaji Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyPeriodecutoffgaji(Request $request)
+      {
+        $bln = $request->uubulan;
+        $thn = $request->uutahun;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_cutoff_gaji WHERE bln = '$bln' AND thn = '$thn' "));
+        Alert::success('periode cut off gaji Berhasil dihapus');
+        return redirect()->back();
+      }
 
 }

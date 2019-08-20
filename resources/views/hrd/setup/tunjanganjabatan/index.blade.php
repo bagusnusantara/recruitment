@@ -149,6 +149,8 @@
                 <div class="modal-body">
                 <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
                 <input type="hidden" name="id" id="id" value="" />
+                <input type="hidden" name="ukode_jabatan" id="ukode_jabatan" value="" />
+                <input type="hidden" name="ukode_site" id="ukode_site" value="" />
                 <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
                     <div class="col-sm-8"><input type="text" class="form-control" name="kode_jabatan" id="kode_jabatan" disabled></div>
                 </div>
@@ -181,7 +183,21 @@
                 <div class="modal-body">
                 <form method="POST" action="{{ url('/hrd/setup/tunjanganjabatan/update/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
                         @csrf
-                        @include('hrd.setup.tunjanganjabatan.form')
+                <input type="hidden" name="id" id="id" value="" />
+                <input type="hidden" name="uukode_jabatan" id="uukode_jabatan" value="" />
+                <input type="hidden" name="uukode_site" id="uukode_site" value="" />
+                <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" name="ukode_jabatan" id="ukode_jabatan" disabled></div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Kode Site</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" name="ukode_site" id="ukode_site" disabled></div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Tunjangan Jabatan</label>
+                    <div class="col-sm-8"><input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="utunjangan_jabatan" id="utunjangan_jabatan"></div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" name="utanggal_berlaku" id="utanggal_berlaku"></div>
+                </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
@@ -205,7 +221,8 @@
                 @csrf
                 @method('DELETE')
                 <h4 class="text-center">Apakah Anda yakin untuk menghapus data?</h4>
-                <input type="hidden" name="id" id="id" value="" />
+                <input type="hidden" name="uukode_jabatan" id="uukode_jabatan" value="" />
+                <input type="hidden" name="uukode_site" id="uukode_site" value="" />
                 <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
                     <div class="col-sm-8"><input type="text" class="form-control" name="kode_jabatan" id="kode_jabatan" disabled></div>
                 </div>
@@ -251,6 +268,26 @@
       };
       date_input.datepicker(options);
       //-------------
+      // var date_input=$('input[name="utanggal_berlaku"]'); //our date input has the name "date"
+      // var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      // var options={
+      //   format: 'yyyy-mm-dd',
+      //   container: container,
+      //   todayHighlight: true,
+      //   autoclose: true,
+      // };
+      // date_input.datepicker(options);
+
+      $(function() {
+        $('input[name="utanggal_berlaku"]').daterangepicker({
+          singleDatePicker: true,
+          locale: {
+            format: 'YYYY-MM-DD'
+          }
+        });
+      });
+
+      //----------------------
 
         $('.dataTables-client').DataTable({
             pageLength: 25,
@@ -301,10 +338,12 @@
                         var tanggalberlaku = button.data('tanggalberlaku')
 
                         var modal = $(this)
-                        modal.find('.modal-body #kode_jabatan').val(kodejabatan);
-                        modal.find('.modal-body #kode_site').val(kodesite);
-                        modal.find('.modal-body #tunjangan_jabatan').val(tunjanganjabatan);
-                        modal.find('.modal-body #tanggal_berlaku').val(tanggalberlaku);
+                        modal.find('.modal-body #ukode_jabatan').val(kodejabatan);
+                        modal.find('.modal-body #ukode_site').val(kodesite);
+                        modal.find('.modal-body #uukode_jabatan').val(kodejabatan);
+                        modal.find('.modal-body #uukode_site').val(kodesite);
+                        modal.find('.modal-body #utunjangan_jabatan').val(tunjanganjabatan);
+                        modal.find('.modal-body #utanggal_berlaku').val(tanggalberlaku);
                     })
     $('#delete').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -316,9 +355,10 @@
                         var tanggalberlaku = button.data('tanggalberlaku')
 
                         var modal = $(this)
-                        modal.find('.modal-body #id').val(id);
                         modal.find('.modal-body #kode_jabatan').val(kodejabatan);
                         modal.find('.modal-body #kode_site').val(kodesite);
+                        modal.find('.modal-body #uukode_jabatan').val(kodejabatan);
+                        modal.find('.modal-body #uukode_site').val(kodesite);
                         modal.find('.modal-body #tunjangan_jabatan').val(tunjanganjabatan);
                         modal.find('.modal-body #tanggal_berlaku').val(tanggalberlaku);
                     })

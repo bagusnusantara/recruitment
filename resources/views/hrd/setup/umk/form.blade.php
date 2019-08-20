@@ -7,7 +7,7 @@
      <select class="form-control chosen-select-width" name="md_client_id_umk" id="md_client_id_umk">
             <option value="null" selected disabled>--Nama Client--</option>
              @foreach($st_md_client as $data)
-            <option value="{{ $data->id }}">  {{ $data->nama_client }}</option>
+            <option value="{{ $data->id }}">{{ $data->nama_client }}</option>
              @endforeach
       </select>
   </div>

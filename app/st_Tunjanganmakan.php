@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class st_tunjmakan extends Model
+class st_Tunjanganmakan extends Model
 {
   protected $table = 'st_tunjmakan';
   protected $primaryKey = 'md_client_id';
