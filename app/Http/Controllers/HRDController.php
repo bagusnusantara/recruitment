@@ -22,6 +22,12 @@ use App\st_Periodecutoffgaji;
 use App\st_Tunjanganprestasi;
 use App\st_gp_jabatan_site;
 use App\st_tt_payroll;
+use App\st_asuransi;
+use App\st_pot_bpjs;
+use App\st_tunj_kjk;
+use App\st_tunj_otn;
+use App\st_tunj_otr;
+use App\st_tunj_shift_malam;
 use Alert;
 use DB;
 use App\User;
@@ -536,6 +542,372 @@ class HRDController extends Controller
         Alert::success('Penandatanganan Gaji Berhasil dihapus');
         return redirect()->back();
       }
+
+    public function getJkslain(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_asuransi=DB::table('st_asuransi')
+      ->select('st_asuransi.*')
+      ->get();
+      return view ('hrd.setup.jkslain.index',compact('st_asuransi'));
+    }
+
+    public function storeJkslain(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $user = Auth::user()->id;
+      $tunj = new  st_asuransi;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->kode = $request->kode;
+      $tunj->deskripsi= $request->deskripsi;
+      $tunj->nilai_premi = $request->nilai_premi;
+      $tunj->entry_user = $user;
+      $tunj->entry_date = $date_time;
+      $tunj->save();
+
+      Alert::success('JKS Lain Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateJkslain(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_asuransi')
+        ->where('kode', $request->hkode)
+        ->update([
+         'deskripsi' => $request->deskripsi,
+         'nilai_premi' => $request->nilai_premi,
+      ]);
+      Alert::success('JKS Lain Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyJkslain(Request $request)
+    {
+        $kode = $request->hkode;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_asuransi 
+                                      WHERE kode = '$kode'"));
+        Alert::success('JKS Lain Berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function getBpjs(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_pot_bpjs=DB::table('st_pot_bpjs')
+      ->select('st_pot_bpjs.*')
+      ->get();
+      return view ('hrd.setup.bpjs.index',compact('st_pot_bpjs'));
+    }
+
+    public function storeBpjs(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $tunj = new  st_pot_bpjs;
+      $tunj->kode_bpjs = $request->kode_bpjs;
+      $tunj->deskripsi= $request->deskripsi;
+      $tunj->prosen_potongan= $request->prosen_potongan;
+      $tunj->prosen_pend_pph= $request->prosen_pend_pph;
+      $tunj->id_jht= $request->id_jht;
+      $tunj->id_jkk= $request->id_jkk;
+      $tunj->id_jkm= $request->id_jkm;
+      $tunj->id_jp= $request->id_jp;
+      $tunj->id_bpjs_kes= $request->id_bpjs_kes;
+      $tunj->id_jht_prshn= $request->id_jht_prshn;
+      $tunj->id_jkk_prshn= $request->id_jkk_prshn;
+      $tunj->id_jkm_prshn= $request->id_jkm_prshn;
+      $tunj->id_jp_prshn= $request->id_jp_prshn;
+      $tunj->id_bpjs_kes_prshn= $request->id_bpjs_kes_prshn;
+      $tunj->save();
+
+      Alert::success('BPJS Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateBpjs(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_pot_bpjs')
+        ->where('kode_bpjs', $request->hkode_bpjs)
+        ->update([
+         'deskripsi' => $request->deskripsi,
+         'prosen_potongan' => $request->prosen_potongan,
+         'prosen_pend_pph' => $request->prosen_pend_pph,
+         'id_jht' => $request->id_jht,
+         'id_jkk' => $request->id_jkk,
+         'id_jkm' => $request->id_jkm,
+         'id_jp' => $request->id_jp,
+         'id_bpjs_kes' => $request->id_bpjs_kes,
+         'id_jht_prshn' => $request->id_jht_prshn,
+         'id_jkk_prshn' => $request->id_jkk_prshn,
+         'id_jkm_prshn' => $request->id_jkm_prshn,
+         'id_jp_prshn' => $request->id_jp_prshn,
+         'id_bpjs_kes_prshn' => $request->id_bpjs_kes_prshn,
+      ]);
+      Alert::success('BPJS Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyBpjs(Request $request)
+    {
+        $kode_bpjs = $request->hkode_bpjs;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_pot_bpjs 
+                                      WHERE kode_bpjs = '$kode_bpjs'"));
+        Alert::success('JKS Lain Berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function getTunjangankjk(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_tunj_kjk=DB::table('st_tunj_kjk')
+      ->select('st_tunj_kjk.*')
+      ->get();
+      return view ('hrd.setup.tunjangankjk.index',compact('st_tunj_kjk'));
+    }
+
+    public function storeTunjangankjk(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $tunj = new  st_tunj_kjk;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->tanggal = $request->tanggal;
+      $tunj->kode_lokasi = $request->kode_lokasi;
+      $tunj->kjk = $request->kjk;
+      $tunj->kjk_paket = $request->kjk_paket;
+      $tunj->entry_user = $request->user;
+      $tunj->entry_date = $request->date_time;
+      $tunj->save();
+
+      Alert::success('Tunjangan kjk Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateTunjangankjk(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_tunj_kjk')
+        ->where('tanggal', $request->htanggal)
+        ->where('kode_lokasi', $request->hkode_lokasi)
+        ->where('kjk', $request->hkjk)
+        ->where('kjk_paket', $request->hkjk_paket)
+        ->update([
+         'tanggal' => $request->tanggal,
+         'kode_lokasi' => $request->kode_lokasi,
+         'kjk' => $request->kjk,
+         'kjk_paket' => $request->kjk_paket,
+      ]);
+      Alert::success('Tunjangan KJK Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroyTunjangankjk(Request $request)
+    {
+        $tanggal = $request->htanggal;
+        $kode_lokasi = $request->hkode_lokasi;
+        $kjk = $request->hkjk;
+        $kjk_paket = $request->hkjk_paket;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_tunj_kjk 
+                                      WHERE tanggal = '$tanggal'
+                                      AND kode_lokasi = '$kode_lokasi'
+                                      And kjk = '$kjk'
+                                      AND kjk_paket = '$kjk_paket' "));
+        Alert::success('Tunjnagan kjk Berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function getTunjanganotn(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_tunj_otn=DB::table('st_tunj_otn')
+      ->select('st_tunj_otn.*')
+      ->get();
+      return view ('hrd.setup.tunjanganotn.index',compact('st_tunj_otn'));
+    }
+
+    public function storeTunjanganotn(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $tunj = new  st_tunj_otn;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->tanggal = $request->tanggal;
+      $tunj->kode_lokasi = $request->kode_lokasi;
+      $tunj->otn = $request->otn;
+      $tunj->entry_user = $request->user;
+      $tunj->entry_date = $request->date_time;
+      $tunj->save();
+
+      Alert::success('Tunjangan KJK Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateTunjanganotn(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_tunj_otn')
+        ->where('tanggal', $request->htanggal)
+        ->where('kode_lokasi', $request->hkode_lokasi)
+        ->where('otn', $request->hotn)
+        ->update([
+         'tanggal' => $request->tanggal,
+         'kode_lokasi' => $request->kode_lokasi,
+         'otn' => $request->otn,
+      ]);
+      Alert::success('Tunjangan KJK Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroyTunjanganotn(Request $request)
+    {
+        $tanggal = $request->htanggal;
+        $kode_lokasi = $request->hkode_lokasi;
+        $otn = $request->hotn;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_tunj_otn 
+                                      WHERE tanggal = '$tanggal'
+                                      AND kode_lokasi = '$kode_lokasi'
+                                      AND otn = '$otn' "));
+        Alert::success('Tunjangan OTN Berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function getTunjanganotr(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_tunj_otr=DB::table('st_tunj_otr')
+      ->select('st_tunj_otr.*')
+      ->get();
+      return view ('hrd.setup.tunjanganotr.index',compact('st_tunj_otr'));
+    }
+
+    public function storeTunjanganotr(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $tunj = new  st_tunj_otr;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->tanggal = $request->tanggal;
+      $tunj->kode_lokasi = $request->kode_lokasi;
+      $tunj->otr = $request->otr;
+      $tunj->entry_user = $request->user;
+      $tunj->entry_date = $request->date_time;
+      $tunj->save();
+
+      Alert::success('Tunjangan OTR Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateTunjanganotr(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_tunj_otr')
+        ->where('tanggal', $request->htanggal)
+        ->where('kode_lokasi', $request->hkode_lokasi)
+        ->where('otr', $request->hotr)
+        ->update([
+         'tanggal' => $request->tanggal,
+         'kode_lokasi' => $request->kode_lokasi,
+         'otr' => $request->otr,
+      ]);
+      Alert::success('Tunjangan OTR Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroyTunjanganotr(Request $request)
+    {
+        $tanggal = $request->htanggal;
+        $kode_lokasi = $request->hkode_lokasi;
+        $otr = $request->hotr;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_tunj_otr 
+                                      WHERE tanggal = '$tanggal'
+                                      AND kode_lokasi = '$kode_lokasi'
+                                      AND otr = '$otr' "));
+        Alert::success('Tunjangan OTR Berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function getTunjanganshiftmalam(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_tunj_shift_malam = DB::table('st_tunj_shift_malam')
+      ->select('st_tunj_shift_malam.*')
+      ->get();
+      return view ('hrd.setup.tunjanganshiftmalam.index',compact('st_tunj_shift_malam'));
+    }
+
+    public function storeTunjanganshiftmalam(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $tunj = new  st_tunj_shift_malam;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $tunj->tanggal = $request->tanggal;
+      $tunj->kode_lokasi = $request->kode_lokasi;
+      $tunj->shift_malam = $request->shift_malam;
+      $tunj->entry_user = $request->user;
+      $tunj->entry_date = $request->date_time;
+      $tunj->save();
+
+      Alert::success('Tunjangan Shift Malam Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateTunjanganshiftmalam(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_tunj_shift_malam')
+        ->where('tanggal', $request->htanggal)
+        ->where('kode_lokasi', $request->hkode_lokasi)
+        ->where('shift_malam', $request->hshift_malam)
+        ->update([
+         'tanggal' => $request->tanggal,
+         'kode_lokasi' => $request->kode_lokasi,
+         'shift_malam' => $request->shift_malam,
+      ]);
+      Alert::success('Tunjangan Shift Malam Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroyTunjanganshiftmalam(Request $request)
+    {
+        $tanggal = $request->htanggal;
+        $kode_lokasi = $request->hkode_lokasi;
+        $shift_malam = $request->hshift_malam;
+        $tunj = DB::select(DB::raw(" DELETE FROM st_tunj_shift_malam 
+                                      WHERE tanggal = '$tanggal'
+                                      AND kode_lokasi = '$kode_lokasi'
+                                      AND shift_malam = '$shift_malam' "));
+        Alert::success('Tunjangan Shift Malam Berhasil dihapus');
+        return redirect()->back();
+    }
 
 
 
