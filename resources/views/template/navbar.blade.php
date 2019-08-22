@@ -113,7 +113,25 @@
                           <li class="@if(url('hrd/setup/tunjanganshiftmalam') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/tunjanganshiftmalam')}}">Tunjangan SHIFT MALAM</a>
                           </li>
-                          <li class="@if(url('hrd/setup/jamsostekdanbpjs') == request()->url()) active @else '' @endif  treeview">
+                          <li class="@if(url('hrd/setup/kjkperjabatansite') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/kjkperjabatansite')}}">Tunj KJK Per jabatan (site)</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/otnperjabatansite') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/otnperjabatansite')}}">Tunj OTN Perjabatan (Site)</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/masakerjatahunansite') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/masakerjatahunansite')}}">Tunj Masa Kerja Tahunan (site)</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/kelompoktanggalpenggajian') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/kelompoktanggalpenggajian')}}">Kelompok Tanggal Penggajian</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/creatorpaymentrequisition') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/creatorpaymentrequisition')}}">Creator Payment Requisition</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/ttpaymentrequisition') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/ttpaymentrequisition')}}">TT Payment Requisition</a>
+                          </li>
+                          <!--<li class="@if(url('hrd/setup/jamsostekdanbpjs') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/jamsostekdanbpjs')}}">Jamsostek dan BPJS</a>
                           </li>
                           <li class="@if(url('hrd/setup/uanghadir') == request()->url()) active @else '' @endif  treeview">
@@ -121,8 +139,17 @@
                           </li>
                           <li class="@if(url('hrd/setup/potonganterlambat') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/potonganterlambat')}}">Potongan Terlambat</a>
-                          </li>
+                          </li>-->
 
+
+                      </ul>
+                  </li>
+                                    <li>
+                      <a href="#" id="attendance">Attendance<span class="fa arrow"></span></a>
+                      <ul class="nav nav-third-level">
+                          <li class="@if(url('hrd/setup/harilibur') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/harilibur')}}">Hari libur</a>
+                          </li>
 
                       </ul>
                   </li>

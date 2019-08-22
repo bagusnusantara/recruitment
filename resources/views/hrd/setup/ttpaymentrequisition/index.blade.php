@@ -3,16 +3,16 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Setup Penandatanganan Gaji</h2>
+            <h2>Setup Penandatanganan Payment Requisition</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/dashboard')}}">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Setup Penandatanganan Gaji</strong>
+                    <strong>Setup Penandatanganan Payment Requisition</strong>
                 </li>
             </ol>
-
+            
         </div>
     </div>
 
@@ -24,7 +24,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Penandatanganan Gaji</h5>
+                        <h5>Penandatanganan Payment requisition</h5>
 
                         <div class="ibox-tools">
                             <a class="collapse-link">
@@ -46,19 +46,19 @@
                     </div>
                     <div class="ibox-content">
                         <div class="text-right">
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Penandatanganan Gaji</button>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Penandatanganan Payment Requisition</button>
                         </div>
                         <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
                               <div class="modal-dialog modal-lg">
                                   <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title">Tambah Penandatanganan Gaji</h4>
+                                        <h4 class="modal-title">Tambah Penandatanganan payment requisition</h4>
                                     </div>
                                     <div class="modal-body">
-                                      <form method="POST" action="{{url('/hrd/setup/penandatanganangaji/store')}}" class="form-horizontal" enctype="multipart/form-data">
+                                      <form method="POST" action="{{url('/hrd/setup/tunjanganmakan/store')}}" class="form-horizontal" enctype="multipart/form-data">
                                             @csrf
-                                            @include('hrd.setup.penandatanganangaji.form')
+                                            
                                     </div>
 
                                     <div class="modal-footer">
@@ -73,47 +73,51 @@
                         <table class="table table-striped table-bordered table-hover dataTables-client" style="width: 100%">
                             <thead>
                             <tr>
-                              <th class="text-center">No</th>
-                              <th class="text-center">Nama</th>
-                              <th class="text-center">Jabatan</th>
-                              <th class="text-center">Action</th>
+                              <th class="text-center" rowspan="2">No</th>
+                              <th class="text-center" rowspan="2">Tanggal</th>
+                              <th class="text-center" colspan="2">Yang Mengajukan</th>
+                              <th class="text-center" colspan="2">SPV</th>
+                              <th class="text-center" colspan="2">Div Head</th>
+                              <th class="text-center" colspan="2">Finance</th>
+                              <th class="text-center" colspan="2">Director</th>
+                              <th class="text-center" >Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
                               @php
-              								$i=1;
-              							@endphp
-                              @foreach($st_tt_payroll as $u)
+    								$i=1;
+    							@endphp
+                              @foreach($st_payment_req_sn_pic as $u)
 
                               <tr>
                                   <td class="text-center">{{$i}}</td>
-                                  <td><center>{{$u->nama}}</center></td>
-                                  <td><center>{{$u->jabatan}}</center></td>
+                                  <td><center>{{$u->tgl}}</center></td>
+                                  <td><center>{{$u->pengajuan_login}}</center></td>
+                                  <td><center>{{$u->pengajuan_nama}}</center></td>
+                                  <td><center>{{$u->spv_login}}</center></td>
+                                  <td><center>{{$u->spv_nama}}</center></td>
+                                  <td><center>{{$u->divhead_login}}</center></td>
+                                  <td><center>{{$u->divhead_nama}}</center></td>
+                                  <td><center>{{$u->finance_login}}</center></td>
+                                  <td><center>{{$u->finance_nama}}</center></td>
+                                  <td><center>{{$u->director_login}}</center></td>
+                                  <td><center>{{$u->director_nama}}</center></td>
                                   <td class="text-center">
                                     <button class="btn btn-default btn-circle"
-                                          data-seq="{{$u->seq}}"
-                                          data-nama="{{$u->nama}}"
-                                          data-jabatan="{{$u->jabatan}}"
                                           data-toggle="modal" data-target="#show"><i class="fa fa-eye"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
-                                          data-seq="{{$u->seq}}"
-                                          data-nama="{{$u->nama}}"
-                                          data-jabatan="{{$u->jabatan}}"
                                           data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
-                                          data-seq="{{$u->seq}}"
-                                          data-nama="{{$u->nama}}"
-                                          data-jabatan="{{$u->jabatan}}"
                                           data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i>
                                     </button>
                                   </td>
 
                                   
                               @php
-                								$i++;
-                							@endphp
+    								$i++;
+    							@endphp
                               @endforeach
                                 </tr>
                           </tbody>
@@ -137,17 +141,12 @@
                   <h4 class="modal-title">Delete Confirmation</h4>
               </div>
               <div class="modal-body">
-              <form method="POST" action="{{ url('/hrd/setup/penandatanganangaji/delete/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
+              <form method="POST" action="{{ url('/hrd/setup/tunjanganmakan/delete/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
                 @method('DELETE')
                 <h4 class="text-center">Apakah Anda yakin untuk menghapus data?</h4>
-                  <input type="hidden" name="hseq" id="hseq" value="" />
-                  <div class="form-group"><label class="col-sm-4 control-label">Nama</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="nama" id="nama" disabled></div>
-                  </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Jabatan</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="jabatan" id="jabatan" disabled></div>
-                  </div>
+
+
              </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-white" data-dismiss="modal">Tidak</button>
@@ -163,17 +162,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Show Penandatanganan Gaji</h4>
+                    <h4 class="modal-title">Show Tunjangan Makan</h4>
                 </div>
                 <div class="modal-body">
                 <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
-                  <input type="hidden" name="hseq" id="hseq" value="" />
-                  <div class="form-group"><label class="col-sm-4 control-label">Nama</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="nama" id="nama" disabled></div>
-                  </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Jabatan</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="jabatan" id="jabatan" disabled></div>
-                  </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
@@ -189,26 +182,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Edit Penandatanganan gaji</h4>
+                    <h4 class="modal-title">Edit Tunjangan Makan</h4>
                 </div>
                 <div class="modal-body">
-                <form method="POST" action="{{ url('/hrd/setup/penandatanganangaji/update/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('/hrd/setup/tunjanganmakan/update/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
                         @csrf
-                  <input type="hidden" name="hseq" id="hseq" value="" />
-                  <div class="form-group"><label class="col-sm-4 control-label">Nama</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="nama" id="nama"></div>
-                  </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Jabatan</label>
-                    <div class="col-sm-8">
-                       <select class="form-control chosen-select-width" name="jabatan" id="jabatan">
-                              <option value="null" selected disabled>--Jabatan--</option>
-                               @foreach($st_jabatan as $data)
-                              <option value="{{ $data->Deskripsi }}">  {{ $data->Deskripsi }}</option>
-                               @endforeach
-                        </select>
-                    </div>
-                  </div>
-                                  </div>
+                         
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Update Data</button>
@@ -259,41 +239,38 @@
     $('#show').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var seq = button.data('seq')
-                        var nama = button.data('nama')
-                        var jabatan = button.data('jabatan')
+                        var id = button.data('id')
+                        var namaclient = button.data('namaclient')
+                        var tunjmakan = button.data('tunjmakan')
 
                         var modal = $(this)
-                        modal.find('.modal-body #seq').val(seq);
-                        modal.find('.modal-body #hseq').val(seq);
-                        modal.find('.modal-body #nama').val(nama);
-                        modal.find('.modal-body #jabatan').val(jabatan);
+                        modal.find('.modal-body #id').val(id);
+                        modal.find('.modal-body #nama_client').val(namaclient);
+                        modal.find('.modal-body #tunj_makan').val(tunjmakan);
                     })
     $('#edit').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var seq = button.data('seq')
-                        var nama = button.data('nama')
-                        var jabatan = button.data('jabatan')
+                        var id = button.data('id')
+                        var namaclient = button.data('namaclient')
+                        var tunjmakan = button.data('tunjmakan')
 
                         var modal = $(this)
-                        modal.find('.modal-body #seq').val(seq);
-                        modal.find('.modal-body #hseq').val(seq);
-                        modal.find('.modal-body #nama').val(nama);
-                        modal.find('.modal-body #jabatan').val(jabatan);
+                        modal.find('.modal-body #id').val(id);
+                        modal.find('.modal-body #nama_client').val(namaclient);
+                        modal.find('.modal-body #tunj_makan').val(tunjmakan);
                     })
     $('#delete').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var seq = button.data('seq')
-                        var nama = button.data('nama')
-                        var jabatan = button.data('jabatan')
+                        var id = button.data('id')
+                        var namaclient = button.data('namaclient')
+                        var tunjmakan = button.data('tunjmakan')
 
                         var modal = $(this)
-                        modal.find('.modal-body #seq').val(seq);
-                        modal.find('.modal-body #hseq').val(seq);
-                        modal.find('.modal-body #nama').val(nama);
-                        modal.find('.modal-body #jabatan').val(jabatan);
+                        modal.find('.modal-body #id').val(id);
+                        modal.find('.modal-body #nama_client').val(namaclient);
+                        modal.find('.modal-body #tunj_makan').val(tunjmakan);
                     })
 
 

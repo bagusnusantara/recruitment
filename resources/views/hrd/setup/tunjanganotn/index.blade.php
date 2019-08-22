@@ -77,7 +77,9 @@
                               <th class="text-center">No</th>
                               <th class="text-center">Tanggal</th>
                               <th class="text-center">Kode Lokasi</th>
-                              <th class="text-center">OTN</th>
+                              <th class="text-center">Nama Lokasi kerja</th>
+                              <th class="text-center">Tunj OTN</th>
+                              <th class="text-center">Tunj OTN Paket</th>
                               <th class="text-center">Action</th>
                             </tr>
                             </thead>
@@ -91,24 +93,29 @@
                                   <td class="text-center">{{$i}}</td>
                                   <td class="text-center">{{$u->tanggal}}</td>
                                   <td><center>{{$u->kode_lokasi}}<center></td>
+                                  <td><center>{{$u->nama_client}}<center></td>
                                   <td><center>{{$u->otn}}</center></td>
+                                  <td><center>{{$u->otn_paket}}</center></td>
                                   <td class="text-center">
                                     <button class="btn btn-default btn-circle"
                                           data-tanggal="{{$u->tanggal}}"
                                           data-kodelokasi="{{$u->kode_lokasi}}"
                                           data-otn="{{$u->otn}}"
+                                          data-otnpaket="{{$u->otn_paket}}"
                                           data-toggle="modal" data-target="#show"><i class="fa fa-eye"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
                                           data-tanggal="{{$u->tanggal}}"
                                           data-kodelokasi="{{$u->kode_lokasi}}"
                                           data-otn="{{$u->otn}}"
+                                          data-otnpaket="{{$u->otn_paket}}"
                                           data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
                                           data-tanggal="{{$u->tanggal}}"
                                           data-kodelokasi="{{$u->kode_lokasi}}"
                                           data-otn="{{$u->otn}}"
+                                          data-otnpaket="{{$u->otn_paket}}"
                                           data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i>
                                     </button>
                                   </td>                                
@@ -144,14 +151,25 @@
                   <input type="hidden" name="htanggal" id="htanggal" value="" />
                   <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
                   <input type="hidden" name="hotn" id="hotn" value="" />
+                  <input type="hidden" name="hotn_paket" id="hotn_paket" value="" />
                   <div class="form-group"><label class="col-sm-4 control-label">Tanggal</label>
                       <div class="col-sm-8"><input type="text" class="form-control date input-sm" readonly name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}"></div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Kode Lokasi</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="kode_lokasi" id="kode_lokasi" readonly ></div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Lokasi Kerja</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi" disabled>
+                              <option value="null" selected disabled>--Lokasi kerja--</option>
+                               @foreach($md_client as $data)
+                              <option value="{{ $data->id }}">  {{ $data->id }} - {{ $data->nama_client }}</option>
+                               @endforeach
+                        </select>
+                    </div>
                   </div>
                   <div class="form-group"><label class="col-sm-4 control-label">OTN</label>
                       <div class="col-sm-8"><input type="text" class="form-control" name="otn" id="otn" readonly></div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">OTN PAKET</label>
+                      <div class="col-sm-8"><input type="number" step="any" class="form-control" name="otn_paket" id="otn_paket" readonly></div>
                   </div>
              </div>
               <div class="modal-footer">
@@ -175,14 +193,25 @@
                   <input type="hidden" name="htanggal" id="htanggal" value="" />
                   <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
                   <input type="hidden" name="hotn" id="hotn" value="" />
+                  <input type="hidden" name="hotn_paket" id="hotn_paket" value="" />
                   <div class="form-group"><label class="col-sm-4 control-label">Tanggal</label>
                       <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}" readonly></div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Kode Lokasi</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="kode_lokasi" id="kode_lokasi" readonly></div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Lokasi Kerja</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi" disabled>
+                              <option value="null" selected disabled>--Lokasi kerja--</option>
+                               @foreach($md_client as $data)
+                              <option value="{{ $data->id }}">  {{ $data->id }} - {{ $data->nama_client }}</option>
+                               @endforeach
+                        </select>
+                    </div>
                   </div>
                   <div class="form-group"><label class="col-sm-4 control-label">OTN</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="otn" id="otn" readonly></div>
+                      <div class="col-sm-8"><input type="number" step="any" class="form-control" name="otn" id="otn" readonly></div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">OTN PAKET</label>
+                      <div class="col-sm-8"><input type="number" step="any" class="form-control" name="otn_paket" id="otn_paket" readonly></div>
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -207,14 +236,25 @@
                       <input type="hidden" name="htanggal" id="htanggal" value="" />
                       <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
                       <input type="hidden" name="hotn" id="hotn" value="" />
+                      <input type="hidden" name="hotn_paket" id="hotn_paket" value="" />
                       <div class="form-group"><label class="col-sm-4 control-label">Tanggal</label>
-                          <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}" ></div>
+                          <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}"></div>
                       </div>
-                      <div class="form-group"><label class="col-sm-4 control-label">Kode Lokasi</label>
-                          <div class="col-sm-8"><input type="text" class="form-control" name="kode_lokasi" id="kode_lokasi" ></div>
+                      <div class="form-group"><label class="col-sm-4 control-label">Lokasi Kerja</label>
+                        <div class="col-sm-8">
+                           <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi">
+                                  <option value="null" selected disabled>--Lokasi kerja--</option>
+                                   @foreach($md_client as $data)
+                                  <option value="{{ $data->id }}">  {{ $data->id }} - {{ $data->nama_client }}</option>
+                                   @endforeach
+                            </select>
+                        </div>
                       </div>
                       <div class="form-group"><label class="col-sm-4 control-label">OTN</label>
-                          <div class="col-sm-8"><input type="number" step="any" class="form-control" name="otn" id="otn" ></div>
+                          <div class="col-sm-8"><input type="number" step="any" class="form-control" name="otn" id="otn"></div>
+                      </div>
+                      <div class="form-group"><label class="col-sm-4 control-label">OTN PAKET</label>
+                          <div class="col-sm-8"><input type="number" step="any" class="form-control" name="otn_paket" id="otn_paket"></div>
                       </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
@@ -284,6 +324,7 @@
                         var tanggal = button.data('tanggal')
                         var kodelokasi = button.data('kodelokasi')
                         var otn = button.data('otn')
+                        var otnpaket = button.data('otnpaket')
 
                         var modal = $(this)
                         modal.find('.modal-body #tanggal').val(tanggal);
@@ -292,6 +333,8 @@
                         modal.find('.modal-body #hkode_lokasi').val(kodelokasi);
                         modal.find('.modal-body #otn').val(otn);
                         modal.find('.modal-body #hotn').val(otn);
+                        modal.find('.modal-body #otn_paket').val(otnpaket);
+                        modal.find('.modal-body #hotn_paket').val(otnpaket);
                     })
     $('#edit').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -299,6 +342,7 @@
                         var tanggal = button.data('tanggal')
                         var kodelokasi = button.data('kodelokasi')
                         var otn = button.data('otn')
+                        var otnpaket = button.data('otnpaket')
 
                         var modal = $(this)
                         modal.find('.modal-body #tanggal').val(tanggal);
@@ -307,6 +351,8 @@
                         modal.find('.modal-body #hkode_lokasi').val(kodelokasi);
                         modal.find('.modal-body #otn').val(otn);
                         modal.find('.modal-body #hotn').val(otn);
+                        modal.find('.modal-body #otn_paket').val(otnpaket);
+                        modal.find('.modal-body #hotn_paket').val(otnpaket);
                     })
     $('#delete').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -314,6 +360,7 @@
                         var tanggal = button.data('tanggal')
                         var kodelokasi = button.data('kodelokasi')
                         var otn = button.data('otn')
+                        var otnpaket = button.data('otnpaket')
 
                         var modal = $(this)
                         modal.find('.modal-body #tanggal').val(tanggal);
@@ -322,6 +369,8 @@
                         modal.find('.modal-body #hkode_lokasi').val(kodelokasi);
                         modal.find('.modal-body #otn').val(otn);
                         modal.find('.modal-body #hotn').val(otn);
+                        modal.find('.modal-body #otn_paket').val(otnpaket);
+                        modal.find('.modal-body #hotn_paket').val(otnpaket);
                     })
 
 

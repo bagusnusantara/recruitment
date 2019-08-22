@@ -76,8 +76,8 @@
                             <tr>
                               <th class="text-center">No</th>
                               <th class="text-center">Tanggal Berlaku</th>
-                              <th class="text-center">Kode Lokasi</th>
-                              <th class="text-center">Kode Jabatan</th>
+                              <th class="text-center">Nama Lokasi Kerja</th>
+                              <th class="text-center">Jabatan</th>
                               <th class="text-center">Nilai</th>
                               <th class="text-center">Action</th>
                             </tr>
@@ -91,8 +91,8 @@
                               <tr>
                                   <td class="text-center">{{$i}}</td>
                                   <td class="text-center">{{$u->tgl_berlaku}}</td>
-                                  <td>{{$u->kode_lokasi}}</td>
-                                  <td><center>{{$u->kode_jabatan}}</center></td>
+                                  <td class="text-center"> {{$u->nama_client}}</td>
+                                  <td><center>{{$u->Deskripsi}}</center></td>
                                   <td><center>{{$u->nilai}}</center></td>
                                   <td class="text-center">
                                     <button class="btn btn-default btn-circle"
@@ -148,21 +148,36 @@
                 @csrf
                 @method('DELETE')
                 <h4 class="text-center">Apakah Anda yakin untuk menghapus data?</h4>
-                <input type="hidden" name="htgl_berlaku" id="htgl_berlaku" value="" />
-                <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
-                <input type="hidden" name="hkode_jabatan" id="hkode_jabatan" value="" />
-                <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
-                    <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_berlaku" id="tgl_berlaku" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Kode Lokasi</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_lokasi" id="kode_lokasi" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_jabatan" id="kode_jabatan" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Nilai</label>
-                    <div class="col-sm-8"><input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="nilai" id="nilai"></div>
-                </div>
+                  <input type="hidden" name="htgl_berlaku" id="htgl_berlaku" value="" />
+                  <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
+                  <input type="hidden" name="hkode_jabatan" id="hkode_jabatan" value="" />
+                  <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
+                      <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_berlaku" id="tgl_berlaku" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Nama Lokasi Kerja</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi" disabled>
+                              <option value="null" selected disabled>--Nama Lokasi kerja--</option>
+                               @foreach($md_client as $data)
+                              <option value="{{ $data->id }}">  {{ $data->nama_client }}</option>
+                               @endforeach
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Jabatan</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="kode_jabatan" id="kode_jabatan" disabled>
+                              <option value="null" selected disabled>--Jabatan--</option>
+                               @foreach($st_jabatan as $data)
+                              <option value="{{ $data->kode }}">  {{ $data->Deskripsi }}</option>
+                               @endforeach
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Nilai</label>
+                      <div class="col-sm-8"><input type="number" step="any" class="form-control" name="nilai" id="nilai" disabled></div>
+                  </div>
+
 
              </div>
               <div class="modal-footer">
@@ -183,21 +198,36 @@
                 </div>
                 <div class="modal-body">
                 <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
-                <input type="hidden" name="htgl_berlaku" id="htgl_berlaku" value="" />
-                <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
-                <input type="hidden" name="hkode_jabatan" id="hkode_jabatan" value="" />
-                <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
-                    <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_berlaku" id="tgl_berlaku" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Kode Lokasi</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_lokasi" id="kode_lokasi" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_jabatan" id="kode_jabatan" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Nilai</label>
-                    <div class="col-sm-8"><input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="nilai" id="nilai" disabled></div>
-                </div>
+                  <input type="hidden" name="htgl_berlaku" id="htgl_berlaku" value="" />
+                  <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
+                  <input type="hidden" name="hkode_jabatan" id="hkode_jabatan" value="" />
+                  <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
+                      <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_berlaku" id="tgl_berlaku" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Nama Lokasi Kerja</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi" disabled>
+                              <option value="null" selected disabled>--Nama Lokasi kerja--</option>
+                               @foreach($md_client as $data)
+                              <option value="{{ $data->id }}">  {{ $data->nama_client }}</option>
+                               @endforeach
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Jabatan</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="kode_jabatan" id="kode_jabatan" disabled>
+                              <option value="null" selected disabled>--Jabatan--</option>
+                               @foreach($st_jabatan as $data)
+                              <option value="{{ $data->kode }}">  {{ $data->Deskripsi }}</option>
+                               @endforeach
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Nilai</label>
+                      <div class="col-sm-8"><input type="number" step="any" class="form-control" name="nilai" id="nilai" disabled></div>
+                  </div>
+
 
                 </div>
                 <div class="modal-footer">
@@ -219,21 +249,36 @@
               <div class="modal-body">
                 <form method="POST" action="{{url('/hrd/setup/gpjabatansite/update/{id}')}}" class="form-horizontal" enctype="multipart/form-data">
                       @csrf
-                 <input type="hidden" name="htgl_berlaku" id="htgl_berlaku" value="" />
-                <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
-                <input type="hidden" name="hkode_jabatan" id="hkode_jabatan" value="" />
-                <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
-                    <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_berlaku" id="tgl_berlaku" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Kode Lokasi</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_lokasi" id="kode_lokasi" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_jabatan" id="kode_jabatan" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Nilai</label>
-                    <div class="col-sm-8"><input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="nilai" id="nilai"></div>
-                </div>
+                      <input type="hidden" name="htgl_berlaku" id="htgl_berlaku" value="" />
+                      <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
+                      <input type="hidden" name="hkode_jabatan" id="hkode_jabatan" value="" />
+                      <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
+                          <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_berlaku" id="tgl_berlaku" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
+                      </div>
+                      <div class="form-group"><label class="col-sm-4 control-label">Nama Lokasi Kerja</label>
+                        <div class="col-sm-8">
+                           <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi" disabled>
+                                  <option value="null" selected disabled>--Nama Lokasi kerja--</option>
+                                   @foreach($md_client as $data)
+                                  <option value="{{ $data->id }}">  {{ $data->nama_client }}</option>
+                                   @endforeach
+                            </select>
+                        </div>
+                      </div>
+                      <div class="form-group"><label class="col-sm-4 control-label">Jabatan</label>
+                        <div class="col-sm-8">
+                           <select class="form-control chosen-select-width" name="kode_jabatan" id="kode_jabatan" disabled>
+                                  <option value="null" selected disabled>--Jabatan--</option>
+                                   @foreach($st_jabatan as $data)
+                                  <option value="{{ $data->kode }}">  {{ $data->Deskripsi }}</option>
+                                   @endforeach
+                            </select>
+                        </div>
+                      </div>
+                      <div class="form-group"><label class="col-sm-4 control-label">Nilai</label>
+                          <div class="col-sm-8"><input type="number" step="any" class="form-control" name="nilai" id="nilai"></div>
+                      </div>
+
 
               <div class="modal-footer">
                   <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>

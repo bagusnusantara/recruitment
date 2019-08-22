@@ -77,8 +77,9 @@
                               <th class="text-center">No</th>
                               <th class="text-center">Tanggal</th>
                               <th class="text-center">Kode Lokasi</th>
-                              <th class="text-center">KJK</th>
-                              <th class="text-center">KJK Paket</th>
+                              <th class="text-center">Nama Lokasi Kerja</th>
+                              <th class="text-center">Tunj KJK Per Jam</th>
+                              <th class="text-center">Tunj KJK Per Bulan</th>
                               <th class="text-center">Action</th>
                             </tr>
                             </thead>
@@ -92,6 +93,7 @@
                                   <td class="text-center">{{$i}}</td>
                                   <td class="text-center">{{$u->tanggal}}</td>
                                   <td><center>{{$u->kode_lokasi}}<center></td>
+                                  <td><center>{{$u->nama_client}}<center></td>
                                   <td><center>{{$u->kjk}}</center></td>
                                   <td><center>{{$u->kjk_paket}}</center></td>
                                   <td class="text-center">
@@ -153,13 +155,20 @@
                   <div class="form-group"><label class="col-sm-4 control-label">Tanggal</label>
                       <div class="col-sm-8"><input type="text" class="form-control date input-sm" readonly name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}"></div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Kode Lokasi</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="kode_lokasi" id="kode_lokasi" readonly ></div>
+                   <div class="form-group"><label class="col-sm-4 control-label">Lokasi Kerja</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi" readonly>
+                              <option value="null" selected disabled>--Lokasi kerja--</option>
+                               @foreach($md_client as $data)
+                              <option value="{{ $data->id }}">  {{ $data->id }} - {{ $data->nama_client }}</option>
+                               @endforeach
+                        </select>
+                    </div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">KJK</label>
+                  <div class="form-group"><label class="col-sm-4 control-label">T.KJK per jam</label>
                       <div class="col-sm-8"><input type="text" class="form-control" name="kjk" id="kjk" readonly></div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">KJK Paket</label>
+                  <div class="form-group"><label class="col-sm-4 control-label">T. KJK Paket per bulan</label>
                       <div class="col-sm-8"><input type="text" class="form-control" name="kjk_paket" id="kjk_paket" readonly></div>
                   </div>
              </div>
@@ -188,13 +197,20 @@
                   <div class="form-group"><label class="col-sm-4 control-label">Tanggal</label>
                       <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}" readonly></div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Kode Lokasi</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="kode_lokasi" id="kode_lokasi" readonly></div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Lokasi Kerja</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi">
+                              <option value="null" selected disabled>--Lokasi kerja--</option>
+                               @foreach($md_client as $data)
+                              <option value="{{ $data->id }}">  {{ $data->id }} - {{ $data->nama_client }}</option>
+                               @endforeach
+                        </select>
+                    </div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">KJK</label>
+                  <div class="form-group"><label class="col-sm-4 control-label">T.KJK per jam</label>
                       <div class="col-sm-8"><input type="text" class="form-control" name="kjk" id="kjk" readonly></div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">KJK Paket</label>
+                  <div class="form-group"><label class="col-sm-4 control-label">T.KJK Paket per bulan</label>
                       <div class="col-sm-8"><input type="text" class="form-control" name="kjk_paket" id="kjk_paket" readonly></div>
                   </div>
                 </div>
@@ -224,13 +240,20 @@
                       <div class="form-group"><label class="col-sm-4 control-label">Tanggal</label>
                           <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}" ></div>
                       </div>
-                      <div class="form-group"><label class="col-sm-4 control-label">Kode Lokasi</label>
-                          <div class="col-sm-8"><input type="text" class="form-control" name="kode_lokasi" id="kode_lokasi" ></div>
+                      <div class="form-group"><label class="col-sm-4 control-label">Lokasi Kerja</label>
+                        <div class="col-sm-8">
+                           <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi">
+                                  <option value="null" selected disabled>--Lokasi kerja--</option>
+                                   @foreach($md_client as $data)
+                                  <option value="{{ $data->id }}">  {{ $data->id }} - {{ $data->nama_client }}</option>
+                                   @endforeach
+                            </select>
+                        </div>
                       </div>
-                      <div class="form-group"><label class="col-sm-4 control-label">KJK</label>
+                      <div class="form-group"><label class="col-sm-4 control-label">T.KJK per jam</label>
                           <div class="col-sm-8"><input type="number" step="any" class="form-control" name="kjk" id="kjk" ></div>
                       </div>
-                      <div class="form-group"><label class="col-sm-4 control-label">KJK Paket</label>
+                      <div class="form-group"><label class="col-sm-4 control-label">T.KJK Paket per bulan</label>
                           <div class="col-sm-8"><input type="number" step="any" class="form-control" name="kjk_paket" id="kjk_paket" ></div>
                       </div>
               <div class="modal-footer">
