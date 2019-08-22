@@ -101,6 +101,18 @@
                           <li class="@if(url('hrd/setup/bpjs') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/bpjs')}}">BPJS</a>
                           </li>
+                          <li class="@if(url('hrd/setup/tunjangankjk') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/tunjangankjk')}}">Tunjangan KJK</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/tunjanganotn') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/tunjanganotn')}}">Tunjangan OTN</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/tunjanganotr') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/tunjanganotr')}}">Tunjangan OTR</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/tunjanganshiftmalam') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/tunjanganshiftmalam')}}">Tunjangan SHIFT MALAM</a>
+                          </li>
                           <li class="@if(url('hrd/setup/jamsostekdanbpjs') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/jamsostekdanbpjs')}}">Jamsostek dan BPJS</a>
                           </li>
