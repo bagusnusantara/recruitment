@@ -1,4 +1,4 @@
-<input type="hidden" name="hid" id="hid" value="" />
+<input type="hidden" name="htgl_libur" id="htgl_libur" value="" />
 <div class="form-group"><label class="col-sm-4 control-label">Tanggal</label>
     <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}"></div>
 </div>
