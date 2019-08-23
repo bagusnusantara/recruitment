@@ -1505,7 +1505,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_sanksi 
                                       WHERE kode = '$kode' "));
         Alert::success('Waktu Lembur Berhasil dihapus');
-        return redirect()->back();
+        return redirect()->back(); 
     }
 
 

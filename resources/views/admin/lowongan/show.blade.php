@@ -46,7 +46,7 @@
                             <div class="col-md-7">
 
                                 <h1 class="font-bold m-b-xs">
-                                    {{$lowongan_pekerjaan->job_tittle}} -  {{$lowongan_pekerjaan->md_client->nama_client}}
+                                    {{$lowongan_pekerjaan->job_tittle}}
                                 </h1>
                                 <div class="m-t-md">
                                     @foreach($detail as $d)

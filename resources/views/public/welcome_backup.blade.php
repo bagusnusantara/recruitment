@@ -50,7 +50,7 @@
       <div class="row d-flex justify-content-center">
        @foreach ($Kategori as $item)
         <div class="col-lg-4 col-md-4 col-xs-4 f-category f-category-color-blue">
-            <a href="">
+            <a href="{{route('PublicLowongan')."?kategori=".$item->id}}">
               <div class="icon bg-color-1">
                 <i class="lni-home"></i>
               </div>
@@ -82,7 +82,7 @@
         <div class="row d-flex justify-content-center">
           @foreach ($Spesialisasi as $item)
           <div class="col-lg-4 col-md-4 col-xs-4 f-category f-category-color-blue">
-            <a href="">
+            <a href="{{route('PublicLowongan')."?spesial=".$item->id}}">
                 <div class="icon bg-color-1">
                   <i class="lni-home"></i>
                 </div>
@@ -112,7 +112,7 @@
     <div class="row">
       @foreach ($lowongan as $item)
         <div class="col-lg-6 col-md-12 col-xs-12">
-         <a href="">
+         <a href="{{route('PublicLowonganById',["id"=>$item->id])}}">
           <div class="jobs-latest">
             <div class="img-thumb">
               <img src="assets/img/features/img-1.jpg" alt="">
@@ -122,10 +122,10 @@
               <h3>{{$item->job_tittle}}</h3>
               <p class="brand">MagNews</p>
               <div class="tags">
-                <span><i class="lni-map-marker"></i> Surabaya</span>
-                <span><i class="lni-user"></i></span>
+                <span><i class="lni-map-marker"></i> New York</span>
+                <span><i class="lni-user"></i>{{$item->st_Spesialisasipekerjaan->spesial}}</span>
               </div>
-              <div class="tag mb-3"><i class="lni-tag"></i> #</div>
+              <div class="tag mb-3"><i class="lni-tag"></i> #{{$item->st_Kategoripekerjaan->deskripsi}}</div>
 
             </div>
           </div>

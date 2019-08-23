@@ -12,8 +12,7 @@ use App\st_Provinsi;
 use App\st_Kabkota;
 use App\st_Kecamatan;
 use App\st_Kategoripekerjaan;
-use App\st_spesialisasipekerjaan;
-use App\st_spesialisasi_pekerjaan;
+use App\st_Spesialisasipekerjaan;
 use App\st_lowongan_gaji;
 use App\trans_lowongan_pekerjaan;
 use App\st_Negara;
@@ -150,7 +149,7 @@ class AdminController extends Controller
       $md_client=md_client::all();
       $st_lowongan_gaji=st_lowongan_gaji::all();
       $st_kategori_pekerjaan=st_Kategoripekerjaan::all();
-      $st_spesialisasi_pekerjaan=st_spesialisasipekerjaan::all();
+      $st_spesialisasi_pekerjaan=st_Spesialisasipekerjaan::all();
       $st_negara = st_Negara::all();
       $st_provinsi = st_Provinsi::all();
       $st_kabkota = st_Kabkota::all();
