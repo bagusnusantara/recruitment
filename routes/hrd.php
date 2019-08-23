@@ -32,6 +32,8 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/kelompoktanggalpenggajian', 'HRDController@getKelompoktanggalpenggajian');
     Route::get('setup/creatorpaymentrequisition', 'HRDController@getCreatorpaymentrequisition');
     Route::get('setup/ttpaymentrequisition', 'HRDController@getTtpaymentrequisition');
+    Route::get('setup/harilibur', 'HRDController@getHarilibur');
+    Route::get('setup/kalenderlibur', 'HRDController@getKalenderlibur');
 
     //-x Post Method
     Route::post('setup/umk/store', 'HRDController@storeumk');
@@ -74,6 +76,10 @@ Route::prefix('hrd')->group(function(){
     Route::post('setup/creatorpaymentrequisition/update/{id}', 'HRDController@updateCreatorpaymentrequisition');
     //Route::post('setup/ttpaymentrequisition/store', 'HRDController@storeTtpaymentrequisition');
     //Route::post('setup/ttpaymentrequisition/update/{id}', 'HRDController@updateTtpaymentrequisition');
+    Route::post('setup/harilibur/store', 'HRDController@storeHarilibur');
+    Route::post('setup/harilibur/update/{id}', 'HRDController@updateHarilibur');
+    Route::post('setup/kalenderlibur/store', 'HRDController@storeKalenderlibur');
+    Route::post('setup/kalenderlibur/update/{id}', 'HRDController@updateKalenderlibur');
 
     //-x Delete Method
     Route::delete('setup/umk/delete/{id}', 'HRDController@destroyUmk')->name('post-umk-delete');
@@ -96,6 +102,8 @@ Route::prefix('hrd')->group(function(){
     Route::delete('setup/kelompoktanggalpenggajian/delete/{id}', 'HRDController@destroyKelompoktanggalpenggajian');
     Route::delete('setup/creatorpaymentrequisition/delete/{id}', 'HRDController@destroyCreatorpaymentrequisition');
     //Route::delete('setup/ttpaymentrequisition/delete/{id}', 'HRDController@destroyTtpaymentrequisition');
+    Route::delete('setup/harilibur/delete/{id}', 'HRDController@destroyHarilibur');
+    Route::delete('setup/kalenderlibur/delete/{id}', 'HRDController@destroyKalenderlibur');
 
     //-x
     Route::post('setup/komponengaji/store', 'HRDController@storeKomponengaji');

@@ -9,7 +9,7 @@ use App\md_client;
 use App\md_karyawan;
 use App\st_Provinsi;
 use App\st_Kabkota;
-use App\st_kategori_pekerjaan;
+use App\st_Kategoripekerjaan;
 use App\st_spesialisasi_pekerjaan;
 use App\st_lowongan_gaji;
 use App\trans_lowongan_pekerjaan;
@@ -36,6 +36,8 @@ use App\st_klp_gaji;
 use App\st_tunj_masa_kerja_thn;
 use App\st_payment_req_pengajuan;
 use App\st_payment_req_sn_pic;
+use App\hari_libur;
+use App\md_kalender_libur;
 use Alert;
 use DB;
 use App\User;
@@ -1230,6 +1232,124 @@ class HRDController extends Controller
       ->select('st_payment_req_sn_pic.*')
       ->get();
       return view ('hrd.setup.ttpaymentrequisition.index',compact('st_payment_req_sn_pic'));
+    }
+
+    public function getHarilibur(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_Kategoripekerjaan = st_Kategoripekerjaan::all();
+      $hari_libur = DB::table('hari_libur')
+      ->join('st_kategoripekerjaan','hari_libur.kategori','=','st_kategoripekerjaan.id')
+      ->select('hari_libur.*','st_kategoripekerjaan.deskripsi AS deskripsipekerjaan')
+      ->get();
+      return view ('hrd.setup.harilibur.index',compact('hari_libur','st_Kategoripekerjaan'));
+    }
+
+    public function storeHarilibur(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $att = new hari_libur;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->tanggal = $request->tanggal;
+      $att->deskripsi = $request->deskripsi;
+      $att->kategori = $request->kategori;
+      $att->created_at = $date_time;
+      $att->updated_at = $date_time;
+      $att->deleted_at = $date_time;
+      $att->save();
+
+      Alert::success('Hari Libur Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateHarilibur(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      DB::table('hari_libur')
+        ->where('id', $request->hid)
+        ->update([
+         'tanggal' => $request->tanggal,
+         'deskripsi' => $request->deskripsi,
+         'kategori' => $request->kategori,
+         'updated_at' => $date_time,
+      ]);
+      Alert::success('Hari libur Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroyHarilibur(Request $request)
+    {
+        $id = $request->hid;
+        $att= DB::select(DB::raw(" DELETE FROM hari_libur 
+                                      WHERE id = '$id' "));
+        Alert::success('Hari Libur Berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function getKalenderlibur(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $hari_libur = hari_libur::all();
+      $md_kalender_libur = DB::table('md_kalender_libur')
+      ->join('hari_libur','md_kalender_libur.kode_hari_libur','=','hari_libur.id')
+      ->select('md_kalender_libur.*','hari_libur.deskripsi AS deskripsi_hari_libur')
+      ->get();
+      return view ('hrd.setup.kalenderlibur.index',compact('md_kalender_libur','hari_libur'));
+    }
+
+    public function storeKalenderlibur(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $att = new md_kalender_libur;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->tgl_libur = $request->tgl_libur;
+      $att->kode_hari_libur = $request->kode_hari_libur;
+      $att->keterangan = $request->keterangan;
+      $att->entry_user = $user;
+      $att->entry_date = $date_time;
+      $att->id_lebaran = $id_lebaran;
+      $att->id_cutibersama = $id_cutibersama
+      $att->save();
+
+      Alert::success('Kalender Libur Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateKalenderlibur(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('md_kalender_libur')
+        ->where('tgl_libur', $request->htgl_libur)
+        ->update([
+         'kode_hari_libur' => $request->kode_hari_libur,
+         'keterangan' => $request->keterangan,
+         'id_lebaran' => $request->id_lebaran,
+         'id_cutibersama' => $request->id_cutibersama,
+      ]);
+      Alert::success('Kalender Libur Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroyKalenderlibur(Request $request)
+    {
+        $tgl_libur = $request->htgl_libur;
+        $att= DB::select(DB::raw(" DELETE FROM md_kalender_libur 
+                                      WHERE id = '$id' "));
+        Alert::success('Kalender Libur Berhasil dihapus');
+        return redirect()->back();
     }
 
 
