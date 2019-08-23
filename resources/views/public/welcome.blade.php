@@ -122,7 +122,7 @@
               <h3>{{$item->job_tittle}}</h3>
               <p class="brand">MagNews</p>
               <div class="tags">
-                <span><i class="lni-map-marker"></i> New York</span>
+                <span><i class="lni-map-marker"></i> Surabaya</span>
                 <span><i class="lni-user"></i></span>
               </div>
               <div class="tag mb-3"><i class="lni-tag"></i> #</div>
