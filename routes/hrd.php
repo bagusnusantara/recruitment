@@ -20,7 +20,22 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/tunjanganprestasi', 'HRDController@getTunjanganprestasi');
     Route::get('setup/gpjabatansite', 'HRDController@getGpjabatansite');
     Route::get('setup/penandatanganangaji', 'HRDController@getPenandatanganangaji');
+<<<<<<< HEAD
     Route::get('setup/jabatan','HRDController@getJabatan');
+=======
+    Route::get('setup/jkslain', 'HRDController@getJkslain');
+    Route::get('setup/bpjs', 'HRDController@getBpjs');
+    Route::get('setup/tunjangankjk', 'HRDController@getTunjangankjk');
+    Route::get('setup/tunjanganotn', 'HRDController@getTunjanganotn');
+    Route::get('setup/tunjanganotr', 'HRDController@getTunjanganotr');
+    Route::get('setup/tunjanganshiftmalam', 'HRDController@getTunjanganshiftmalam');
+    Route::get('setup/kjkperjabatansite', 'HRDController@getKjkperjabatansite');
+    Route::get('setup/otnperjabatansite', 'HRDController@getOtnperjabatansite');
+    Route::get('setup/masakerjatahunansite', 'HRDController@getMasakerjatahunansite');
+    Route::get('setup/kelompoktanggalpenggajian', 'HRDController@getKelompoktanggalpenggajian');
+    Route::get('setup/creatorpaymentrequisition', 'HRDController@getCreatorpaymentrequisition');
+    Route::get('setup/ttpaymentrequisition', 'HRDController@getTtpaymentrequisition');
+>>>>>>> df8d36457521a5431634c6f08fb024584a0ba6f9
 
     //-x Post Method
     Route::post('setup/umk/store', 'HRDController@storeumk');
@@ -39,7 +54,30 @@ Route::prefix('hrd')->group(function(){
     Route::post('setup/gpjabatansite/update/{id}', 'HRDController@updateGpjabatansite');
     Route::post('setup/penandatanganangaji/store', 'HRDController@storePenandatanganangaji');
     Route::post('setup/penandatanganangaji/update/{id}', 'HRDController@updatePenandatanganangaji');
-
+    Route::post('setup/jkslain/store', 'HRDController@storeJkslain');
+    Route::post('setup/jkslain/update/{id}', 'HRDController@updateJkslain');
+    Route::post('setup/bpjs/store', 'HRDController@storeBpjs');
+    Route::post('setup/bpjs/update/{id}', 'HRDController@updateBpjs');
+    Route::post('setup/tunjangankjk/store', 'HRDController@storeTunjangankjk');
+    Route::post('setup/tunjangankjk/update/{id}', 'HRDController@updateTunjangankjk');
+    Route::post('setup/tunjanganotn/store', 'HRDController@storeTunjanganotn');
+    Route::post('setup/tunjanganotn/update/{id}', 'HRDController@updateTunjanganotn');
+    Route::post('setup/tunjanganotr/store', 'HRDController@storeTunjanganotr');
+    Route::post('setup/tunjanganotr/update/{id}', 'HRDController@updateTunjanganotr');
+    Route::post('setup/tunjanganshiftmalam/store', 'HRDController@storeTunjanganshiftmalam');
+    Route::post('setup/tunjanganshiftmalam/update/{id}', 'HRDController@updateTunjanganshiftmalam');
+    Route::post('setup/kjkperjabatansite/store', 'HRDController@storeKjkperjabatansite');
+    Route::post('setup/kjkperjabatansite/update/{id}', 'HRDController@updateKjkperjabatansite');
+    Route::post('setup/otnperjabatansite/store', 'HRDController@storeOtnperjabatansite');
+    Route::post('setup/otnperjabatansite/update/{id}', 'HRDController@updateOtnperjabatansite');
+    Route::post('setup/masakerjatahunansite/store', 'HRDController@storeMasakerjatahunansite');
+    Route::post('setup/masakerjatahunansite/update/{id}', 'HRDController@updateMasakerjatahunansite');
+    Route::post('setup/kelompoktanggalpenggajian/store', 'HRDController@storeKelompoktanggalpenggajian');
+    Route::post('setup/kelompoktanggalpenggajian/update/{id}', 'HRDController@updateKelompoktanggalpenggajian');
+    Route::post('setup/creatorpaymentrequisition/store', 'HRDController@storeCreatorpaymentrequisition');
+    Route::post('setup/creatorpaymentrequisition/update/{id}', 'HRDController@updateCreatorpaymentrequisition');
+    //Route::post('setup/ttpaymentrequisition/store', 'HRDController@storeTtpaymentrequisition');
+    //Route::post('setup/ttpaymentrequisition/update/{id}', 'HRDController@updateTtpaymentrequisition');
 
     //-x Delete Method
     Route::delete('setup/umk/delete/{id}', 'HRDController@destroyUmk')->name('post-umk-delete');
@@ -50,7 +88,18 @@ Route::prefix('hrd')->group(function(){
     Route::delete('setup/tunjanganprestasi/delete/{id}', 'HRDController@destroyTunjanganprestasi');
     Route::delete('setup/gpjabatansite/delete/{id}', 'HRDController@destroyGpjabatansite');
     Route::delete('setup/penandatanganangaji/delete/{id}', 'HRDController@destroyPenandatanganangaji');
-
+    Route::delete('setup/jkslain/delete/{id}', 'HRDController@destroyJkslain');
+    Route::delete('setup/bpjs/delete/{id}', 'HRDController@destroyBpjs');
+    Route::delete('setup/tunjangankjk/delete/{id}', 'HRDController@destroyTunjangankjk');
+    Route::delete('setup/tunjanganotn/delete/{id}', 'HRDController@destroyTunjanganotn');
+    Route::delete('setup/tunjanganotr/delete/{id}', 'HRDController@destroyTunjanganotr');
+    Route::delete('setup/tunjanganshiftmalam/delete/{id}', 'HRDController@destroyTunjanganshiftmalam');
+    Route::delete('setup/kjkperjabatansite/delete/{id}', 'HRDController@destroyKjkperjabatansite');
+    Route::delete('setup/otnperjabatansite/delete/{id}', 'HRDController@destroyOtnperjabatansite');
+    Route::delete('setup/masakerjatahunansite/delete/{id}', 'HRDController@destroyMasakerjatahunansite');
+    Route::delete('setup/kelompoktanggalpenggajian/delete/{id}', 'HRDController@destroyKelompoktanggalpenggajian');
+    Route::delete('setup/creatorpaymentrequisition/delete/{id}', 'HRDController@destroyCreatorpaymentrequisition');
+    //Route::delete('setup/ttpaymentrequisition/delete/{id}', 'HRDController@destroyTtpaymentrequisition');
 
     //-x
     Route::post('setup/komponengaji/store', 'HRDController@storeKomponengaji');

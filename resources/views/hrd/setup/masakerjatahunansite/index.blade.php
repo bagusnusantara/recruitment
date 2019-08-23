@@ -3,13 +3,13 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Setup Gaji Pokok per jabatan (site)</h2>
+            <h2>Setup Masa Kerja Tahunan site</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/dashboard')}}">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Setup Gaji Pokok per jabatan (site)</strong>
+                    <strong>Setup Masa Kerja Tahunan Site</strong>
                 </li>
             </ol>
 
@@ -24,7 +24,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Setup Gaji Pokok per jabatan (site)</h5>
+                        <h5>Masa Kerja Tahunan Site</h5>
 
                         <div class="ibox-tools">
                             <a class="collapse-link">
@@ -46,19 +46,19 @@
                     </div>
                     <div class="ibox-content">
                         <div class="text-right">
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Setup Gaji Pokok per jabatan (site)</button>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Masa kerja Tahunan site</button>
                         </div>
                         <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
                               <div class="modal-dialog modal-lg">
                                   <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title">Tambah Setup Gaji Pokok per jabatan (site)</h4>
+                                        <h4 class="modal-title">Tambah Masa Kerja Tahunan site</h4>
                                     </div>
                                     <div class="modal-body">
-                                      <form method="POST" action="{{url('/hrd/setup/gpjabatansite/store')}}" class="form-horizontal" enctype="multipart/form-data">
+                                      <form method="POST" action="{{url('/hrd/setup/masakerjatahunansite/store')}}" class="form-horizontal" enctype="multipart/form-data">
                                             @csrf
-                                            @include('hrd.setup.gpjabatansite.form')
+                                            @include('hrd.setup.masakerjatahunansite.form')
                                     </div>
 
                                     <div class="modal-footer">
@@ -75,44 +75,46 @@
                             <thead>
                             <tr>
                               <th class="text-center">No</th>
-                              <th class="text-center">Tanggal Berlaku</th>
+                              <th class="text-center">TanggalBerlaku</th>
                               <th class="text-center">Nama Lokasi Kerja</th>
-                              <th class="text-center">Jabatan</th>
-                              <th class="text-center">Nilai</th>
+                              <th class="text-center">NIK</th>
+                              <th class="text-center">Nama Lengkap</th>
+                              <th class="text-center">nilai</th>
                               <th class="text-center">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                               @php
-                      			   $i=1;
-                      			  @endphp
-                              @foreach($st_gp_jabatan_site as $u)
+                			   $i=1;
+                			  @endphp
+                              @foreach($st_tunj_masa_kerja_thn as $u)
 
                               <tr>
                                   <td class="text-center">{{$i}}</td>
                                   <td class="text-center">{{$u->tgl_berlaku}}</td>
-                                  <td class="text-center"> {{$u->nama_client}}</td>
-                                  <td><center>{{$u->Deskripsi}}</center></td>
+                                  <td><center>{{$u->nama_client}}<center></td>
+                                  <td><center>{{$u->NIK}}</center></td>
+                                  <td><center>{{$u->nama_lengkap}}</center></td>
                                   <td><center>{{$u->nilai}}</center></td>
                                   <td class="text-center">
                                     <button class="btn btn-default btn-circle"
                                           data-tglberlaku="{{$u->tgl_berlaku}}"
                                           data-kodelokasi="{{$u->kode_lokasi}}"
-                                          data-kodejabatan="{{$u->kode_jabatan}}"
+                                          data-nik="{{$u->users_id}}"
                                           data-nilai="{{$u->nilai}}"
                                           data-toggle="modal" data-target="#show"><i class="fa fa-eye"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
                                           data-tglberlaku="{{$u->tgl_berlaku}}"
                                           data-kodelokasi="{{$u->kode_lokasi}}"
-                                          data-kodejabatan="{{$u->kode_jabatan}}"
+                                          data-nik="{{$u->users_id}}"
                                           data-nilai="{{$u->nilai}}"
                                           data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
                                           data-tglberlaku="{{$u->tgl_berlaku}}"
                                           data-kodelokasi="{{$u->kode_lokasi}}"
-                                          data-kodejabatan="{{$u->kode_jabatan}}"
+                                          data-nik="{{$u->users_id}}"
                                           data-nilai="{{$u->nilai}}"
                                           data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i>
                                     </button>
@@ -144,32 +146,32 @@
                   <h4 class="modal-title">Delete Confirmation</h4>
               </div>
               <div class="modal-body">
-              <form method="POST" action="{{ url('/hrd/setup/gpjabatansite/delete/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
+              <form method="POST" action="{{ url('/hrd/setup/masakerjatahunansite/delete/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
                 @method('DELETE')
                 <h4 class="text-center">Apakah Anda yakin untuk menghapus data?</h4>
                   <input type="hidden" name="htgl_berlaku" id="htgl_berlaku" value="" />
                   <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
-                  <input type="hidden" name="hkode_jabatan" id="hkode_jabatan" value="" />
+                  <input type="hidden" name="hnik" id="hnik" value="" />
                   <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
                       <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_berlaku" id="tgl_berlaku" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
                   </div>
                   <div class="form-group"><label class="col-sm-4 control-label">Nama Lokasi Kerja</label>
                     <div class="col-sm-8">
                        <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi" disabled>
-                              <option value="null" selected disabled>--Nama Lokasi kerja--</option>
+                              <option value="null" selected disabled>--Nama Lokasi Kerja--</option>
                                @foreach($md_client as $data)
-                              <option value="{{ $data->id }}">  {{ $data->nama_client }}</option>
+                              <option value="{{ $data->id }}">{{ $data->id }} - {{ $data->nama_client }}</option>
                                @endforeach
                         </select>
                     </div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Jabatan</label>
+                  <div class="form-group"><label class="col-sm-4 control-label">NIK Karyawan</label>
                     <div class="col-sm-8">
-                       <select class="form-control chosen-select-width" name="kode_jabatan" id="kode_jabatan" disabled>
-                              <option value="null" selected disabled>--Jabatan--</option>
-                               @foreach($st_jabatan as $data)
-                              <option value="{{ $data->kode }}">  {{ $data->Deskripsi }}</option>
+                       <select class="form-control chosen-select-width" name="nik" id="nik" disabled>
+                              <option value="null" selected disabled>--NIK Karyawan--</option>
+                               @foreach($md_karyawan as $data)
+                              <option value="{{ $data->users_id }}">{{ $data->NIK }} - {{ $data->nama_lengkap }}</option>
                                @endforeach
                         </select>
                     </div>
@@ -177,7 +179,6 @@
                   <div class="form-group"><label class="col-sm-4 control-label">Nilai</label>
                       <div class="col-sm-8"><input type="number" step="any" class="form-control" name="nilai" id="nilai" disabled></div>
                   </div>
-
 
              </div>
               <div class="modal-footer">
@@ -194,32 +195,32 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Show Gaji pokok per jabatan (site)</h4>
+                    <h4 class="modal-title">Show UMK</h4>
                 </div>
                 <div class="modal-body">
                 <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
                   <input type="hidden" name="htgl_berlaku" id="htgl_berlaku" value="" />
                   <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
-                  <input type="hidden" name="hkode_jabatan" id="hkode_jabatan" value="" />
+                  <input type="hidden" name="hnik" id="hnik" value="" />
                   <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
                       <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_berlaku" id="tgl_berlaku" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
                   </div>
                   <div class="form-group"><label class="col-sm-4 control-label">Nama Lokasi Kerja</label>
                     <div class="col-sm-8">
                        <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi" disabled>
-                              <option value="null" selected disabled>--Nama Lokasi kerja--</option>
+                              <option value="null" selected disabled>--Nama Lokasi Kerja--</option>
                                @foreach($md_client as $data)
-                              <option value="{{ $data->id }}">  {{ $data->nama_client }}</option>
+                              <option value="{{ $data->id }}">{{ $data->id }} - {{ $data->nama_client }}</option>
                                @endforeach
                         </select>
                     </div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Jabatan</label>
+                  <div class="form-group"><label class="col-sm-4 control-label">NIK Karyawan</label>
                     <div class="col-sm-8">
-                       <select class="form-control chosen-select-width" name="kode_jabatan" id="kode_jabatan" disabled>
-                              <option value="null" selected disabled>--Jabatan--</option>
-                               @foreach($st_jabatan as $data)
-                              <option value="{{ $data->kode }}">  {{ $data->Deskripsi }}</option>
+                       <select class="form-control chosen-select-width" name="nik" id="nik" disabled>
+                              <option value="null" selected disabled>--NIK Karyawan--</option>
+                               @foreach($md_karyawan as $data)
+                              <option value="{{ $data->users_id }}">{{ $data->NIK }} - {{ $data->nama_lengkap }}</option>
                                @endforeach
                         </select>
                     </div>
@@ -228,8 +229,6 @@
                       <div class="col-sm-8"><input type="number" step="any" class="form-control" name="nilai" id="nilai" disabled></div>
                   </div>
 
-
-                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                 </div>
@@ -244,42 +243,40 @@
             <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title">Edit Gaji Pokok per Jabatan (site)</h4>
+                  <h4 class="modal-title">Edit Masa kerja Tahunan site</h4>
               </div>
               <div class="modal-body">
-                <form method="POST" action="{{url('/hrd/setup/gpjabatansite/update/{id}')}}" class="form-horizontal" enctype="multipart/form-data">
+                <form method="POST" action="{{url('/hrd/setup/masakerjatahunansite/update/{id}')}}" class="form-horizontal" enctype="multipart/form-data">
                       @csrf
-                      <input type="hidden" name="htgl_berlaku" id="htgl_berlaku" value="" />
-                      <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
-                      <input type="hidden" name="hkode_jabatan" id="hkode_jabatan" value="" />
-                      <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
-                          <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_berlaku" id="tgl_berlaku" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
-                      </div>
-                      <div class="form-group"><label class="col-sm-4 control-label">Nama Lokasi Kerja</label>
-                        <div class="col-sm-8">
-                           <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi" disabled>
-                                  <option value="null" selected disabled>--Nama Lokasi kerja--</option>
-                                   @foreach($md_client as $data)
-                                  <option value="{{ $data->id }}">  {{ $data->nama_client }}</option>
-                                   @endforeach
-                            </select>
-                        </div>
-                      </div>
-                      <div class="form-group"><label class="col-sm-4 control-label">Jabatan</label>
-                        <div class="col-sm-8">
-                           <select class="form-control chosen-select-width" name="kode_jabatan" id="kode_jabatan" disabled>
-                                  <option value="null" selected disabled>--Jabatan--</option>
-                                   @foreach($st_jabatan as $data)
-                                  <option value="{{ $data->kode }}">  {{ $data->Deskripsi }}</option>
-                                   @endforeach
-                            </select>
-                        </div>
-                      </div>
-                      <div class="form-group"><label class="col-sm-4 control-label">Nilai</label>
-                          <div class="col-sm-8"><input type="number" step="any" class="form-control" name="nilai" id="nilai"></div>
-                      </div>
-
-
+                <input type="hidden" name="htgl_berlaku" id="htgl_berlaku" value="" />
+                <input type="hidden" name="hkode_lokasi" id="hkode_lokasi" value="" />
+                <input type="hidden" name="hnik" id="hnik" value="" />
+                <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
+                    <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_berlaku" id="tgl_berlaku" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Nama Lokasi Kerja</label>
+                  <div class="col-sm-8">
+                     <select class="form-control chosen-select-width" name="kode_lokasi" id="kode_lokasi" disabled>
+                            <option value="null" selected disabled>--Nama Lokasi Kerja--</option>
+                             @foreach($md_client as $data)
+                            <option value="{{ $data->id }}">{{ $data->id }} - {{ $data->nama_client }}</option>
+                             @endforeach
+                      </select>
+                  </div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">NIK Karyawan</label>
+                  <div class="col-sm-8">
+                     <select class="form-control chosen-select-width" name="nik" id="nik" disabled>
+                            <option value="null" selected disabled>--NIK Karyawan--</option>
+                             @foreach($md_karyawan as $data)
+                            <option value="{{ $data->users_id }}">{{ $data->NIK }} - {{ $data->nama_lengkap }}</option>
+                             @endforeach
+                      </select>
+                  </div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Nilai</label>
+                    <div class="col-sm-8"><input type="number" step="any" class="form-control" name="nilai" id="nilai"></div>
+                </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save changes</button>
@@ -299,6 +296,17 @@
 <script>
     $(document).ready(function(){
 
+      //-x set datepicker
+      // var date_input=$('input[name="tanggal_umk"]'); //our date input has the name "date"
+      //   var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      //   var options={
+      //     format: 'yyyy-mm-dd',
+      //     container: container,
+      //     todayHighlight: true,
+      //     autoclose: true,
+      //   };
+      //   date_input.datepicker(options);
+      //-------------
       $('.date').datepicker({
           autoclose: true,
           todayHighlight: true,
@@ -336,16 +344,16 @@
 
                         var tglberlaku = button.data('tglberlaku')
                         var kodelokasi = button.data('kodelokasi')
-                        var kodejabatan = button.data('kodejabatan')
+                        var nik = button.data('nik')
                         var nilai = button.data('nilai')
 
                         var modal = $(this)
                         modal.find('.modal-body #tgl_berlaku').val(tglberlaku);
-                        modal.find('.modal-body #kode_lokasi').val(kodelokasi);
-                        modal.find('.modal-body #kode_jabatan').val(kodejabatan);
                         modal.find('.modal-body #htgl_berlaku').val(tglberlaku);
+                        modal.find('.modal-body #kode_lokasi').val(kodelokasi);
                         modal.find('.modal-body #hkode_lokasi').val(kodelokasi);
-                        modal.find('.modal-body #hkode_jabatan').val(kodejabatan);
+                        modal.find('.modal-body #nik').val(nik);
+                        modal.find('.modal-body #hnik').val(nik);
                         modal.find('.modal-body #nilai').val(nilai);
                     })
     $('#edit').on('show.bs.modal', function (event) {
@@ -353,16 +361,16 @@
 
                         var tglberlaku = button.data('tglberlaku')
                         var kodelokasi = button.data('kodelokasi')
-                        var kodejabatan = button.data('kodejabatan')
+                        var nik = button.data('nik')
                         var nilai = button.data('nilai')
 
                         var modal = $(this)
                         modal.find('.modal-body #tgl_berlaku').val(tglberlaku);
-                        modal.find('.modal-body #kode_lokasi').val(kodelokasi);
-                        modal.find('.modal-body #kode_jabatan').val(kodejabatan);
                         modal.find('.modal-body #htgl_berlaku').val(tglberlaku);
+                        modal.find('.modal-body #kode_lokasi').val(kodelokasi);
                         modal.find('.modal-body #hkode_lokasi').val(kodelokasi);
-                        modal.find('.modal-body #hkode_jabatan').val(kodejabatan);
+                        modal.find('.modal-body #nik').val(nik);
+                        modal.find('.modal-body #hnik').val(nik);
                         modal.find('.modal-body #nilai').val(nilai);
                     })
     $('#delete').on('show.bs.modal', function (event) {
@@ -370,18 +378,18 @@
 
                         var tglberlaku = button.data('tglberlaku')
                         var kodelokasi = button.data('kodelokasi')
-                        var kodejabatan = button.data('kodejabatan')
+                        var nik = button.data('nik')
                         var nilai = button.data('nilai')
 
                         var modal = $(this)
                         modal.find('.modal-body #tgl_berlaku').val(tglberlaku);
-                        modal.find('.modal-body #kode_lokasi').val(kodelokasi);
-                        modal.find('.modal-body #kode_jabatan').val(kodejabatan);
                         modal.find('.modal-body #htgl_berlaku').val(tglberlaku);
+                        modal.find('.modal-body #kode_lokasi').val(kodelokasi);
                         modal.find('.modal-body #hkode_lokasi').val(kodelokasi);
-                        modal.find('.modal-body #hkode_jabatan').val(kodejabatan);
+                        modal.find('.modal-body #nik').val(nik);
+                        modal.find('.modal-body #hnik').val(nik);
                         modal.find('.modal-body #nilai').val(nilai);
-  })
+                      })
 
 
 

@@ -10,5 +10,5 @@
   </div>
 </div>
 <div class="form-group"><label class="col-sm-4 control-label">Tunjangan Makan</label>
-    <div class="col-sm-8"><input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="tunj_makan" id="tunj_makan"></div>
+    <div class="col-sm-8"><input type="number" step="any" class="form-control" name="tunj_makan" id="tunj_makan"></div>
 </div>

@@ -89,8 +89,8 @@
 
                               <tr>
                                   <td class="text-center">{{$i}}</td>
-                                  <td class="text-center">{{$u->kode_jabatan}}</td>
-                                  <td class="text-center">{{$u->kode_site}}</td>
+                                  <td class="text-center">{{$u->Deskripsi}}</td>
+                                  <td class="text-center">{{$u->nama_client}}</td>
                                   <td><center>{{$u->tunj_jabatan}}</center></td>
                                   <td><center>{{$u->tgl_berlaku}}</center></td>
                                   <td class="text-center">
@@ -183,7 +183,34 @@
                         @csrf
                 <input type="hidden" name="uukode_jabatan" id="uukode_jabatan" value="" />
                 <input type="hidden" name="uukode_site" id="uukode_site" value="" />
-                        @include('hrd.setup.tunjanganjabatan.form')
+                <input type="hidden" name="id" id="id" value="" />
+                <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
+                  <div class="col-sm-8">
+                     <select class="form-control chosen-select-width" name="kode_jabatan" id="kode_jabatan" disabled>
+                            <option value="null" selected disabled>--Jabatan--</option>
+                             @foreach($st_jabatan as $data)
+                            <option value="{{ $data->kode }}">  {{ $data->kode }} - {{ $data->Deskripsi }}</option>
+                             @endforeach
+                      </select>
+                  </div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Nama Lokasi kerja</label>
+                  <div class="col-sm-8">
+                     <select class="form-control chosen-select-width" name="kode_site" id="kode_site" disabled>
+                            <option value="null" selected disabled>--Lokasi kerja--</option>
+                             @foreach($md_client as $data)
+                            <option value="{{ $data->id }}">  {{ $data->nama_client }}</option>
+                             @endforeach
+                      </select>
+                  </div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Tunjangan Jabatan</label>
+                    <div class="col-sm-8"><input type="number" step="any" class="form-control" name="tunjangan_jabatan" id="tunjangan_jabatan"></div>
+                </div>
+                <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
+                    <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tanggal_berlaku" id="tanggal_berlaku"></div>
+                </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
@@ -209,18 +236,34 @@
                 <h4 class="text-center">Apakah Anda yakin untuk menghapus data?</h4>
                 <input type="hidden" name="uukode_jabatan" id="uukode_jabatan" value="" />
                 <input type="hidden" name="uukode_site" id="uukode_site" value="" />
-                <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_jabatan" id="kode_jabatan" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Kode Site</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" name="kode_site" id="kode_site" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Tunjangan Jabatan</label>
-                    <div class="col-sm-8"><input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="tunjangan_jabatan" id="tunjangan_jabatan" disabled></div>
-                </div>
-                <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
-                    <div class="col-sm-8"><input type="text" class="form-control date" name="tanggal_berlaku" id="tanggal_berlaku" readonly disabled></div>
-                </div>
+                  <input type="hidden" name="id" id="id" value="" />
+                  <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="kode_jabatan" id="kode_jabatan">
+                              <option value="null" selected disabled>--Jabatan--</option>
+                               @foreach($st_jabatan as $data)
+                              <option value="{{ $data->kode }}">  {{ $data->kode }} - {{ $data->Deskripsi }}</option>
+                               @endforeach
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Nama Lokasi kerja</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="kode_site" id="kode_site">
+                              <option value="null" selected disabled>--Lokasi kerja--</option>
+                               @foreach($md_client as $data)
+                              <option value="{{ $data->id }}">  {{ $data->nama_client }}</option>
+                               @endforeach
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Tunjangan Jabatan</label>
+                      <div class="col-sm-8"><input type="number" step="any" class="form-control" name="tunjangan_jabatan" id="tunjangan_jabatan"></div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Tanggal Berlaku</label>
+                      <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tanggal_berlaku" id="tanggal_berlaku"></div>
+                  </div>
+
              </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-white" data-dismiss="modal">Tidak</button>
