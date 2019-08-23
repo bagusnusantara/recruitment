@@ -153,6 +153,15 @@
                           <li class="@if(url('hrd/setup/kalenderlibur') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/kalenderlibur')}}">Kalender Libur</a>
                           </li>
+                          <li class="@if(url('hrd/setup/harilembur') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/harilembur')}}">Hari lembur</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/waktulembur') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/waktulembur')}}">Waktu Lembur</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/sanksi') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/sanksi')}}">Sanksi</a>
+                          </li>
 
                       </ul>
                   </li>

@@ -38,6 +38,9 @@ use App\st_payment_req_pengajuan;
 use App\st_payment_req_sn_pic;
 use App\hari_libur;
 use App\md_kalender_libur;
+use App\st_hari_lembur;
+use App\st_waktu_lembur;
+use App\st_sanksi;
 use Alert;
 use DB;
 use App\User;
@@ -1318,8 +1321,8 @@ class HRDController extends Controller
       $att->keterangan = $request->keterangan;
       $att->entry_user = $user;
       $att->entry_date = $date_time;
-      $att->id_lebaran = $id_lebaran;
-      $att->id_cutibersama = $id_cutibersama
+      $att->id_lebaran = $request->id_lebaran;
+      $att->id_cutibersama = $request->id_cutibersama;
       $att->save();
 
       Alert::success('Kalender Libur Berhasil ditambahkan');
@@ -1347,8 +1350,161 @@ class HRDController extends Controller
     {
         $tgl_libur = $request->htgl_libur;
         $att= DB::select(DB::raw(" DELETE FROM md_kalender_libur 
-                                      WHERE id = '$id' "));
+                                      WHERE tgl_libur = '$tgl_libur' "));
         Alert::success('Kalender Libur Berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function getHarilembur(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_hari_lembur = DB::table('st_hari_lembur')
+      ->select('st_hari_lembur.*')
+      ->get();
+      return view ('hrd.setup.harilembur.index',compact('st_hari_lembur'));
+    }
+
+    public function storeHarilembur(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $att = new st_hari_lembur;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->kode = $request->kode;
+      $att->deskripsi = $request->deskripsi;
+      $att->entry_user = $user;
+      $att->entry_date = $date_time;
+      $att->save();
+
+      Alert::success('hari Lembur Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateHarilembur(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_hari_lembur')
+        ->where('kode', $request->hkode)
+        ->update([
+         'deskripsi' => $request->deskripsi,
+      ]);
+      Alert::success('hari Lembur Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroyHarilembur(Request $request)
+    {
+        $kode = $request->hkode;
+        $att= DB::select(DB::raw(" DELETE FROM st_hari_lembur 
+                                      WHERE kode = '$kode' "));
+        Alert::success('Hari Lembur Berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function getWaktulembur(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_waktu_lembur = DB::table('st_waktu_lembur')
+      ->select('st_waktu_lembur.*')
+      ->get();
+      return view ('hrd.setup.waktulembur.index',compact('st_waktu_lembur'));
+    }
+
+    public function storeWaktulembur(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $att = new st_waktu_lembur;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->kode = $request->kode;
+      $att->deskripsi = $request->deskripsi;
+      $att->entry_user = $user;
+      $att->entry_date = $date_time;
+      $att->save();
+
+      Alert::success('Waktu Lembur Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateWaktulembur(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_waktu_lembur')
+        ->where('kode', $request->hkode)
+        ->update([
+         'deskripsi' => $request->deskripsi,
+      ]);
+      Alert::success('Waktu Lembur Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroyWaktulembur(Request $request)
+    {
+        $kode = $request->hkode;
+        $att= DB::select(DB::raw(" DELETE FROM st_waktu_lembur 
+                                      WHERE kode = '$kode' "));
+        Alert::success('Waktu Lembur Berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function getSanksi(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_sanksi = DB::table('st_sanksi')
+      ->select('st_sanksi.*')
+      ->get();
+      return view ('hrd.setup.sanksi.index',compact('st_sanksi'));
+    }
+
+    public function storeSanksi(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $att = new st_sanksi;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->kode = $request->kode;
+      $att->deskripsi = $request->deskripsi;
+      $att->entry_user = $user;
+      $att->entry_date = $date_time;
+      $att->save();
+
+      Alert::success('Sanksi Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateSanksi(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_sanksi')
+        ->where('kode', $request->hkode)
+        ->update([
+         'deskripsi' => $request->deskripsi,
+      ]);
+      Alert::success('Sanksi Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroySanksi(Request $request)
+    {
+        $kode = $request->hkode;
+        $att= DB::select(DB::raw(" DELETE FROM st_sanksi 
+                                      WHERE kode = '$kode' "));
+        Alert::success('Waktu Lembur Berhasil dihapus');
         return redirect()->back();
     }
 

@@ -34,6 +34,9 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/ttpaymentrequisition', 'HRDController@getTtpaymentrequisition');
     Route::get('setup/harilibur', 'HRDController@getHarilibur');
     Route::get('setup/kalenderlibur', 'HRDController@getKalenderlibur');
+    Route::get('setup/harilembur', 'HRDController@getHarilembur');
+    Route::get('setup/waktulembur', 'HRDController@getWaktulembur');
+    Route::get('setup/sanksi', 'HRDController@getSanksi');
 
     //-x Post Method
     Route::post('setup/umk/store', 'HRDController@storeumk');
@@ -80,6 +83,12 @@ Route::prefix('hrd')->group(function(){
     Route::post('setup/harilibur/update/{id}', 'HRDController@updateHarilibur');
     Route::post('setup/kalenderlibur/store', 'HRDController@storeKalenderlibur');
     Route::post('setup/kalenderlibur/update/{id}', 'HRDController@updateKalenderlibur');
+    Route::post('setup/harilembur/store', 'HRDController@storeHarilembur');
+    Route::post('setup/harilembur/update/{id}', 'HRDController@updateharilembur');
+    Route::post('setup/waktulembur/store', 'HRDController@storeWaktulembur');
+    Route::post('setup/waktulembur/update/{id}', 'HRDController@updateWaktulembur');
+    Route::post('setup/sanksi/store', 'HRDController@storeSanksi');
+    Route::post('setup/sanksi/update/{id}', 'HRDController@updateSanksi');
 
     //-x Delete Method
     Route::delete('setup/umk/delete/{id}', 'HRDController@destroyUmk')->name('post-umk-delete');
@@ -104,6 +113,9 @@ Route::prefix('hrd')->group(function(){
     //Route::delete('setup/ttpaymentrequisition/delete/{id}', 'HRDController@destroyTtpaymentrequisition');
     Route::delete('setup/harilibur/delete/{id}', 'HRDController@destroyHarilibur');
     Route::delete('setup/kalenderlibur/delete/{id}', 'HRDController@destroyKalenderlibur');
+    Route::delete('setup/harilembur/delete/{id}', 'HRDController@destroyHarilembur');
+    Route::delete('setup/waktulembur/delete/{id}', 'HRDController@destroyWaktulembur');
+    Route::delete('setup/sanksi/delete/{id}', 'HRDController@destroySanksi');
 
     //-x
     Route::post('setup/komponengaji/store', 'HRDController@storeKomponengaji');

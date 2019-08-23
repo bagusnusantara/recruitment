@@ -3,13 +3,13 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Setup hari Libur</h2>
+            <h2>Setup Kalender Libur</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/dashboard')}}">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Setup hari Libur</strong>
+                    <strong>Setup Kalender Libur</strong>
                 </li>
             </ol>
             
@@ -24,7 +24,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Hari Libur</h5>
+                        <h5>Kalender Libur</h5>
 
                         <div class="ibox-tools">
                             <a class="collapse-link">
@@ -46,19 +46,19 @@
                     </div>
                     <div class="ibox-content">
                         <div class="text-right">
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Hari Libur</button>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Tambah Kalender Libur</button>
                         </div>
                         <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
                               <div class="modal-dialog modal-lg">
                                   <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title">Tambah Hari Libur</h4>
+                                        <h4 class="modal-title">Tambah kalender Libur</h4>
                                     </div>
                                     <div class="modal-body">
-                                      <form method="POST" action="{{url('/hrd/setup/harilibur/store')}}" class="form-horizontal" enctype="multipart/form-data">
+                                      <form method="POST" action="{{url('/hrd/setup/kalenderlibur/store')}}" class="form-horizontal" enctype="multipart/form-data">
                                             @csrf
-                                            @include('hrd.setup.harilibur.form')
+                                            @include('hrd.setup.kalenderlibur.form')
                                     </div>
 
                                     <div class="modal-footer">
@@ -75,50 +75,57 @@
                             <tr>
                               <th class="text-center">No</th>
                               <th class="text-center">Tanggal</th>
-                              <th class="text-center">Deskripsi</th>
-                              <th class="text-center">kategori</th>
+                              <th class="text-center">Kode Hari Libur</th>
+                              <th class="text-center">Keterangan</th>
+                              <th class="text-center">ID Lebaran</th>
+                              <th class="text-center">ID Cuti Bersama</th>
                               <th class="text-center">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                               @php
-    								$i=1;
-    							@endphp
-                              @foreach($hari_libur as $u)
+                								$i=1;
+                							@endphp
+                              @foreach($md_kalender_libur as $u)
 
                               <tr>
                                   <td class="text-center">{{$i}}</td>
-                                  <td><center>{{$u->tanggal}}</center></td>
-                                  <td><center>{{$u->deskripsi}}</center></td>
-                                  <td><center>{{$u->deskripsipekerjaan}}</center></td>
+                                  <td><center>{{$u->tgl_libur}}</center></td>
+                                  <td><center>{{$u->kode_hari_libur}}</center></td>
+                                  <td><center>{{$u->keterangan}}</center></td>
+                                  <td><center>{{$u->id_lebaran}}</center></td>
+                                  <td><center>{{$u->id_cutibersama}}</center></td>
                                   <td class="text-center">
                                     <button class="btn btn-default btn-circle"
-                                          data-id="{{$u->id}}"
-                                          data-tanggal="{{$u->tanggal}}"
-                                          data-deskripsi="{{$u->deskripsi}}"
-                                          data-kategori="{{$u->kategori}}"
+                                          data-tgllibur="{{$u->tgl_libur}}"
+                                          data-kodeharilibur="{{$u->kode_hari_libur}}"
+                                          data-keterangan="{{$u->keterangan}}"
+                                          data-idlebaran="{{$u->id_lebaran}}"
+                                          data-idcutibersama="{{$u->id_cutibersama}}"
                                           data-toggle="modal" data-target="#show"><i class="fa fa-eye"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
-                                          data-id="{{$u->id}}"
-                                          data-tanggal="{{$u->tanggal}}"
-                                          data-deskripsi="{{$u->deskripsi}}"
-                                          data-kategori="{{$u->kategori}}"
+                                          data-tgllibur="{{$u->tgl_libur}}"
+                                          data-kodeharilibur="{{$u->kode_hari_libur}}"
+                                          data-keterangan="{{$u->keterangan}}"
+                                          data-idlebaran="{{$u->id_lebaran}}"
+                                          data-idcutibersama="{{$u->id_cutibersama}}"
                                           data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
-                                          data-id="{{$u->id}}"
-                                          data-tanggal="{{$u->tanggal}}"
-                                          data-deskripsi="{{$u->deskripsi}}"
-                                          data-kategori="{{$u->kategori}}"
+                                          data-tgllibur="{{$u->tgl_libur}}"
+                                          data-kodeharilibur="{{$u->kode_hari_libur}}"
+                                          data-keterangan="{{$u->keterangan}}"
+                                          data-idlebaran="{{$u->id_lebaran}}"
+                                          data-idcutibersama="{{$u->id_cutibersama}}"
                                           data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i>
                                     </button>
                                   </td>
 
                                   
                               @php
-    								$i++;
-    							@endphp
+                								$i++;
+                							@endphp
                               @endforeach
                                 </tr>
                           </tbody>
@@ -142,28 +149,45 @@
                   <h4 class="modal-title">Delete Confirmation</h4>
               </div>
               <div class="modal-body">
-              <form method="POST" action="{{ url('/hrd/setup/harilibur/delete/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
+              <form method="POST" action="{{ url('/hrd/setup/kalenderlibur/delete/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
                 @method('DELETE')
                 <h4 class="text-center">Apakah Anda yakin untuk menghapus data?</h4>
-                  <input type="hidden" name="hid" id="hid" value="" />
-                  <div class="form-group"><label class="col-sm-4 control-label">Tanggal</label>
-                      <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
+                  <input type="hidden" name="htgl_libur" id="htgl_libur" value="" />
+                  <div class="form-group"><label class="col-sm-4 control-label">Tanggal Libur</label>
+                      <div class="col-sm-8"><input type="text" class="form-control" name="tgl_libur" id="tgl_libur" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Deskripsi</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="deskripsi" id="deskripsi" disabled></div>
-                  </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Kategori</label>
+                  <div class="form-group"><label class="col-sm-4 control-label">Kode Hari Libur</label>
                     <div class="col-sm-8">
-                       <select class="form-control chosen-select-width" name="kategori" id="kategori" disabled>
-                              <option value="null" selected disabled>--Kategori--</option>
-                               @foreach($st_Kategoripekerjaan as $data)
-                              <option value="{{ $data->id }}">  {{ $data->deskripsi }}</option>
+                       <select class="form-control chosen-select-width" name="kode_hari_libur" id="kode_hari_libur" disabled>
+                              <option value="null" selected disabled>--Kode hari libur--</option>
+                               @foreach($hari_libur as $data)
+                              <option value="{{ $data->id }}">  {{ $data->id }} - {{ $data->deskripsi }}</option>
                                @endforeach
                         </select>
                     </div>
                   </div>
-
+                  <div class="form-group"><label class="col-sm-4 control-label">Keterangan</label>
+                      <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="keterangan" id="keterangan" disabled></div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">ID Lebaran</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="id_lebaran" id="id_lebaran" disabled>
+                              <option value="null" selected disabled>--id lebaran--</option>
+                              <option value="1">Ya</option>
+                              <option value="0">TIdak</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">ID Cuti bersama</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="id_cutibersama" id="id_cutibersama" disabled>
+                              <option value="null" selected disabled>--id cuti bersama--</option>
+                              <option value="1">Ya</option>
+                              <option value="0">TIdak</option>
+                        </select>
+                    </div>
+                  </div>
 
              </div>
               <div class="modal-footer">
@@ -180,24 +204,42 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Show Hari Libur</h4>
+                    <h4 class="modal-title">Show Kalender Libur</h4>
                 </div>
                 <div class="modal-body">
                 <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
-                  <input type="hidden" name="hid" id="hid" value="" />
-                  <div class="form-group"><label class="col-sm-4 control-label">Tanggal</label>
-                      <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
+                  <input type="hidden" name="htgl_libur" id="htgl_libur" value="" />
+                  <div class="form-group"><label class="col-sm-4 control-label">Tanggal Libur</label>
+                      <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_libur" id="tgl_libur" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
                   </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Deskripsi</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" name="deskripsi" id="deskripsi" disabled></div>
-                  </div>
-                  <div class="form-group"><label class="col-sm-4 control-label">Kategori</label>
+                  <div class="form-group"><label class="col-sm-4 control-label">Kode Hari Libur</label>
                     <div class="col-sm-8">
-                       <select class="form-control chosen-select-width" name="kategori" id="kategori" disabled>
-                              <option value="null" selected disabled>--Kategori--</option>
-                               @foreach($st_Kategoripekerjaan as $data)
-                              <option value="{{ $data->id }}">  {{ $data->deskripsi }}</option>
+                       <select class="form-control chosen-select-width" name="kode_hari_libur" id="kode_hari_libur" disabled>
+                              <option value="null" selected disabled>--Kode hari libur--</option>
+                               @foreach($hari_libur as $data)
+                              <option value="{{ $data->id }}">  {{ $data->id }} - {{ $data->deskripsi }}</option>
                                @endforeach
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">Keterangan</label>
+                      <div class="col-sm-8"><input type="text" class="form-control" name="keterangan" id="keterangan" disabled></div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">ID Lebaran</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="id_lebaran" id="id_lebaran" disabled>
+                              <option value="null" selected disabled>--id lebaran--</option>
+                              <option value="1">Ya</option>
+                              <option value="0">TIdak</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group"><label class="col-sm-4 control-label">ID Cuti bersama</label>
+                    <div class="col-sm-8">
+                       <select class="form-control chosen-select-width" name="id_cutibersama" id="id_cutibersama" disabled>
+                              <option value="null" selected disabled>--id cuti bersama--</option>
+                              <option value="1">Ya</option>
+                              <option value="0">TIdak</option>
                         </select>
                     </div>
                   </div>
@@ -217,25 +259,43 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Edit Hari Libur</h4>
+                    <h4 class="modal-title">Edit Kalender Libur</h4>
                 </div>
                 <div class="modal-body">
-                <form method="POST" action="{{ url('/hrd/setup/harilibur/update/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('/hrd/setup/kalenderlibur/update/{id}') }}" class="form-horizontal" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="hid" id="hid" value="" />
-                        <div class="form-group"><label class="col-sm-4 control-label">Tanggal</label>
-                            <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}"></div>
+                        <input type="hidden" name="htgl_libur" id="htgl_libur" value="" />
+                        <div class="form-group"><label class="col-sm-4 control-label">Tanggal Libur</label>
+                            <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="tgl_libur" id="tgl_libur" value="{{ \Carbon\Carbon::now()->toDateString() }}" disabled></div>
                         </div>
-                        <div class="form-group"><label class="col-sm-4 control-label">Deskripsi</label>
-                            <div class="col-sm-8"><input type="text" class="form-control" name="deskripsi" id="deskripsi"></div>
-                        </div>
-                        <div class="form-group"><label class="col-sm-4 control-label">Kategori</label>
+                        <div class="form-group"><label class="col-sm-4 control-label">Kode Hari Libur</label>
                           <div class="col-sm-8">
-                             <select class="form-control chosen-select-width" name="kategori" id="kategori">
-                                    <option value="null" selected disabled>--Kategori--</option>
-                                     @foreach($st_Kategoripekerjaan as $data)
-                                    <option value="{{ $data->id }}">  {{ $data->deskripsi }}</option>
+                             <select class="form-control chosen-select-width" name="kode_hari_libur" id="kode_hari_libur">
+                                    <option value="null" selected disabled>--Kode hari libur--</option>
+                                     @foreach($hari_libur as $data)
+                                    <option value="{{ $data->id }}">  {{ $data->id }} - {{ $data->deskripsi }}</option>
                                      @endforeach
+                              </select>
+                          </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-4 control-label">Keterangan</label>
+                            <div class="col-sm-8"><input type="text" class="form-control" name="keterangan" id="keterangan"></div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-4 control-label">ID Lebaran</label>
+                          <div class="col-sm-8">
+                             <select class="form-control chosen-select-width" name="id_lebaran" id="id_lebaran">
+                                    <option value="null" selected disabled>--id lebaran--</option>
+                                    <option value="1">Ya</option>
+                                    <option value="0">TIdak</option>
+                              </select>
+                          </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-4 control-label">ID Cuti bersama</label>
+                          <div class="col-sm-8">
+                             <select class="form-control chosen-select-width" name="id_cutibersama" id="id_cutibersama">
+                                    <option value="null" selected disabled>--id cuti bersama--</option>
+                                    <option value="1">Ya</option>
+                                    <option value="0">TIdak</option>
                               </select>
                           </div>
                         </div>
@@ -301,45 +361,53 @@
     $('#show').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var id = button.data('id')
-                        var tanggal = button.data('tanggal')
-                        var deskripsi = button.data('deskripsi')
-                        var kategori = button.data('kategori')
+                        var tgllibur = button.data('tgllibur')
+                        var kodeharilibur = button.data('kodeharilibur')
+                        var keterangan = button.data('keterangan')
+                        var idlebaran = button.data('idlebaran')
+                        var idcutibersama = button.data('idcutibersama')
 
                         var modal = $(this)
-                        modal.find('.modal-body #hid').val(id);
-                        modal.find('.modal-body #tanggal').val(tanggal);
-                        modal.find('.modal-body #deskripsi').val(deskripsi);
-                        modal.find('.modal-body #kategori').val(kategori);
-
+                        modal.find('.modal-body #tgl_libur').val(tgllibur);
+                        modal.find('.modal-body #htgl_libur').val(tgllibur);
+                        modal.find('.modal-body #kode_hari_libur').val(kodeharilibur);
+                        modal.find('.modal-body #keterangan').val(keterangan);
+                        modal.find('.modal-body #id_lebaran').val(idlebaran);
+                        modal.find('.modal-body #id_cutibersama').val(idcutibersama);
                     })
     $('#edit').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var id = button.data('id')
-                        var tanggal = button.data('tanggal')
-                        var deskripsi = button.data('deskripsi')
-                        var kategori = button.data('kategori')
+                        var tgllibur = button.data('tgllibur')
+                        var kodeharilibur = button.data('kodeharilibur')
+                        var keterangan = button.data('keterangan')
+                        var idlebaran = button.data('idlebaran')
+                        var idcutibersama = button.data('idcutibersama')
 
                         var modal = $(this)
-                        modal.find('.modal-body #hid').val(id);
-                        modal.find('.modal-body #tanggal').val(tanggal);
-                        modal.find('.modal-body #deskripsi').val(deskripsi);
-                        modal.find('.modal-body #kategori').val(kategori);
+                        modal.find('.modal-body #tgl_libur').val(tgllibur);
+                        modal.find('.modal-body #htgl_libur').val(tgllibur);
+                        modal.find('.modal-body #kode_hari_libur').val(kodeharilibur);
+                        modal.find('.modal-body #keterangan').val(keterangan);
+                        modal.find('.modal-body #id_lebaran').val(idlebaran);
+                        modal.find('.modal-body #id_cutibersama').val(idcutibersama);
                     })
     $('#delete').on('show.bs.modal', function (event) {
                         var button = $(event.relatedTarget) // Button that triggered the modal
 
-                        var id = button.data('id')
-                        var tanggal = button.data('tanggal')
-                        var deskripsi = button.data('deskripsi')
-                        var kategori = button.data('kategori')
+                        var tgllibur = button.data('tgllibur')
+                        var kodeharilibur = button.data('kodeharilibur')
+                        var keterangan = button.data('keterangan')
+                        var idlebaran = button.data('idlebaran')
+                        var idcutibersama = button.data('idcutibersama')
 
                         var modal = $(this)
-                        modal.find('.modal-body #hid').val(id);
-                        modal.find('.modal-body #tanggal').val(tanggal);
-                        modal.find('.modal-body #deskripsi').val(deskripsi);
-                        modal.find('.modal-body #kategori').val(kategori);
+                        modal.find('.modal-body #tgl_libur').val(tgllibur);
+                        modal.find('.modal-body #htgl_libur').val(tgllibur);
+                        modal.find('.modal-body #kode_hari_libur').val(kodeharilibur);
+                        modal.find('.modal-body #keterangan').val(keterangan);
+                        modal.find('.modal-body #id_lebaran').val(idlebaran);
+                        modal.find('.modal-body #id_cutibersama').val(idcutibersama);
                     })
 
 
