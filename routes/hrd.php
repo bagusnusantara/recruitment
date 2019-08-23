@@ -20,6 +20,7 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/tunjanganprestasi', 'HRDController@getTunjanganprestasi');
     Route::get('setup/gpjabatansite', 'HRDController@getGpjabatansite');
     Route::get('setup/penandatanganangaji', 'HRDController@getPenandatanganangaji');
+    Route::get('setup/jabatan','HRDController@getJabatan');
 
     //-x Post Method
     Route::post('setup/umk/store', 'HRDController@storeumk');

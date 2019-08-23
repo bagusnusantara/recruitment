@@ -36,6 +36,11 @@ class HRDController extends Controller
       Alert::success('Selamat Datang di Sistem Recruitment SMI', 'Halo HRD SMI!!!');
       return view ('hrd.dashboard.index');
     }
+    public function getJabatan(){
+      $jabatan = DB::select('select * from jabatan_coba');
+      //dd($jabatan);
+      return view ('hrd.jabatan.index',compact('jabatan'));
+    }
     public function getSMI(){
       if(!Gate::allows('isHRD')){
           abort(404,"Maaf Anda tidak memiliki akses");
@@ -482,9 +487,9 @@ class HRDController extends Controller
         $tgl_berlaku = $request->htgl_berlaku;
         $kode_lokasi = $request->hkode_lokasi;
         $kode_jabatan = $request->hkode_jabatan;
-        $tunj = DB::select(DB::raw(" DELETE FROM st_gp_jabatan_site 
-                                      WHERE tgl_berlaku = '$tgl_berlaku' 
-                                      AND kode_lokasi = '$kode_lokasi' 
+        $tunj = DB::select(DB::raw(" DELETE FROM st_gp_jabatan_site
+                                      WHERE tgl_berlaku = '$tgl_berlaku'
+                                      AND kode_lokasi = '$kode_lokasi'
                                       AND kode_jabatan = '$kode_jabatan'"));
         Alert::success('Gaji Pokok per Jabatan (site) Berhasil dihapus');
         return redirect()->back();
@@ -531,7 +536,7 @@ class HRDController extends Controller
     public function destroyPenandatanganangaji(Request $request)
       {
         $seq = $request->hseq;
-        $tunj = DB::select(DB::raw(" DELETE FROM st_tt_payroll 
+        $tunj = DB::select(DB::raw(" DELETE FROM st_tt_payroll
                                       WHERE seq = '$seq'"));
         Alert::success('Penandatanganan Gaji Berhasil dihapus');
         return redirect()->back();
