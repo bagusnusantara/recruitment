@@ -20,9 +20,7 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/tunjanganprestasi', 'HRDController@getTunjanganprestasi');
     Route::get('setup/gpjabatansite', 'HRDController@getGpjabatansite');
     Route::get('setup/penandatanganangaji', 'HRDController@getPenandatanganangaji');
-<<<<<<< HEAD
     Route::get('setup/jabatan','HRDController@getJabatan');
-=======
     Route::get('setup/jkslain', 'HRDController@getJkslain');
     Route::get('setup/bpjs', 'HRDController@getBpjs');
     Route::get('setup/tunjangankjk', 'HRDController@getTunjangankjk');
@@ -35,7 +33,6 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/kelompoktanggalpenggajian', 'HRDController@getKelompoktanggalpenggajian');
     Route::get('setup/creatorpaymentrequisition', 'HRDController@getCreatorpaymentrequisition');
     Route::get('setup/ttpaymentrequisition', 'HRDController@getTtpaymentrequisition');
->>>>>>> df8d36457521a5431634c6f08fb024584a0ba6f9
 
     //-x Post Method
     Route::post('setup/umk/store', 'HRDController@storeumk');
