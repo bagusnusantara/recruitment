@@ -41,6 +41,8 @@ use App\md_kalender_libur;
 use App\st_hari_lembur;
 use App\st_waktu_lembur;
 use App\st_sanksi;
+use App\st_alasan_absen;
+use App\schclass;
 use Alert;
 use DB;
 use App\User;
@@ -1505,7 +1507,150 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_sanksi 
                                       WHERE kode = '$kode' "));
         Alert::success('Waktu Lembur Berhasil dihapus');
-        return redirect()->back(); 
+        return redirect()->back();  
+    }
+
+    public function getAlasanabsen(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_alasan_absen = DB::table('st_alasan_absen')
+      ->select('st_alasan_absen.*')
+      ->get();
+      return view ('hrd.setup.alasanabsen.index',compact('st_alasan_absen'));
+    }
+
+    public function storeAlasanabsen(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $att = new st_alasan_absen;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->kode = $request->kode;
+      $att->deskripsi = $request->deskripsi;
+      $att->lama_cuti = $request->lama_cuti;
+      $att->pot_absen = $request->pot_absen;    
+      $att->pot_bonus = $request->pot_bonus;
+      $att->prosen_pot = $request->prosen_pot;
+      $att->id_cutithn = $request->id_cutithn;
+      $att->id_cuti = $request->id_cuti;
+      $att->id_sakit = $request->id_sakit;
+      $att->id_ijin = $request->id_ijin;
+      $att->id_alpha = $request->id_alpha;
+      $att->entry_user = $user;
+      $att->entry_date = $date_time;
+      $att->save();
+
+      Alert::success('Alasan Absen Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateAlasanabsen(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('st_alasan_absen')
+        ->where('kode', $request->hkode)
+        ->update([
+          'deskripsi' => $request->deskripsi,
+          'lama_cuti' => $request->lama_cuti,
+          'pot_absen' => $request->pot_absen,
+          'pot_bonus' => $request->pot_bonus,
+          'id_present' => $request->id_present,
+          'prosen_pot' => $request->prosen_pot,
+          'id_cutithn' => $request->id_cutithn,
+          'id_cuti' => $request->id_cuti,
+          'id_sakit' => $request->id_sakit,
+          'id_ijin' => $request->id_ijin,
+          'id_alpha' => $request->id_alpha,
+      ]);
+      Alert::success('Alasan Absen Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroyAlasanabsen(Request $request)
+    {
+        $kode = $request->hkode;
+        $att= DB::select(DB::raw(" DELETE FROM st_alasan_absen 
+                                      WHERE kode = '$kode' "));
+        Alert::success('Alasan Absen Berhasil dihapus');
+        return redirect()->back();  
+    }
+
+    public function getSchclass(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $schclass = DB::table('schclass')
+      ->select('schclass.*')
+      ->get();
+      return view ('hrd.setup.schclass.index',compact('schclass'));
+    }
+
+    public function storeSchclass(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $sjam=$request->starth; $smenit=$request->startm; $sdetik=$request->starts;
+      $ejam=$request->endh; $emenit=$request->endm; $edetik=$request->ends;
+
+      $starttime = $sjam.":".$smenit.":".$sdetik;
+      $endtime = $ejam.":".$emenit.":".$edetik;
+      $att = new schclass;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->kode = $request->kode;
+      $att->deskripsi = $request->deskripsi;
+      $att->stime = $starttime;
+      $att->etime = $endtime;
+      $att->mnt_lembur_wajib = $request->mnt_lembur_wajib;
+      $att->mnt_lembur_spl = $request->mnt_lembur_spl;
+      $att->id_shift_malam = $request->id_shift_malam;
+      $att->id_lbr_wajib = $request->id_lbr_wajib;
+      $att->tol_jam = $request->tol_jam;
+      $att->save();
+
+      Alert::success('Schclass Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateSchclass(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $sjam=$request->starth; $smenit=$request->startm; $sdetik=$request->starts;
+      $ejam=$request->endh; $emenit=$request->endm; $edetik=$request->ends;
+
+      $starttime = $sjam.":".$smenit.":".$sdetik;
+      $endtime = $ejam.":".$emenit.":".$edetik;
+      DB::table('schclass')
+        ->where('kode', $request->hkode)
+        ->update([
+          'deskripsi' => $request->deskripsi,
+          'stime' => $starttime,
+          'etime' => $endtime,
+          'mnt_lembur_wajib' => $request->mnt_lembur_wajib,
+          'mnt_lembur_spl' => $request->mnt_lembur_spl,
+          'id_shift_malam' => $request->id_shift_malam,
+          'id_lbr_wajib' => $request->id_lbr_wajib,
+          'tol_jam' => $request->tol_jam,
+      ]);
+      Alert::success('Schclass Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroySchclass(Request $request)
+    {
+        $kode = $request->hkode;
+        $att= DB::select(DB::raw(" DELETE FROM schclass 
+                                      WHERE kode = '$kode' "));
+        Alert::success('Schclass Berhasil dihapus');
+        return redirect()->back();  
     }
 
 

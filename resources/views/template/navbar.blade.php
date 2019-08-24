@@ -162,6 +162,12 @@
                           <li class="@if(url('hrd/setup/sanksi') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/sanksi')}}">Sanksi</a>
                           </li>
+                          <li class="@if(url('hrd/setup/alasanabsen') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/alasanabsen')}}">Alasan Absen</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/schclass') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/schclass')}}">Schedule Class</a>
+                          </li>
 
                       </ul>
                   </li>

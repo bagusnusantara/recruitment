@@ -38,6 +38,8 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/harilembur', 'HRDController@getHarilembur');
     Route::get('setup/waktulembur', 'HRDController@getWaktulembur');
     Route::get('setup/sanksi', 'HRDController@getSanksi');
+    Route::get('setup/alasanabsen', 'HRDController@getAlasanabsen');
+    Route::get('setup/schclass', 'HRDController@getSchclass');
 
     //-x Post Method
     Route::post('setup/umk/store', 'HRDController@storeumk');
@@ -90,6 +92,10 @@ Route::prefix('hrd')->group(function(){
     Route::post('setup/waktulembur/update/{id}', 'HRDController@updateWaktulembur');
     Route::post('setup/sanksi/store', 'HRDController@storeSanksi');
     Route::post('setup/sanksi/update/{id}', 'HRDController@updateSanksi');
+    Route::post('setup/alasanabsen/store', 'HRDController@storeAlasanabsen');
+    Route::post('setup/alasanabsen/update/{id}', 'HRDController@updateAlasanabsen');
+    Route::post('setup/schclass/store', 'HRDController@storeSchclass');
+    Route::post('setup/schclass/update/{id}', 'HRDController@updateSchclass');
 
     //-x Delete Method
     Route::delete('setup/umk/delete/{id}', 'HRDController@destroyUmk')->name('post-umk-delete');
@@ -117,6 +123,8 @@ Route::prefix('hrd')->group(function(){
     Route::delete('setup/harilembur/delete/{id}', 'HRDController@destroyHarilembur');
     Route::delete('setup/waktulembur/delete/{id}', 'HRDController@destroyWaktulembur');
     Route::delete('setup/sanksi/delete/{id}', 'HRDController@destroySanksi');
+    Route::delete('setup/alasanabsen/delete/{id}', 'HRDController@destroyAlasanabsen');
+    Route::delete('setup/schclass/delete/{id}', 'HRDController@destroySchclass');
 
     //-x
     Route::post('setup/komponengaji/store', 'HRDController@storeKomponengaji');
