@@ -40,6 +40,12 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/sanksi', 'HRDController@getSanksi');
     Route::get('setup/alasanabsen', 'HRDController@getAlasanabsen');
     Route::get('setup/schclass', 'HRDController@getSchclass');
+    Route::get('setup/schpola', 'HRDController@getSchpola');
+    Route::get('setup/jadwalgroup', 'HRDController@getJadwalgroup');
+    Route::get('setup/jadwalpersonal', 'HRDController@getJadwalpersonal');
+    Route::get('setup/periode', 'HRDController@getPeriode');
+    Route::get('setup/sisacuti', 'HRDController@getSisacuti');
+
 
     //-x Post Method
     Route::post('setup/umk/store', 'HRDController@storeumk');
@@ -96,6 +102,17 @@ Route::prefix('hrd')->group(function(){
     Route::post('setup/alasanabsen/update/{id}', 'HRDController@updateAlasanabsen');
     Route::post('setup/schclass/store', 'HRDController@storeSchclass');
     Route::post('setup/schclass/update/{id}', 'HRDController@updateSchclass');
+    Route::post('setup/schpola/store', 'HRDController@storeSchpola');
+    Route::post('setup/schpola/update/{id}', 'HRDController@updateSchpola');
+    Route::post('setup/jadwalgroup/store', 'HRDController@storeJadwalgroup');
+    Route::post('setup/jadwalgroup/update/{id}', 'HRDController@updatejadwalgroup');
+    Route::post('setup/jadwalpersonal/store', 'HRDController@storeJadwalpersonal');
+    Route::post('setup/jadwalpersonal/update/{id}', 'HRDController@updatejadwalpersonal');
+    Route::post('setup/periode/store', 'HRDController@storePeriode');
+    Route::post('setup/periode/update/{id}', 'HRDController@updatePeriode');
+    Route::post('setup/sisacuti/store', 'HRDController@storeSisacuti');
+    Route::post('setup/sisacuti/update/{id}', 'HRDController@updateSisacuti');
+
 
     //-x Delete Method
     Route::delete('setup/umk/delete/{id}', 'HRDController@destroyUmk')->name('post-umk-delete');
@@ -125,6 +142,11 @@ Route::prefix('hrd')->group(function(){
     Route::delete('setup/sanksi/delete/{id}', 'HRDController@destroySanksi');
     Route::delete('setup/alasanabsen/delete/{id}', 'HRDController@destroyAlasanabsen');
     Route::delete('setup/schclass/delete/{id}', 'HRDController@destroySchclass');
+    Route::delete('setup/schpola/delete/{id}', 'HRDController@destroySchpola');
+    Route::delete('setup/jadwalgroup/delete/{id}', 'HRDController@destroyJadwalgroup');
+    Route::delete('setup/jadwalpersonal/delete/{id}', 'HRDController@destroyJadwalpersonal');
+    Route::delete('setup/periode/delete/{id}', 'HRDController@destroyPeriode');
+    Route::delete('setup/sisacuti/delete/{id}', 'HRDController@destroySisacuti');
 
     //-x
     Route::post('setup/komponengaji/store', 'HRDController@storeKomponengaji');

@@ -144,7 +144,7 @@
 
                       </ul>
                   </li>
-                                    <li>
+                    <li>
                       <a href="#" id="attendance">Attendance<span class="fa arrow"></span></a>
                       <ul class="nav nav-third-level">
                           <li class="@if(url('hrd/setup/harilibur') == request()->url()) active @else '' @endif  treeview">
@@ -167,6 +167,30 @@
                           </li>
                           <li class="@if(url('hrd/setup/schclass') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/schclass')}}">Schedule Class</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/schpola') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/schpola')}}">Schedule Pola</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/jadwalgroup') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/jadwalgroup')}}">Jadwal Group</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/jadwalpersonal') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/jadwalpersonal')}}">Jadwal Personal</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/periode') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/periode')}}">Periode (default)</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/sisacuti') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/sisacuti')}}">Sisa Cuti (periode sebelumnya)</a>
+                          </li>
+
+                      </ul>
+                  </li>
+                    <li>
+                      <a href="#" id="pekerjaan">Pekerjaan<span class="fa arrow"></span></a>
+                      <ul class="nav nav-third-level">
+                          <li class="@if(url('hrd/setup/departemen') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/departemen')}}">Departemen</a>
                           </li>
 
                       </ul>

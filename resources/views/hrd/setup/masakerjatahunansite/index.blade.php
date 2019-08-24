@@ -100,21 +100,21 @@
                                     <button class="btn btn-default btn-circle"
                                           data-tglberlaku="{{$u->tgl_berlaku}}"
                                           data-kodelokasi="{{$u->kode_lokasi}}"
-                                          data-nik="{{$u->users_id}}"
+                                          data-nik="{{$u->NIK}}"
                                           data-nilai="{{$u->nilai}}"
                                           data-toggle="modal" data-target="#show"><i class="fa fa-eye"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
                                           data-tglberlaku="{{$u->tgl_berlaku}}"
                                           data-kodelokasi="{{$u->kode_lokasi}}"
-                                          data-nik="{{$u->users_id}}"
+                                          data-nik="{{$u->NIK}}"
                                           data-nilai="{{$u->nilai}}"
                                           data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i>
                                     </button>
                                     <button class="btn btn-default btn-circle"
                                           data-tglberlaku="{{$u->tgl_berlaku}}"
                                           data-kodelokasi="{{$u->kode_lokasi}}"
-                                          data-nik="{{$u->users_id}}"
+                                          data-nik="{{$u->NIK}}"
                                           data-nilai="{{$u->nilai}}"
                                           data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i>
                                     </button>
@@ -171,7 +171,7 @@
                        <select class="form-control chosen-select-width" name="nik" id="nik" disabled>
                               <option value="null" selected disabled>--NIK Karyawan--</option>
                                @foreach($md_karyawan as $data)
-                              <option value="{{ $data->users_id }}">{{ $data->NIK }} - {{ $data->nama_lengkap }}</option>
+                              <option value="{{ $data->NIK }}">{{ $data->NIK }} - {{ $data->nama_lengkap }}</option>
                                @endforeach
                         </select>
                     </div>
@@ -220,7 +220,7 @@
                        <select class="form-control chosen-select-width" name="nik" id="nik" disabled>
                               <option value="null" selected disabled>--NIK Karyawan--</option>
                                @foreach($md_karyawan as $data)
-                              <option value="{{ $data->users_id }}">{{ $data->NIK }} - {{ $data->nama_lengkap }}</option>
+                              <option value="{{ $data->NIK }}">{{ $data->NIK }} - {{ $data->nama_lengkap }}</option>
                                @endforeach
                         </select>
                     </div>
@@ -269,7 +269,7 @@
                      <select class="form-control chosen-select-width" name="nik" id="nik" disabled>
                             <option value="null" selected disabled>--NIK Karyawan--</option>
                              @foreach($md_karyawan as $data)
-                            <option value="{{ $data->users_id }}">{{ $data->NIK }} - {{ $data->nama_lengkap }}</option>
+                            <option value="{{ $data->NIK }}">{{ $data->NIK }} - {{ $data->nama_lengkap }}</option>
                              @endforeach
                       </select>
                   </div>

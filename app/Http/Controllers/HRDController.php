@@ -43,6 +43,13 @@ use App\st_waktu_lembur;
 use App\st_sanksi;
 use App\st_alasan_absen;
 use App\schclass;
+use App\schpola;
+use App\st_jadwalgroup;
+use App\st_group;
+use App\st_jadwalpersonal;
+use App\st_periode;
+use App\tbl_sisacuti;
+
 use Alert;
 use DB;
 use App\User;
@@ -1065,7 +1072,7 @@ class HRDController extends Controller
       $md_karyawan = md_karyawan::all();
       $st_tunj_masa_kerja_thn = DB::table('st_tunj_masa_kerja_thn')
       ->join('md_client', 'st_tunj_masa_kerja_thn.kode_lokasi', '=', 'id')
-      ->join('md_karyawan', 'st_tunj_masa_kerja_thn.nik', '=', 'users_id')
+      ->join('md_karyawan', 'st_tunj_masa_kerja_thn.nik', '=', 'md_karyawan.NIK')
       ->select('st_tunj_masa_kerja_thn.*', 'md_client.nama_client','md_karyawan.nama_lengkap','md_karyawan.NIK','md_karyawan.users_id')
       ->get();
       return view ('hrd.setup.masakerjatahunansite.index',compact('st_tunj_masa_kerja_thn','md_client','md_karyawan'));
@@ -1650,6 +1657,262 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM schclass 
                                       WHERE kode = '$kode' "));
         Alert::success('Schclass Berhasil dihapus');
+        return redirect()->back();  
+    }
+
+    public function getSchpola(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $schpola = DB::table('schpola')
+      ->select('schpola.*')
+      ->get();
+      return view ('hrd.setup.schpola.index',compact('schpola'));
+    }
+
+    public function storeSchpola(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      $att = new schpola;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->polaid = $request->polaid;
+      $att->polaname = $request->polaname;
+      $att->polapattern = $request->polapattern;
+      $att->entry_date = $date_time;
+      $att->entry_user = $user;
+      $att->save();
+
+      Alert::success('SchPola Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateSchpola(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      DB::table('schpola')
+        ->where('polaid', $request->hpolaid)
+        ->update([
+          'polaname' => $request->polaname,
+          'polapattern' => $request->polapattern,
+      ]);
+      Alert::success('Schpola Berhasil diupdate');
+      return redirect()->back();
+
+    }
+
+    public function destroySchpola(Request $request)
+    {
+        $polaid = $request->hpolaid;
+        $att= DB::select(DB::raw(" DELETE FROM schpola 
+                                      WHERE polaid = '$polaid' "));
+        Alert::success('Schpolaid Berhasil dihapus');
+        return redirect()->back();  
+    }
+
+    public function getJadwalgroup(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $schclass = schclass::all();
+      $st_group = st_group::all();
+      $st_jadwalgroup = DB::table('st_jadwalgroup')
+      ->join('schclass','st_jadwalgroup.schid','=','schclass.kode')
+      ->join('st_group','st_jadwalgroup.kode_group','=','st_group.kode')
+      ->select('st_jadwalgroup.*','schclass.deskripsi AS des_schclass','st_group.deskripsi AS des_st_group')
+      ->get();
+      return view ('hrd.setup.jadwalgroup.index',compact('st_jadwalgroup','schclass','st_group'));
+    }
+
+    public function storeJadwalgroup(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      $att = new st_jadwalgroup;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->kode_group = $request->kode_group;
+      $att->schid = $request->schid;
+      $att->save();
+
+      Alert::success('Jadwal Group Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateJadwalgroup(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      return redirect()->back();
+
+    }
+
+    public function destroyjadwalgroup(Request $request)
+    {
+        $kode_group = $request->hkode_group;
+        $schid = $request->hschid;
+        $att= DB::select(DB::raw(" DELETE FROM st_jadwalgroup 
+                                      WHERE kode_group = '$kode_group'
+                                      AND schid = '$schid' "));
+        Alert::success('Jadwal group Berhasil dihapus');
+        return redirect()->back();  
+    }
+
+    public function getJadwalpersonal(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $md_karyawan = md_karyawan::all();
+      $schclass = schclass::all();
+      $st_jadwalpersonal = DB::table('st_jadwalpersonal')
+      ->join('md_karyawan','st_jadwalpersonal.nik','=','md_karyawan.NIK')
+      ->join('schclass','st_jadwalpersonal.schid','=','schclass.kode')
+      ->select('st_jadwalpersonal.*','schclass.deskripsi AS des_schclass','md_karyawan.nama_lengkap AS nama_lengkap')
+      ->get();
+      return view ('hrd.setup.jadwalpersonal.index',compact('st_jadwalpersonal','schclass','md_karyawan'));
+    }
+
+    public function storeJadwalpersonal(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      $att = new st_jadwalpersonal;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->nik = $request->nik;
+      $att->schid = $request->schid;
+      $att->save();
+
+      Alert::success('Jadwal personal Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateJadwalpersonal(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      return redirect()->back();
+
+    }
+
+    public function destroyJadwalpersonal(Request $request)
+    {
+        $nik = $request->hnik;
+        $schid = $request->hschid;
+        $att= DB::select(DB::raw(" DELETE FROM st_jadwalpersonal 
+                                      WHERE nik = '$nik'
+                                      AND schid = '$schid' "));
+        Alert::success('Jadwal Personal Berhasil dihapus');
+        return redirect()->back();  
+    }
+
+    public function getPeriode(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_periode = DB::table('st_periode')
+      ->select('st_periode.*')
+      ->get();
+      return view ('hrd.setup.periode.index',compact('st_periode'));
+    }
+
+    public function storePeriode(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $stahun=$request->stahun; $sbulan=$request->sbulan; $shari=$request->shari;
+      $etahun=$request->etahun; $ebulan=$request->ebulan; $ehari=$request->ehari;
+
+      $starttahun = $stahun."-".$sbulan."-".$shari;
+      $endtahun = $etahun."-".$ebulan."-".$ehari;
+      $att = new st_periode;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->sd_prd = $starttahun;
+      $att->ed_prd = $endtahun;
+      $att->save();
+
+      Alert::success('Periode Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updatePeriode(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      return redirect()->back();
+
+    }
+
+    public function destroyPeriode(Request $request)
+    {
+        $sd_prd = $request->hsd_prd;
+        $ed_prd = $request->hed_prd;
+        $att= DB::select(DB::raw(" DELETE FROM st_periode 
+                                      WHERE sd_prd = '$sd_prd'
+                                      AND ed_prd = '$ed_prd' "));
+        Alert::success('periode Berhasil dihapus');
+        return redirect()->back();  
+    }
+
+    public function getSisacuti(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $md_karyawan = md_karyawan::all();
+      $tbl_sisacuti = DB::table('tbl_sisacuti')
+      ->join('md_karyawan','tbl_sisacuti.nik', '=','md_karyawan.NIK')
+      ->select('tbl_sisacuti.*','md_karyawan.nama_lengkap')
+      ->get();
+      return view ('hrd.setup.sisacuti.index',compact('tbl_sisacuti','md_karyawan'));
+    }
+
+    public function storeSisacuti(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      $att = new tbl_sisacuti;
+      $att->nik = $request->nik;
+      $att->sisa_cuti = $request->sisa_cuti;
+      $att->save();
+
+      Alert::success('Sisa Cuti Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateSisacuti(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      DB::table('tbl_sisacuti')
+      ->where('seq', $request->hseq)
+      ->update([
+        'sisa_cuti' => $request->sisa_cuti,
+      ]);
+      Alert::success('Sisa Cuti Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroySisacuti(Request $request)
+    {
+        $seq = $request->hseq;
+        $att= DB::select(DB::raw(" DELETE FROM tbl_sisacuti 
+                                      WHERE seq = '$seq'"));
+        Alert::success('Sisa Cuti Berhasil dihapus');
         return redirect()->back();  
     }
 
