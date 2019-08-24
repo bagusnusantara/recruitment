@@ -192,6 +192,30 @@
                           <li class="@if(url('hrd/setup/departemen') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/departemen')}}">Departemen</a>
                           </li>
+                          <li class="@if(url('hrd/setup/group') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/group')}}">Group</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/shift') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/shift')}}">Shift</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/staff') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/staff')}}">Staff</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/golongan') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/golongan')}}">Golongan</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/jabatan') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/jabatan')}}">Jabatan</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/leveljabatan') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/leveljabatan')}}">Level Jabatan</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/statuskaryawan') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/statuskaryawan')}}">Status Karyawan</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/alasanresign') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/alasanresign')}}">Alasan Resign</a>
+                          </li>
 
                       </ul>
                   </li>
