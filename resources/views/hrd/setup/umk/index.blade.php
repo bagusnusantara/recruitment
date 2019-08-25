@@ -103,14 +103,15 @@
                                           data-umkbpjs="{{$u->umk_bpjs_sehat}}"
                                           data-toggle="modal" data-target="#show"><i class="fa fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-default btn-circle"
-                                          data-id="{{$u->id}}"
-                                          data-tanggal="{{$u->tanggal}}"
-                                          data-namaclient="{{$u->md_client_id}}"
-                                          data-umk="{{$u->umk}}"
-                                          data-umkbpjs="{{$u->umk_bpjs_sehat}}"
-                                          data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i>
-                                    </button>
+                                    <a href="{{url('/hrd/setup/umk/edit',$u->id)}}">
+                                      <button class="btn btn-default btn-circle"
+                                            data-id="{{$u->id}}"
+                                            data-tanggal="{{$u->tanggal}}"
+                                            data-namaclient="{{$u->md_client_id}}"
+                                            data-umk="{{$u->umk}}"
+                                            data-umkbpjs="{{$u->umk_bpjs_sehat}}"><i class="fa fa-pencil-square-o"></i>
+                                      </button>
+                                    </a>
                                     <button class="btn btn-default btn-circle"
                                           data-id="{{$u->id}}"
                                           data-tanggal="{{$u->tanggal}}"

@@ -12,7 +12,7 @@ class md_client extends Model
   public $incrementing = false;
 
   protected $fillable = [
-      'nama_client',
+      'id','nama_client','alamat','no_hp'
     ];
   public function md_lowongan_pekerjaan()
     {

@@ -216,6 +216,18 @@
                           <li class="@if(url('hrd/setup/alasanresign') == request()->url()) active @else '' @endif  treeview">
                               <a href="{{ url('hrd/setup/alasanresign')}}">Alasan Resign</a>
                           </li>
+                          <li class="@if(url('hrd/setup/spesialisasipekerjaan') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/spesialisasipekerjaan')}}">Spesialisasi Pekerjaan</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/lokasipekerjaan') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/lokasipekerjaan')}}">Lokasi Pekerjaan (md_client)</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/jenispekerjaan') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/jenispekerjaan')}}">Jenis Pekerjaan</a>
+                          </li>
+                          <li class="@if(url('hrd/setup/pelatihan') == request()->url()) active @else '' @endif  treeview">
+                              <a href="{{ url('hrd/setup/pelatihan')}}">Pelatihan</a>
+                          </li>
 
                       </ul>
                   </li>

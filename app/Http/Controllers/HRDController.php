@@ -57,12 +57,16 @@ use App\st_golongan;
 use App\st_level_jabatan;
 use App\st_status_karyawan;
 use App\st_alasan_resign;
+use App\st_Spesialisasipekerjaan;
+use App\st_pelatihan;
+use App\st_pekerjaan;
 
 use Alert;
 use DB;
 use App\User;
 use Carbon\Carbon;
 use Auth;
+use Redirect;
 class HRDController extends Controller
 {
     public function getDashboard(){
@@ -153,6 +157,19 @@ class HRDController extends Controller
       return view ('hrd.setup.umk.index',compact('umk','st_md_client'));
     }
 
+    public function editUMK($id){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_md_client = md_client::all();
+      $umk=DB::table('st_umk')
+      ->join('md_client', 'st_umk.md_client_id', '=', 'md_client.id')
+      ->select('st_umk.*', 'md_client.nama_client')
+      ->where('st_umk.id','=', $id )
+      ->get();
+      return view ('hrd.setup.umk.edit',compact('umk','st_md_client'));
+    }
+
     public function storeUMK(Request $request){
       if(!Gate::allows('isHRD')){
           abort(404,"Maaf Anda tidak memiliki akses");
@@ -196,7 +213,7 @@ class HRDController extends Controller
         'umk_bpjs_sehat' => $request->umk_bpjs_sehat
       ]);
       Alert::success('UMK Berhasil diupdate');
-      return redirect()->back();
+      return Redirect::to('/hrd/setup/umk');
     }
 
     public function getTunjanganjabatan(){
@@ -2398,6 +2415,212 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_alasan_resign 
                                       WHERE kode = '$kode'"));
         Alert::success('Alasan resign Berhasil dihapus');
+        return redirect()->back();  
+    }
+
+    public function getSpesialisasipekerjaan(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_spesialisasipekerjaan = DB::table('st_spesialisasipekerjaan')
+      ->select('st_spesialisasipekerjaan.*')
+      ->get();
+      return view ('hrd.setup.spesialisasipekerjaan.index',compact('st_spesialisasipekerjaan'));
+    }
+
+    public function storeSpesialisasipekerjaan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      $att = new st_Spesialisasipekerjaan;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->spesial = $request->spesial;
+      $att->save();
+
+      Alert::success('Spesialisasi Pekerjaan Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateSpesialisasipekerjaan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      DB::table('st_spesialisasipekerjaan')
+      ->where('id', $request->hid)
+      ->update([
+        'spesial' => $request->spesial,
+      ]);
+      Alert::success('Spesialisasi Pekerjaan Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroySpesialisasipekerjaan(Request $request)
+    {
+        $id = $request->hid;
+        $att= DB::select(DB::raw(" DELETE FROM st_spesialisasipekerjaan 
+                                      WHERE id = '$id'"));
+        Alert::success('Spesialisasi Pekerjaan Berhasil dihapus');
+        return redirect()->back();  
+    }
+
+    public function getLokasipekerjaan(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $md_client = DB::table('md_client')
+      ->select('md_client.*')
+      ->get();
+      return view ('hrd.setup.lokasipekerjaan.index',compact('md_client'));
+    }
+
+    public function storeLokasipekerjaan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      $att = new md_client;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->nama_client = $request->nama_client;
+      $att->alamat = $request->alamat;
+      $att->no_hp = $request->no_hp;
+      $att->save();
+
+      Alert::success('Lokasi Pekerjaan Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateLokasipekerjaan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      DB::table('md_client')
+      ->where('id', $request->hid)
+      ->update([
+        'nama_client' => $request->nama_client,
+        'alamat' => $request->alamat,
+        'no_hp' => $request->no_hp,
+      ]);
+      Alert::success('Lokasi Pekerjaan Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyLokasipekerjaan(Request $request)
+    {
+        $id = $request->hid;
+        $att= DB::select(DB::raw(" DELETE FROM md_client 
+                                      WHERE id = '$id'"));
+        Alert::success('Lokasi Pekerjaan Berhasil dihapus');
+        return redirect()->back();  
+    }
+
+    public function getJenispekerjaan(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_pekerjaan = DB::table('st_pekerjaan')
+      ->select('st_pekerjaan.*')
+      ->get();
+      return view ('hrd.setup.jenispekerjaan.index',compact('st_pekerjaan'));
+    }
+
+    public function storeJenispekerjaan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      $att = new st_pekerjaan;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->kode = $request->kode;
+      $att->deskripsi = $request->deskripsi;
+      $att->entry_user = $user;
+      $att->entry_date = $date_time;
+      $att->save();
+
+      Alert::success('Jenis Pekerjaan Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateJenispekerjaan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      DB::table('st_pekerjaan')
+      ->where('kode', $request->hkode)
+      ->update([
+        'deskripsi' => $request->deskripsi,
+      ]);
+      Alert::success('Jenis Pekerjaan Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyJenispekerjaan(Request $request)
+    {
+        $kode = $request->hkode;
+        $att= DB::select(DB::raw(" DELETE FROM st_pekerjaan 
+                                      WHERE kode = '$kode'"));
+        Alert::success('Jenis Pekerjaan Berhasil dihapus');
+        return redirect()->back();  
+    }
+
+    public function getPelatihan(){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_pelatihan = DB::table('st_pelatihan')
+      ->select('st_pelatihan.*')
+      ->get();
+      return view ('hrd.setup.pelatihan.index',compact('st_pelatihan'));
+    }
+
+    public function storePelatihan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      $att = new st_pelatihan;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $att->kode = $request->kode;
+      $att->deskripsi = $request->deskripsi;
+      $att->entry_user = $user;
+      $att->entry_date = $date_time;
+      $att->save();
+
+      Alert::success('Pelatihan Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updatePelatihan(Request $request){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+
+      DB::table('st_pelatihan')
+      ->where('kode', $request->hkode)
+      ->update([
+        'deskripsi' => $request->deskripsi,
+      ]);
+      Alert::success('pelatihan Berhasil diupdate');
+      return redirect()->back();
+    }
+
+    public function destroyPelatihan(Request $request)
+    {
+        $kode = $request->hkode;
+        $att= DB::select(DB::raw(" DELETE FROM st_pelatihan 
+                                      WHERE kode = '$kode'"));
+        Alert::success('Pelatihan Berhasil dihapus');
         return redirect()->back();  
     }
 

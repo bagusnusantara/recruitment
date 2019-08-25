@@ -10,6 +10,7 @@ Route::prefix('hrd')->group(function(){
 
     Route::get('setup/komponengaji', 'HRDController@getKomponengaji');
     Route::get('setup/umk', 'HRDController@getUMK');
+    Route::get('setup/umk/edit/{id}', 'HRDController@editUMK');
     Route::get('setup/periodecutoffgaji', 'HRDController@getPeriodecutoff');
     Route::get('setup/tunjanganjabatan', 'HRDController@getTunjanganjabatan');
     Route::get('setup/tunjangantransport', 'HRDController@getTunjangantransport');
@@ -54,6 +55,10 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/leveljabatan', 'HRDController@getLeveljabatan');
     Route::get('setup/statuskaryawan', 'HRDController@getStatuskaryawan');
     Route::get('setup/alasanresign', 'HRDController@getAlasanresign');
+    Route::get('setup/spesialisasipekerjaan', 'HRDController@getSpesialisasipekerjaan');
+    Route::get('setup/lokasipekerjaan', 'HRDController@getLokasipekerjaan');
+    Route::get('setup/jenispekerjaan', 'HRDController@getJenispekerjaan');
+    Route::get('setup/pelatihan', 'HRDController@getPelatihan');
 
 
     //-x Post Method
@@ -139,6 +144,14 @@ Route::prefix('hrd')->group(function(){
     Route::post('setup/statuskaryawan/update/{id}', 'HRDController@updateStatuskaryawan');
     Route::post('setup/alasanresign/store', 'HRDController@storeAlasanresign');
     Route::post('setup/alasanresign/update/{id}', 'HRDController@updateAlasanresign');
+    Route::post('setup/spesialisasipekerjaan/store', 'HRDController@storeSpesialisasipekerjaan');
+    Route::post('setup/spesialisasipekerjaan/update/{id}', 'HRDController@updateSpesialisasipekerjaan');
+    Route::post('setup/lokasipekerjaan/store', 'HRDController@storeLokasipekerjaan');
+    Route::post('setup/lokasipekerjaan/update/{id}', 'HRDController@updateLokasipekerjaan');
+    Route::post('setup/jenispekerjaan/store', 'HRDController@storeJenispekerjaan');
+    Route::post('setup/jenispekerjaan/update/{id}', 'HRDController@updateJenispekerjaan');
+    Route::post('setup/pelatihan/store', 'HRDController@storePelatihan');
+    Route::post('setup/pelatihan/update/{id}', 'HRDController@updatePelatihan');
 
 
     //-x Delete Method
@@ -183,6 +196,10 @@ Route::prefix('hrd')->group(function(){
     Route::delete('setup/leveljabatan/delete/{id}', 'HRDController@destroyLeveljabatan');
     Route::delete('setup/statuskaryawan/delete/{id}', 'HRDController@destroyStatuskaryawan');
     Route::delete('setup/alasanresign/delete/{id}', 'HRDController@destroyAlasanresign');
+    Route::delete('setup/spesialisasipekerjaan/delete/{id}', 'HRDController@destroySpesialisasipekerjaan');
+    Route::delete('setup/lokasipekerjaan/delete/{id}', 'HRDController@destroyLokasipekerjaan');
+    Route::delete('setup/jenispekerjaan/delete/{id}', 'HRDController@destroyJenispekerjaan');
+    Route::delete('setup/pelatihan/delete/{id}', 'HRDController@destroyPelatihan');
 
     //-x
     Route::post('setup/komponengaji/store', 'HRDController@storeKomponengaji');

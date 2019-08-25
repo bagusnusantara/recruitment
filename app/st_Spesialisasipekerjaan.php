@@ -12,5 +12,6 @@ class st_Spesialisasipekerjaan extends Model
   public $incrementing = false;
 
   protected $guarded = ["id","name"];
+  protected $fillable = ["id","spesial"];
 
 }
