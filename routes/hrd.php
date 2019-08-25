@@ -12,7 +12,9 @@ Route::prefix('hrd')->group(function(){
     Route::get('setup/umk', 'HRDController@getUMK');
     Route::get('setup/umk/edit/{id}', 'HRDController@editUMK');
     Route::get('setup/periodecutoffgaji', 'HRDController@getPeriodecutoff');
+    Route::get('setup/periodecutoffgaji/edit/{bulan}/{tahun}', 'HRDController@editPeriodecutoffgaji');
     Route::get('setup/tunjanganjabatan', 'HRDController@getTunjanganjabatan');
+    Route::get('setup/tunjanganjabatan/edit/{jab}/{site}', 'HRDController@editTunjanganjabatan');
     Route::get('setup/tunjangantransport', 'HRDController@getTunjangantransport');
     Route::get('setup/tunjanganmakan', 'HRDController@getTunjanganmakan');
     Route::get('setup/jamsostekdanbpjs', 'HRDController@getJamsostekdanbpjs');

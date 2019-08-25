@@ -1,4 +1,6 @@
 <input type="hidden" name="id" id="id" value="" />
+<input type="hidden" name="uubulan" id="uubulan" value="" />
+<input type="hidden" name="uutahun" id="uutahun" value="" />
 <div class="form-group"><label class="col-sm-4 control-label">Bulan</label>
   <div class="col-sm-8">
   <select class="form-control chosen-select-width" name="bulan" id="bulan">

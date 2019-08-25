@@ -101,13 +101,14 @@
                                           data-tanggalberlaku="{{$u->tgl_berlaku}}"
                                           data-toggle="modal" data-target="#show"><i class="fa fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-default btn-circle"
-                                          data-kodejabatan="{{$u->kode_jabatan}}"
-                                          data-kodesite="{{$u->kode_site}}"
-                                          data-tunjanganjabatan="{{$u->tunj_jabatan}}"
-                                          data-tanggalberlaku="{{$u->tgl_berlaku}}"
-                                          data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i>
-                                    </button>
+                                    <a href="{{url('/hrd/setup/tunjanganjabatan/edit/'.$u->kode_jabatan.'/'.$u->kode_site.'' )}}">
+                                        <button class="btn btn-default btn-circle"
+                                            data-kodejabatan="{{$u->kode_jabatan}}"
+                                            data-kodesite="{{$u->kode_site}}"
+                                            data-tunjanganjabatan="{{$u->tunj_jabatan}}"
+                                            data-tanggalberlaku="{{$u->tgl_berlaku}}"><i class="fa fa-pencil-square-o"></i>
+                                        </button>
+                                    </a>
                                     <button class="btn btn-default btn-circle"                                         
                                           data-id ="{{$u->kode_jabatan}}"
                                           data-kodejabatan="{{$u->kode_jabatan}}"

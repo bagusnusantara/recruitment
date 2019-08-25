@@ -89,7 +89,7 @@
 
                               <tr>
                                   <td class="text-center">{{$i}}</td>
-                                  <td>{{$u->bln}}</td>
+                                  <td><center>{{$u->bln}}</center></td>
                                   <td><center>{{$u->thn}}</center></td>
                                   <td><center>{{$u->sd_prd}}</center></td>
                                   <td><center>{{$u->ed_prd}}</center></td>
@@ -101,13 +101,14 @@
                                           data-edprd="{{$u->ed_prd}}"
                                           data-toggle="modal" data-target="#show"><i class="fa fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-default btn-circle"
-                                          data-bulan="{{$u->bln}}"
-                                          data-tahun="{{$u->thn}}"
-                                          data-sdprd="{{$u->sd_prd}}"
-                                          data-edprd="{{$u->ed_prd}}"
-                                          data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i>
-                                    </button>
+                                    <a href="{{url('/hrd/setup/periodecutoffgaji/edit/'.$u->bln.'/'.$u->thn.'')}}">
+                                      <button class="btn btn-default btn-circle"
+                                            data-bulan="{{$u->bln}}"
+                                            data-tahun="{{$u->thn}}"
+                                            data-sdprd="{{$u->sd_prd}}"
+                                            data-edprd="{{$u->ed_prd}}"><i class="fa fa-pencil-square-o"></i>
+                                      </button>
+                                    </a>
                                     <button class="btn btn-default btn-circle"
                                           data-bulan="{{$u->bln}}"
                                           data-tahun="{{$u->thn}}"

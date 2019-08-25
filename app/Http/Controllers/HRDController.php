@@ -230,6 +230,22 @@ class HRDController extends Controller
       return view ('hrd.setup.tunjanganjabatan.index',compact('st_tunj_jabatan','md_client','st_jabatan'));
     }
 
+    public function editTunjanganjabatan($jab,$site){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $md_client = DB::table('md_client')->select('md_client.*')->get();
+      $st_jabatan = DB::table('st_jabatan')->select('st_jabatan.*')->get();
+      $st_tunj_jabatan=DB::table('st_tunj_jabatan')
+      ->join('md_client','st_tunj_jabatan.kode_site', '=', 'id')
+      ->join('st_jabatan', 'st_tunj_jabatan.kode_jabatan', '=','kode')
+      ->select('st_tunj_jabatan.*','st_jabatan.Deskripsi','md_client.nama_client')
+      ->where('st_tunj_jabatan.kode_jabatan','=',$jab)
+      ->where('st_tunj_jabatan.kode_site', '=', $site)
+      ->get();
+      return view ('hrd.setup.tunjanganjabatan.edit',compact('st_tunj_jabatan','md_client','st_jabatan'));
+    }
+
     public function storeTunjanganjabatan(Request $request){
       if(!Gate::allows('isHRD')){
           abort(404,"Maaf Anda tidak memiliki akses");
@@ -273,7 +289,7 @@ class HRDController extends Controller
         'tgl_berlaku' => $request->tanggal_berlaku
       ]);
       Alert::success('Tunjangan Jabatan Berhasil diupdate');
-      return redirect()->back();
+      return Redirect::to('/hrd/setup/tunjanganjabatan');
     }
 
     public function getTunjangantransport(){
@@ -394,6 +410,18 @@ class HRDController extends Controller
       return view ('hrd.setup.periodecutoffgaji.index',compact('st_cutoff_gaji'));
     }
 
+    public function editPeriodecutoffgaji($bulan, $tahun){
+      if(!Gate::allows('isHRD')){
+          abort(404,"Maaf Anda tidak memiliki akses");
+      }
+      $st_cutoff_gaji=DB::table('st_cutoff_gaji')
+      ->select('st_cutoff_gaji.*')
+      ->where('st_cutoff_gaji.bln', '=', $bulan)
+      ->where('st_cutoff_gaji.thn', '=', $tahun)
+      ->get();
+      return view ('hrd.setup.periodecutoffgaji.edit',compact('st_cutoff_gaji'));
+    }
+
     public function storePeriodecutoffgaji(Request $request){
       if(!Gate::allows('isHRD')){
           abort(404,"Maaf Anda tidak memiliki akses");
@@ -426,7 +454,7 @@ class HRDController extends Controller
         'ed_prd' => $request->edate,
       ]);
       Alert::success('Periode cut off gaji Berhasil diupdate');
-      return redirect()->back();
+      return Redirect::to('/hrd/setup/periodecutoffgaji');
     }
 
     public function destroyPeriodecutoffgaji(Request $request)

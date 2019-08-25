@@ -1,4 +1,6 @@
 <input type="hidden" name="id" id="id" value="" />
+<input type="hidden" name="uukode_jabatan" id="uukode_jabatan" value="" />
+<input type="hidden" name="uukode_site" id="uukode_site" value="" />
 <div class="form-group"><label class="col-sm-4 control-label">Kode Jabatan</label>
   <div class="col-sm-8">
      <select class="form-control chosen-select-width" name="kode_jabatan" id="kode_jabatan">
