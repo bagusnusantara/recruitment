@@ -104,16 +104,21 @@ class AdminController extends Controller
 
     public function showPenilaian($jobid,$userid){
       $status = [1,0,0,0,1];
-      // $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
-      //                                   ->where('users_id',$userid)->count();
       $lowongan=DB::table('md_lowongan_pekerjaan')->where('id',$jobid)->get();
+      $nilai=DB::table('trans_lowongan_pekerjaan')
+          ->join('md_jobseeker','trans_lowongan_pekerjaan.users_id','md_jobseeker.users_id')
+          ->select('trans_lowongan_pekerjaan.*','md_jobseeker.nama_lengkap','md_jobseeker.nik')
+          ->where('md_lowongan_pekerjaan_id',$jobid)
+          ->orderByRaw('nilai_administrasi DESC')
+          ->get();
+      //dd($pelamar);
       $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
                                         ->where('users_id',$userid)->count();
       if($check){
         //dd($jobid);
 
         //dd($lowongan);
-        return view ('admin.lowongan.show_penilaian',compact('status','lowongan'));
+        return view ('admin.lowongan.show_penilaian',compact('status','lowongan','nilai'));
       }else {
         Alert::warning('Penilaian Tidak Tersedia !');
         return redirect()->route('showAdminLowongan',['id'=>$jobid]);
@@ -139,6 +144,28 @@ class AdminController extends Controller
         Alert::warning('Data Tidak Tersedia !');
         return redirect()->route('showAdminLowongan',['id'=>$jobid]);
       }
+    }
+
+    public function showDatapelamarpdf($jobid,$userid){
+        $status = [1,0,0,0,1];
+        // $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
+        //                                   ->where('users_id',$userid)->count();
+        $pelamar=DB::table('md_jobseeker')->where('users_id',$userid)->get();
+        $pekerjaan=DB::table('st_jobseeker_pengalamankerja')->where('user_id',$userid)->get();
+        $pendidikan=DB::table('st_jobseeker_pendidikanformal')->where('user_id',$userid)
+            ->join('st_tingkatpendidikan', 'st_jobseeker_pendidikanformal.tingkat_pendidikan', '=', 'st_tingkatpendidikan.id')
+            ->select('st_jobseeker_pendidikanformal.*','st_tingkatpendidikan.strata')->get();
+        $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
+            ->where('users_id',$userid)->count();
+        if($check){
+            //dd($pelamar);
+            $pdf = PDF::loadview('admin.lowongan.show_data_pelamar_pdf',compact('status','pelamar','pendidikan','pekerjaan'));
+            return $pdf->stream();
+            //return view ('admin.lowongan.show_data_pelamar',compact('status','pelamar','pendidikan','pekerjaan'));
+        }else {
+            Alert::warning('Data Tidak Tersedia !');
+            return redirect()->route('showAdminLowongan',['id'=>$jobid]);
+        }
     }
 
     public function createLowongan(){
@@ -189,7 +216,7 @@ class AdminController extends Controller
     public function cetak_pkwt()
     {
     	$pegawai = md_jobseeker::all();
-      $pdf = PDF::loadview('pkwt',['pegawai'=>$pegawai]);
+        $pdf = PDF::loadview('pkwt',['pegawai'=>$pegawai]);
 	    return $pdf->stream();
     }
 

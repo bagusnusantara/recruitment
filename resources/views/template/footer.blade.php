@@ -27,3 +27,4 @@
 <script src="{{ asset('inspinia/js/plugins/steps/jquery.steps.min.js') }}"></script>
 <!-- Jquery Validate -->
 <script src="{{ asset('inspinia/js/plugins/validate/jquery.validate.min.js') }}"></script>
+

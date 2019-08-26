@@ -52,28 +52,73 @@
                             <h1 class='col'>Administrasi</h1>
                             <fieldset>
                                 <h2>Seleksi Administrasi</h2>
-                                <div class="row">
-                                        <div class="col-lg-8">
-                                          <div class="form-group">
-                                            <label>Status</label>
-                                          <select class="form-control m-b  required" name="account">
-                                              <option>Lolos</option>
-                                              <option>Tidak Lolos</option>
-                                          </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Keterangan</label>
-                                              <input id="userName" name="userName" type="textarea" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="text-center">
-                                            <div style="margin-top: 20px">
-                                                <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="row">--}}
+{{--                                        <div class="col-lg-8">--}}
+{{--                                          <div class="form-group">--}}
+{{--                                            <label>Status</label>--}}
+{{--                                          <select class="form-control m-b  required" name="account">--}}
+{{--                                              <option>Lolos</option>--}}
+{{--                                              <option>Tidak Lolos</option>--}}
+{{--                                          </select>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label>Keterangan</label>--}}
+{{--                                              <input id="userName" name="userName" type="textarea" class="form-control">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-lg-4">--}}
+{{--                                        <div class="text-center">--}}
+{{--                                            <div style="margin-top: 20px">--}}
+{{--                                                <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+                                <table class="table table-bordered" >
+                                    <thead>
+                                    <tr>
+                                        <th><center>No</center></th>
+                                        <th><center>NIK</center></th>
+                                        <th><center>Nama Pendaftar</center></th>
+                                        <th><center>Tanggal Melamar</center></th>
+                                        <th><center>Status</center></th>
+                                        <th><center>Action</center></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @php
+                                        $i=1;
+                                    @endphp
+                                    @foreach($nilai as $p)
+
+                                        <tr>
+                                            <td><center>{{$i}}</center></td>
+                                            <td><center>{{$p->nik}}</center></td>
+                                            <td><center>{{$p->nama_lengkap}}</center></td>
+                                            <td><center>{{$p->entry_date}}</center></td>
+                                            <td><center>
+                                                    @if ( $p->nilai_administrasi === 1)
+                                                        <button type="button" class="btn btn-primary btn-xs">Lolos</button>
+                                                    @elseif ($p->nilai_administrasi === 0)
+                                                        <button type="button" class="btn btn-danger btn-xs">Tidak Lolos</button>
+                                                    @endif</center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <button class="btn btn-default btn-circle"
+                                                            data-mykode="{{$p->nik}}"
+                                                            data-toggle="modal" data-target="#edit"><i class="fa fa-pen-square"></i>
+                                                    </button>
+                                                </center>
+                                            </td>
+
+                                            @php
+                                                $i++;
+                                            @endphp
+                                            @endforeach
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </fieldset>
                             @endif
                             @if($l->st_nilai_interview_walk == 1)
@@ -234,6 +279,27 @@
             </div>
         </div>
 
+    {{-- Update data --}}
+    <div class="modal inmodal fade" id="edit" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Penilaian</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
+                    @csrf
+                    @include('hrd.setup.komponengaji.form')
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update Data</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </div>
 </div>
@@ -325,7 +391,23 @@
                     }
                 });
    });
-</script>
+    </script>
+    <script>
+        $('#edit').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+
+            var kode = button.data('mykode')
+            var desc = button.data('mydesc')
+            var label = button.data('mylabel')
+            var id_pendapatan = button.data('myid_pendapatan')
+
+            var modal = $(this)
+            modal.find('.modal-body #kode_komponen_gaji').val(kode);
+            modal.find('.modal-body #desc_komponen_gaji').val(desc);
+            modal.find('.modal-body #label_slip_gaji').val(label);
+            modal.find('.modal-body #id_pendapatan').val(id_pendapatan);
+        })
+    </script>
 
 
 
