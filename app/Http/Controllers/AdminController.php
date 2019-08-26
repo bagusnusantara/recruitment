@@ -107,7 +107,7 @@ class AdminController extends Controller
       $lowongan=DB::table('md_lowongan_pekerjaan')->where('id',$jobid)->get();
       $nilai=DB::table('trans_lowongan_pekerjaan')
           ->join('md_jobseeker','trans_lowongan_pekerjaan.users_id','md_jobseeker.users_id')
-          ->select('trans_lowongan_pekerjaan.*','md_jobseeker.nama_lengkap','md_jobseeker.nik')
+          ->select('trans_lowongan_pekerjaan.*','md_jobseeker.*')
           ->where('md_lowongan_pekerjaan_id',$jobid)
           ->orderByRaw('nilai_administrasi DESC')
           ->get();
@@ -260,9 +260,20 @@ class AdminController extends Controller
         $lowongan->st_provinsi_id = $request->st_provinsi_id;
         $lowongan->st_kabkota_id = $request->st_kabkota_id;
         $lowongan->st_lowongan_gaji_id = $request->st_lowongan_gaji_id;
-        $lowongan->status = $request->status;
+        $lowongan->status = 'on';
+        $namaFoto = $lowongan->id.'_foto'.time().'.'.request()->foto->getClientOriginalExtension();
+
+        $request->foto->storeAs('foto',$namaFoto);
+
+        $lowongan->foto = $namaFoto;
         $lowongan->st_pengalaman_id = $request->st_pengalaman_id;
+        if($request->st_nilai_administrasi === null)
+            $lowongan->st_nilai_administrasi = 0;
+        else
         $lowongan->st_nilai_administrasi = $request->st_nilai_administrasi;
+        if($request->st_nilai_interview_walk === null)
+            $lowongan->st_nilai_interview_walk = 0;
+        else
         $lowongan->st_nilai_interview_walk = $request->st_nilai_interview_walk;
         $lowongan->st_nilai_psikotes = $request->st_nilai_psikotes;
         $lowongan->st_nilai_interview_regular = $request->st_nilai_interview_regular;
@@ -273,6 +284,17 @@ class AdminController extends Controller
         $lowongan->save();
         Alert::success('Data berhasil tersimpan !');
         return redirect('admin/lowongan')->with('successMsg','Slider Successfully Saved');
+    }
+    public function updatePenilaian(Request $request){
+        if(!Gate::allows('isAdmin')){
+            abort(404,"Maaf Anda tidak memiliki akses");
+        }
+        DB::table('trans_lowongan_pekerjaan')->where('id',$request->id)->update([
+            'id' => $request->id,
+            'nilai_administrasi' => $request->nilai_administrasi
+        ]);
+        Alert::success('Komponen Gaji Berhasil diupdate');
+        return redirect()->back();
     }
     public function profile()
     {

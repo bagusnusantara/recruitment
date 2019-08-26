@@ -8,6 +8,7 @@
     <div class="row justify-content-between">
       <div class="col-lg-8 col-md-12 col-xs-12">
         <div class="content-area">
+            <img class="img-responsive" src="/storage/foto/{{ $lowongan->foto }}" style="width: 650px; height: 650px"/><br><br>
           <h4>Deskripsi Pekerjaan</h4>
           {!!$lowongan->deskripsi_pekerjaan!!}
           <h5>Persyaratan</h5>

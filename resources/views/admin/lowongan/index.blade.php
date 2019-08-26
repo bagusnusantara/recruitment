@@ -57,13 +57,14 @@
                               <th><center>Job Tittle</center></th>
                               <th><center>Klien</center></th>
                               <th><center>Masa Berlaku</center></th>
+                                <th><center>Status</center></th>
                               <th><center>Action</center></th>
                             </tr>
                             </thead>
                             <tbody>
                               @php
-                								$i=1;
-                							@endphp
+                                  $i=1;
+                              @endphp
                               @foreach($lowongan_pekerjaan as $lowongan)
 
                               <tr>
@@ -72,13 +73,21 @@
                                   <td>{{$lowongan->nama_client}}</td>
                                   <td><center>{{date('d-m-Y', strtotime($lowongan->start_date))}} sampai {{date('d-m-Y', strtotime($lowongan->end_date))}}</center></td>
                                   <td><center>
+                                          @if ( $lowongan->status === 'on')
+                                              <button type="button" class="btn btn-primary btn-xs">Aktif</button>
+                                          @elseif ( $lowongan->status === 'off')
+                                              <button type="button" class="btn btn-danger btn-xs">Tidak Aktif</button>
+                                          @endif
+                                      </center>
+                                  </td>
+                                  <td><center>
                                     <a type="button" class="btn btn-default btn-circle" href="lowongan/show/{{$lowongan->id}}" type="button"><i class="fa fa-eye"></i></a>
                                     <button class="btn btn-default btn-circle" type="button"><i class="fa fa-pen-square"></i>
                                     </center>
                                   </td>
                               @php
-                								$i++;
-                							@endphp
+                                  $i++;
+                              @endphp
                               @endforeach
                                 </tr>
                           </tbody>

@@ -92,6 +92,20 @@
                                  </select>
                                 </div>
                              </div>
+                             <div class="form-group"><label class="col-sm-2 control-label" for="foto">Foto</label>
+                                 <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                     <div class="form-control" data-trigger="fileinput">
+                                         <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                         <span class="fileinput-filename"></span>
+                                     </div>
+                                     <span class="input-group-addon btn btn-default btn-file">
+                                        <span class="fileinput-new">Select file</span>
+                                        <span class="fileinput-exists">Change</span>
+                                        <input type="file" name="foto"/>
+                                     </span>
+                                     <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                 </div>
+                             </div>
 {{--                            <div class="form-group" id="data_1">--}}
 {{--                                <label class="col-sm-2 control-label">Start Date</label>--}}
 {{--                                <div class="input-group date">--}}
@@ -127,7 +141,7 @@
                                     <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_administrasi"> <i></i> Administrasi</label></div>
                                     <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_interview_walk"> <i></i> Walk in Interview</label></div>
                                     <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_psikotes"> <i></i> Psikotes</label></div>
-                                    <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_interview_regular"> <i></i>Interview Regular</label></div>
+                                    <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_interview_regular"> <i></i>Interview Psikolog</label></div>
                                     <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_interview_user"> <i></i>Interview User/HR</label></div>
                                 </div>
                             </div>

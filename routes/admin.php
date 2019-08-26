@@ -27,6 +27,9 @@ Route::prefix('admin')->group(function(){
     //-x Store Method
     Route::post('lowongan/store', 'AdminController@storeLowogan');
 
+    //-x Update
+    Route::post('lowongan/penilaian/update/{id}', 'AdminController@updatePenilaian');
+
 Route::get('hrd/setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
 Route::get('/home', 'HomeController@index')->name('home');
     //-x Cetak

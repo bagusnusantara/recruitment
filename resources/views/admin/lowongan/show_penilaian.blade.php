@@ -52,28 +52,6 @@
                             <h1 class='col'>Administrasi</h1>
                             <fieldset>
                                 <h2>Seleksi Administrasi</h2>
-{{--                                <div class="row">--}}
-{{--                                        <div class="col-lg-8">--}}
-{{--                                          <div class="form-group">--}}
-{{--                                            <label>Status</label>--}}
-{{--                                          <select class="form-control m-b  required" name="account">--}}
-{{--                                              <option>Lolos</option>--}}
-{{--                                              <option>Tidak Lolos</option>--}}
-{{--                                          </select>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-group">--}}
-{{--                                            <label>Keterangan</label>--}}
-{{--                                              <input id="userName" name="userName" type="textarea" class="form-control">--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-lg-4">--}}
-{{--                                        <div class="text-center">--}}
-{{--                                            <div style="margin-top: 20px">--}}
-{{--                                                <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                                 <table class="table table-bordered" >
                                     <thead>
                                     <tr>
@@ -81,7 +59,7 @@
                                         <th><center>NIK</center></th>
                                         <th><center>Nama Pendaftar</center></th>
                                         <th><center>Tanggal Melamar</center></th>
-                                        <th><center>Status</center></th>
+                                        <th><center>Status Seleksi Administrasi</center></th>
                                         <th><center>Action</center></th>
                                     </tr>
                                     </thead>
@@ -106,7 +84,10 @@
                                             <td>
                                                 <center>
                                                     <button class="btn btn-default btn-circle"
-                                                            data-mykode="{{$p->nik}}"
+                                                            data-mykode="{{$p->id}}"
+                                                            data-mynik="{{$p->nik}}"
+                                                            data-mynama_lengkap="{{$p->nama_lengkap}}"
+                                                            data-mynilai_administrasi="{{$p->nilai_administrasi}}"
                                                             data-toggle="modal" data-target="#edit"><i class="fa fa-pen-square"></i>
                                                     </button>
                                                 </center>
@@ -125,28 +106,65 @@
                             <h1 class="col">Walk in Interview</h1>
                             <fieldset>
                                 <h2>Seleksi Walk in Interview</h2>
-                                <div class="row">
-                                        <div class="col-lg-8">
-                                          <div class="form-group">
-                                            <label>Status</label>
-                                          <select class="form-control m-b  required" name="account">
-                                              <option>Lolos</option>
-                                              <option>Tidak Lolos</option>
-                                          </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Keterangan</label>
-                                              <input id="userName" name="userName" type="textarea" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="text-center">
-                                            <div style="margin-top: 20px">
-                                                <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <table class="table table-bordered" >
+                                    <thead>
+                                    <tr>
+                                        <th><center>No</center></th>
+                                        <th><center>NIK</center></th>
+                                        <th><center>Nama Pendaftar</center></th>
+                                        <th><center>Tanggal Melamar</center></th>
+                                        <th><center>Status Seleksi Administrasi</center></th>
+                                        <th><center>Status Walk in Interview</center></th>
+                                        <th><center>Action</center></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @php
+                                        $i=1;
+                                    @endphp
+                                    @foreach($nilai as $p)
+
+                                        <tr>
+                                            <td><center>{{$i}}</center></td>
+                                            <td><center>{{$p->nik}}</center></td>
+                                            <td><center>{{$p->nama_lengkap}}</center></td>
+                                            <td><center>{{$p->entry_date}}</center></td>
+                                            <td><center>
+                                                    @if ( $p->nilai_administrasi === 1)
+                                                        <button type="button" class="btn btn-primary btn-xs">Lolos</button>
+                                                    @elseif ($p->nilai_administrasi === 0)
+                                                        <button type="button" class="btn btn-danger btn-xs">Tidak Lolos</button>
+                                                    @endif
+                                                </center>
+                                            </td>
+                                            <td><center>
+                                                    @if ( $p->nilai_walk_in === 1)
+                                                        <button type="button" class="btn btn-primary btn-xs">Lolos</button>
+                                                    @elseif ($p->nilai_walk_in === 0)
+                                                        <button type="button" class="btn btn-danger btn-xs">Tidak Lolos</button>
+                                                    @endif
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <button class="btn btn-default btn-circle"
+                                                            data-mykode="{{$p->id}}"
+                                                            data-mynik="{{$p->nik}}"
+                                                            data-mynama_lengkap="{{$p->nama_lengkap}}"
+                                                            data-mynilai_administrasi="{{$p->nilai_administrasi}}"
+                                                            data-mynilai_walk_in="{{$p->nilai_walk_in}}"
+                                                            data-toggle="modal" data-target="#edit"><i class="fa fa-pen-square"></i>
+                                                    </button>
+                                                </center>
+                                            </td>
+
+                                            @php
+                                                $i++;
+                                            @endphp
+                                            @endforeach
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </fieldset>
                             @endif
                             @if($l->st_nilai_psikotes == 1)
@@ -285,21 +303,22 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Penilaian</h4>
+                    <h4 class="modal-title">Penilaian Seleksi Administrasi</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
+                    <form method="POST" action="{{url('/admin/lowongan/penilaian/update/{id}')}}" class="form-horizontal" enctype="multipart/form-data">
                     @csrf
-                    @include('hrd.setup.komponengaji.form')
+                    @include('admin.lowongan.show_penilaian_administrasi_form')
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Update Data</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
                 </form>
             </div>
         </div>
     </div>
+
 
 </div>
 </div>
@@ -397,15 +416,18 @@
             var button = $(event.relatedTarget) // Button that triggered the modal
 
             var kode = button.data('mykode')
-            var desc = button.data('mydesc')
-            var label = button.data('mylabel')
-            var id_pendapatan = button.data('myid_pendapatan')
+            var nik = button.data('mynik')
+            var nama_lengkap = button.data('mynama_lengkap')
+            var nilai_administrasi = button.data('mynilai_administrasi')
+            var nilai_walk_in = button.data('mynilai_walk_in')
+
 
             var modal = $(this)
-            modal.find('.modal-body #kode_komponen_gaji').val(kode);
-            modal.find('.modal-body #desc_komponen_gaji').val(desc);
-            modal.find('.modal-body #label_slip_gaji').val(label);
-            modal.find('.modal-body #id_pendapatan').val(id_pendapatan);
+            modal.find('.modal-body #id').val(kode);
+            modal.find('.modal-body #nik').val(nik);
+            modal.find('.modal-body #nama_lengkap').val(nama_lengkap);
+            modal.find('.modal-body #nilai_administrasi').val(nilai_administrasi);
+            modal.find('.modal-body #nilai_walk_in').val(nilai_walk_in);
         })
     </script>
 
