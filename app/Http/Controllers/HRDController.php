@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\st_Negara;
 use Illuminate\Http\Request;
 use Gate;
 use App\md_lowongan_pekerjaan;
@@ -60,6 +61,8 @@ use App\st_alasan_resign;
 use App\st_Spesialisasipekerjaan;
 use App\st_pelatihan;
 use App\st_pekerjaan;
+use App\md_jobseeker;
+use App\tbl_lokasi_kerja_hist;
 
 use Alert;
 use DB;
@@ -752,7 +755,7 @@ class HRDController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       $md_client = md_client::all();
-      $st_tunj_kjk=DB::table('st_tunj_kjk')   
+      $st_tunj_kjk=DB::table('st_tunj_kjk')
       ->join('md_client', 'st_tunj_kjk.kode_lokasi', '=', 'id')
       ->select('st_tunj_kjk.*','md_client.nama_client')
       ->get();
@@ -1567,7 +1570,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_sanksi 
                                       WHERE kode = '$kode' "));
         Alert::success('Waktu Lembur Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getAlasanabsen(){
@@ -1591,7 +1594,7 @@ class HRDController extends Controller
       $att->kode = $request->kode;
       $att->deskripsi = $request->deskripsi;
       $att->lama_cuti = $request->lama_cuti;
-      $att->pot_absen = $request->pot_absen;    
+      $att->pot_absen = $request->pot_absen;
       $att->pot_bonus = $request->pot_bonus;
       $att->prosen_pot = $request->prosen_pot;
       $att->id_cutithn = $request->id_cutithn;
@@ -1637,7 +1640,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_alasan_absen 
                                       WHERE kode = '$kode' "));
         Alert::success('Alasan Absen Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getSchclass(){
@@ -1710,7 +1713,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM schclass 
                                       WHERE kode = '$kode' "));
         Alert::success('Schclass Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getSchpola(){
@@ -1765,7 +1768,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM schpola 
                                       WHERE polaid = '$polaid' "));
         Alert::success('Schpolaid Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getJadwalgroup(){
@@ -1816,7 +1819,7 @@ class HRDController extends Controller
                                       WHERE kode_group = '$kode_group'
                                       AND schid = '$schid' "));
         Alert::success('Jadwal group Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getJadwalpersonal(){
@@ -1867,7 +1870,7 @@ class HRDController extends Controller
                                       WHERE nik = '$nik'
                                       AND schid = '$schid' "));
         Alert::success('Jadwal Personal Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getPeriode(){
@@ -1918,7 +1921,7 @@ class HRDController extends Controller
                                       WHERE sd_prd = '$sd_prd'
                                       AND ed_prd = '$ed_prd' "));
         Alert::success('periode Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getSisacuti(){
@@ -1966,7 +1969,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM tbl_sisacuti 
                                       WHERE seq = '$seq'"));
         Alert::success('Sisa Cuti Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getDepartemen(){
@@ -2021,7 +2024,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM departemen 
                                       WHERE id = '$id'"));
         Alert::success('Departemen Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getGroup(){
@@ -2078,7 +2081,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM groups 
                                       WHERE id = '$id'"));
         Alert::success('group Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
 
@@ -2131,7 +2134,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_shift 
                                       WHERE kode = '$kode'"));
         Alert::success('Shift Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getStaff(){
@@ -2183,7 +2186,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_staff 
                                       WHERE kode = '$kode'"));
         Alert::success('Staff Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getGolongan(){
@@ -2235,7 +2238,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_golongan 
                                       WHERE kode = '$kode'"));
         Alert::success('Golongan Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getJabatan(){
@@ -2287,7 +2290,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_jabatan 
                                       WHERE kode = '$kode'"));
         Alert::success('Jabatan Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getLeveljabatan(){
@@ -2339,7 +2342,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_level_jabatan 
                                       WHERE kode = '$kode'"));
         Alert::success('Level Jabatan Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getStatuskaryawan(){
@@ -2391,7 +2394,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_status_karyawan 
                                       WHERE kode = '$kode'"));
         Alert::success('Status Karyawan Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getAlasanresign(){
@@ -2443,7 +2446,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_alasan_resign 
                                       WHERE kode = '$kode'"));
         Alert::success('Alasan resign Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getSpesialisasipekerjaan(){
@@ -2492,7 +2495,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_spesialisasipekerjaan 
                                       WHERE id = '$id'"));
         Alert::success('Spesialisasi Pekerjaan Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getLokasipekerjaan(){
@@ -2545,7 +2548,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM md_client 
                                       WHERE id = '$id'"));
         Alert::success('Lokasi Pekerjaan Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getJenispekerjaan(){
@@ -2597,7 +2600,7 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_pekerjaan 
                                       WHERE kode = '$kode'"));
         Alert::success('Jenis Pekerjaan Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
     }
 
     public function getPelatihan(){
@@ -2649,7 +2652,43 @@ class HRDController extends Controller
         $att= DB::select(DB::raw(" DELETE FROM st_pelatihan 
                                       WHERE kode = '$kode'"));
         Alert::success('Pelatihan Berhasil dihapus');
-        return redirect()->back();  
+        return redirect()->back();
+    }
+
+    public function getMutasi(){
+        $hist_lokasi=DB::table('tbl_lokasi_kerja_hist')
+            ->join('md_jobseeker', 'tbl_lokasi_kerja_hist.md_jobseeker_id', '=', 'md_jobseeker.users_id')
+            ->join('md_client', 'tbl_lokasi_kerja_hist.md_client_id', '=', 'md_client.id')
+            ->join('st_jabatan', 'tbl_lokasi_kerja_hist.jabatan_baru', '=', 'st_jabatan.kode')
+            ->select('tbl_lokasi_kerja_hist.*','md_jobseeker.nik','md_jobseeker.nama_lengkap','md_client.nama_client','st_jabatan.Deskripsi')
+            ->get();
+        //dd($hist_lokasi);
+        return view('hrd.sdm.mutasi.index',compact('hist_lokasi'));
+    }
+    public function createMutasi(){
+        $now = \Carbon\Carbon::now()->format('Y-m-d');
+        $md_client=md_client::all();
+        $st_kabkota = st_Kabkota::all();
+        $md_jobseeker = md_jobseeker::all();
+        $st_jabatan = st_jabatan::all();
+        return view ('hrd.sdm.mutasi.create',compact('md_client','st_kabkota','md_jobseeker','st_jabatan'));
+    }
+    public function storeMutasi(Request $request){
+        if(!Gate::allows('isHRD')){
+            abort(404,"Maaf Anda tidak memiliki akses");
+        }
+        $tbl_lokasi_kerja_hist= new tbl_lokasi_kerja_hist;
+        $tbl_lokasi_kerja_hist->no_spt = $request->no_spt;
+        $tbl_lokasi_kerja_hist->md_jobseeker_id = $request->md_jobseeker_id;
+        $tbl_lokasi_kerja_hist->md_client_id = $request->md_client_id;
+        $tbl_lokasi_kerja_hist->keterangan = $request->keterangan;
+        $tbl_lokasi_kerja_hist->jabatan_baru = $request->jabatan_baru;
+        $tbl_lokasi_kerja_hist->jenis_kontrak = $request->jenis_kontrak;
+        $tbl_lokasi_kerja_hist->tgl_mulai_kontrak = Carbon::parse($request['tgl_mulai_kontrak'])->format('Y-m-d');
+        $tbl_lokasi_kerja_hist->tgl_akhir_kontrak =Carbon::parse($request['tgl_akhir_kontrak'])->format('Y-m-d');
+        $tbl_lokasi_kerja_hist->save();
+        Alert::success('Karyawan berhasil dimutasikan');
+        return redirect('hrd/sdm/mutasi')->with('successMsg','Slider Successfully Saved');
     }
 
 
