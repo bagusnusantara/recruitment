@@ -289,7 +289,34 @@
             </li>
 
             @endcan
+            @can('isPegawai')
 
+                <li class="@if(url('/pegawai/dashboard') == request()->url()
+               ) active @else '' @endif  treeview">
+                    <a href="{{ url('pegawai/dashboard')}}"><i class="fa fa-chart-line"></i> <span class="nav-label">Dashboard</span></a>
+                </li>
+                <li class="@if(url('pegawai/presensi') == request()->url()
+               ) active @else '' @endif  treeview">
+                    <a href="{{ url('pegawai/presensi')}}"><i class="fa fa-newspaper"></i> <span class="nav-label">Presensi</span></a>
+                </li>
+                <li class="@if(url('pegawai/cuti') == request()->url()
+               ) active @else '' @endif  treeview">
+                    <a href="{{ url('pegawai/cuti')}}"><i class="fa fa-address-card"></i> <span class="nav-label">Pengajuan Cuti</span></a>
+                </li>
+
+                <li class="@if(url('pegawai/lembur') == request()->url()
+               ) active @else '' @endif  treeview">
+                    <a href="{{ url('pegawai/lembur')}}"><i class="fa fa-handshake"></i> <span class="nav-label">Pengajuan Lembur</span></a>
+                </li>
+                <li class="@if(url('pegawai/sanksi') == request()->url()
+               ) active @else '' @endif  treeview">
+                    <a href="{{ url('pegawai/sanksi')}}"><i class="fa fa-hand-paper"></i> <span class="nav-label">Sanksi</span></a>
+                </li>
+                <li class="@if(url('pegawai/training') == request()->url()
+               ) active @else '' @endif  treeview">
+                    <a href="{{ url('pegawai/training')}}"><i class="fa fa-users"></i> <span class="nav-label">Pelatihan dan Training</span></a>
+                </li>
+            @endcan
     </ul>
 </div>
 </nav>

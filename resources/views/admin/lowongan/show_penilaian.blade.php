@@ -71,7 +71,7 @@
 
                                         <tr>
                                             <td><center>{{$i}}</center></td>
-                                            <td><center>{{$p->nik}}</center></td>
+                                            <td><center></center></td>
                                             <td><center>{{$p->nama_lengkap}}</center></td>
                                             <td><center>{{$p->entry_date}}</center></td>
                                             <td><center>
@@ -85,7 +85,7 @@
                                                 <center>
                                                     <button class="btn btn-default btn-circle"
                                                             data-mykode="{{$p->id}}"
-                                                            data-mynik="{{$p->nik}}"
+                                                            data-mynik=""
                                                             data-mynama_lengkap="{{$p->nama_lengkap}}"
                                                             data-mynilai_administrasi="{{$p->nilai_administrasi}}"
                                                             data-toggle="modal" data-target="#edit"><i class="fa fa-pen-square"></i>
@@ -126,7 +126,7 @@
 
                                         <tr>
                                             <td><center>{{$i}}</center></td>
-                                            <td><center>{{$p->nik}}</center></td>
+                                            <td><center></center></td>
                                             <td><center>{{$p->nama_lengkap}}</center></td>
                                             <td><center>{{$p->entry_date}}</center></td>
                                             <td><center>
@@ -149,7 +149,7 @@
                                                 <center>
                                                     <button class="btn btn-default btn-circle"
                                                             data-mykode="{{$p->id}}"
-                                                            data-mynik="{{$p->nik}}"
+                                                            data-mynik=""
                                                             data-mynama_lengkap="{{$p->nama_lengkap}}"
                                                             data-mynilai_administrasi="{{$p->nilai_administrasi}}"
                                                             data-mynilai_walk_in="{{$p->nilai_walk_in}}"
