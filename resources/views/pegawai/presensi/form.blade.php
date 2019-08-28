@@ -3,7 +3,7 @@
     <div class="col-sm-9"><input type="text" class="form-control" name="nama" id="nama"></div>
 </div>
 <div class="form-group row"><label class="col-sm-3 control-label">Tanggal</label>
-    <div class="col-sm-9"><input type="text" class="form-control date" name="tanggal" id="tanggal"></div>
+    <div class="col-sm-9"><input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}"></div>
 </div>
 <div class="form-group row"><label class="col-sm-3 control-label">Jam</label>
     <div class="col-sm-9"><input type="text" class="form-control" name="Jam" id="tanggal"></div>

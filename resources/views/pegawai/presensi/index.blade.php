@@ -48,19 +48,26 @@
                             </tr>
                       </tbody>
                     </table>
-                </div>
+                </div>          
             </div>
         </div>
     </div>
-    @include('pegawai.presensi.modal_add')
-    @include('pegawai.presensi.modal_edit')
 </div>
+@include('pegawai.presensi.modal_add')
+@include('pegawai.presensi.modal_edit')
 
 @include('template.footer')
 
 <!-- Page-Level Scripts -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script>
     $(document).ready(function(){
+        $('.date').datepicker({
+          autoclose: true,
+          todayHighlight: true,
+          format: 'yyyy-mm-dd'
+        });
+
         $('.dataTables-client').DataTable({
             pageLength: 25,
             responsive: true,
