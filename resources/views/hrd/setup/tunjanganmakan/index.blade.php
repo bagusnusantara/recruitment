@@ -297,6 +297,4 @@
 
 
 </script>
-
-
 @endsection

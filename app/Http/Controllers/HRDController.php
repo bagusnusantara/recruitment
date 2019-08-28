@@ -223,8 +223,8 @@ class HRDController extends Controller
       $md_client = DB::table('md_client')->select('md_client.*')->get();
       $st_jabatan = DB::table('st_jabatan')->select('st_jabatan.*')->get();
       $st_tunj_jabatan=DB::table('st_tunj_jabatan')
-      ->join('md_client','st_tunj_jabatan.kode_site', '=', 'id')
-      ->join('st_jabatan', 'st_tunj_jabatan.kode_jabatan', '=','kode')
+      ->join('md_client','st_tunj_jabatan.kode_site', '=', 'md_client.id')
+      ->join('st_jabatan', 'st_tunj_jabatan.kode_jabatan', '=','st_jabatan.kode')
       ->select('st_tunj_jabatan.*','st_jabatan.Deskripsi','md_client.nama_client')
       ->get();
       return view ('hrd.setup.tunjanganjabatan.index',compact('st_tunj_jabatan','md_client','st_jabatan'));

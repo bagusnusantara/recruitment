@@ -4,7 +4,7 @@
 </div>
 <div class="form-group"><label class="col-sm-4 control-label">Nama Client</label>
   <div class="col-sm-8">
-     <select class="form-control chosen-select-width" name="md_client_id_umk" id="md_client_id_umk">
+     <select class="form-control chosen-select-width combo" name="md_client_id_umk" id="md_client_id_umk">
             <option value="null" selected disabled>--Nama Client--</option>
              @foreach($st_md_client as $data)
             <option value="{{ $data->id }}">{{ $data->nama_client }}</option>
