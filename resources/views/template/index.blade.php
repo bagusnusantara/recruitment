@@ -31,6 +31,8 @@
     <!-- Gritter -->
   	<link href="{{ asset('inspinia/js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
     <link href="{{ asset('inspinia/css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
+    <link href="{{ asset('inspinia/css/plugins/select2/select2.min.css') }}" rel="stylesheet">
+
 
     <style>
         td.details-control {

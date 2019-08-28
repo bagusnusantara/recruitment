@@ -5,6 +5,7 @@ include ('hrd.php');
 include ('admin.php');
 include ('client.php');
 include ('accessor.php');
+include ('pegawai.php');
 
 Route::get('/joblist', function () {
     return view('job_list');

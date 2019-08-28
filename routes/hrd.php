@@ -7,6 +7,8 @@ Route::prefix('hrd')->group(function(){
 	Route::get('presensi', 'HRDController@getPresensi');
     Route::get('payroll', 'HRDController@getPayroll');
     Route::get('payroll/slipgaji', 'HRDController@getSlipgaji');
+    Route::get('sdm/mutasi', 'HRDController@getMutasi');
+    Route::get('sdm/mutasi/create', 'HRDController@createMutasi');
 
     Route::get('setup/komponengaji', 'HRDController@getKomponengaji');
     Route::get('setup/umk', 'HRDController@getUMK');
@@ -64,6 +66,7 @@ Route::prefix('hrd')->group(function(){
 
 
     //-x Post Method
+    Route::post('sdm/mutasi/store', 'HRDController@storeMutasi');
     Route::post('setup/umk/store', 'HRDController@storeumk');
     Route::post('setup/umk/update/{id}','HRDController@updateUmk');
     Route::post('setup/tunjanganjabatan/store', 'HRDController@storeTunjanganjabatan');

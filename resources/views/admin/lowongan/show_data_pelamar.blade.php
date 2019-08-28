@@ -54,6 +54,7 @@
                             <dt>Nomor HP :</dt> <dd> 	{{$p->nohp}} </dd>
                             <dt>Nomor KTP :</dt> <dd> 	{{$p->nomor_idcard}} </dd>
                             <dt>Status :</dt> <dd> 	{{$p->status_keluarga}} </dd>
+                                <br><dd><a type="button" class="btn btn-primary " href="{{url()->current()}}/pdf" type="button"><i class="fa fa-print"> Download PDF</i></a></dd>
                             @endforeach
                         </dl>
                     </div>

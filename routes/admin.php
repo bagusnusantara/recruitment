@@ -12,6 +12,7 @@ Route::prefix('admin')->group(function(){
     Route::get('lowongan/show/{id}', 'AdminController@showLowongan')->name('showAdminLowongan');
     Route::get('lowongan/penilaian/{jobid}/users/{userid}', 'AdminController@showPenilaian')->name('penilaian');
     Route::get('lowongan/datapelamar/{jobid}/users/{userid}', 'AdminController@showDatapelamar')->name('datapelamar');
+    Route::get('lowongan/datapelamar/{jobid}/users/{userid}/pdf', 'AdminController@showDatapelamarpdf')->name('datapelamarpdf');
     Route::get('profile', 'AdminController@profile');
     Route::post('profile', 'AdminController@update_avatar');
     //-x Create Method
@@ -25,6 +26,9 @@ Route::prefix('admin')->group(function(){
 
     //-x Store Method
     Route::post('lowongan/store', 'AdminController@storeLowogan');
+
+    //-x Update
+    Route::post('lowongan/penilaian/update/{id}', 'AdminController@updatePenilaian');
 
 Route::get('hrd/setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
 Route::get('/home', 'HomeController@index')->name('home');

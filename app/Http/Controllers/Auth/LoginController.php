@@ -40,16 +40,19 @@ class LoginController extends Controller
           return redirect('client/dashboard') ;
        }
     elseif($user->roles=='jobseeker'){
-     
+
          return redirect()->route('JobseekerDatadiri');
-       }
+        }
     elseif($user->roles=='hrd'){
           return redirect('hrd/dashboard') ;
-       }
+        }
     elseif($user->roles=='accessor'){
          return redirect('accessor/lowongan') ;
-       }
-      }
+        }
+    elseif($user->roles=='pegawai'){
+         return redirect('pegawai/dashboard') ;
+        }
+    }
 
     /**
      * Create a new controller instance.
