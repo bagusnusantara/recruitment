@@ -47,7 +47,7 @@
                             <tr>
                               <td class="text-center">{{$i}}</td>
                               <td class="text-center">{{$u->NIK}}</td>
-                              <td class="text-center">{{$U->nama_lengkap}}</td>
+                              <td class="text-center">{{$u->nama_lengkap}}</td>
                               <td class="text-center">{{$u->waktu_awal}}</td>
                               <td class="text-center">{{$u->waktu_akhir}}</td>
                               <td class="text-center">{{$u->keterangan}}</td>
@@ -183,10 +183,13 @@
                 var namalengkap = button.data('namalengkap')
                 var waktuawal = button.data('waktuawal')
                 var waktuakhir = button.data('waktuakhir')
-                var waktulembur = button.data('lembur')
+                var waktulembur = button.data('waktulembur')
                 var keterangan = button.data('keterangan')
                 var status = button.data('status')
                 var notes = button.data('notes')
+                if (waktulembur <= 9){
+                    waktulembur = '0'+waktulembur;
+                }
 
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
@@ -208,10 +211,13 @@
                 var namalengkap = button.data('namalengkap')
                 var waktuawal = button.data('waktuawal')
                 var waktuakhir = button.data('waktuakhir')
-                var waktulembur = button.data('lembur')
+                var waktulembur = button.data('waktulembur')
                 var keterangan = button.data('keterangan')
                 var status = button.data('status')
                 var notes = button.data('notes')
+                if (waktulembur <= 9){
+                    waktulembur = '0'+waktulembur;
+                }
 
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
