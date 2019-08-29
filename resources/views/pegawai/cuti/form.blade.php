@@ -5,7 +5,7 @@
 <div class="form-group row"><label class="col-sm-3 control-label">Tanggal Mulai</label>
     <div class="col-sm-9">
     	<div class="input-group">
-	    	<input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}">
+	    	<input type="text" class="form-control date input-sm" name="tanggal1" id="tanggal1" value="{{ \Carbon\Carbon::now()->toDateString() }}">
     		<span class="input-group-addon">
 	            <i class="glyphicon glyphicon-calendar"></i>
 	        </span>
@@ -15,7 +15,7 @@
 <div class="form-group row"><label class="col-sm-3 control-label">Tanggal Akhir</label>
     <div class="col-sm-9">
         <div class="input-group">
-            <input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}">
+            <input type="text" class="form-control date input-sm" name="tanggal1" id="tanggal1" value="{{ \Carbon\Carbon::now()->toDateString() }}">
             <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
             </span>

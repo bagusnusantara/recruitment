@@ -50,7 +50,7 @@
                               </td>
                               <td class="text-center">
                                     <button class="btn btn-default btn-circle"
-                                        data-id="test"
+                                        data-id="test okokok"
                                         data-toggle="modal" data-target="#Modaledit"><i class="fa fa-edit" title="edit"></i>
                                     </button>
                                     <button type="button" class="btn btn-default btn-circle" onclick="if(confirm('Are you sure? You want to delete this kode?')){
@@ -77,16 +77,19 @@
 @include('template.footer')
 
 <!-- Page-Level Scripts -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<script>
-    $('.date').datepicker({
-      autoclose: true,
-      todayHighlight: true,
-      format: 'yyyy-mm-dd'
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script>$(function() {
+    $('input[name="tanggal1"]').daterangepicker({
+        singleDatePicker: true,
+        locale: {
+          format: 'YYYY-MM-DD'
+        }
+      });
     });
-
 </script>
-<script>
+<script type="text/javascript">
     $(document).ready(function(){
 
         $('.dataTables-client').DataTable({
@@ -122,8 +125,9 @@
                     var id = button.data('id')
 
                     var modal = $(this)
-                    //modal.find('.modal-body #nama').val(id);
-                    $('#nama').html('tesss');
+                    modal.find('.modal-body #nama').val(id);
+                    //document.getElementById('nama').value='new value';
+                    //$('#nama').html('tesss');
                 })
 
 </script>
