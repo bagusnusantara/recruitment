@@ -128,7 +128,7 @@
         timePicker: true,
         timePicker24Hour:true,
         locale: {
-          format: 'YYYY-MM-DD H:mm:ss'
+          format: 'YYYY-MM-DD HH:mm:ss'
         }
       });
     });
@@ -139,7 +139,7 @@
         timePicker: true,
         timePicker24Hour: true,
         locale: {
-          format: 'YYYY-MM-DD H:mm:ss'
+          format: 'YYYY-MM-DD HH:mm:ss'
         }
       });
     });
