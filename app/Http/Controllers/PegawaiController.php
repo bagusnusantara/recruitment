@@ -11,6 +11,8 @@ use Auth;
 use Redirect;
 use App\md_karyawan;
 use App\cuti;
+use App\lembur;
+use App\st_waktu_lembur;
 
 class PegawaiController extends Controller
 {
@@ -81,11 +83,70 @@ class PegawaiController extends Controller
         return redirect()->back();
     }
 
-
-
     public function getLembur(){
-        return view('pegawai.lembur.index');
+        $st_waktu_lembur = st_waktu_lembur::all();
+        $md_karyawan=md_karyawan::all();
+        $lembur=DB::table('lembur')
+        ->join('md_karyawan','lembur.karyawan_id','=','md_karyawan.users_id')
+        ->join('st_waktu_lembur', 'lembur.waktu_lembur' , '=', 'st_waktu_lembur.kode')
+        ->select('lembur.*','md_karyawan.NIK','md_karyawan.nama_lengkap','st_waktu_lembur.deskripsi')
+        ->get();
+        return view('pegawai.lembur.index', compact('lembur','md_karyawan','st_waktu_lembur'));
     }
+
+    public function storeLembur(Request $request){
+      $lembur = new lembur;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $lembur->karyawan_id = $request->karyawan_id;
+      $lembur->waktu_awal = $request->waktu_awal;
+      $lembur->waktu_akhir = $request->waktu_akhir;
+      $lembur->waktu_lembur = $request->waktu_lembur;
+      $lembur->keterangan = $request->keterangan;
+      $lembur->status = $request->status;
+      $lembur->notes = $request->notes;
+      $lembur->created_at = $date_time;
+      $lembur->created_by = $user;
+      $lembur->updated_at = $date_time;
+      $lembur->updated_by = $user;
+      $lembur->deleted_at = $date_time;
+      $lembur->deleted_by = $user;
+      $lembur->save();
+
+      Alert::success('Lembur Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateLembur(Request $request){
+        $user = Auth::user()->id;
+        $date_time = Carbon::now()->toDateTimeString();
+        $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+        DB::table('lembur')
+        ->where('id', $request->id)
+        ->update([
+         'karyawan_id' => $request->karyawan_id,
+         'waktu_awal' => $request->waktu_awal,
+         'waktu_akhir' => $request->waktu_akhir,
+         'waktu_lembur' => $request->waktu_lembur,
+         'keterangan' => $request->keterangan,
+         'status' => $request->status,
+         'notes' => $request->notes,
+         'updated_at' => $date_time,
+         'updated_by' => $user,
+        ]);
+        Alert::success('Lembur Berhasil diupdate');
+        return redirect()->back();
+    }
+
+    public function deleteLembur(Request $request){
+        $id = $request->id;
+        $lembur= DB::select(DB::raw(" DELETE FROM lembur 
+                                      WHERE id = '$id' "));
+        Alert::success('Lembur Berhasil dihapus');
+        return redirect()->back();
+    }
+
     public function getSanksi(){
         return view('pegawai.sanksi.index');
     }

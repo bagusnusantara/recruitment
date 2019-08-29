@@ -211,7 +211,7 @@
                 modal.find('.modal-body #tanggal_akhir').val(tanggalakhir);
                 modal.find('.modal-body #keterangan').val(keterangan);
                 modal.find('.modal-body #status').val(status);
-                modal.find('.modal-body #notes').val(notes);;
+                modal.find('.modal-body #notes').val(notes);
                 })
 
     $('#Modaldelete').on('show.bs.modal', function (event) {
