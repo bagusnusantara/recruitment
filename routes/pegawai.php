@@ -7,5 +7,6 @@ Route::prefix('pegawai')->group(function(){
     Route::get('cuti', 'PegawaiController@getCuti');
     Route::get('lembur', 'PegawaiController@getLembur');
     Route::get('sanksi', 'PegawaiController@getSanksi');
+    Route::get('training', 'PegawaiController@getTraining');
 
 });

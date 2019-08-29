@@ -4,13 +4,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Pengajuan Cuti</h2>
+        <h2>Pelatihan dan Training</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="{{ url('home')}}">Dashboard</a>
             </li>
             <li>Pengajuan Cuti</li>
-            <li class="active">Presensi</li>
+            <li class="active">Pelatihan dan Training</li>
         </ol>
     </div>
 </div>
@@ -19,9 +19,9 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Pengajuan Cuti</h5>
+                <h5>Pelatihan dan Training</h5>
                 <div class="text-right">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modaltambah"><i class="fa fa-plus"></i>&nbsp Tambah Pengajuan Cuti</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modaltambah"><i class="fa fa-plus"></i>&nbsp Tambah Pelatihan dan Training</button>
                 </div>
             </div>
             <div class="ibox-content">
@@ -30,24 +30,32 @@
                         <thead>
                             <tr>
                               <th class="text-center">No</th>
-                              <th class="text-center">Nama</th>
-                              <th class="text-center">Tanggal Mulai</th>
-                              <th class="text-center">Tanggal Akhir</th>
-                              <th class="text-center">Keterangan</th>
-                              <th class="text-center">Status</th>
+                              <th class="text-center">NIK</th>
+                              <th class="text-center">Nama Karyawan</th>
+                              <th class="text-center">Tanggal Mulai Pelatihan</th>
+                              <th class="text-center">Tanggal Selesai Pelatihan</th>
+                              <th class="text-center">Nama Pelatihan</th>
+                              <th class="text-center">Penyelenggara Pelatihan</th>
+                              <th class="text-center">Target Hasil Pelatihan</th>
+                              <th class="text-center">Realisasi Hasil Pelatihan</th>
+                              <th class="text-center">Nilai Pelatihan</th>
+                              <th class="text-center">Biaya Pelatihan</th>
                               <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                               <td class="text-center">1</td>
-                              <td class="text-center">Ahmad Hadirin</td>
-                              <td class="text-center">2019-01-01</td>
+                              <td class="text-center">214214124</td>
+                              <td class="text-center">FULAN</td>
                               <td class="text-center">2019-01-02</td>
-                              <td class="text-center">Cuti Sakit</td>
-                              <td class="text-center">
-                                <span class="label label-warning">Hadir</span>
-                              </td>
+                              <td class="text-center">2019-09-09</td>
+                              <td class="text-center">Pelatihan Akutansi</td>
+                              <td class="text-center">STAN</td>
+                              <td class="text-center">Audit</td>
+                              <td class="text-center">Audit</td>
+                              <td class="text-center">76</td>
+                              <td class="text-center">30000</td>
                               <td class="text-center">
                                     <button class="btn btn-default btn-circle"
                                         data-id="test okokok"
@@ -71,8 +79,8 @@
         </div>
     </div>
 </div>
-@include('pegawai.cuti.modal_add')
-@include('pegawai.cuti.modal_edit')
+@include('pegawai.training.modal_add')
+@include('pegawai.training.modal_edit')
 
 @include('template.footer')
 

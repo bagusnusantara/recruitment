@@ -21,5 +21,8 @@ class PegawaiController extends Controller
     public function getSanksi(){
         return view('pegawai.sanksi.index');
     }
+    public function getTraining(){
+        return view('pegawai.training.index');
+    }
 
 }
