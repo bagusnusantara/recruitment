@@ -9,8 +9,8 @@
             <li>
                 <a href="{{ url('home')}}">Dashboard</a>
             </li>
-            <li>Pengajuan Cuti</li>
-            <li class="active">Presensi</li>
+            <li>Pegawai</li>
+            <li class="active">Pengajuan Cuti</li>
         </ol>
     </div>
 </div>
@@ -30,6 +30,7 @@
                         <thead>
                             <tr>
                               <th class="text-center">No</th>
+                              <th class="text-center">NIK</th>
                               <th class="text-center">Nama</th>
                               <th class="text-center">Tanggal Mulai</th>
                               <th class="text-center">Tanggal Akhir</th>
@@ -39,32 +40,68 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $i=1;
+                            @endphp
+                            @foreach($cuti as $u)
                             <tr>
-                              <td class="text-center">1</td>
-                              <td class="text-center">Ahmad Hadirin</td>
-                              <td class="text-center">2019-01-01</td>
-                              <td class="text-center">2019-01-02</td>
-                              <td class="text-center">Cuti Sakit</td>
+                              <td class="text-center">{{ $i }}</td>
+                              <td class="text-center">{{ $u->NIK }}</td>
+                              <td class="text-center">{{ $u->nama_lengkap }}</td>
+                              <td class="text-center">{{ $u->tanggal_awal }}</td>
+                              <td class="text-center">{{ $u->tanggal_akhir }}</td>
+                              <td class="text-center">{{ $u->keterangan }}</td>
                               <td class="text-center">
-                                <span class="label label-warning">Hadir</span>
+                                @if( $u->status == 0 )
+                                <span class="label label-warning">Cuti belum Diambil</span>
+                                @elseif ($u->status == 1)
+                                <span class="label label-success">Cuti sudah Diambil</span>
+                                @endif
                               </td>
                               <td class="text-center">
                                     <button class="btn btn-default btn-circle"
-                                        data-id="test okokok"
-                                        data-toggle="modal" data-target="#Modaledit"><i class="fa fa-edit" title="edit"></i>
+                                          data-id="{{$u->id}}"
+                                          data-karyawanid="{{$u->karyawan_id}}"
+                                          data-nik="{{$u->NIK}}"
+                                          data-namalengkap="{{$u->nama_lengkap}}"
+                                          data-tanggalawal="{{$u->tanggal_awal}}"
+                                          data-tanggalakhir="{{$u->tanggal_akhir}}"
+                                          data-keterangan="{{$u->keterangan}}"
+                                          data-status="{{$u->status}}"
+                                          data-notes="{{$u->notes}}"
+                                          data-toggle="modal" data-target="#Modaldetail"><i class="fa fa-eye" title="delete"></i>
                                     </button>
-                                    <button type="button" class="btn btn-default btn-circle" onclick="if(confirm('Are you sure? You want to delete this kode?')){
-                                        event.preventDefault();
-                                        document.getElementById('delete-form-').submit();
-                                        }else {  event.preventDefault();}"><i class="fa fa-trash" title="hapus"></i>
+                                    <button class="btn btn-default btn-circle"
+                                          data-id="{{$u->id}}"
+                                          data-karyawanid="{{$u->karyawan_id}}"
+                                          data-nik="{{$u->NIK}}"
+                                          data-namalengkap="{{$u->nama_lengkap}}"
+                                          data-tanggalawal="{{$u->tanggal_awal}}"
+                                          data-tanggalakhir="{{$u->tanggal_akhir}}"
+                                          data-keterangan="{{$u->keterangan}}"
+                                          data-status="{{$u->status}}"
+                                          data-notes="{{$u->notes}}"
+                                          data-toggle="modal" data-target="#Modaledit"><i class="fa fa-edit" title="edit"></i>
                                     </button>
-                                    <form id="delete-form-" action="" style="display: none;" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
+                                    <button class="btn btn-default btn-circle"
+                                          data-id="{{$u->id}}"
+                                          data-karyawanid="{{$u->karyawan_id}}"
+                                          data-nik="{{$u->NIK}}"
+                                          data-namalengkap="{{$u->nama_lengkap}}"
+                                          data-tanggalawal="{{$u->tanggal_awal}}"
+                                          data-tanggalakhir="{{$u->tanggal_akhir}}"
+                                          data-keterangan="{{$u->keterangan}}"
+                                          data-status="{{$u->status}}"
+                                          data-notes="{{$u->notes}}"
+                                          data-toggle="modal" data-target="#Modaldelete"><i class="fa fa-trash" title="Hapus"></i>
+                                    </button>
                               </td>
                             </tr>
-                      </tbody>
+                            @php
+                                $i++;
+                            @endphp
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>          
             </div>
@@ -73,6 +110,9 @@
 </div>
 @include('pegawai.cuti.modal_add')
 @include('pegawai.cuti.modal_edit')
+@include('pegawai.cuti.modal_detail')
+@include('pegawai.cuti.modal_delete')
+
 
 @include('template.footer')
 
@@ -81,7 +121,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script>$(function() {
-    $('input[name="tanggal1"]').daterangepicker({
+    $('input[name="tanggal_awal"]').daterangepicker({
         singleDatePicker: true,
         locale: {
           format: 'YYYY-MM-DD'
@@ -90,7 +130,7 @@
     });
 </script>
 <script>$(function() {
-    $('input[name="tanggal2"]').daterangepicker({
+    $('input[name="tanggal_akhir"]').daterangepicker({
         singleDatePicker: true,
         locale: {
           format: 'YYYY-MM-DD'
@@ -128,15 +168,59 @@
 
     });
 
+    $('#Modaldetail').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+
+                var id = button.data('id')
+                var karyawanid = button.data('karyawanid')
+                var nik = button.data('nik')
+                var namalengkap = button.data('namalengkap')
+                var tanggalawal = button.data('tanggalawal')
+                var tanggalakhir = button.data('tanggalakhir')
+                var keterangan = button.data('keterangan')
+                var status = button.data('status')
+                var notes = button.data('notes')
+
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+                modal.find('.modal-body #karyawan_id').val(karyawanid);
+                modal.find('.modal-body #tanggal_awal').val(tanggalawal);
+                modal.find('.modal-body #tanggal_akhir').val(tanggalakhir);
+                modal.find('.modal-body #keterangan').val(keterangan);
+                modal.find('.modal-body #status').val(status);
+                modal.find('.modal-body #notes').val(notes);
+            })
+
     $('#Modaledit').on('show.bs.modal', function (event) {
                     var button = $(event.relatedTarget) // Button that triggered the modal
 
-                    var id = button.data('id')
+                var id = button.data('id')
+                var karyawanid = button.data('karyawanid')
+                var nik = button.data('nik')
+                var namalengkap = button.data('namalengkap')
+                var tanggalawal = button.data('tanggalawal')
+                var tanggalakhir = button.data('tanggalakhir')
+                var keterangan = button.data('keterangan')
+                var status = button.data('status')
+                var notes = button.data('notes')
 
-                    var modal = $(this)
-                    modal.find('.modal-body #nama').val(id);
-                    //document.getElementById('nama').value='new value';
-                    //$('#nama').html('tesss');
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+                modal.find('.modal-body #karyawan_id').val(karyawanid);
+                modal.find('.modal-body #tanggal_awal').val(tanggalawal);
+                modal.find('.modal-body #tanggal_akhir').val(tanggalakhir);
+                modal.find('.modal-body #keterangan').val(keterangan);
+                modal.find('.modal-body #status').val(status);
+                modal.find('.modal-body #notes').val(notes);;
+                })
+
+    $('#Modaldelete').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+
+                var id = button.data('id')
+
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
                 })
 
 </script>

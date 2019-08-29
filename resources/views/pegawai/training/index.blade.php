@@ -109,6 +109,8 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
+        $('.chosen-select-width').chosen();
+
         $('.dataTables-client').DataTable({
             pageLength: 25,
             responsive: true,

@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Edit Pengajuan Cuti</h4>
             </div>
-            <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
+            <form method="POST" action="{{ url('/pegawai/cuti/update') }}" class="form-horizontal" enctype="multipart/form-data">
             <div class="modal-body">
                 @csrf
                 @include('pegawai.cuti.form')
