@@ -18,5 +18,8 @@ class PegawaiController extends Controller
     public function getLembur(){
         return view('pegawai.lembur.index');
     }
+    public function getSanksi(){
+        return view('pegawai.sanksi.index');
+    }
 
 }

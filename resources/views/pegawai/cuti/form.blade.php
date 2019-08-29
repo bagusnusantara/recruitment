@@ -2,7 +2,7 @@
 <div class="form-group row"><label class="col-sm-3 control-label">Nama</label>
     <div class="col-sm-9"><input type="text" class="form-control" name="nama" id="nama"></div>
 </div>
-<div class="form-group row"><label class="col-sm-3 control-label">Tanggal</label>
+<div class="form-group row"><label class="col-sm-3 control-label">Tanggal Mulai</label>
     <div class="col-sm-9">
     	<div class="input-group">
 	    	<input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}">
@@ -12,15 +12,18 @@
     	</div>
     </div>
 </div>
-<div class="form-group row"><label class="col-sm-3 control-label">Jam</label>
+<div class="form-group row"><label class="col-sm-3 control-label">Tanggal Akhir</label>
     <div class="col-sm-9">
-    	<div class="input-group bootstrap-timepicker timepicker">
-            <input id="timepicker2" type="text" class="form-control input-small">
+        <div class="input-group">
+            <input type="text" class="form-control date input-sm" name="tanggal" id="tanggal" value="{{ \Carbon\Carbon::now()->toDateString() }}">
             <span class="input-group-addon">
-                <i class="glyphicon glyphicon-time"></i>
+                <i class="glyphicon glyphicon-calendar"></i>
             </span>
         </div>
     </div>
+</div>
+<div class="form-group row"><label class="col-sm-3 control-label">Keterangan</label>
+    <div class="col-sm-9"><input type="text" class="form-control" name="keterangan" id="keterangan"></div>
 </div>
 <div class="form-group row"><label class="col-sm-3 control-label">Status</label>
  	<div class="col-sm-9">
