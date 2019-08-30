@@ -27,20 +27,30 @@
                         <thead>
                             <tr>
                               <th class="text-center">No</th>
+                              <th class="text-center">NIK</th>
                               <th class="text-center">Nama</th>
                               <th class="text-center">Tanggal</th>
-                              <th class="text-center">Keterangan</th>
+                              <th class="text-center">Alasan</th>
                               <th class="text-center">Jenis Sanksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $i=1;
+                            @endphp
+                            @foreach($tbl_sanksi as $u)
                             <tr>
-                              <td class="text-center">1</td>
-                              <td class="text-center">Ahmad Hadirin</td>
-                              <td class="text-center">2019-01-02 12:30</td>
-                              <td class="text-center">Keterangan</td>
-                              <td class="text-center">Telat</td>
+                              <td class="text-center">{{ $i }}</td>
+                              <td class="text-center">{{ $u->nik }}</td>
+                              <td class="text-center">{{ $u->nama_lengkap }}</td>
+                              <td class="text-center">{{ $u->tanggal }}</td>
+                              <td class="text-center">{{ $u->alasan }}</td>
+                              <td class="text-center">{{ $u->deskripsi }}</td>
                             </tr>
+                            @php
+                                $i++;
+                            @endphp
+                            @endforeach
                       </tbody>
                     </table>
                 </div>          

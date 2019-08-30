@@ -22,8 +22,15 @@ class PegawaiController extends Controller
         return view('pegawai.dashboard.index');
     }
     public function getPresensi(){
-        return view('pegawai.presensi.index');
+        $md_karyawan= md_karyawan::all();
+        $absensi = DB::table('absensi')
+        ->join('md_karyawan','absensi.karyawan_id','=','md_karyawan.users_id')
+        ->select('absensi.*','md_karyawan.nama_lengkap','md_karyawan.NIK')
+        ->get();
+        return view('pegawai.presensi.index', compact('absensi'));
     }
+
+
     public function getCuti(){
 
         $md_karyawan=md_karyawan::all();
@@ -150,7 +157,12 @@ class PegawaiController extends Controller
     }
 
     public function getSanksi(){
-        return view('pegawai.sanksi.index');
+        $tbl_sanksi = DB::table('tbl_sanksi')
+        ->join('md_karyawan','tbl_sanksi.nik','=','md_karyawan.NIK')
+        ->join('st_sanksi','tbl_sanksi.kode','=','st_sanksi.kode')
+        ->select('tbl_sanksi.*','md_karyawan.nama_lengkap','st_sanksi.deskripsi')
+        ->get();
+        return view('pegawai.sanksi.index', compact('tbl_sanksi'));
     }
     public function getTraining(){
         $st_pelatihan = st_pelatihan::all();

@@ -20,9 +20,6 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <h5>Presensi</h5>
-                <div class="text-right">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modaltambah"><i class="fa fa-plus"></i>&nbsp Tambah Presensi</button>
-                </div>
             </div>
             <div class="ibox-content">
                 <div class="table-responsive">
@@ -30,22 +27,36 @@
                         <thead>
                             <tr>
                               <th class="text-center">No</th>
+                              <th class="text-center">NIK</th>
                               <th class="text-center">Nama</th>
-                              <th class="text-center">Tanggal</th>
-                              <th class="text-center">Jam</th>
+                              <th class="text-center">Periode Awal</th>
+                              <th class="text-center">Periode Akhir</th>
                               <th class="text-center">Status</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $i=1;
+                            @endphp
+                            @foreach($absensi as $u)
                             <tr>
-                              <td class="text-center">1</td>
-                              <td class="text-center">Ahmad Hadirin</td>
-                              <td class="text-center">2019-01-01</td>
-                              <td class="text-center">08:00</td>
+                              <td class="text-center">{{ $i }}</td>
+                              <td class="text-center">{{ $u->NIK }}</td>
+                              <td class="text-center">{{ $u->nama_lengkap }}</td>
+                              <td class="text-center">{{ $u->periode_awal }}</td>
+                              <td class="text-center">{{ $u->periode_akhir }}</td>
                               <td class="text-center">
-                                <span class="label label-warning">Hadir</span>
+                                @if( $u->status == 0 )
+                                <span class="label label-warning">Absen</span>
+                                @elseif ($u->status == 1)
+                                <span class="label label-success">Hadir</span>
+                                @endif
                               </td>
                             </tr>
+                            @php
+                                $i++;
+                            @endphp
+                            @endforeach
                       </tbody>
                     </table>
                 </div>          
@@ -62,12 +73,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script>
     $(document).ready(function(){
-        $('.date').datepicker({
-          autoclose: true,
-          todayHighlight: true,
-          format: 'yyyy-mm-dd'
-        });
-
 
         $('.dataTables-client').DataTable({
             pageLength: 25,
