@@ -9,7 +9,7 @@
             <li>
                 <a href="{{ url('home')}}">Dashboard</a>
             </li>
-            <li>Pengajuan Cuti</li>
+            <li>Pegawai</li>
             <li class="active">Pelatihan dan Training</li>
         </ol>
     </div>
@@ -31,47 +31,73 @@
                             <tr>
                               <th class="text-center">No</th>
                               <th class="text-center">NIK</th>
-                              <th class="text-center">Nama Karyawan</th>
-                              <th class="text-center">Tanggal Mulai Pelatihan</th>
-                              <th class="text-center">Tanggal Selesai Pelatihan</th>
+                              <th class="text-center">Nama</th>
+                              <th class="text-center">Tanggal Mulai</th>
+                              <th class="text-center">Tanggal Selesai</th>
                               <th class="text-center">Nama Pelatihan</th>
                               <th class="text-center">Penyelenggara Pelatihan</th>
-                              <th class="text-center">Target Hasil Pelatihan</th>
-                              <th class="text-center">Realisasi Hasil Pelatihan</th>
+                              <th class="text-center">Target Pelatihan</th>
+                              <th class="text-center">Realisasi Hasil</th>
                               <th class="text-center">Nilai Pelatihan</th>
                               <th class="text-center">Biaya Pelatihan</th>
-                              <th class="text-center">Aksi</th>
+                              <th class="text-center" width="20%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $i=1;
+                            @endphp
+                            @foreach($tbl_pelatihan as $u)
                             <tr>
-                              <td class="text-center">2</td>
-                              <td class="text-center">214214124</td>
-                              <td class="text-center">FULAN</td>
-                              <td class="text-center">2019-01-02</td>
-                              <td class="text-center">2019-09-09</td>
-                              <td class="text-center">Pelatihan Akutansi</td>
-                              <td class="text-center">STAN</td>
-                              <td class="text-center">Audit</td>
-                              <td class="text-center">Audit</td>
-                              <td class="text-center">76</td>
-                              <td class="text-center">30000</td>
+                              <td class="text-center">{{ $i }}</td>
+                              <td class="text-center">{{ $u->nik }}</td>
+                              <td class="text-center">{{ $u->nama_lengkap }}</td>
+                              <td class="text-center">{{ $u->sdate }}</td>
+                              <td class="text-center">{{ $u->edate }}</td>
+                              <td class="text-center">{{ $u->deskripsi }}</td>
+                              <td class="text-center">{{ $u->vendor_pelatihan }}</td>
+                              <td class="text-center">{{ $u->target_pelatihan }}</td>
+                              <td class="text-center">{{ $u->realisasi_hasil }}</td>
+                              <td class="text-center">{{ $u->nilai_pelatihan }}</td>
+                              <td class="text-center">{{ $u->biaya_pelatihan }}</td>
                               <td class="text-center">
-                                    <button class="btn btn-default btn-circle"
-                                        data-id="test okokok"
+                                  <button class="btn btn-default btn-circle"
+                                        data-nik="{{$u->nik}}"
+                                        data-sdate="{{$u->sdate}}"
+                                        data-edate="{{$u->edate}}"
+                                        data-kodepelatihan="{{$u->kode_pelatihan}}"
+                                        data-vendorpelatihan="{{$u->vendor_pelatihan}}"
+                                        data-targetpelatihan="{{$u->target_pelatihan}}"
+                                        data-realisasihasil="{{$u->realisasi_hasil}}"
+                                        data-nilaipelatihan="{{$u->nilai_pelatihan}}"
+                                        data-biayapelatihan="{{$u->biaya_pelatihan}}"
+                                        data-toggle="modal" data-target="#Modaldetail"><i class="fa fa-eye" title="delete"></i>
+                                  </button>
+                                  <button class="btn btn-default btn-circle"
+                                        data-nik="{{$u->nik}}"
+                                        data-sdate="{{$u->sdate}}"
+                                        data-edate="{{$u->edate}}"
+                                        data-kodepelatihan="{{$u->kode_pelatihan}}"
+                                        data-vendorpelatihan="{{$u->vendor_pelatihan}}"
+                                        data-targetpelatihan="{{$u->target_pelatihan}}"
+                                        data-realisasihasil="{{$u->realisasi_hasil}}"
+                                        data-nilaipelatihan="{{$u->nilai_pelatihan}}"
+                                        data-biayapelatihan="{{$u->biaya_pelatihan}}"
                                         data-toggle="modal" data-target="#Modaledit"><i class="fa fa-edit" title="edit"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-default btn-circle" onclick="if(confirm('Are you sure? You want to delete this kode?')){
-                                        event.preventDefault();
-                                        document.getElementById('delete-form-').submit();
-                                        }else {  event.preventDefault();}"><i class="fa fa-trash" title="hapus"></i>
-                                    </button>
-                                    <form id="delete-form-" action="" style="display: none;" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
+                                  </button>
+                                  <button class="btn btn-default btn-circle"
+                                        data-nik="{{$u->nik}}"
+                                        data-sdate="{{$u->sdate}}"
+                                        data-edate="{{$u->edate}}"
+                                        data-kodepelatihan="{{$u->kode_pelatihan}}"
+                                        data-toggle="modal" data-target="#Modaldelete"><i class="fa fa-trash" title="Hapus"></i>
+                                  </button>
                               </td>
                             </tr>
+                            @php
+                                $i++;
+                            @endphp
+                            @endforeach
                       </tbody>
                     </table>
                 </div>          
@@ -81,6 +107,8 @@
 </div>
 @include('pegawai.training.modal_add')
 @include('pegawai.training.modal_edit')
+@include('pegawai.training.modal_detail')
+@include('pegawai.training.modal_delete')
 
 @include('template.footer')
 
@@ -89,7 +117,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script>$(function() {
-    $('input[name="tanggal1"]').daterangepicker({
+    $('input[name="sdate"]').daterangepicker({
         singleDatePicker: true,
         locale: {
           format: 'YYYY-MM-DD'
@@ -98,7 +126,7 @@
     });
 </script>
 <script>$(function() {
-    $('input[name="tanggal2"]').daterangepicker({
+    $('input[name="edate"]').daterangepicker({
         singleDatePicker: true,
         locale: {
           format: 'YYYY-MM-DD'
@@ -109,7 +137,6 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-        $('.chosen-select-width').chosen();
 
         $('.dataTables-client').DataTable({
             pageLength: 25,
@@ -138,15 +165,83 @@
 
     });
 
+
+    $('#Modaldetail').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget) // Button that triggered the modal
+
+                    var nik = button.data('nik')
+                    var sdate = button.data('sdate')
+                    var edate = button.data('edate')
+                    var kodepelatihan = button.data('kodepelatihan')
+                    var vendorpelatihan = button.data('vendorpelatihan')
+                    var targetpelatihan = button.data('targetpelatihan')
+                    var realisasihasil = button.data('realisasihasil')
+                    var nilaipelatihan = button.data('nilaipelatihan')
+                    var biayapelatihan = button.data('biayapelatihan')
+
+
+                    var modal = $(this)
+                    modal.find('.modal-body #nik').val(nik);
+                    modal.find('.modal-body #sdate').val(sdate);
+                    modal.find('.modal-body #edate').val(edate);
+                    modal.find('.modal-body #kode_pelatihan').val(kodepelatihan);
+                    modal.find('.modal-body #hnik').val(nik);
+                    modal.find('.modal-body #hsdate').val(sdate);
+                    modal.find('.modal-body #hedate').val(edate);
+                    modal.find('.modal-body #hkode_pelatihan').val(kodepelatihan);
+                    modal.find('.modal-body #vendor_pelatihan').val(vendorpelatihan);
+                    modal.find('.modal-body #target_pelatihan').val(targetpelatihan);
+                    modal.find('.modal-body #realisasi_hasil').val(realisasihasil);
+                    modal.find('.modal-body #nilai_pelatihan').val(nilaipelatihan);
+                    modal.find('.modal-body #biaya_pelatihan').val(biayapelatihan);
+
+                })
+
     $('#Modaledit').on('show.bs.modal', function (event) {
                     var button = $(event.relatedTarget) // Button that triggered the modal
 
-                    var id = button.data('id')
+                    var nik = button.data('nik')
+                    var sdate = button.data('sdate')
+                    var edate = button.data('edate')
+                    var kodepelatihan = button.data('kodepelatihan')
+                    var vendorpelatihan = button.data('vendorpelatihan')
+                    var targetpelatihan = button.data('targetpelatihan')
+                    var realisasihasil = button.data('realisasihasil')
+                    var nilaipelatihan = button.data('nilaipelatihan')
+                    var biayapelatihan = button.data('biayapelatihan')
+
 
                     var modal = $(this)
-                    modal.find('.modal-body #nama').val(id);
-                    //document.getElementById('nama').value='new value';
-                    //$('#nama').html('tesss');
+                    modal.find('.modal-body #nik').val(nik);
+                    modal.find('.modal-body #sdate').val(sdate);
+                    modal.find('.modal-body #edate').val(edate);
+                    modal.find('.modal-body #kode_pelatihan').val(kodepelatihan);
+                    modal.find('.modal-body #hnik').val(nik);
+                    modal.find('.modal-body #hsdate').val(sdate);
+                    modal.find('.modal-body #hedate').val(edate);
+                    modal.find('.modal-body #hkode_pelatihan').val(kodepelatihan);
+                    modal.find('.modal-body #vendor_pelatihan').val(vendorpelatihan);
+                    modal.find('.modal-body #target_pelatihan').val(targetpelatihan);
+                    modal.find('.modal-body #realisasi_hasil').val(realisasihasil);
+                    modal.find('.modal-body #nilai_pelatihan').val(nilaipelatihan);
+                    modal.find('.modal-body #biaya_pelatihan').val(biayapelatihan);
+                })
+
+
+    $('#Modaldelete').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget) // Button that triggered the modal
+
+                    var nik = button.data('nik')
+                    var sdate = button.data('sdate')
+                    var edate = button.data('edate')
+                    var kodepelatihan = button.data('kodepelatihan')
+
+                    var modal = $(this)
+
+                    modal.find('.modal-body #hnik').val(nik);
+                    modal.find('.modal-body #hsdate').val(sdate);
+                    modal.find('.modal-body #hedate').val(edate);
+                    modal.find('.modal-body #hkode_pelatihan').val(kodepelatihan);
                 })
 
 </script>

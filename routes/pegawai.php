@@ -14,9 +14,12 @@ Route::prefix('pegawai')->group(function(){
     Route::post('cuti/update', 'PegawaiController@updateCuti');
     Route::post('lembur/store', 'PegawaiController@storeLembur');
     Route::post('lembur/update', 'PegawaiController@updateLembur');
+    Route::post('training/store', 'PegawaiController@storeTraining');
+    Route::post('training/update', 'PegawaiController@updateTraining');
 
     //-x Delete Method
     Route::delete('cuti/delete', 'PegawaiController@deleteCuti');
     Route::delete('lembur/delete', 'PegawaiController@deleteLembur');
+    Route::delete('training/delete', 'PegawaiController@deleteTraining');
 
 });

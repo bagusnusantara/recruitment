@@ -1,11 +1,11 @@
-<div class="modal inmodal fade" id="Modaledit" tabindex="-1" role="dialog"  aria-hidden="true">
+<div class="modal inmodal fade" id="Modaldetail" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Edit Pelatihan dan Training</h4>
+                <h4 class="modal-title">Delete Pelatihan dan Training</h4>
             </div>
-            <form method="POST" action="{{url('/pegawai/training/update')}}" class="form-horizontal" enctype="multipart/form-data">
+            <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
             <div class="modal-body">
                 @csrf
                 <input type="hidden" name="hnik" id="hnik" value="" />
@@ -51,24 +51,24 @@
                   </div>
                 </div>
                 <div class="form-group"><label class="col-sm-3 control-label">Penyelenggara Pelatihan</label>
-                    <div class="col-sm-9"><input type="text" class="form-control" name="vendor_pelatihan" id="vendor_pelatihan"></div>
+                    <div class="col-sm-9"><input type="text" class="form-control" name="vendor_pelatihan" id="vendor_pelatihan" disabled></div>
                 </div>
                 <div class="form-group"><label class="col-sm-3 control-label">Target Hasil Pelatihan</label>
-                    <div class="col-sm-9"><input type="text" class="form-control" name="target_pelatihan" id="target_pelatihan"></div>
+                    <div class="col-sm-9"><input type="text" class="form-control" name="target_pelatihan" id="target_pelatihan" disabled></div>
                 </div>
                 <div class="form-group"><label class="col-sm-3 control-label">Realisasi Hasil Pelatihan</label>
-                    <div class="col-sm-9"><input type="text" class="form-control" name="realisasi_hasil" id="realisasi_hasil"></div>
+                    <div class="col-sm-9"><input type="text" class="form-control" name="realisasi_hasil" id="realisasi_hasil" disabled></div>
                 </div>
                 <div class="form-group"><label class="col-sm-3 control-label">Nilai Pelatihan</label>
-                    <div class="col-sm-9"><input type="number" step="any" class="form-control" name="nilai_pelatihan" id="nilai_pelatihan"></div>
+                    <div class="col-sm-9"><input type="number" step="any" class="form-control" name="nilai_pelatihan" id="nilai_pelatihan" disabled></div>
                 </div>
                 <div class="form-group"><label class="col-sm-3 control-label">Biaya Pelatihan (Rp)</label>
-                    <div class="col-sm-9"><input type="number" step="any" class="form-control" name="biaya_pelatihan" id="biaya_pelatihan"></div>
+                    <div class="col-sm-9"><input type="number" step="any" class="form-control" name="biaya_pelatihan" id="biaya_pelatihan" disabled></div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Delete</button>
             </div>
             </form>
         </div>

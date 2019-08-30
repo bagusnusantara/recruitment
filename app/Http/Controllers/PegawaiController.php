@@ -13,6 +13,8 @@ use App\md_karyawan;
 use App\cuti;
 use App\lembur;
 use App\st_waktu_lembur;
+use App\tbl_pelatihan;
+use App\st_pelatihan;
 
 class PegawaiController extends Controller
 {
@@ -151,7 +153,67 @@ class PegawaiController extends Controller
         return view('pegawai.sanksi.index');
     }
     public function getTraining(){
-        return view('pegawai.training.index');
+        $st_pelatihan = st_pelatihan::all();
+        $md_karyawan = md_karyawan::all();
+        $tbl_pelatihan = DB::table('tbl_pelatihan')
+        ->join('md_karyawan','tbl_pelatihan.nik','=','md_karyawan.NIK')
+        ->join('st_pelatihan','tbl_pelatihan.kode_pelatihan', '=','st_pelatihan.kode')
+        ->select('tbl_pelatihan.*','md_karyawan.nama_lengkap','st_pelatihan.deskripsi')
+        ->get();
+        return view('pegawai.training.index', compact('tbl_pelatihan','md_karyawan','st_pelatihan'));
+    }
+
+    public function storeTraining(Request $request){
+      $training = new tbl_pelatihan;
+      $user = Auth::user()->id;
+      $date_time = Carbon::now()->toDateTimeString();
+      $date_time = date('Y-m-d H:i:s', strtotime("$date_time"));
+      $training->nik = $request->nik;
+      $training->sdate = $request->sdate;
+      $training->edate = $request->edate;
+      $training->kode_pelatihan = $request->kode_pelatihan;
+      $training->target_pelatihan = $request->target_pelatihan;
+      $training->realisasi_hasil = $request->realisasi_hasil;
+      $training->nilai_pelatihan = $request->nilai_pelatihan;
+      $training->vendor_pelatihan = $request->vendor_pelatihan;
+      $training->biaya_pelatihan = $request->biaya_pelatihan;
+      $training->entry_date = $date_time;
+      $training->entry_user = $user;
+      $training->save();
+
+      Alert::success('Training Berhasil ditambahkan');
+      return redirect()->back();
+    }
+
+    public function updateTraining(Request $request){
+        DB::table('tbl_pelatihan')
+        ->where('nik', $request->hnik)
+        ->where('sdate', $request->hsdate)
+        ->where('edate', $request->hedate)
+        ->where('kode_pelatihan', $request->hkode_pelatihan)
+        ->update([
+         'target_pelatihan' => $request->target_pelatihan,
+         'realisasi_hasil' => $request->realisasi_hasil,
+         'nilai_pelatihan' => $request->nilai_pelatihan,
+         'vendor_pelatihan' => $request->vendor_pelatihan,
+         'biaya_pelatihan' => $request->biaya_pelatihan,
+        ]);
+        Alert::success('Training Berhasil diupdate');
+        return redirect()->back();
+    }
+
+    public function deleteTraining(Request $request){
+        $nik = $request->hnik;
+        $sdate = $request->hsdate;
+        $edate = $request->hedate;
+        $kode_pelatihan = $request->hkode_pelatihan;
+        $training= DB::select(DB::raw(" DELETE FROM tbl_pelatihan 
+                                      WHERE nik = '$nik'
+                                      AND sdate = '$sdate'
+                                      AND edate = '$edate'
+                                      AND kode_pelatihan = '$kode_pelatihan' "));
+        Alert::success('Training Berhasil dihapus');
+        return redirect()->back();
     }
 
 }

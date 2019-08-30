@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Tambah Pelatihan dan Training</h4>
             </div>
-            <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
+            <form method="POST" action="{{url('/pegawai/training/store')}}" class="form-horizontal" enctype="multipart/form-data">
             <div class="modal-body">
                 @csrf
                 @include('pegawai.training.form')
