@@ -8,6 +8,13 @@
     <div class="row justify-content-between">
       <div class="col-lg-8 col-md-12 col-xs-12">
         <div class="content-area">
+            @if($status==true)
+            <div class="alert alert-primary col-md-11 col-lg-11 ml-auto mr-auto" role="alert">
+                <i class="fa fa-info-circle fa-2x">&nbsp;</i>
+                <strong>Lamaran pekerjaan berhasil terkirim.</strong>
+            </div>
+            @else
+            @endif
             <img class="img-responsive" src="/storage/foto/{{ $lowongan->foto }}" style="width: 650px; height: 650px"/><br><br>
           <h4>Deskripsi Pekerjaan</h4>
           {!!$lowongan->deskripsi_pekerjaan!!}
@@ -20,13 +27,12 @@
                   <input type='number' name="jobid" value="{{$id}}" readonly hidden></input>
                       <div class="col-sm-4 col-sm-offset-2">
                         @if($status==false)
-                          <button class="btn btn-danger" type="submit">Lamar Pekerjaan</button>
+                          <button class="btn btn-danger" type="submit">Lamar Pekerjaan</button></form>
                         @else
-                          <button class="btn btn-secondary" type="submit">Berhenti Lamar Pekerjaan</button>
+                          <button class="btn btn-secondary">Sudah Melamar</button>
                         @endif
                       </div>
                   </div>
-            </form>
         </div>
       </div>
       <div class="col-lg-4 col-md-12 col-xs-12">

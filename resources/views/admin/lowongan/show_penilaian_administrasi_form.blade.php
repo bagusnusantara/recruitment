@@ -1,5 +1,5 @@
-<div class="form-group"><label class="col-sm-2 control-label">ID</label>
-    <div class="col-sm-10"><input type="text" class="form-control" name="id" id="id"></div>
+<div class="form-group"><label class="col-sm-2 control-label"></label>
+    <div class="col-sm-10"><input type="hidden" class="form-control" name="id" id="id"></div>
 </div>
 <div class="form-group"><label class="col-sm-2 control-label">NIK</label>
     <div class="col-sm-10"><input type="text" class="form-control" name="" id="nik" readonly=""></div>

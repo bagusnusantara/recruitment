@@ -56,6 +56,10 @@
                ) active @else '' @endif  treeview">
                 <a href="{{ url('hrd/absensi')}}"><i class="fa fa-chart-bar"></i> <span class="nav-label">Absensi</span></a>
             </li>
+            <li class="@if(url('/hrd/jadwal') == request()->url()
+               ) active @else '' @endif  treeview">
+                    <a href="{{ url('hrd/jadwal')}}"><i class="fa fa-chart-bar"></i> <span class="nav-label">Create Jadwal</span></a>
+            </li>
             <li class="@if(url('/hrd/payroll') == request()->url()
                ) active @else '' @endif  treeview">
                 <a href="{{ url('hrd/payroll')}}"><i class="fa fa-donate"></i> <span class="nav-label">Generate Payroll</span></a>

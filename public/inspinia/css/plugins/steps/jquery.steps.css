@@ -148,7 +148,7 @@
 }
 
 .wizard-big.wizard > .content {
-    min-height: 320px;
+    min-height: 920px;
 }
 .wizard.vertical > .content
 {
@@ -197,7 +197,7 @@
 
 .wizard > .content > .body input.error
 {
-    background: rgb(251, 227, 228);
+    background: rgb(21, 227, 228);
     border: 1px solid #fbc2c4;
     color: #8a1f11;
 }

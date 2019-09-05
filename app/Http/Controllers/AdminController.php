@@ -291,8 +291,42 @@ class AdminController extends Controller
         }
         DB::table('trans_lowongan_pekerjaan')->where('id',$request->id)->update([
             'id' => $request->id,
-            'nilai_administrasi' => $request->nilai_administrasi
-        ]);
+            'nilai_administrasi' => $request->nilai_administrasi,
+            'nilai_walk_in' => $request->nilai_walk_in,
+            'nilai_eas10' => $request->nilai_eas10,
+            'nilai_eas5' => $request->nilai_eas5,
+            'nilai_eas7' => $request->nilai_eas7,
+            'nilai_apm' => $request->nilai_apm,
+            'nilai_tkd_1' => $request->nilai_tkd_1,
+            'nilai_tkd_2' => $request->nilai_tkd_2,
+            'nilai_tkd_3' => $request->nilai_tkd_3,
+            'nilai_tkd_4' => $request->nilai_tkd_4,
+            'nilai_tkd_5' => $request->nilai_tkd_5,
+            'nilai_tkd_6' => $request->nilai_tkd_6,
+            'nilai_tkd_7' => $request->nilai_tkd_7,
+            'nilai_tkd_8' => $request->nilai_tkd_8,
+            'nilai_tkd_9' => $request->nilai_tkd_9,
+            'nilai_tkd_10' => $request->nilai_tkd_10,
+            'nilai_psi_se' => $request->nilai_psi_se,
+            'nilai_psi_wa' => $request->nilai_psi_wa,
+            'nilai_psi_an' => $request->nilai_psi_an,
+            'nilai_psi_ge' => $request->nilai_psi_ge,
+            'nilai_psi_ra' => $request->nilai_psi_ra,
+            'nilai_psi_zr' => $request->nilai_psi_zr,
+            'nilai_psi_fa' => $request->nilai_psi_fa,
+            'nilai_psi_wu' => $request->nilai_psi_wu,
+            'nilai_psi_me' => $request->nilai_psi_me,
+            'nilai_psi_iq' => $request->nilai_psi_iq,
+            'nilai_tintum' => $request->tintum,
+            'nilai_army_alfa' => $request->nilai_army_alfa,
+            'nilai_tpp_5' => $request->nilai_tpp_5,
+            'nilai_tpp_6' => $request->nilai_tpp_6,
+            'nilai_tpp_7' => $request->nilai_tpp_7,
+            'nilai_tpp_8' => $request->nilai_tpp_8,
+            'nilai_tiki_f1' => $request->nilai_tiki_f1,
+            'nilai_tiki_f2' => $request->nilai_tiki_f2,
+            'nilai_tiki_f3' => $request->nilai_tiki_f3,
+                    ]);
         Alert::success('Komponen Gaji Berhasil diupdate');
         return redirect()->back();
     }

@@ -9,6 +9,7 @@ Route::prefix('hrd')->group(function(){
     Route::get('payroll/slipgaji', 'HRDController@getSlipgaji');
     Route::get('sdm/mutasi', 'HRDController@getMutasi');
     Route::get('sdm/mutasi/create', 'HRDController@createMutasi');
+    Route::get('jadwal', 'HRDController@getJadwal');
 
     Route::get('setup/komponengaji', 'HRDController@getKomponengaji');
     Route::get('setup/umk', 'HRDController@getUMK');
@@ -157,6 +158,7 @@ Route::prefix('hrd')->group(function(){
     Route::post('setup/jenispekerjaan/update/{id}', 'HRDController@updateJenispekerjaan');
     Route::post('setup/pelatihan/store', 'HRDController@storePelatihan');
     Route::post('setup/pelatihan/update/{id}', 'HRDController@updatePelatihan');
+    Route::post('jadwal/store', 'HRDController@storeJadwal');
 
 
     //-x Delete Method
