@@ -1,5 +1,5 @@
 <h2>TKD</h2>
-<table  class="table table-striped table-bordered table-hover dataTables-2" >
+<table  class="table table-striped table-bordered table-hover dataTables-3" >
     <thead>
     <tr>
         <th><center>No</center></th>

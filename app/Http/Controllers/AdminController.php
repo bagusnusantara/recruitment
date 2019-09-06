@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\st_jabatan;
 use Illuminate\Http\Request;
 use Gate;
 use App\User;
@@ -111,6 +112,10 @@ class AdminController extends Controller
           ->where('md_lowongan_pekerjaan_id',$jobid)
           ->orderByRaw('nilai_administrasi DESC')
           ->get();
+        $md_client=md_client::all();
+        $st_kabkota = st_Kabkota::all();
+        $st_jabatan = st_jabatan::all();
+
       //dd($pelamar);
       $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
                                         ->where('users_id',$userid)->count();
@@ -118,7 +123,7 @@ class AdminController extends Controller
         //dd($jobid);
 
         //dd($lowongan);
-        return view ('admin.lowongan.show_penilaian',compact('status','lowongan','nilai'));
+        return view ('admin.lowongan.show_penilaian',compact('status','lowongan','nilai','md_client','st_kabkota','st_jabatan'));
       }else {
         Alert::warning('Penilaian Tidak Tersedia !');
         return redirect()->route('showAdminLowongan',['id'=>$jobid]);

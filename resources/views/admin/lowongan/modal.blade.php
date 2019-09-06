@@ -133,9 +133,67 @@
                 <h4 class="modal-title">Hiring</h4>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{url('/admin/lowongan/penilaian/update/{id}')}}" class="form-horizontal" enctype="multipart/form-data">
-                @csrf
-                @include('admin.lowongan.show_penilaian_walk_in_form')
+                <form method="POST" id="postForm" action="{{url('/hrd/sdm/mutasi/store')}}" class="form-horizontal" enctype="multipart/form-data" onsubmit="return postForm()">
+                    @csrf
+                    <div class="form-group"><label class="col-sm-2 control-label">Nomor Surat</label>
+                        <div class="col-sm-10"><input type="text" class="form-control" name="no_spt"></div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-2 control-label">Jenis Kontrak</label>
+                        <div class="col-sm-10">
+                            <select class="select2_demo_3 form-control" name="jenis_kontrak">
+                                <option value="0">Pilih ... </option>
+                                <option value="PKWT">PKWT</option>
+                                <option value="Pegawai Tetap">Pegawai Tetap</option>
+                                <option value="Pegawai Jeda">Pegawai Jeda</option>
+                                <option value="Harian Lepas">Harian Lepas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-2 control-label">Site Baru</label>
+                        <div class="col-sm-10">
+                            <select class="select2_demo_3 form-control" name="md_client_id">
+                                <option value="0">Pilih ... </option>
+                                @foreach($md_client as $client)
+                                    <option value="{{$client->id}}">{{$client->nama_client}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-2 control-label">Jabatan</label>
+                        <div class="col-sm-10">
+                            <select class="select2_demo_3 form-control" name="jabatan_baru">
+                                <option value="0">Pilih ... </option>
+                                @foreach($st_jabatan as $jabatan)
+                                    <option value="{{$jabatan->kode}}">{{$jabatan->Deskripsi}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label" for="Kota">Kota</label>
+                        <div class="col-sm-10">
+                            <select class="select2_demo_3 form-control" name="st_kabkota_id">
+                                <option value="0">Pilih . . .</option>
+                                @foreach($st_kabkota as $k)
+                                    <option value="{{$k->id}}">{{$k->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="data_1">
+                        <label class="col-sm-2 control-label">Tanggal Mulai Kontrak</label>
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="tgl_mulai_kontrak" class="form-control" value="">
+                        </div>
+                    </div>
+                    <div class="form-group" id="data_1">
+                        <label class="col-sm-2 control-label">Tanggal Akhir Kontrak</label>
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="tgl_akhir_kontrak" class="form-control" value="">
+                        </div>
+                    </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>

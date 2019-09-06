@@ -176,9 +176,7 @@
                     }
                 }
             ],
-            fixedColumns:   {
-                leftColumns: 2
-            }
+
 
         });
 
@@ -208,7 +206,45 @@
                             .css('font-size', 'inherit');
                     }
                 }
-            ]
+            ],
+            fixedColumns:   {
+                leftColumns: 2
+            }
+
+
+        });
+
+
+    });
+
+    $(document).ready(function(){
+
+        $('.dataTables-3').DataTable({
+            scrollY:        "300px",
+            scrollX:        "300px",
+            scrollCollapse: true,
+            paging:         false,
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+                { extend: 'copy'},
+                {extend: 'csv'},
+                {extend: 'excel', title: 'Hasil Seleksi Walk in Interview'},
+                {extend: 'pdf', title: 'Hasil Seleksi Walk in Interview'},
+
+                {extend: 'print',
+                    customize: function (win){
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ],
+            fixedColumns:   {
+                leftColumns: 2
+            }
 
 
         });

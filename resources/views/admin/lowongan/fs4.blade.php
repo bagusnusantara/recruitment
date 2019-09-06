@@ -1,5 +1,5 @@
 <h2>Psikotes</h2>
-<table  class="table table-striped table-bordered table-hover dataTables-2" >
+<table  class="table table-striped table-bordered table-hover dataTables-3" >
     <thead>
     <tr>
         <th><center>No</center></th>
@@ -8,6 +8,28 @@
         <th><center>Tanggal Melamar</center></th>
         <th><center>Status Seleksi Administrasi</center></th>
         <th><center>Status Walk in Interview</center></th>
+        <th><center>SE</center></th>
+        <th><center>WA</center></th>
+        <th><center>AN</center></th>
+        <th><center>GE</center></th>
+        <th><center>RA</center></th>
+        <th><center>ZR</center></th>
+        <th><center>FA</center></th>
+        <th><center>WU</center></th>
+        <th><center>ME</center></th>
+        <th><center>IQ</center></th>
+        <th><center>TINTUM</center></th>
+        <th><center>ARMY ALFA</center></th>
+        <th><center>TPP 5</center></th>
+        <th><center>TPP 8</center></th>
+        <th><center>TPP 6</center></th>
+        <th><center>TPP 7</center></th>
+        <th><center>TIKI F1</center></th>
+        <th><center>TIKI F2</center></th>
+        <th><center>TIKI F3</center></th>
+        <th><center>CFIT 3A</center></th>
+        <th><center>KRAEPLIN</center></th>
+        <th><center>PAULI</center></th>
         <th><center>Action</center></th>
     </tr>
     </thead>
@@ -38,6 +60,29 @@
                     @endif
                 </center>
             </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
             <td>
                 <center>
                     <button class="btn btn-default btn-circle"
