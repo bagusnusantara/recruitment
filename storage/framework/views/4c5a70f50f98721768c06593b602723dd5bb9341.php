@@ -56,6 +56,10 @@
                ): ?> active <?php else: ?> '' <?php endif; ?>  treeview">
                 <a href="<?php echo e(url('hrd/absensi')); ?>"><i class="fa fa-chart-bar"></i> <span class="nav-label">Absensi</span></a>
             </li>
+            <li class="<?php if(url('/hrd/jadwal') == request()->url()
+               ): ?> active <?php else: ?> '' <?php endif; ?>  treeview">
+                    <a href="<?php echo e(url('hrd/jadwal')); ?>"><i class="fa fa-chart-bar"></i> <span class="nav-label">Create Jadwal</span></a>
+            </li>
             <li class="<?php if(url('/hrd/payroll') == request()->url()
                ): ?> active <?php else: ?> '' <?php endif; ?>  treeview">
                 <a href="<?php echo e(url('hrd/payroll')); ?>"><i class="fa fa-donate"></i> <span class="nav-label">Generate Payroll</span></a>

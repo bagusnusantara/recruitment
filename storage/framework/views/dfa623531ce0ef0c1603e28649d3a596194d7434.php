@@ -51,7 +51,8 @@
                             <div class="form-group"><label class="col-sm-2 control-label">Client</label>
 
                                 <div class="col-sm-10">
-                                  <select class="form-control m-b" name="md_client_id">
+                                  <select class="select2_demo_3 form-control" name="md_client_id">
+                                      <option value="0">Pilih ... </option>
                                     <?php $__currentLoopData = $md_client; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $client): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($client->id); ?>"><?php echo e($client->nama_client); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -60,7 +61,7 @@
                             </div>
                             <div class="form-group"><label class="col-sm-2 control-label">Kategori Pekerjaan</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control m-b" name="st_kategori_pekerjaan_id">
+                                    <select class="select2_demo_3 form-control" name="st_kategori_pekerjaan_id">
                                       <option value="0">Pilih ... </option>
                                       <?php $__currentLoopData = $st_kategori_pekerjaan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kategori): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                       <option value="<?php echo e($kategori->id); ?>"><?php echo e($kategori->deskripsi); ?></option>
@@ -68,9 +69,10 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="form-group"><label class="col-sm-2 control-label">Spesialisasi Pekerjaan</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control m-b" name="st_spesialisasi_pekerjaan_id">
+                                    <select class="select2_demo_3 form-control" name="st_spesialisasi_pekerjaan_id">
                                       <option value="0" selected>Pilih ... </option>
                                       <?php $__currentLoopData = $st_spesialisasi_pekerjaan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $spesialisasi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                       <option value="<?php echo e($spesialisasi->id); ?>"><?php echo e($spesialisasi->spesial); ?></option>
@@ -78,46 +80,50 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group"><label class="col-sm-2 control-label" for="Negara">Negara</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control m-b custom-select my-1 mr-sm-2" id="Negara" name="Negara">
-                                      <option value="0">Pilih . . .</option>
-                                      <?php $__currentLoopData = $st_negara; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                      <option value="<?php echo e($item->id); ?>"><?php echo e($item->negara); ?></option>    
-                                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label" for="Provinsi" >Provinsi</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control custom-select my-1 mr-sm-2" id="Provinsi" name="Provinsi">
-                                        <option value="0">Pilih . . .</option>
-                                        <?php $__currentLoopData = $st_provinsi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>    
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </select>
-                                </div>
-                            </div>
                             <div class="form-group"><label class="col-sm-2 control-label" for="Kota">Kota</label>
                                 <div class="col-sm-10">
-                                  <select class="form-control custom-select my-1 mr-sm-2" id="Kota" name="Kota">
-                                      <option value="0">Pilih . . .</option>
-                                  </select>
+                                  <select class="select2_demo_3 form-control" name="st_kabkota_id">
+                                            <option value="0">Pilih . . .</option>
+                                            <?php $__currentLoopData = $st_kabkota; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                             <option value="<?php echo e($k->id); ?>"><?php echo e($k->name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                 </select>
                                 </div>
                              </div>
+                             <div class="form-group"><label class="col-sm-2 control-label" for="foto">Foto</label>
+                                 <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                     <div class="form-control" data-trigger="fileinput">
+                                         <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                         <span class="fileinput-filename"></span>
+                                     </div>
+                                     <span class="input-group-addon btn btn-default btn-file">
+                                        <span class="fileinput-new">Select file</span>
+                                        <span class="fileinput-exists">Change</span>
+                                        <input type="file" name="foto"/>
+                                     </span>
+                                     <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                 </div>
+                             </div>
+
+
+
+
+
+
                             <div class="form-group" id="data_1">
-                                <label class="col-sm-2 control-label">Start Date</label>
-                                <div class="input-group date">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="start_date" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group" id="data_1">
-                                <label class="col-sm-2 control-label">End Date</label>
+                                <label class="col-sm-2 control-label">Tanggal Berakhir Iklan</label>
                                 <div class="input-group date">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="end_date" class="form-control" value="">
                                 </div>
                             </div>
-
+                            <div class="form-group"><label class="col-sm-2 control-label">Deskripsi Pekerjaan</label>
+                                <fieldset>
+                                    <p class="container">
+                                              <textarea class="input-block-level" id="summernote2" name="deskripsi_pekerjaan" rows="8">
+                                              </textarea>
+                                    </p>
+                                </fieldset>
+                            </div>
                             <div class="form-group"><label class="col-sm-2 control-label">Persyaratan</label>
                                     <fieldset>
                                         <p class="container">
@@ -126,21 +132,14 @@
                                         </p>
                                      </fieldset>
                             </div>
-                            <div class="form-group"><label class="col-sm-2 control-label">Deskripsi Pekerjaan</label>
-                                    <fieldset>
-                                        <p class="container">
-                                          <textarea class="input-block-level" id="summernote2" name="deskripsi_pekerjaan" rows="8">
-                                          </textarea>
-                                        </p>
-                                     </fieldset>
-                            </div>
+
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Komposisi Tes</label>
                                 <div class="col-sm-10">
                                     <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_administrasi"> <i></i> Administrasi</label></div>
                                     <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_interview_walk"> <i></i> Walk in Interview</label></div>
                                     <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_psikotes"> <i></i> Psikotes</label></div>
-                                    <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_interview_regular"> <i></i>Interview Regular</label></div>
+                                    <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_interview_regular"> <i></i>Interview Psikolog</label></div>
                                     <div class="i-checks"><label> <input type="checkbox" value="1" name="st_nilai_interview_user"> <i></i>Interview User/HR</label></div>
                                 </div>
                             </div>
@@ -218,71 +217,18 @@
                 });
             });
         </script>
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('script'); ?>
+    <!-- Select2 -->
+    <script src="<?php echo e(asset('inspinia/js/plugins/select2/select2.full.min.js')); ?>"></script>
     <script>
-    function getst(id,param,selectedTarget){
-        console.log('start');
-        let now = $.now();
-        $.ajaxSetup({
-            headers:{
-            'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
-            } });
-        $.ajax({
-            url:"/support/getst/",
-            method:"post",
-            data :{
-                st_category : id,
-                st_id       :param
-            },
-            success:function(result){
-                console.log($.now()-now);
-            for(var item in result.data){
-                let option = result.data[item];
-                selectedTarget.prop("disabled",false);
-                selectedTarget.append($('<option>',{
-                    value : option.id,
-                    text  : option.name
-                    }));
-            }
-                
-            }
+        $(".select2_demo_1").select2();
+        $(".select2_demo_2").select2();
+        $(".select2_demo_3").select2({
+            placeholder: "Select a state",
+            allowClear: true
         });
-    };
-
-    $("#Negara").change(function(){
-        $("#Provinsi").find('option').remove().end();
-        $("#Provinsi").append($('<option>',{
-            value : "0",
-            text  : "Pilih . . ."
-        }));
-        if(this.value==0){
-            $("#Provinsi").prop("disabled",true);
-            $("#Kota").prop("disabled",true);
-            $("#Kecamatan").prop("disabled",true);
-        }
-       else
-            getst("Negara",$("#Negara > option:selected").val(),$("#Provinsi"));
-    });
-    
-    $("#Provinsi").change(function(){
-        $("#Kota").find('option').remove().end();
-        $("#Kota").append($('<option>',{
-            value : "0",
-            text  : "Pilih . . ."
-        }));
-    
-        if(this.value==0){
-            $("#Kota").prop("disabled",true);
-            $("#Kecamatan").prop("disabled",true);
-        }
-        else
-             getst("Provinsi",$("#Provinsi > option:selected").val(),$("#Kota"));
-     });
-    
-</script>
+    </script>
 <?php $__env->stopSection(); ?>
+
 
 
 <?php echo $__env->make('template.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\recruitment\resources\views/admin/lowongan/create.blade.php ENDPATH**/ ?>

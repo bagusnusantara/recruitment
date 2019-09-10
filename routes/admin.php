@@ -5,6 +5,7 @@ Route::prefix('admin')->group(function(){
     Route::get('dashboard', 'AdminController@getDashboard');
     Route::get('notifikasi', 'AdminController@getNotifikasi');
     Route::get('sdm', 'AdminController@getSdm');
+    Route::get('sdm/detail/{userid}', 'AdminController@getDetailSdm');
     Route::get('klien', 'AdminController@getKlien');
     Route::get('lowongan', 'AdminController@getLowongan');
     Route::get('manajementes', 'AdminController@getManajementes');
@@ -30,8 +31,8 @@ Route::prefix('admin')->group(function(){
     //-x Update
     Route::post('lowongan/penilaian/update/{id}', 'AdminController@updatePenilaian');
 
-Route::get('hrd/setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('hrd/setup/gajiperlokasi', 'HRDController@getGajiperlokasi');
+    Route::get('/home', 'HomeController@index')->name('home');
     //-x Cetak
     Route::get('cetak_pkwt', 'AdminController@cetak_pkwt');
 });

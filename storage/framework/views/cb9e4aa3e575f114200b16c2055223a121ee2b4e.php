@@ -79,10 +79,10 @@
                                        <td><center><?php echo e($s->nama_lengkap); ?></center></td>
                                        <td><center><?php echo e($s->tanggal_lahir); ?></center></td>
                                        <td><center><?php echo e($s->jenis_kelamin); ?></center></td>
-                                       <td><center><?php echo e($s->alamat); ?></center></td>
+                                       <td><center></center></td>
                                        <td><center>SMA</center></td>
                                        <td><center>
-                                         <a href="/admin/cetak_pkwt" class="btn btn-primary" target="_blank">CETAK PKWT</a>
+                                         <a href="<?php echo e(url('admin/sdm/detail/'.$s->users_id)); ?>" class="btn btn-primary">Detail</a>
                                        </center></td>
                                    </tr>
                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
