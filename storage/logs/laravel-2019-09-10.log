@@ -2,3 +2,7 @@
 [stacktrace]
 #0 {main}
 "} 
+[2019-09-10 01:02:17] local.ERROR: Illuminate\Routing\RouteFileRegistrar::register(): Failed opening required 'E:\recruitment\routes/api.php' (include_path='.;C:/laragon/etc/php/pear') {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Illuminate\\Routing\\RouteFileRegistrar::register(): Failed opening required 'E:\ecruitment\outes/api.php' (include_path='.;C:/laragon/etc/php/pear') at E:\ecruitment\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php:35)
+[stacktrace]
+#0 {main}
+"} 
