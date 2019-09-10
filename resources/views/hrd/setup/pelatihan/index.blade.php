@@ -146,7 +146,7 @@
                       <div class="col-sm-8"><input type="text" maxlength="30" class="form-control" name="deskripsi" id="deskripsi" disabled></div>
                   </div>
 
-             </div>
+              </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-white" data-dismiss="modal">Tidak</button>
                   <button type="submit" class="btn btn-primary">Ya</button>

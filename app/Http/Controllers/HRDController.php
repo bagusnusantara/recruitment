@@ -63,6 +63,7 @@ use App\st_pelatihan;
 use App\st_pekerjaan;
 use App\md_jobseeker;
 use App\tbl_lokasi_kerja_hist;
+use App\schnikdetail;
 
 use Alert;
 use DB;
@@ -2689,6 +2690,38 @@ class HRDController extends Controller
         $tbl_lokasi_kerja_hist->save();
         Alert::success('Karyawan berhasil dimutasikan');
         return redirect('hrd/sdm/mutasi')->with('successMsg','Slider Successfully Saved');
+    }
+    public function getJadwal(){
+        $schnikdetail = DB::table('schnikdetail')
+            ->join('user','schnikdetail.users_id','=','user.id')
+            ->select('schnikdetail.*','user.nama','user.no_ktp')
+
+            ->orderByRaw('user.nama - sdate  DESC')
+            ->get();
+        $pegawai = DB::select('select * from user');
+        //$pola = DB::select('select * from schpola');
+        //dd($pegawai);
+        return view('hrd.jadwal.index',compact('schnikdetail','pegawai'));
+    }
+    public function storeJadwal(Request $request){
+        $start_date = \Carbon\Carbon::parse($request->sdate);
+        $end_date = \Carbon\Carbon::parse($request->edate);
+
+
+        while(!$start_date->eq($end_date))
+        {
+            $jadwal = new schnikdetail;
+            $jadwal->users_id = $request->users_id;
+            $jadwal->sdate = $start_date;
+            $jadwal->edate = $start_date;
+            $jadwal->stime = $request->stime;
+            $jadwal->etime = $request->etime;
+            $jadwal->save();
+
+        $start_date->addDay();
+        }
+        return redirect()->back();
+
     }
 
 
