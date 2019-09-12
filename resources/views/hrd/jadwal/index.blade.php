@@ -74,7 +74,16 @@
                                             <div class="form-group"><label class="col-sm-4 control-label">End Date</label>
                                                 <div class="col-sm-8"><input type="text" class="form-control date input-sm" name="edate" id="tanggal" value=""></div>
                                             </div>
-                                            <div class="form-group"><label class="col-sm-4 control-label">Jam Masuk</label>
+                                            <div class="form-group"><label class="col-sm-4 control-label">Pola</label>
+                                                <div class="col-sm-8">
+                                                    <select class="form-control chosen-select-width" name="polaid" id="polaid">
+                                                        @foreach($schpola_hdr as $p)
+                                                            <option value="{{$p->kode}}">{{$p->deskripsi}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="form-group"><label class="col-sm-4 control-label">Jam Masuk</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group clockpicker" data-autoclose="true">
                                                         <input type="text" class="form-control" value="08:00" name="stime">
@@ -89,7 +98,7 @@
                                                         <span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                     </div>
 
