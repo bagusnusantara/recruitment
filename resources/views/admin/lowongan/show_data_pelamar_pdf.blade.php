@@ -17,10 +17,10 @@
         <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
 
         <!-- Custom CSS -->
-        <link href="css/cv-pelamar.css" rel="stylesheet">
+        <link href="{{asset('cv-pelamar.css')}}" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="{{asset('font-awesome.min.css')}}" rel="stylesheet" type="text/css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300' rel='stylesheet' type='text/css'>
 
     </head>
