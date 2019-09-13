@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SMI | Human Resources Information System</title>
+    <title>ISC | Human Resources Information System</title>
 
     <link href="{{ asset('inspinia/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('fa/css/all.css') }}" rel="stylesheet">
@@ -16,8 +16,6 @@
     <link href="{{ asset('inspinia/css/plugins/jasny/jasny-bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('inspinia/css/plugins/codemirror/codemirror.css') }}" rel="stylesheet">
     <link href="{{ asset('inspinia/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('inspinia/css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('inspinia/css/plugins/jqGrid/ui.jqgrid.css')}}" rel="stylesheet">
     <link href="{{ asset('inspinia/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('inspinia/css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
     <link href="{{ asset('inspinia/css/plugins/chosen/bootstrap-chosen.css') }}" rel="stylesheet">
@@ -34,13 +32,6 @@
   	<link href="{{ asset('inspinia/js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
     <link href="{{ asset('inspinia/css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
     <link href="{{ asset('inspinia/css/plugins/select2/select2.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.2.6/css/fixedColumns.dataTables.min.css">
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.6/js/dataTables.fixedColumns.min.js"></script>
-    <link href="{{ asset('inspinia/css/plugins/clockpicker/clockpicker.css') }}" rel="stylesheet">
-
-
 
 
     <style>

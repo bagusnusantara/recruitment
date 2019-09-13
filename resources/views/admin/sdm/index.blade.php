@@ -3,13 +3,13 @@
 @section('main')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Dashboard</h2>
+            <h2>Bank Data Pelamar</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('/dashboard')}}">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Dashboard</strong>
+                    <strong>Bank Data Pelamar</strong>
                 </li>
             </ol>
 
@@ -46,13 +46,13 @@
                     </div>
                     <div class="ibox-content">
                         <div class="text-right">
-                            <a class="btn btn-primary" href="{{url('admin/lowongan/create')}}">Tambah SDM</a>
+                            <a class="btn btn-primary" href="#">Tambah Pelamar</a>
                         </div>
                                <div>
                         					Pilihan Kolom :
                                   <a class="toggle-vis" data-column="0">No</a> -
                                   <a class="toggle-vis" data-column="1">Nama</a> -
-                                  <a class="toggle-vis" data-column="2">Usia</a> -
+                                  <a class="toggle-vis" data-column="2">Tanggal Lahir</a> -
                                   <a class="toggle-vis" data-column="3">Jenis Kelamin</a> -
                                   <a class="toggle-vis" data-column="4">Alamat</a> -
                                   <a class="toggle-vis" data-column="5">Pendidikan Terakhir</a>
@@ -78,11 +78,11 @@
 
                                    <tr>
                                        <td><center>{{$i++}}</center></td>
-                                       <td><center>{{$s->nama_lengkap}}</center></td>
+                                       <td>{{$s->nama_lengkap}}</td>
                                        <td><center>{{$s->tanggal_lahir}}</center></td>
                                        <td><center>{{$s->jenis_kelamin}}</center></td>
-                                       <td><center></center></td>
-                                       <td><center>SMA</center></td>
+                                       <td>{{$s->alamat_domisili}}</td>
+                                       <td><center>{{$s->pendidikan_terakhir}}</center></td>
                                        <td><center>
                                          <a href="{{url('admin/sdm/detail/'.$s->users_id)}}" class="btn btn-primary">Detail</a>
                                        </center></td>

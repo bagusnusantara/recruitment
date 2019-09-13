@@ -27,15 +27,4 @@
 <script src="{{ asset('inspinia/js/plugins/steps/jquery.steps.min.js') }}"></script>
 <!-- Jquery Validate -->
 <script src="{{ asset('inspinia/js/plugins/validate/jquery.validate.min.js') }}"></script>
-<script src="{{asset('inspinia/js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-<!-- jqGrid -->
-<script src="{{asset('inspinia/js/plugins/jqGrid/i18n/grid.locale-en.js')}}"></script>
-<script src="{{asset('inspinia/js/plugins/jqGrid/jquery.jqGrid.min.js') }}"></script>
-<!-- Clock picker -->
-<script src="{{asset('inspinia/js/plugins/clockpicker/clockpicker.js') }}"></script>
-
-
-
-
-
 
