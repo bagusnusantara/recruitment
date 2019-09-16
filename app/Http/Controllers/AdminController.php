@@ -17,6 +17,7 @@ use App\st_Spesialisasipekerjaan;
 use App\st_lowongan_gaji;
 use App\trans_lowongan_pekerjaan;
 use App\st_Negara;
+use App\md_lowongan_jenis_tes;
 use Alert;
 use Excel;
 use PDF;
@@ -469,15 +470,36 @@ class AdminController extends Controller
             $lowongan->st_nilai_interview_walk = 0;
         else
         $lowongan->st_nilai_interview_walk = $request->st_nilai_interview_walk;
+        if($request->st_nilai_psikotes === null)
+        $lowongan->st_nilai_psikotes = 0;
+        else
         $lowongan->st_nilai_psikotes = $request->st_nilai_psikotes;
-        $lowongan->st_nilai_interview_regular = $request->st_nilai_interview_regular;
+        $lowongan->st_nilai_interview_psikolog = $request->st_nilai_interview_psikolog;
         $lowongan->st_nilai_interview_user = $request->st_nilai_interview_user;
         $lowongan->start_date=Carbon::parse($request['start_date'])->format('Y-m-d');
         $lowongan->end_date=Carbon::parse($request['end_date'])->format('Y-m-d');
 
         $lowongan->save();
         Alert::success('Data berhasil tersimpan !');
-        return redirect('admin/lowongan')->with('successMsg','Slider Successfully Saved');
+        return redirect('admin/lowongan/create')->with('successMsg','Slider Successfully Saved');
+    }
+    public function createLowongandetailtes($id){
+      $lowongan_pekerjaan=md_lowongan_pekerjaan::find($id);
+      //dd($lowongan_pekerjaan->id);
+      $st_jenis_tes = DB::select('select * from st_jenis_tes');
+      $md_lowongan_jenis_tes = DB::table('md_lowongan_jenis_tes')
+                              ->join('st_jenis_tes','md_lowongan_jenis_tes.st_jenis_tes_id','st_jenis_tes.id')
+                              ->select('st_jenis_tes.deskripsi')
+                              ->where('md_lowongan_pekerjaan_id',$lowongan_pekerjaan->id)
+                              ->get();
+      return view('admin.lowongan.create_detail_tes',compact('st_jenis_tes','md_lowongan_jenis_tes','lowongan_pekerjaan'));
+    }
+    public function storeLowongandetailtes(Request $request){
+      $detail_tes = new md_lowongan_jenis_tes;
+      $detail_tes->md_lowongan_pekerjaan_id = $request->md_lowongan_pekerjaan_id;
+      $detail_tes->st_jenis_tes_id = $request->st_jenis_tes_id;
+      $detail_tes->save();
+      return redirect()->back();
     }
     public function updatePenilaian(Request $request){
         if(!Gate::allows('isAdmin')){

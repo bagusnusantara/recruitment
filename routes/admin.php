@@ -13,6 +13,7 @@ Route::prefix('admin')->group(function(){
     Route::get('manajementes', 'AdminController@getManajementes');
     Route::get('manajemenuser', 'AdminController@getManajemenuser');
     Route::get('lowongan/show/{id}', 'AdminController@showLowongan')->name('showAdminLowongan');
+    Route::get('lowongan/show/{id}/detail_tes', 'AdminController@createLowongandetailtes')->name('showAdminLowongandetailtes');
     Route::get('lowongan/penilaian/{jobid}/users/{userid}', 'AdminController@showPenilaian')->name('penilaian');
     Route::get('lowongan/datapelamar/{jobid}/users/{userid}', 'AdminController@showDatapelamar')->name('datapelamar');
     Route::get('lowongan/datapelamar/{jobid}/users/{userid}/pdf', 'AdminController@showDatapelamarpdf')->name('datapelamarpdf');
@@ -29,6 +30,7 @@ Route::prefix('admin')->group(function(){
 
     //-x Store Method
     Route::post('lowongan/store', 'AdminController@storeLowogan');
+    Route::post('lowongan/storedetailtes', 'AdminController@storeLowongandetailtes');
 
     //-x Update
     Route::post('lowongan/penilaian/update/{id}', 'AdminController@updatePenilaian');

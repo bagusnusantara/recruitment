@@ -66,6 +66,7 @@
                                     {!!$lowongan_pekerjaan->persyaratan!!}
                                 </div>
                                 <hr>
+                                <a type="button" class="btn btn-primary" href="detail_tes" type="button"><i class="fa fa-add"></i>Tambah Detail Tes</a>
 
 
 
@@ -137,10 +138,7 @@
                                 <td>
                                   <center>
                                   <a type="button" class="btn btn-default btn-circle" href="{{route('datapelamar',['jobid'=>$id,'usersid'=>$p->users_id])}}" type="button"><i class="fa fa-eye"></i></a>
-                                  <!-- <a type="button" class="btn btn-default btn-circle" href="{{$lowongan_pekerjaan->id}}/showpenilaian" type="button"><i class="fa fa-eye"></i></a> -->
                                   <a type="button" class="btn btn-default btn-circle" href="{{route('penilaian',['jobid'=>$id,'usersid'=>$p->users_id])}}" type="button"><i class="fa fa-pen-square"></i></a>
-
-                                  <!-- <button class="btn btn-default btn-circle" type="button"><i class="fa fa-trash"></i> -->
                                   </center>
                                 </td>
 

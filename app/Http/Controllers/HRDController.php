@@ -1828,13 +1828,13 @@ class HRDController extends Controller
           abort(404,"Maaf Anda tidak memiliki akses");
       }
       $md_karyawan = md_karyawan::all();
-      $schclass = schclass::all();
+      $schpola_hdr = schpola_hdr::all();
       $st_jadwalpersonal = DB::table('st_jadwalpersonal')
       ->join('md_karyawan','st_jadwalpersonal.nik','=','md_karyawan.NIK')
       ->join('schclass','st_jadwalpersonal.schid','=','schclass.kode')
       ->select('st_jadwalpersonal.*','schclass.deskripsi AS des_schclass','md_karyawan.nama_lengkap AS nama_lengkap')
       ->get();
-      return view ('hrd.setup.jadwalpersonal.index',compact('st_jadwalpersonal','schclass','md_karyawan'));
+      return view ('hrd.setup.jadwalpersonal.index',compact('st_jadwalpersonal','schpola_hdr','md_karyawan'));
     }
 
     public function storeJadwalpersonal(Request $request){
@@ -2699,14 +2699,19 @@ class HRDController extends Controller
             ->orderByRaw('user.nama - sdate  DESC')
             ->get();
         $pegawai = DB::select('select * from user');
-        //$pola = DB::select('select * from schpola');
-        //dd($pegawai);
-        return view('hrd.jadwal.index',compact('schnikdetail','pegawai'));
+        $schpola_hdr = DB::select('select * from schpola_hdr');
+
+        return view('hrd.jadwal.index',compact('schnikdetail','pegawai','schpola_hdr'));
     }
     public function storeJadwal(Request $request){
         $start_date = \Carbon\Carbon::parse($request->sdate);
         $end_date = \Carbon\Carbon::parse($request->edate);
-
+        $schpola_dtl=DB::table('schpola_dtl')
+                    ->join('schpola_hdr','schpola_dtl.polaid','schpola_hdr.kode')
+                    ->select('schpola_dtl.schclass_id')
+                    ->where('schpola_hdr.kode',$request->polaid)
+                    ->get();
+        $i=0;
 
         while(!$start_date->eq($end_date))
         {
@@ -2714,13 +2719,19 @@ class HRDController extends Controller
             $jadwal->users_id = $request->users_id;
             $jadwal->sdate = $start_date;
             $jadwal->edate = $start_date;
+            $jadwal->polaid= $schpola_dtl->$schpola_dtl[0]->schclass_id;
             $jadwal->stime = $request->stime;
             $jadwal->etime = $request->etime;
             $jadwal->save();
-
+        $i++;  
         $start_date->addDay();
+        if ($i>7){
+          $i=0;
+        }
+
         }
         return redirect()->back();
+        //return response()->json($schpola_dtl[0]->schclass_id, 200);
 
     }
 
