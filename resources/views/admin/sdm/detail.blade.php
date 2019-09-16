@@ -277,6 +277,28 @@
                                 </tbody>
                             </table>
                     </div>
+
+                    <div class="tab-pane" id="tab-9">
+                      <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th><center>No</center></th>
+                                    <th><center>Lampiran</center></th>
+                                    <th><center>Preview</center></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><center>-</center></td>
+                                    <td><center>Lampiran Foto</center></td>
+                                    <td><center>
+                                        <button data-href="{{url('/admin/sdm/lampiran/foto/'.$id_user)}}" type="button" class="btn btn-common preview-file"><i class="fa fa-eye">&nbsp;</i>Preview</button>
+                                        </center>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                    </div>
                     </div>
 
                     </div>
@@ -378,7 +400,10 @@
                         }
                     }
                 });
+
    });
+
+    
 </script>
 
 

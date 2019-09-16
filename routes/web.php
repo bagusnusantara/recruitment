@@ -76,4 +76,5 @@ Route::prefix('jobseeker')->group(function(){
 
 
     Route::get('lampiran/{kategori}','JobSeekerController@getLampiran');
+    Route::get('cetakpdf','JobSeekerController@getCetakPdf');
 });

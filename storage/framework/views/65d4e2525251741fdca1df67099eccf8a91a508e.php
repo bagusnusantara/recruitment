@@ -28,7 +28,7 @@
                           </div>
                           <div class="col-lg-7 col-md-7 col-xs-12 text-right">
                             <div class="tag-type mt-4">
-                              <button data-href="lampiran/foto" type="button" class="btn btn-common preview-file"><i class="fa fa-eye">&nbsp;</i>Preview</button>
+                              <button data-href="<?php echo e(url('/jobseeker/lampiran/foto/')); ?>" type="button" class="btn btn-common preview-file"><i class="fa fa-eye">&nbsp;</i>Preview</button>
                               <button type="button" class="btn btn-primary submit-file hidden-block"><i class="fa fa-upload">&nbsp;</i>Unggah
                                 <img id="loader" src='<?php echo e(asset('img/loader.gif')); ?>' width='20px' height='20px' style="display:none;">
                               </button>
@@ -142,6 +142,17 @@
                           </div>
 
                     </form>
+
+                      <div class="job-listings-featured block-action">
+                        <div class="row">
+                          <div class="col-lg-7 col-md-7 col-xs-12 text-right">
+                            <div class="tag-type mt-4">
+                              <a href="<?php echo e(url('/jobseeker/cetakpdf')); ?>" target="_blank"><button type="button" class="btn btn-common"><i class="fa fa-eye">&nbsp;</i>Download CV.pdf</button></a>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+
 
             </div>
         </div>

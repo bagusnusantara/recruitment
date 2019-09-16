@@ -276,6 +276,32 @@
                                 </tbody>
                             </table>
                     </div>
+                    <div class="tab-pane" id="tab-8">
+                      <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th><center>No</center></th>
+                                    <th><center>Nama Penyakit</center></th>
+                                    <th><center>Tanggal Mulai</center></th>
+                                    <th><center>Tanggal Akhir</center></th>
+                                    <th><center>Pengaruh</center></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                  @foreach($riwayat_penyakit as $p)
+                                <tr>
+                                    <td><center>-</center></td>
+                                    <td><center>{{$p->nama_penyakit}}</center></td>
+                                    <td><center>{{$p->tanggal_mulai}}</center></td>
+                                    <td><center>{{$p->tanggal_akhir}}</center></td>
+                                    <td><center>{{$p->pengaruh}}</center></td>
+                                </tr>
+                                  @endforeach
+                                </tbody>
+                            </table>
+                    </div>
+
+
                     </div>
 
                     </div>

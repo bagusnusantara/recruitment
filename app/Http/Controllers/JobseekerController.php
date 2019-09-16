@@ -40,6 +40,8 @@ use App\st_jobseeker_minatkerja;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
+use PDF;
+
 class JobseekerController extends Controller
 {
     public function getDashboard(){
@@ -591,5 +593,65 @@ class JobseekerController extends Controller
       }
 
       return redirect()->back()->with(compact('status'));
+    }
+
+    public function getCetakPdf()
+    {
+        $md_jobseeker = md_jobseeker::where('users_id',\Auth::user()->id)->get();
+        $pendidikan=DB::table('st_jobseeker_pendidikanformal')
+                ->where('user_id',\Auth::user()->id)
+                ->join('st_tingkatpendidikan', 'st_jobseeker_pendidikanformal.tingkat_pendidikan', '=', 'st_tingkatpendidikan.id')
+                ->select('st_jobseeker_pendidikanformal.*','st_tingkatpendidikan.strata')
+                ->orderby('tingkat_pendidikan','desc')
+                ->get();
+        $pendidikan_bahasa=DB::table('st_jobseeker_pendidikanbahasa')
+                ->where('user_id', \Auth::user()->id)
+                ->join('st_bahasa','st_jobseeker_pendidikanbahasa.bahasa', '=', 'st_bahasa.id')
+                ->join('st_kemampuan as st_lisan','st_jobseeker_pendidikanbahasa.kemampuan_lisan','=','st_lisan.id')
+                ->join('st_kemampuan as st_tulis','st_jobseeker_pendidikanbahasa.kemampuan_tertulis','=','st_tulis.id')
+                ->select('st_jobseeker_pendidikanbahasa.*',
+                         'st_bahasa.deskripsi as deskripsi_bahasa',
+                         'st_lisan.tingkat as tingkat_lisan',
+                         'st_tulis.tingkat as tingkat_tulis')
+                ->get();
+        $pendidikan_nonformal=DB::table('st_jobseeker_pendidikaninformal')
+                ->where('user_id', \Auth::user()->id)
+                ->select('st_jobseeker_pendidikaninformal.*')
+                ->get();
+        $pekerjaan=DB::table('st_jobseeker_pengalamankerja')
+                ->where('user_id',\Auth::user()->id)
+                ->orderby('tanggal_mulai','asc')
+                ->get();
+        $minat=DB::table('st_jobseeker_minatkerja')
+                ->join('st_bisnisperusahaan','st_jobseeker_minatkerja.bidang_bisnis','=','st_bisnisperusahaan.id')
+                ->join('st_lingkungankerja','st_jobseeker_minatkerja.lingkungan_kerja', '=', 'st_lingkungankerja.id')
+                ->join('st_spesialisasipekerjaan','st_jobseeker_minatkerja.spesialisasi', '=', 'st_spesialisasipekerjaan.id')
+                ->join('st_posisikerja','st_jobseeker_minatkerja.posisi_kerja','=','st_posisikerja.id')
+                ->join('st_leveljabatan','st_jobseeker_minatkerja.level_jabatan','=','st_leveljabatan.id')
+                ->where('user_id', \Auth::user()->id)
+                ->select('st_jobseeker_minatkerja.*',
+                         'st_bisnisperusahaan.name as name_bidangbisnis',
+                         'st_lingkungankerja.lingkungan',
+                         'st_spesialisasipekerjaan.spesial',
+                         'st_posisikerja.posisi',
+                         'st_leveljabatan.jabatan')
+                ->get();
+        $pengalaman_organisasi=DB::table('st_jobseeker_pengalamanorganisasi')
+                ->where('user_id', \Auth::user()->id)
+                ->select('st_jobseeker_pengalamanorganisasi.*')
+                ->orderby('tanggal_mulai','asc')
+                ->get();
+        $riwayat_penyakit=DB::table('st_jobseeker_riwayatpenyakit')
+                ->select('st_jobseeker_riwayatpenyakit.*')
+                ->where('user_id', \Auth::user()->id)
+                ->orderby('tanggal_mulai','asc')
+                ->get();
+        $pdf = PDF::loadview('jobseeker.datadiri.resume',
+          compact('md_jobseeker','pendidikan','pendidikan_nonformal','pendidikan_bahasa','pekerjaan',
+            'minat','pengalaman_organisasi','riwayat_penyakit'))
+        ->setPaper('A4', 'potrait');
+        //->set_option('isHtml5ParserEnabled', TRUE);
+        // ->render();
+        return $pdf->stream();
     }
 }

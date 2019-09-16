@@ -6,6 +6,8 @@ Route::prefix('admin')->group(function(){
     Route::get('notifikasi', 'AdminController@getNotifikasi');
     Route::get('sdm', 'AdminController@getSdm');
     Route::get('sdm/detail/{userid}', 'AdminController@getDetailSdm');
+    Route::get('sdm/detail/{userid}/pdf', 'AdminController@getDetailSdmPdf');
+    Route::get('sdm/lampiran/{kategori}/{userid}','AdminController@getLampiran');
     Route::get('klien', 'AdminController@getKlien');
     Route::get('lowongan', 'AdminController@getLowongan');
     Route::get('manajementes', 'AdminController@getManajementes');
