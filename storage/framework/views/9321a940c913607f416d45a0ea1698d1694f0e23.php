@@ -84,8 +84,7 @@ endif; ?>
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                     </div>
                 </div>
-                <input id="avatar" name="avatar" type="file" class="form-control">
-                
+
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
                         <button type="submit" class="btn btn-primary">

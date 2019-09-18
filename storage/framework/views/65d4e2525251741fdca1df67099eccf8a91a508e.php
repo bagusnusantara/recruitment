@@ -147,7 +147,7 @@
                         <div class="row">
                           <div class="col-lg-7 col-md-7 col-xs-12 text-right">
                             <div class="tag-type mt-4">
-                              <a href="<?php echo e(url('/jobseeker/cetakpdf')); ?>" target="_blank"><button type="button" class="btn btn-common"><i class="fa fa-eye">&nbsp;</i>Download CV.pdf</button></a>
+                              <a href="<?php echo e(url('/jobseeker/cetakpdf')); ?>" target="_blank"><button type="button" class="btn btn-common">Download CV.pdf</button></a>
                             </div>
                           </div>
                       </div>
