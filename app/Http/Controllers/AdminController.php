@@ -141,7 +141,9 @@ class AdminController extends Controller
       $pendidikan=DB::table('st_jobseeker_pendidikanformal')
                 ->where('user_id',$userid)
                 ->join('st_tingkatpendidikan', 'st_jobseeker_pendidikanformal.tingkat_pendidikan', '=', 'st_tingkatpendidikan.id')
-                ->select('st_jobseeker_pendidikanformal.*','st_tingkatpendidikan.strata')->get();
+                ->select('st_jobseeker_pendidikanformal.*','st_tingkatpendidikan.strata')
+                ->orderby('st_tingkatpendidikan.id','desc')
+                ->get();
       $minat=DB::table('st_jobseeker_minatkerja')
                 ->join('st_bisnisperusahaan','st_jobseeker_minatkerja.bidang_bisnis','=','st_bisnisperusahaan.id')
                 ->join('st_lingkungankerja','st_jobseeker_minatkerja.lingkungan_kerja', '=', 'st_lingkungankerja.id')
@@ -196,16 +198,62 @@ class AdminController extends Controller
         $status = [1,0,0,0,1];
         // $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
         //                                   ->where('users_id',$userid)->count();
-        $pelamar=DB::table('md_jobseeker')->where('users_id',$userid)->get();
-        $pekerjaan=DB::table('st_jobseeker_pengalamankerja')->where('user_id',$userid)->get();
-        $pendidikan=DB::table('st_jobseeker_pendidikanformal')->where('user_id',$userid)
-            ->join('st_tingkatpendidikan', 'st_jobseeker_pendidikanformal.tingkat_pendidikan', '=', 'st_tingkatpendidikan.id')
-            ->select('st_jobseeker_pendidikanformal.*','st_tingkatpendidikan.strata')->get();
+        $md_jobseeker = md_jobseeker::where('users_id',$userid)->get();
+        $pendidikan=DB::table('st_jobseeker_pendidikanformal')
+                ->where('user_id',$userid)
+                ->join('st_tingkatpendidikan', 'st_jobseeker_pendidikanformal.tingkat_pendidikan', '=', 'st_tingkatpendidikan.id')
+                ->select('st_jobseeker_pendidikanformal.*','st_tingkatpendidikan.strata')
+                ->orderby('tingkat_pendidikan','desc')
+                ->get();
+        $pendidikan_bahasa=DB::table('st_jobseeker_pendidikanbahasa')
+                ->where('user_id', $userid)
+                ->join('st_bahasa','st_jobseeker_pendidikanbahasa.bahasa', '=', 'st_bahasa.id')
+                ->join('st_kemampuan as st_lisan','st_jobseeker_pendidikanbahasa.kemampuan_lisan','=','st_lisan.id')
+                ->join('st_kemampuan as st_tulis','st_jobseeker_pendidikanbahasa.kemampuan_tertulis','=','st_tulis.id')
+                ->select('st_jobseeker_pendidikanbahasa.*',
+                         'st_bahasa.deskripsi as deskripsi_bahasa',
+                         'st_lisan.tingkat as tingkat_lisan',
+                         'st_tulis.tingkat as tingkat_tulis')
+                ->get();
+        $pendidikan_nonformal=DB::table('st_jobseeker_pendidikaninformal')
+                ->where('user_id', $userid)
+                ->select('st_jobseeker_pendidikaninformal.*')
+                ->get();
+        $pekerjaan=DB::table('st_jobseeker_pengalamankerja')
+                ->where('user_id',$userid)
+                ->orderby('tanggal_mulai','asc')
+                ->get();
+        $minat=DB::table('st_jobseeker_minatkerja')
+                ->join('st_bisnisperusahaan','st_jobseeker_minatkerja.bidang_bisnis','=','st_bisnisperusahaan.id')
+                ->join('st_lingkungankerja','st_jobseeker_minatkerja.lingkungan_kerja', '=', 'st_lingkungankerja.id')
+                ->join('st_spesialisasipekerjaan','st_jobseeker_minatkerja.spesialisasi', '=', 'st_spesialisasipekerjaan.id')
+                ->join('st_posisikerja','st_jobseeker_minatkerja.posisi_kerja','=','st_posisikerja.id')
+                ->join('st_leveljabatan','st_jobseeker_minatkerja.level_jabatan','=','st_leveljabatan.id')
+                ->where('user_id', $userid)
+                ->select('st_jobseeker_minatkerja.*',
+                         'st_bisnisperusahaan.name as name_bidangbisnis',
+                         'st_lingkungankerja.lingkungan',
+                         'st_spesialisasipekerjaan.spesial',
+                         'st_posisikerja.posisi',
+                         'st_leveljabatan.jabatan')
+                ->get();
+        $pengalaman_organisasi=DB::table('st_jobseeker_pengalamanorganisasi')
+                ->where('user_id', $userid)
+                ->select('st_jobseeker_pengalamanorganisasi.*')
+                ->orderby('tanggal_mulai','asc')
+                ->get();
+        $riwayat_penyakit=DB::table('st_jobseeker_riwayatpenyakit')
+                ->select('st_jobseeker_riwayatpenyakit.*')
+                ->where('user_id', $userid)
+                ->orderby('tanggal_mulai','asc')
+                ->get();
         $check = trans_lowongan_pekerjaan::where('md_lowongan_pekerjaan_id',$jobid)
             ->where('users_id',$userid)->count();
         if($check){
             //dd($pelamar);
-            $pdf = PDF::loadview('admin.lowongan.show_data_pelamar_pdf',compact('status','pelamar','pendidikan','pekerjaan'));
+            $pdf = PDF::loadview('admin.lowongan.show_data_pelamar_pdf2',
+              compact('md_jobseeker','pendidikan','pendidikan_nonformal','pendidikan_bahasa','pekerjaan',
+            'minat','pengalaman_organisasi','riwayat_penyakit'));
             return $pdf->stream();
             //return view ('admin.lowongan.show_data_pelamar',compact('status','pelamar','pendidikan','pekerjaan'));
         }else {
